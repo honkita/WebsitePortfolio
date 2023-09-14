@@ -4,7 +4,7 @@ import { useTheme, ThemeProvider } from "next-themes";
 
 export default function PixelSwitch() {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [press, setPress] = useState(0);
 
   // useEffect only runs on the client, so now we can safely show the UI
@@ -17,7 +17,7 @@ export default function PixelSwitch() {
   }
 
   const toggleTheme = () => {
-    if (theme == "dark") {
+    if (resolvedTheme == "dark") {
       setTheme("light");
     } else {
       setTheme("dark");
@@ -30,7 +30,7 @@ export default function PixelSwitch() {
         className={
           utilStyles.toggle +
           " " +
-          (theme === "dark" ? utilStyles.toggledark : null)
+          (resolvedTheme === "dark" ? utilStyles.toggledark : null)
         }
         onClick={toggleTheme}
       />
