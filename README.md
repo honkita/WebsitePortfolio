@@ -1,1 +1,1 @@
-This is the code for Elite's website. 
+This is the code for Elite's website.
