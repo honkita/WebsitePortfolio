@@ -131,13 +131,13 @@
   transform: scale(1.1);
 }
 
-.LanguageDexLeft {
-  background-image: url("../public/images/LanguageDexLeft.png");
-  width: 20rem;
+.LanguageDex {
+  background-image: url("../public/images/LanguageDex.png");
+  width: 40rem;
   height: 30rem;
-  min-width: 12rem;
+  min-width: 24rem;
   min-height: 18rem;
-  padding: 3rem;
+  padding: 3.5rem;
   border: None;
   background-color: transparent;
   background-repeat: no-repeat;
@@ -153,30 +153,6 @@
   image-rendering: pixelated;
   -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
 }
-
-.LanguageDexRight {
-  background-image: url("../public/images/LanguageDexRight.png");
-  width: 20rem;
-  height: 30rem;
-  min-width: 12rem;
-  min-height: 18rem;
-  padding: 3rem;
-  border: None;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  word-wrap: break-word;
-  background-size: cover;
-  transition: all 0.2s;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  vertical-align: top;
-  align-items: center;
-  image-rendering: pixelated;
-  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
-}
-
 .ReferenceBacker {
   background-image: url("../public/images/PixelSquare.png");
   width: 20rem;

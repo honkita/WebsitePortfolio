@@ -36,17 +36,9 @@ export default function LanguageDex(props) {
 
   let src;
 
-  function background() {
-    if (theme === "light") {
-      return utilStyles.LanguageDexLeft;
-    } else {
-      return utilStyles.LanguageDexLeft;
-    }
-  }
-
   return (
     <ThemeProvider>
-      <div className={utilStyles.LanguageDexLeft}>
+      <div className={utilStyles.LanguageDex}>
         <div className={styles.grid}>{itemList}</div>
 
         <section className={utilStyles.boxLg}>
@@ -56,7 +48,6 @@ export default function LanguageDex(props) {
           <p>{props.employer}</p>
         </section>
       </div>
-      <div className={utilStyles.LanguageDexRight}></div>
     </ThemeProvider>
   );
 }
