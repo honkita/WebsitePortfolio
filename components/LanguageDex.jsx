@@ -2,12 +2,11 @@ import utilStyles from "../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
-import PixelButton from "./PixelButton";
 
 export default function LanguageDex(props) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-  const { language, setLanguage } = useState("");
+  const [language, setLanguage] = useState("");
 
   let items = [
     { name: "C", url: "./images/Logos/C.png" },
@@ -24,8 +23,22 @@ export default function LanguageDex(props) {
     { name: "Latex", url: "./images/Logos/Latex.png" },
   ];
 
+  function showText(text) {
+    setLanguage(text);
+    console.log(language);
+  }
+
   let itemList = items.map((item, index) => {
-    return <img id={item.name} src={item.url} className={utilStyles.logos} />;
+    return (
+      <button
+        onClick={() => {
+          showText(item.name);
+        }}
+        className={utilStyles.logoButtonSmall}
+      >
+        <img id={item.name} src={item.url} />
+      </button>
+    );
   });
 
   // useEffect only runs on the client, so now we can safely show the UI
@@ -43,12 +56,10 @@ export default function LanguageDex(props) {
     <ThemeProvider>
       <div className={utilStyles.LanguageDex}>
         <div className={styles.grid}>{itemList}</div>
-
-        <section className={utilStyles.boxLg}>
-          <p>{props.name}</p>
-        </section>
-        <section className={utilStyles.box2Md}>
-          <p>{props.employer}</p>
+        <section className={styles.containerLanguageDex}>
+          <div className={utilStyles.boxLgBlack}>
+            <p>{language}</p>
+          </div>
         </section>
       </div>
     </ThemeProvider>

@@ -40,6 +40,15 @@
   align-items: center;
 }
 
+.containerLanguageDex {
+  position: absolute;
+  left: 21rem;
+  top: 7rem;
+  align-items: "center";
+  justify-content: center;
+  vertical-align: bottom;
+}
+
 .title a {
   color: var(--secondary);
   text-decoration: none;

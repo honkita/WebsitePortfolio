@@ -25,6 +25,14 @@
   line-height: 1.5;
 }
 
+.boxLgBlack {
+  font-size: 1.4rem;
+  line-height: 1.2;
+  font-weight: bold;
+  margin: 3rem 3rem;
+  color: #050505;
+}
+
 .boxLg {
   font-size: 1.4rem;
   line-height: 1.2;
@@ -109,26 +117,6 @@
 .toggledark::after {
   background-image: url("../public/images/SwitchDark.png");
   transform: translateX(1rem);
-}
-
-.logos {
-  width: 4rem;
-  height: 4rem;
-  min-width: 4rem;
-  min-height: 4rem;
-  padding: 0;
-  border: None;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  word-wrap: break-word;
-  transition: all 0.2s;
-  position: relative;
-  image-rendering: pixelated;
-  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
-}
-
-.logos:hover {
-  transform: scale(1.1);
 }
 
 .LanguageDex {
@@ -269,6 +257,32 @@
 .logoButtonDark {
   opacity: 0 !important;
   transition: opacity 200ms;
+}
+
+.logoButtonSmall {
+  width: 4rem;
+  height: 4rem;
+  min-width: 4rem;
+  min-height: 4rem;
+  padding: 0;
+  border: None;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.logoButtonSmall > img {
+  width: 100%;
+  image-rendering: pixelated;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.logoButtonSmall:hover {
+  transform: scale(1.1);
 }
 
 .pixelated {
