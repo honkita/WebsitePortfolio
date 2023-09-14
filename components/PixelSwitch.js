@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import utilStyles from "../styles/theme.util.module.css";
-import { useTheme } from "next-themes";
+import { useTheme, ThemeProvider } from "next-themes";
 
 export default function PixelSwitch() {
   const [mounted, setMounted] = useState(false);
@@ -25,13 +25,15 @@ export default function PixelSwitch() {
   };
 
   return (
-    <button
-      className={
-        utilStyles.toggle +
-        " " +
-        (theme === "dark" ? utilStyles.toggledark : null)
-      }
-      onClick={toggleTheme}
-    />
+    <ThemeProvider>
+      <button
+        className={
+          utilStyles.toggle +
+          " " +
+          (theme === "dark" ? utilStyles.toggledark : null)
+        }
+        onClick={toggleTheme}
+      />
+    </ThemeProvider>
   );
 }
