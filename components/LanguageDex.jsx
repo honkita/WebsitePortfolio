@@ -20,6 +20,7 @@ export default function LanguageDex(props) {
     { name: "Processing", url: "./images/Logos/Processing.png" },
     { name: "Python", url: "./images/Logos/Python.png" },
     { name: "Java", url: "./images/Logos/Java.png" },
+    { name: "Gradle", url: "./images/Logos/Gradle.png" },
     { name: "Latex", url: "./images/Logos/Latex.png" },
   ];
 
