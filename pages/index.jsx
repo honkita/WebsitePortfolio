@@ -1,64 +1,50 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css';
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import utilStyles from "../styles/theme.util.module.css";
+import PixelButton from "../components/PixelButton";
+import PixelSwitch from "../components/PixelSwitch";
+import { useTheme, ThemeProvider } from "next-themes";
 
 export default function Home() {
+  const { theme, setTheme } = useTheme();
+  const name = "Elite Lu";
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
+    <ThemeProvider>
+      <div>
+        <Head>
+          <title>{"Elite Lu Portfolio"}</title>
+        </Head>
+        <PixelSwitch />
+        <div className={styles.container}>
+          <section className={utilStyles.heading2Xl}>
+            <p>Elite Lu</p>
+          </section>
+          <section className={utilStyles.headingLg}>
+            <p>About Me</p>
+          </section>
+          <section className={utilStyles.headingMd}>
             <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
+              I am a software developer and a third year computer science
+              student at McMaster University.
             </p>
-          </a>
-        </div>
-      </main>
+          </section>
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+          <div>
+            <PixelButton
+              name="LinkedIn"
+              url="https://www.linkedin.com/in/elite-lu-a32488230/"
+            />
+            <PixelButton name="GitHub" url="https://github.com/honkita/" />
+            <PixelButton name="Email" url="mailto:elitelulww@gmail.com" />
+            <PixelButton name="Resume" url={"./resume"} />
+          </div>
+
+          <section className={utilStyles.headingMd}>
+            <p></p>
+          </section>
+        </div>
+      </div>
+    </ThemeProvider>
+  );
 }

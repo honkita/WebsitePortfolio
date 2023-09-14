@@ -1,18 +1,310 @@
-.toggle {
-	cursor: pointer;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	aspect-ratio: 1/1;
-	height: 3rem;
-	width: auto;
-	margin: 0;
-	background-color: transparent;
-	border: none;
+.heading2Xl {
+  font-size: 4rem;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.05rem;
+  margin: 1rem 0;
 }
 
-.toggle	svg {
-	display: block;
-	position: relative;
-	fill: var(--primary-bright);
+.headingXl {
+  font-size: 2rem;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: -0.05rem;
+  margin: 1rem 0;
+}
+
+.headingLg {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  margin: 1rem 0;
+}
+
+.headingMd {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.boxLg {
+  font-size: 1.4rem;
+  line-height: 1.2;
+  font-weight: bold;
+  margin: 3rem 3rem;
+  color: var(--background);
+}
+
+.box2Md {
+  font-size: 1.3rem;
+  line-height: 1;
+  font-weight: bold;
+  margin: 2rem 3rem;
+  color: var(--background);
+}
+
+.boxMd {
+  font-size: 1.2rem;
+  line-height: 1.3;
+  margin: 2rem 3rem;
+  color: var(--background);
+}
+
+.borderCircle {
+  border-radius: 9999px;
+}
+
+.colorInherit {
+  color: inherit;
+}
+
+.padding1px {
+  padding-top: 1px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listItem {
+  margin: 0 0 1.25rem;
+}
+
+.lightText {
+  color: #666;
+}
+
+.toggle {
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+  width: 6rem;
+  height: 4rem;
+  min-width: 3rem;
+  min-height: 2rem;
+  padding: 0;
+  border: None;
+  background-color: transparent;
+  background-image: url(../public/images/SwitchBack.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: all 0.2s;
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+}
+
+.toggle::after {
+  background-image: url("../public/images/Switch.png");
+  background-size: 4rem 4rem;
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  content: "";
+  transition: all 0.2s;
+  transform: translateX(-1rem);
+}
+
+.toggledark {
+  background-image: url("../public/images/SwitchBackDark.png");
+  transition: all 0.2s;
+}
+
+.toggledark::after {
+  background-image: url("../public/images/SwitchDark.png");
+  transform: translateX(1rem);
+}
+
+.logos {
+  width: 4rem;
+  height: 4rem;
+  min-width: 4rem;
+  min-height: 4rem;
+  padding: 0;
+  border: None;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  word-wrap: break-word;
+  transition: all 0.2s;
+  position: relative;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+}
+
+.logos:hover {
+  transform: scale(1.1);
+}
+
+.LanguageDexLeft {
+  background-image: url("../public/images/LanguageDexLeft.png");
+  width: 20rem;
+  height: 30rem;
+  min-width: 12rem;
+  min-height: 18rem;
+  padding: 3rem;
+  border: None;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  word-wrap: break-word;
+  background-size: cover;
+  transition: all 0.2s;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  vertical-align: top;
+  align-items: center;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+}
+
+.LanguageDexRight {
+  background-image: url("../public/images/LanguageDexRight.png");
+  width: 20rem;
+  height: 30rem;
+  min-width: 12rem;
+  min-height: 18rem;
+  padding: 3rem;
+  border: None;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  word-wrap: break-word;
+  background-size: cover;
+  transition: all 0.2s;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  vertical-align: top;
+  align-items: center;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+}
+
+.ReferenceBacker {
+  background-image: url("../public/images/PixelSquare.png");
+  width: 20rem;
+  height: 20rem;
+  min-width: 20rem;
+  min-height: 20rem;
+  padding: 0;
+  border: None;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  word-wrap: break-word;
+  background-size: cover;
+  transition: all 0.2s;
+  position: relative;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+}
+
+.ReferenceBacker:hover {
+  transform: scale(1.1);
+}
+
+.ReferenceBackerDark {
+  background-image: url("../public/images/PixelSquareDark.png");
+  width: 20rem;
+  height: 20rem;
+  min-width: 20rem;
+  min-height: 20rem;
+  padding: 0;
+  border: None;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  word-wrap: break-word;
+  background-size: cover;
+  transition: all 0.2s;
+  position: relative;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+}
+
+.ReferenceBackerDark:hover {
+  transform: scale(1.1);
+}
+
+.ResumeBacker {
+  background-image: url("../public/images/PixelShortBox.png");
+  width: 30rem;
+  height: 20rem;
+  min-width: 18rem;
+  min-height: 12rem;
+  padding: 0;
+  border: None;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  word-wrap: break-word;
+  background-size: cover;
+  transition: all 0.2s;
+  position: relative;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+}
+
+.ResumeBacker:hover {
+  transform: scale(1.1);
+}
+
+.ResumeBackerDark {
+  background-image: url("../public/images/PixelShortBoxDark.png");
+  width: 30rem;
+  height: 20rem;
+  min-width: 18rem;
+  min-height: 12rem;
+  padding: 0;
+  border: None;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  word-wrap: break-word;
+  background-size: cover;
+  transition: all 0.2s;
+  position: relative;
+  image-rendering: pixelated;
+}
+
+.ResumeBackerDark:hover {
+  transform: scale(1.1);
+}
+
+.logoButton {
+  width: 5rem;
+  height: 5rem;
+  min-width: 5rem;
+  min-height: 5rem;
+  padding: 0;
+  border: None;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.logoButton > img {
+  width: 100%;
+  image-rendering: pixelated;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.logoButton:hover {
+  transform: scale(1.1);
+}
+
+.logoButtonDark {
+  opacity: 0 !important;
+  transition: opacity 200ms;
+}
+
+.pixelated {
+  image-rendering: pixelated; /* CSS4 Proposed  */
+  image-rendering: optimizeSpeed; /* Legal fallback */
+  image-rendering: -moz-crisp-edges; /* Firefox        */
+  image-rendering: -o-crisp-edges; /* Opera          */
+  image-rendering: -webkit-optimize-contrast; /* Safari         */
+  image-rendering: optimize-contrast; /* CSS3 Proposed  */
+  image-rendering: crisp-edges; /* CSS4 Proposed  */
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
 }
