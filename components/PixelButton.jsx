@@ -6,6 +6,7 @@ import Link from "next/link";
 export default function PixelButton(props) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const name = props.name;
 
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
@@ -16,13 +17,28 @@ export default function PixelButton(props) {
     return null;
   }
 
-  function checkReverse() {
-    if (props.reverse) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+  var dict = {
+    Email: {
+      lightTheme: "./images/PixelEmail.png",
+      darkTheme: "./images/PixelEmailDark.png",
+    },
+    Back: {
+      lightTheme: "./images/PixelBack.png",
+      darkTheme: "./images/PixelBackDark.png",
+    },
+    Linkedin: {
+      lightTheme: "./images/PixelLinkedin.png",
+      darkTheme: "./images/PixelLinkedinDark.png",
+    },
+    Resume: {
+      lightTheme: "./images/PixelResume.png",
+      darkTheme: "./images/PixelResumeDark.png",
+    },
+    GitHub: {
+      lightTheme: "./images/PixelGitHub.png",
+      darkTheme: "./images/PixelGitHubDark.png",
+    },
+  };
 
   let src;
 
@@ -30,14 +46,10 @@ export default function PixelButton(props) {
     <ThemeProvider>
       <Link href={props.url}>
         <button className={utilStyles.logoButton}>
-          <img src={"./images/Pixel" + props.name + ".png"} />
+          <img src={dict[name].lightTheme} />
           <img
-            className={
-              (theme === "light") == checkReverse()
-                ? utilStyles.logoButtonDark
-                : null
-            }
-            src={"./images/Pixel" + props.name + "dark.png"}
+            className={theme === "light" ? utilStyles.logoButtonDark : null}
+            src={dict[name].darkTheme}
           />
         </button>
       </Link>

@@ -38,11 +38,7 @@ export default function ResumeJobs(props) {
             <p>{props.employer}</p>
           </section>
           <div className={styles.containerAbsolute}>
-            <PixelButton
-              name="Email"
-              url={"mailto:" + props.email}
-              reverse={true}
-            />
+            <PixelButton name="Email" url={"mailto:" + props.email} />
           </div>
         </div>
       </div>
