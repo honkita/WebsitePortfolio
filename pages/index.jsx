@@ -6,7 +6,7 @@ import PixelSwitch from "../components/PixelSwitch";
 import { useTheme, ThemeProvider } from "next-themes";
 
 export default function Home() {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const name = "Elite Lu";
 
   return (

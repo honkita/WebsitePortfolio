@@ -6,7 +6,7 @@ import PixelButton from "./PixelButton";
 
 export default function ResumeJobs(props) {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function ResumeJobs(props) {
   let src;
 
   function background() {
-    if (theme === "light") {
+    if (resolvedTheme === "light") {
       return utilStyles.ReferenceBacker;
     } else {
       return utilStyles.ReferenceBackerDark;

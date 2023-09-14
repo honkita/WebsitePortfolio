@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function PixelButton(props) {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const name = props.name;
 
   // useEffect only runs on the client, so now we can safely show the UI
@@ -48,7 +48,9 @@ export default function PixelButton(props) {
         <button className={utilStyles.logoButton}>
           <img src={dict[name].lightTheme} />
           <img
-            className={theme === "light" ? utilStyles.logoButtonDark : null}
+            className={
+              resolvedTheme === "light" ? utilStyles.logoButtonDark : null
+            }
             src={dict[name].darkTheme}
           />
         </button>

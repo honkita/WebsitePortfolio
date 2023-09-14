@@ -11,7 +11,7 @@ import ResumeReferences from "../components/ResumeReferences";
 import LanguageDex from "../components/LanguageDex";
 
 export default function Resume(pageProps) {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   return (
     <ThemeProvider>
       <section>
@@ -71,7 +71,7 @@ export default function Resume(pageProps) {
         </div>
 
         <div className={styles.containerFixed}>
-          <PixelButton name="Back" url="/" theme={theme} />
+          <PixelButton name="Back" url="/" theme={resolvedTheme} />
         </div>
         <section></section>
       </div>
