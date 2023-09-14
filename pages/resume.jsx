@@ -47,7 +47,7 @@ export default function Resume(pageProps) {
         <section className={utilStyles.headingXl}>
           <p>References</p>
         </section>
-        <div className={styles.side}>
+        <div className={styles.jobGrid}>
           <ResumeReferences
             name="Steve Presement"
             employer="Practice Perfect EMR"
