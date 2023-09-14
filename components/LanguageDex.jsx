@@ -10,7 +10,7 @@ export default function LanguageDex(props) {
   const { language, setLanguage } = useState("");
 
   let items = [
-    { name: "C", url: "./images/Logos/C++.png" },
+    { name: "C", url: "./images/Logos/C.png" },
     { name: "C++", url: "./images/Logos/C++.png" },
     { name: "C#", url: "./images/Logos/CS.png" },
     { name: "Haskell", url: "./images/Logos/Haskell.png" },
