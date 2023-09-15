@@ -14,70 +14,68 @@ export default function Resume(pageProps) {
   const { resolvedTheme, setTheme } = useTheme();
   return (
     <ThemeProvider>
+      <section>
+        <Head>
+          <title>Resume</title>
+        </Head>
+        <PixelSwitch />
+      </section>
       <div className={styles.container}>
-        <section>
-          <Head>
-            <title>Resume</title>
-          </Head>
-          <PixelSwitch />
+        <section className={utilStyles.heading2Xl}>
+          <p>Resume</p>
         </section>
-        <div className={styles.container}>
-          <section className={utilStyles.heading2Xl}>
-            <p>Resume</p>
-          </section>
-          <section className={utilStyles.headingXl}>
-            <p>Language Proficiency</p>
-          </section>
-          <div className={styles.side}>
-            <LanguageDex></LanguageDex>
-            <section className={utilStyles.headingXl}></section>
-          </div>
-          <section className={utilStyles.headingXl}>
-            <p>Previous Employment</p>
-          </section>
-          <div className={styles.locationGrid}>
-            <ResumeJobs
-              jobName="Software Developer Intern"
-              employer="Practice Perfect EMR"
-              email="steve@practiceperfectemr.com"
-            />
-            <ResumeJobs
-              jobName="Badminton Instructor & Gym Monitor"
-              employer="Town of Newmarket"
-              email="kwillins@newmarket.ca "
-            />
-          </div>
-          <section className={utilStyles.headingXl}>
-            <p>References</p>
-          </section>
-          <div className={styles.jobGrid}>
-            <ResumeReferences
-              name="Steve Presement"
-              employer="Practice Perfect EMR"
-              email="steve@practiceperfectemr.com"
-            />
-            <ResumeReferences
-              name="Christopher Anand"
-              employer="McMaster University"
-              email="anandc@mcmaster.ca"
-            />
-            <ResumeReferences
-              name="Kathleen Willins"
-              employer="Town of Newmarket"
-              email="kwillins@newmarket.ca"
-            />
-            <ResumeReferences
-              name="Ricci Tam"
-              employer="Newmarket High School"
-              email="ricci.tam@yrdsb.ca"
-            />
-          </div>
-
-          <div className={styles.containerFixed}>
-            <PixelButton name="Back" url="/" theme={resolvedTheme} />
-          </div>
-          <section></section>
+        <section className={utilStyles.headingXl}>
+          <p>Language Proficiency</p>
+        </section>
+        <div className={styles.side}>
+          <LanguageDex></LanguageDex>
+          <section className={utilStyles.headingXl}></section>
         </div>
+        <section className={utilStyles.headingXl}>
+          <p>Previous Employment</p>
+        </section>
+        <div className={styles.locationGrid}>
+          <ResumeJobs
+            jobName="Software Developer Intern"
+            employer="Practice Perfect EMR"
+            email="steve@practiceperfectemr.com"
+          />
+          <ResumeJobs
+            jobName="Badminton Instructor & Gym Monitor"
+            employer="Town of Newmarket"
+            email="kwillins@newmarket.ca "
+          />
+        </div>
+        <section className={utilStyles.headingXl}>
+          <p>References</p>
+        </section>
+        <div className={styles.jobGrid}>
+          <ResumeReferences
+            name="Steve Presement"
+            employer="Practice Perfect EMR"
+            email="steve@practiceperfectemr.com"
+          />
+          <ResumeReferences
+            name="Christopher Anand"
+            employer="McMaster University"
+            email="anandc@mcmaster.ca"
+          />
+          <ResumeReferences
+            name="Kathleen Willins"
+            employer="Town of Newmarket"
+            email="kwillins@newmarket.ca"
+          />
+          <ResumeReferences
+            name="Ricci Tam"
+            employer="Newmarket High School"
+            email="ricci.tam@yrdsb.ca"
+          />
+        </div>
+
+        <div className={styles.containerFixed}>
+          <PixelButton name="Back" url="/" theme={resolvedTheme} />
+        </div>
+        <section></section>
       </div>
     </ThemeProvider>
   );

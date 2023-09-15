@@ -245,11 +245,11 @@
   transform: scale(1.1);
 }
 
-@media (max-width: 32rem) {
+@media (max-width: 64rem) {
   .ResumeBacker {
     background-image: url("../public/images/PixelShortBox.png");
-    width: 24rem;
-    height: 16rem;
+    width: 100vw;
+
     min-width: 18rem;
     min-height: 12rem;
     padding: 0;
@@ -265,8 +265,7 @@
   }
   .ResumeBackerDark {
     background-image: url("../public/images/PixelShortBoxDark.png");
-    width: 24rem;
-    height: 16rem;
+    width: 100vw;
     min-width: 18rem;
     min-height: 12rem;
     padding: 0;
