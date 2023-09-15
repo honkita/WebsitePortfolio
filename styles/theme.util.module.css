@@ -1,4 +1,5 @@
 .heading2Xl {
+  text-align: center;
   font-size: 4rem;
   line-height: 1.2;
   font-weight: 800;
@@ -7,6 +8,7 @@
 }
 
 .headingXl {
+  text-align: center;
   font-size: 2rem;
   line-height: 1.3;
   font-weight: 800;
@@ -15,17 +17,20 @@
 }
 
 .headingLg {
+  text-align: center;
   font-size: 1.5rem;
   line-height: 1.4;
   margin: 1rem 0;
 }
 
 .headingMd {
+  text-align: center;
   font-size: 1.2rem;
   line-height: 1.5;
 }
 
 .boxLgBlack {
+  text-align: center;
   font-size: 1.4rem;
   line-height: 1.2;
   font-weight: bold;
@@ -34,6 +39,7 @@
 }
 
 .boxLg {
+  text-align: center;
   font-size: 1.4rem;
   line-height: 1.2;
   font-weight: bold;
@@ -41,6 +47,7 @@
 }
 
 .boxMdBlack {
+  text-align: center;
   font-size: 1rem;
   line-height: 1.3;
   font-weight: bold;
@@ -49,6 +56,7 @@
 }
 
 .box2Md {
+  text-align: center;
   font-size: 1.3rem;
   line-height: 1;
   font-weight: bold;
@@ -56,6 +64,7 @@
 }
 
 .boxMd {
+  text-align: center;
   font-size: 1.2rem;
   line-height: 1.3;
   margin: 2rem 3rem;
