@@ -7,25 +7,43 @@ export default function LanguageDex(props) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   const [language, setLanguage] = useState("");
+  const [paradigm, setParadigm] = useState("");
 
   let items = [
-    { name: "C", url: "./images/Logos/C.png" },
-    { name: "C++", url: "./images/Logos/C++.png" },
-    { name: "C#", url: "./images/Logos/CS.png" },
-    { name: "HTML", url: "./images/Logos/HTML.png" },
-    { name: "CSS", url: "./images/Logos/CSS.png" },
-    { name: "JavaScript", url: "./images/Logos/JS.png" },
-    { name: "Haskell", url: "./images/Logos/Haskell.png" },
-    { name: "Elm", url: "./images/Logos/Elm.png" },
-    { name: "Processing", url: "./images/Logos/Processing.png" },
-    { name: "Python", url: "./images/Logos/Python.png" },
-    { name: "Java", url: "./images/Logos/Java.png" },
-    { name: "Gradle", url: "./images/Logos/Gradle.png" },
-    { name: "Latex", url: "./images/Logos/Latex.png" },
+    { name: "C", type: "Imperative", url: "./images/Logos/C.png" },
+    { name: "C++", type: "Object-Oriented", url: "./images/Logos/C++.png" },
+    { name: "C#", type: "Object-Oriented", url: "./images/Logos/CS.png" },
+    { name: "HTML", type: "Markup", url: "./images/Logos/HTML.png" },
+    { name: "CSS", type: "Style Sheet", url: "./images/Logos/CSS.png" },
+    {
+      name: "JavaScript",
+      type: "Object-Oriented",
+      url: "./images/Logos/JS.png",
+    },
+    { name: "Haskell", type: "Functional", url: "./images/Logos/Haskell.png" },
+    { name: "Elm", type: "Functional", url: "./images/Logos/Elm.png" },
+    {
+      name: "Processing",
+      type: "Object-Oriented",
+      url: "./images/Logos/Processing.png",
+    },
+    {
+      name: "Python",
+      type: "Object-Oriented",
+      url: "./images/Logos/Python.png",
+    },
+    { name: "Java", type: "Object-Oriented", url: "./images/Logos/Java.png" },
+    {
+      name: "Gradle",
+      type: "Build Automation",
+      url: "./images/Logos/Gradle.png",
+    },
+    { name: "Latex", type: "Formatted Text", url: "./images/Logos/Latex.png" },
   ];
 
-  function showText(text) {
-    setLanguage(text);
+  function showText(n, p) {
+    setLanguage(n);
+    setParadigm(p);
     console.log(language);
   }
 
@@ -33,7 +51,7 @@ export default function LanguageDex(props) {
     return (
       <button
         onClick={() => {
-          showText(item.name);
+          showText(item.name, item.type);
         }}
         className={utilStyles.logoButtonSmall}
       >
@@ -60,6 +78,11 @@ export default function LanguageDex(props) {
         <section className={styles.containerLanguageDex}>
           <div className={utilStyles.boxLgBlack}>
             <p>{language}</p>
+          </div>
+        </section>
+        <section className={styles.containerLanguageDexBottom}>
+          <div className={utilStyles.boxMdBlack}>
+            <p>{paradigm}</p>
           </div>
         </section>
       </div>
