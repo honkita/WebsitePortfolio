@@ -211,11 +211,6 @@
   image-rendering: pixelated;
   -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
 }
-
-.ResumeBacker:hover {
-  transform: scale(1.1);
-}
-
 .ResumeBackerDark {
   background-image: url("../public/images/PixelShortBoxDark.png");
   width: 30rem;
@@ -233,8 +228,55 @@
   image-rendering: pixelated;
 }
 
+.ResumeBacker:hover {
+  transform: scale(1.1);
+}
+
 .ResumeBackerDark:hover {
   transform: scale(1.1);
+}
+
+@media (max-width: 32rem) {
+  .ResumeBacker {
+    background-image: url("../public/images/PixelShortBox.png");
+    width: 24rem;
+    height: 16rem;
+    min-width: 18rem;
+    min-height: 12rem;
+    padding: 0;
+    border: None;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    word-wrap: break-word;
+    background-size: cover;
+    transition: all 0.2s;
+    position: relative;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+  }
+  .ResumeBackerDark {
+    background-image: url("../public/images/PixelShortBoxDark.png");
+    width: 24rem;
+    height: 16rem;
+    min-width: 18rem;
+    min-height: 12rem;
+    padding: 0;
+    border: None;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    word-wrap: break-word;
+    background-size: cover;
+    transition: all 0.2s;
+    position: relative;
+    image-rendering: pixelated;
+  }
+  .ResumeBacker:hover {
+    transform: scale(1.1);
+  }
+
+  .ResumeBackerDark:hover {
+    transform: scale(1.1);
+  }
 }
 
 .logoButton {
