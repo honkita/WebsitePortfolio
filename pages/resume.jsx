@@ -28,7 +28,6 @@ export default function Resume(pageProps) {
           <p>Language Proficiency</p>
         </section>
         <div className={styles.side}>
-          <LanguageDex></LanguageDex>
           <section className={utilStyles.headingXl}></section>
         </div>
         <section className={utilStyles.headingXl}>

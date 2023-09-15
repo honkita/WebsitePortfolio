@@ -135,28 +135,29 @@
   background-image: url("../public/images/SwitchDark.png");
   transform: translateX(1rem);
 }
-
-.LanguageDex {
-  background-image: url("../public/images/LanguageDex.png");
-  width: 40rem;
-  height: 30rem;
-  min-width: 24rem;
-  min-height: 18rem;
-  padding: 3.5rem;
-  border: None;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  word-wrap: break-word;
-  background-size: cover;
-  transition: all 0.2s;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  vertical-align: top;
-  align-items: center;
-  image-rendering: pixelated;
-  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+@media (max-width: 128rem) {
+  .LanguageDex {
+    background-image: url("../public/images/LanguageDex.png");
+    width: 40rem;
+    height: 30rem;
+    min-width: 24rem;
+    min-height: 18rem;
+    padding: 3.5rem;
+    border: None;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    word-wrap: break-word;
+    background-size: cover;
+    transition: all 0.2s;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    vertical-align: top;
+    align-items: center;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+  }
 }
 
 .ReferenceBacker {
@@ -248,8 +249,10 @@
 @media (max-width: 64rem) {
   .ResumeBacker {
     background-image: url("../public/images/PixelShortBox.png");
-    width: 100vw;
-    height: 66vw;
+    width: 18rem;
+    height: 12rem;
+    min-width: 18rem;
+    min-height: 12rem;
     padding: 0;
     border: None;
     background-color: transparent;
@@ -263,8 +266,10 @@
   }
   .ResumeBackerDark {
     background-image: url("../public/images/PixelShortBoxDark.png");
-    width: 100vw;
-    height: 66vw;
+    width: 18rem;
+    height: 12rem;
+    min-width: 18rem;
+    min-height: 12rem;
     padding: 0;
     border: None;
     background-color: transparent;
