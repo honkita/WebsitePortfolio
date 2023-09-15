@@ -35,7 +35,7 @@ export default function Resume(pageProps) {
           <section className={utilStyles.headingXl}>
             <p>Previous Employment</p>
           </section>
-          <div className={styles.side}>
+          <div className={styles.locationGrid}>
             <ResumeJobs
               jobName="Software Developer Intern"
               employer="Practice Perfect EMR"

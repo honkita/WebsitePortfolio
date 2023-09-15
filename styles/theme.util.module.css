@@ -149,6 +149,7 @@
   image-rendering: pixelated;
   -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
 }
+
 .ReferenceBacker {
   background-image: url("../public/images/PixelSquare.png");
   width: 20rem;
