@@ -44,7 +44,7 @@ export default function PixelButton(props) {
 
   return (
     <ThemeProvider>
-      <Link href={props.url}>
+      <Link href={props.url} target="_blank">
         <button className={utilStyles.logoButton}>
           <img src={dict[name].lightTheme} />
           <img

@@ -4,6 +4,7 @@ import utilStyles from "../styles/theme.util.module.css";
 import PixelButton from "../components/PixelButton";
 import PixelSwitch from "../components/PixelSwitch";
 import { useTheme, ThemeProvider } from "next-themes";
+import Projects from "../components/Projects";
 
 export default function Home() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -42,6 +43,9 @@ export default function Home() {
           <section className={utilStyles.headingXl}>
             <p>Projects</p>
           </section>
+          <div>
+            <Projects url="https://github.com/honkita/Math-App" />
+          </div>
         </div>
       </div>
     </ThemeProvider>
