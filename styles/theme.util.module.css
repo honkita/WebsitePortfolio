@@ -249,9 +249,7 @@
   .ResumeBacker {
     background-image: url("../public/images/PixelShortBox.png");
     width: 100vw;
-
-    min-width: 18rem;
-    min-height: 12rem;
+    height: 66vw;
     padding: 0;
     border: None;
     background-color: transparent;
@@ -266,8 +264,7 @@
   .ResumeBackerDark {
     background-image: url("../public/images/PixelShortBoxDark.png");
     width: 100vw;
-    min-width: 18rem;
-    min-height: 12rem;
+    height: 66vw;
     padding: 0;
     border: None;
     background-color: transparent;

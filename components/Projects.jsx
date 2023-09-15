@@ -21,27 +21,14 @@ export default function ResumeJobs(props) {
 
   function background() {
     if (resolvedTheme === "light") {
-      return utilStyles.ResumeBacker;
+      return utilStyles.ReferenceBacker;
     } else {
-      return utilStyles.ResumeBackerDark;
+      return utilStyles.ReferenceBackerDark;
     }
   }
-
   return (
     <ThemeProvider>
-      <div className={styles.container}>
-        <div className={background()}>
-          <section className={utilStyles.boxLg}>
-            <p>{props.jobName}</p>
-          </section>
-          <section className={utilStyles.box2Md}>
-            <p>{props.employer}</p>
-          </section>
-          <div className={styles.containerAbsolute}>
-            <PixelButton name="Email" url={"mailto:" + props.email} />
-          </div>
-        </div>
-      </div>
+      <PixelButton name="GitHub" url={props.url} />
     </ThemeProvider>
   );
 }
