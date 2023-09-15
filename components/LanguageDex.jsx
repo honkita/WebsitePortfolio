@@ -77,12 +77,12 @@ export default function LanguageDex(props) {
         <div className={styles.grid}>{itemList}</div>
         <section className={styles.containerLanguageDex}>
           <div className={utilStyles.boxLgBlack}>
-            <p>{language}</p>
+            <p>{paradigm}</p>
           </div>
         </section>
         <section className={styles.containerLanguageDexBottom}>
-          <div className={utilStyles.boxMdBlack}>
-            <p>{paradigm}</p>
+          <div className={utilStyles.boxLgBlack}>
+            <p>{language}</p>
           </div>
         </section>
       </div>
