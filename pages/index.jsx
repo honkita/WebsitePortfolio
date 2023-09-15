@@ -20,6 +20,15 @@ export default function Home() {
           <section className={utilStyles.heading2Xl}>
             <p>Elite Lu</p>
           </section>
+          <div>
+            <PixelButton
+              name="Linkedin"
+              url="https://www.linkedin.com/in/elite-lu-a32488230/"
+            />
+            <PixelButton name="GitHub" url="https://github.com/honkita/" />
+            <PixelButton name="Email" url="mailto:elitelulww@gmail.com" />
+            <PixelButton name="Resume" url={"./resume"} />
+          </div>
           <section className={utilStyles.headingLg}>
             <p>About Me</p>
           </section>
@@ -30,18 +39,8 @@ export default function Home() {
             </p>
           </section>
 
-          <div>
-            <PixelButton
-              name="Linkedin"
-              url="https://www.linkedin.com/in/elite-lu-a32488230/"
-            />
-            <PixelButton name="GitHub" url="https://github.com/honkita/" />
-            <PixelButton name="Email" url="mailto:elitelulww@gmail.com" />
-            <PixelButton name="Resume" url={"./resume"} />
-          </div>
-
-          <section className={utilStyles.headingMd}>
-            <p></p>
+          <section className={utilStyles.headingXl}>
+            <p>Projects</p>
           </section>
         </div>
       </div>
