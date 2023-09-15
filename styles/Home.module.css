@@ -96,6 +96,7 @@
     grid-column-gap: 0.75rem;
     grid-row-gap: 0.5rem;
     vertical-align: top;
+    align-items: center;
   }
 
   .locationGrid {
@@ -104,6 +105,7 @@
     grid-column-gap: 0.75rem;
     grid-row-gap: 0.5rem;
     vertical-align: top;
+    align-items: center;
   }
 }
 
@@ -114,6 +116,7 @@
     grid-column-gap: 0.75rem;
     grid-row-gap: 0.5rem;
     vertical-align: top;
+    align-items: center;
   }
   .locationGrid {
     display: grid;
@@ -121,6 +124,26 @@
     grid-column-gap: 0.75rem;
     grid-row-gap: 0.5rem;
     vertical-align: top;
+    align-items: center;
+  }
+}
+
+@media (max-width: 32rem) {
+  .jobGrid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-column-gap: 0.75rem;
+    grid-row-gap: 0.5rem;
+    vertical-align: top;
+    align-items: center;
+  }
+  .locationGrid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-column-gap: 0.75rem;
+    grid-row-gap: 0.5rem;
+    vertical-align: top;
+    align-items: center;
   }
 }
 
