@@ -31,24 +31,26 @@
 
 .boxLgBlack {
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 2rem;
   line-height: 1.2;
   font-weight: bold;
-  margin: 3rem 3rem;
+  margin: 3rem 1rem;
   color: #050505;
 }
 
 .boxLg {
   text-align: center;
+  float: top;
   font-size: 1.4rem;
-  line-height: 1.2;
+  line-height: 1;
   font-weight: bold;
-  margin: 3rem 3rem;
+  margin: 2rem 2rem;
+  position: 0 1vh;
 }
 
 .boxMdBlack {
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.3;
   font-weight: bold;
   margin: 3rem 3rem;
@@ -57,7 +59,7 @@
 
 .box2Md {
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 1;
   font-weight: bold;
   margin: 2rem 3rem;
@@ -65,7 +67,7 @@
 
 .boxMd {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.3;
   margin: 2rem 3rem;
 }
@@ -246,49 +248,6 @@
   transform: scale(1.1);
 }
 
-@media (max-width: 64rem) {
-  .ResumeBacker {
-    background-image: url("../public/images/PixelShortBox.png");
-    width: 18rem;
-    height: 12rem;
-    min-width: 18rem;
-    min-height: 12rem;
-    padding: 0;
-    border: None;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    word-wrap: break-word;
-    background-size: cover;
-    transition: all 0.2s;
-    position: relative;
-    image-rendering: pixelated;
-    -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
-  }
-  .ResumeBackerDark {
-    background-image: url("../public/images/PixelShortBoxDark.png");
-    width: 18rem;
-    height: 12rem;
-    min-width: 18rem;
-    min-height: 12rem;
-    padding: 0;
-    border: None;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    word-wrap: break-word;
-    background-size: cover;
-    transition: all 0.2s;
-    position: relative;
-    image-rendering: pixelated;
-  }
-  .ResumeBacker:hover {
-    transform: scale(1.1);
-  }
-
-  .ResumeBackerDark:hover {
-    transform: scale(1.1);
-  }
-}
-
 .logoButton {
   width: 5rem;
   height: 5rem;
@@ -355,4 +314,150 @@
   image-rendering: optimize-contrast; /* CSS3 Proposed  */
   image-rendering: crisp-edges; /* CSS4 Proposed  */
   -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+}
+
+@media (max-width: 64rem) {
+  .boxLgBlack {
+    float: bottom;
+    font-size: 1rem;
+    line-height: 1.2;
+    font-weight: bold;
+    margin: 3rem 1rem;
+    color: #050505;
+  }
+
+  .boxLg {
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: bold;
+    margin: 3vh 3vw;
+    position: 0 1vh;
+  }
+
+  .box2Md {
+    font-size: 0.9rem;
+    line-height: 1;
+    font-weight: bold;
+  }
+
+  .boxMd {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .ResumeBacker {
+    background-image: url("../public/images/PixelShortBoxMobile.png");
+    width: 20rem;
+    height: 10rem;
+    min-width: 20rem;
+    min-height: 10rem;
+    padding: 0;
+    border: None;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    word-wrap: break-word;
+    background-size: cover;
+    transition: all 0.2s;
+    position: relative;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+  }
+  .ResumeBackerDark {
+    background-image: url("../public/images/PixelShortBoxMobileDark.png");
+    width: 20rem;
+    height: 10rem;
+    min-width: 20rem;
+    min-height: 10rem;
+    padding: 0;
+    border: None;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    word-wrap: break-word;
+    background-size: cover;
+    transition: all 0.2s;
+    position: relative;
+    image-rendering: pixelated;
+  }
+  .ResumeBacker:hover {
+    transform: scale(1.1);
+  }
+
+  .ResumeBackerDark:hover {
+    transform: scale(1.1);
+  }
+
+  .ReferenceBacker {
+    background-image: url("../public/images/PixelShortBoxMobile.png");
+    width: 20rem;
+    height: 10rem;
+    min-width: 20rem;
+    min-height: 10rem;
+    padding: 0;
+    border: None;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    word-wrap: break-word;
+    background-size: cover;
+    transition: all 0.2s;
+    position: relative;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+  }
+
+  .ReferenceBacker:hover {
+    transform: scale(1.1);
+  }
+
+  .ReferenceBackerDark {
+    background-image: url("../public/images/PixelShortBoxMobileDark.png");
+    width: 20rem;
+    height: 10rem;
+    min-width: 20rem;
+    min-height: 10rem;
+    padding: 0;
+    border: None;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    word-wrap: break-word;
+    background-size: cover;
+    transition: all 0.2s;
+    position: relative;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+  }
+
+  .ReferenceBackerDark:hover {
+    transform: scale(1.1);
+  }
+
+  .logoButton {
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    min-height: 3rem;
+    padding: 0;
+    border: None;
+    background-color: transparent;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .logoButton > img {
+    width: 100%;
+    image-rendering: pixelated;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition: opacity 200ms;
+  }
+
+  .logoButton:hover {
+    transform: scale(1.1);
+  }
+
+  .logoButtonDark {
+    opacity: 0 !important;
+    transition: opacity 200ms;
+  }
 }
