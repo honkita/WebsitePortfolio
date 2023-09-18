@@ -5,6 +5,8 @@ import PixelButton from "../components/PixelButton";
 import PixelSwitch from "../components/PixelSwitch";
 import { useTheme, ThemeProvider } from "next-themes";
 import Projects from "../components/Projects";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
 
 export default function Home() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -43,6 +45,42 @@ export default function Home() {
           <section className={utilStyles.headingXl}>
             <p>Projects</p>
           </section>
+          <div>
+            <Carousel autoPlay={True}>
+              <div>
+                <img src="./images/imageCarousel/ICDerivatives0.png" />
+                <p>The Derivatives Game</p>
+              </div>
+              <div>
+                <img src="./images/imageCarousel/ICDerivatives1.png" />
+                <p>The Derivatives Game</p>
+              </div>
+              <div>
+                <img src="./images/imageCarousel/ICDerivatives2.png" />
+                <p>The Derivatives Game</p>
+              </div>
+              <div>
+                <img src="./images/imageCarousel/ICDerivatives3.png" />
+                <p>The Derivatives Game</p>
+              </div>
+              <div>
+                <img src="./images/imageCarousel/ICDerivatives4.png" />
+                <p>The Derivatives Game</p>
+              </div>
+              <div>
+                <img src="./images/imageCarousel/ICDerivatives5.png" />
+                <p>The Derivatives Game</p>
+              </div>
+              <div>
+                <img src="./images/imageCarousel/ICDerivatives6.png" />
+                <p>The Derivatives Game</p>
+              </div>
+              <div>
+                <img src="./images/imageCarousel/ICDerivatives7.png" />
+                <p>The Derivatives Game</p>
+              </div>
+            </Carousel>
+          </div>
           <div className={styles.jobGrid}>
             <Projects
               name="The Derivatives Game"

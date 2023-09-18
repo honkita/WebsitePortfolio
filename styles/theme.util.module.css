@@ -223,6 +223,7 @@
   image-rendering: pixelated;
   -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
 }
+
 .ResumeBackerDark {
   background-image: url("../public/images/PixelShortBoxDark.png");
   width: 30rem;
@@ -245,6 +246,49 @@
 }
 
 .ResumeBackerDark:hover {
+  transform: scale(1.1);
+}
+
+.ProjectsBacker {
+  background-image: url("../public/images/PixelSquare.png");
+  width: 20rem;
+  height: 20rem;
+  min-width: 18rem;
+  min-height: 18rem;
+  padding: 0;
+  border: None;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  word-wrap: break-word;
+  background-size: cover;
+  transition: all 0.2s;
+  position: relative;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+}
+
+.ProjectsBackerDark {
+  background-image: url("../public/images/PixelSquareDark.png");
+  width: 20rem;
+  height: 20rem;
+  min-width: 18rem;
+  min-height: 18rem;
+  padding: 0;
+  border: None;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  word-wrap: break-word;
+  background-size: cover;
+  transition: all 0.2s;
+  position: relative;
+  image-rendering: pixelated;
+}
+
+.ProjectsBacker:hover {
+  transform: scale(1.1);
+}
+
+.ProjectsBackerDark:hover {
   transform: scale(1.1);
 }
 
@@ -404,6 +448,48 @@
     position: relative;
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+  }
+
+  .ProjectsBacker {
+    background-image: url("../public/images/PixelShortBoxMobile.png");
+    width: 20rem;
+    height: 10rem;
+    min-width: 20rem;
+    min-height: 10rem;
+    padding: 0;
+    border: None;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    word-wrap: break-word;
+    background-size: cover;
+    transition: all 0.2s;
+    position: relative;
+    image-rendering: pixelated;
+    align-items: left;
+  }
+  .ProjectsBackerDark {
+    background-image: url("../public/images/PixelShortBoxMobileDark.png");
+    width: 20rem;
+    height: 10rem;
+    min-width: 20rem;
+    min-height: 10rem;
+    padding: 0;
+    border: None;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    word-wrap: break-word;
+    background-size: cover;
+    transition: all 0.2s;
+    position: relative;
+    image-rendering: pixelated;
+    align-items: left;
+  }
+  .ProjectsBacker:hover {
+    transform: scale(1.1);
+  }
+
+  .ProjectsBackerDark:hover {
+    transform: scale(1.1);
   }
 
   .ReferenceBacker:hover {
