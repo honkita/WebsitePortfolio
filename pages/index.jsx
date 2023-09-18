@@ -48,35 +48,35 @@ export default function Home() {
           <div>
             <Carousel autoPlay={True}>
               <div>
-                <img src="./images/imageCarousel/ICDerivatives0.png" />
+                <img src="./public/images/imageCarousel/ICDerivatives0.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="./images/imageCarousel/ICDerivatives1.png" />
+                <img src="./public/images/imageCarousel/ICDerivatives1.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="./images/imageCarousel/ICDerivatives2.png" />
+                <img src="./public/images/imageCarousel/ICDerivatives2.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="./images/imageCarousel/ICDerivatives3.png" />
+                <img src="./public/images/imageCarousel/ICDerivatives3.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="./images/imageCarousel/ICDerivatives4.png" />
+                <img src="./public/images/imageCarousel/ICDerivatives4.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="./images/imageCarousel/ICDerivatives5.png" />
+                <img src="./public/images/imageCarousel/ICDerivatives5.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="./images/imageCarousel/ICDerivatives6.png" />
+                <img src="./public/images/imageCarousel/ICDerivatives6.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="./images/imageCarousel/ICDerivatives7.png" />
+                <img src="./public/images/imageCarousel/ICDerivatives7.png" />
                 <p>The Derivatives Game</p>
               </div>
             </Carousel>
