@@ -28,7 +28,11 @@ export default function ResumeJobs(props) {
   }
   return (
     <ThemeProvider>
-      <PixelButton name="GitHub" url={props.url} />
+      <div className={background()}>
+        <div className={styles.containerAbsolute}>
+          <PixelButton name="GitHub" url={props.url} />
+        </div>
+      </div>
     </ThemeProvider>
   );
 }

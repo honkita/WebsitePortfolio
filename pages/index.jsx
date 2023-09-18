@@ -43,8 +43,19 @@ export default function Home() {
           <section className={utilStyles.headingXl}>
             <p>Projects</p>
           </section>
-          <div>
-            <Projects url="https://github.com/honkita/Math-App" />
+          <div className={styles.jobGrid}>
+            <Projects
+              name="The Derivatives Game"
+              url="https://github.com/honkita/Math-App"
+            />
+            <Projects
+              name="Elite Lu Portfolio Website"
+              url="https://github.com/honkita/WebsitePortfolio"
+            />
+            <Projects
+              name="Uta Rhythm Game "
+              url="https://github.com/honkita/WebsitePortfolio"
+            />
           </div>
         </div>
       </div>

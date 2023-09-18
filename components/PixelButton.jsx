@@ -21,22 +21,27 @@ export default function PixelButton(props) {
     Email: {
       lightTheme: "./images/PixelEmail.png",
       darkTheme: "./images/PixelEmailDark.png",
+      target: "_blank",
     },
     Back: {
       lightTheme: "./images/PixelBack.png",
       darkTheme: "./images/PixelBackDark.png",
+      target: "",
     },
     Linkedin: {
       lightTheme: "./images/PixelLinkedin.png",
       darkTheme: "./images/PixelLinkedinDark.png",
+      target: "_blank",
     },
     Resume: {
       lightTheme: "./images/PixelResume.png",
       darkTheme: "./images/PixelResumeDark.png",
+      target: "",
     },
     GitHub: {
       lightTheme: "./images/PixelGitHub.png",
       darkTheme: "./images/PixelGitHubDark.png",
+      target: "_blank",
     },
   };
 
@@ -44,7 +49,7 @@ export default function PixelButton(props) {
 
   return (
     <ThemeProvider>
-      <Link href={props.url} target="_blank">
+      <Link href={props.url} target={dict[name].target}>
         <button className={utilStyles.logoButton}>
           <img src={dict[name].lightTheme} />
           <img
