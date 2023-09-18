@@ -68,15 +68,15 @@ export default function Home() {
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="./public/images/imageCarousel/ICDerivatives5.png" />
+                <img src="./images/imageCarousel/ICDerivatives5.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="./public/images/imageCarousel/ICDerivatives6.png" />
+                <img src="./images/imageCarousel/ICDerivatives6.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="./public/images/imageCarousel/ICDerivatives7.png" />
+                <img src="./images/imageCarousel/ICDerivatives7.png" />
                 <p>The Derivatives Game</p>
               </div>
             </Carousel>
