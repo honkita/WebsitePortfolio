@@ -7,6 +7,7 @@ import { useTheme, ThemeProvider } from "next-themes";
 import Projects from "../components/Projects";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import Image from "next/image";
 
 export default function Home() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -48,35 +49,35 @@ export default function Home() {
           <div>
             <Carousel>
               <div>
-                <img src="images/imageCarousel/ICDerivatives0.png" />
+                <img src="./images/ImageCarousel/ICDerivatives0.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="images/imageCarousel/ICDerivatives1.png" />
+                <img src="./images/ImageCarousel/ICDerivatives1.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="images/imageCarousel/ICDerivatives2.png" />
+                <img src="./images/ImageCarousel/ICDerivatives2.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="images/imageCarousel/ICDerivatives3.png" />
+                <img src="./images/ImageCarousel/ICDerivatives3.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="images/imageCarousel/ICDerivatives4.png" />
+                <img src="./images/ImageCarousel/ICDerivatives4.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="images/imageCarousel/ICDerivatives5.png" />
+                <img src="./images/ImageCarousel/ICDerivatives5.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="images/imageCarousel/ICDerivatives6.png" />
+                <img src="./images/ImageCarousel/ICDerivatives6.png" />
                 <p>The Derivatives Game</p>
               </div>
               <div>
-                <img src="images/imageCarousel/ICDerivatives7.png" />
+                <img src="./images/ImageCarousel/ICDerivatives7.png" />
                 <p>The Derivatives Game</p>
               </div>
             </Carousel>
