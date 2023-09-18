@@ -46,7 +46,7 @@ export default function Home() {
             <p>Projects</p>
           </section>
           <div>
-            <Carousel autoPlay={True}>
+            <Carousel>
               <div>
                 <img src="./public/images/imageCarousel/ICDerivatives0.png" />
                 <p>The Derivatives Game</p>
