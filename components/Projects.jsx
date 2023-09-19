@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
 import PixelButton from "./PixelButton";
+import icons from "./LanguageLogos";
 
 export default function ResumeJobs(props) {
   const [mounted, setMounted] = useState(false);
@@ -29,6 +30,9 @@ export default function ResumeJobs(props) {
   return (
     <ThemeProvider>
       <div className={background()}>
+        <section className={utilStyles.boxLg}>
+          <p>{props.name}</p>
+        </section>
         <div className={styles.containerAbsolute}>
           <PixelButton name="GitHub" url={props.url} />
         </div>

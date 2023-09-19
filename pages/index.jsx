@@ -93,14 +93,21 @@ export default function Home() {
             <Projects
               name="The Derivatives Game"
               url="https://github.com/honkita/Math-App"
+              languages={[{ name: "Elm" }]}
             />
             <Projects
               name="Elite Lu Portfolio Website"
               url="https://github.com/honkita/WebsitePortfolio"
+              languages={[
+                { name: "JavaScript" },
+                { name: "CSS" },
+                { name: "HTML" },
+              ]}
             />
             <Projects
               name="Uta Rhythm Game "
               url="https://github.com/honkita/WebsitePortfolio"
+              languages={[{ name: "Processing" }]}
             />
           </div>
         </div>
