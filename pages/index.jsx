@@ -46,8 +46,15 @@ export default function Home() {
           <section className={utilStyles.headingXl}>
             <p>Projects</p>
           </section>
-          <div>
-            <Carousel>
+          <div className={styles.carousel}>
+            <Carousel
+              infiniteLoop={true}
+              autoPlay={true}
+              centerMode={true}
+              centerSlidePercentage={100}
+              dynamicHeight={true}
+              showArrows={true}
+            >
               <div>
                 <img src="./images/ImageCarousel/ICDerivatives0.png" />
                 <p>The Derivatives Game</p>
