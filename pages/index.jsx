@@ -87,6 +87,22 @@ export default function Home() {
                 <img src="./images/ImageCarousel/ICDerivatives7.png" />
                 <p>The Derivatives Game</p>
               </div>
+              <div>
+                <img src="./images/ImageCarousel/ICWebsite.png" />
+                <p>Website</p>
+              </div>
+              <div>
+                <img src="./images/ImageCarousel/ICUta0.png" />
+                <p>Uta</p>
+              </div>
+              <div>
+                <img src="./images/ImageCarousel/ICUta1.png" />
+                <p>Uta</p>
+              </div>
+              <div>
+                <img src="./images/ImageCarousel/ICUta2.png" />
+                <p>Uta</p>
+              </div>
             </Carousel>
           </div>
           <div className={styles.jobGrid}>
