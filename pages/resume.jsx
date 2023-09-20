@@ -31,6 +31,10 @@ export default function Resume(pageProps) {
           <section className={utilStyles.headingXl}></section>
         </div>
         <section className={utilStyles.headingXl}>
+          <p>Education</p>
+        </section>
+        <div></div>
+        <section className={utilStyles.headingXl}>
           <p>Previous Employment</p>
         </section>
         <div className={styles.locationGrid}>
@@ -72,6 +76,11 @@ export default function Resume(pageProps) {
         </div>
 
         <div className={styles.containerFixed}>
+          <PixelButton
+            name="Download"
+            url="./Elite_Lu_Resume.pdf"
+            theme={resolvedTheme}
+          />
           <PixelButton name="Back" url="/" theme={resolvedTheme} />
         </div>
         <section></section>

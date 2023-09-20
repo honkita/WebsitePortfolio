@@ -43,6 +43,11 @@ export default function PixelButton(props) {
       darkTheme: "./images/PixelGitHubDark.png",
       target: "_blank",
     },
+    Download: {
+      lightTheme: "./images/PixelDownload.png",
+      darkTheme: "./images/PixelDownloadDark.png",
+      target: "_blank",
+    },
   };
 
   let src;
