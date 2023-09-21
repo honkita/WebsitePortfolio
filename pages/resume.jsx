@@ -64,6 +64,7 @@ export default function Resume(pageProps) {
             name="Jeff Yang"
             employer="Practice Perfect EMR"
             email="jeff.yang@practiceperfectemr.com"
+            phone=""
             linkedin="https://www.linkedin.com/in/jeff-yang-8185018/"
           />
           <ResumeReferences
