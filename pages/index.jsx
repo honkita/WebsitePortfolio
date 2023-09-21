@@ -27,7 +27,7 @@ export default function Home() {
           <div>
             <PixelButton
               name="Linkedin"
-              url="https://www.linkedin.com/in/elite-lu-a32488230/"
+              url="https://www.linkedin.com/in/elitelu"
             />
             <PixelButton name="GitHub" url="https://github.com/honkita/" />
             <PixelButton name="Email" url="mailto:elitelulww@gmail.com" />
