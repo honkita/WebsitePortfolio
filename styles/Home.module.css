@@ -20,13 +20,26 @@
   align-items: center;
 }
 
-.containerFixed {
+.containerFixedLeft {
   min-height: 5vh;
   max-width: 100vw;
   padding: 0 0.5rem;
   display: flex;
   position: fixed;
   left: 1rem;
+  bottom: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerFixedRight {
+  min-height: 5vh;
+  max-width: 100vw;
+  padding: 0 0.5rem;
+  display: flex;
+  position: fixed;
+  right: 1rem;
   bottom: 1rem;
   flex-direction: column;
   justify-content: center;
@@ -197,13 +210,26 @@
     left: 5%;
     top: 25%;
   }
-  .containerFixed {
+  .containerFixedLeft {
     min-height: 5vh;
     max-width: 100vw;
     padding: 0 0.5rem;
     display: flex;
     position: fixed;
     left: 0.5rem;
+    bottom: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .containerFixedRight {
+    min-height: 5vh;
+    max-width: 100vw;
+    padding: 0 0.5rem;
+    display: flex;
+    position: fixed;
+    right: 0.5rem;
     bottom: 0.5rem;
     flex-direction: column;
     justify-content: center;
@@ -258,13 +284,26 @@
     top: 25%;
   }
 
-  .containerFixed {
+  .containerFixedLeft {
     min-height: 5vh;
     max-width: 100vw;
     padding: 0 0.5rem;
     display: flex;
     position: fixed;
     left: 0.5rem;
+    bottom: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .containerFixedRight {
+    min-height: 5vh;
+    max-width: 100vw;
+    padding: 0 0.5rem;
+    display: flex;
+    position: fixed;
+    right: 0.5rem;
     bottom: 0.5rem;
     flex-direction: column;
     justify-content: center;

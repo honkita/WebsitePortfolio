@@ -75,13 +75,15 @@ export default function Resume(pageProps) {
           />
         </div>
 
-        <div className={styles.containerFixed}>
+        <div className={styles.containerFixedLeft}>
+          <PixelButton name="Back" url="/" theme={resolvedTheme} />
+        </div>
+        <div className={styles.containerFixedRight}>
           <PixelButton
             name="Download"
             url="./Elite_Lu_Resume.pdf"
             theme={resolvedTheme}
           />
-          <PixelButton name="Back" url="/" theme={resolvedTheme} />
         </div>
         <section></section>
       </div>
