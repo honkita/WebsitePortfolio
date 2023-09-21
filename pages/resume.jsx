@@ -57,21 +57,35 @@ export default function Resume(pageProps) {
             name="Steve Presement"
             employer="Practice Perfect EMR"
             email="steve@practiceperfectemr.com"
+            phone="tel:8555084409"
+            linkedin="https://www.linkedin.com/in/steven-presement-2b5a282b/"
+          />
+          <ResumeReferences
+            name="Jeff Yang"
+            employer="Practice Perfect EMR"
+            email="jeff.yang@practiceperfectemr.com"
+            linkedin="https://www.linkedin.com/in/jeff-yang-8185018/"
           />
           <ResumeReferences
             name="Christopher Anand"
             employer="McMaster University"
             email="anandc@mcmaster.ca"
+            phone=""
+            linkedin="https://www.linkedin.com/in/christopheranand/"
           />
           <ResumeReferences
             name="Kathleen Willins"
             employer="Town of Newmarket"
             email="kwillins@newmarket.ca"
+            phone=""
+            linkedin=""
           />
           <ResumeReferences
             name="Ricci Tam"
             employer="Newmarket High School"
             email="ricci.tam@yrdsb.ca"
+            phone=""
+            linkedin=""
           />
         </div>
 

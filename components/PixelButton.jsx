@@ -19,33 +19,38 @@ export default function PixelButton(props) {
 
   var dict = {
     Email: {
-      lightTheme: "./images/PixelEmail.png",
-      darkTheme: "./images/PixelEmailDark.png",
+      lightTheme: "./images/Buttons/PixelEmail.png",
+      darkTheme: "./images/Buttons/PixelEmailDark.png",
       target: "_blank",
     },
     Back: {
-      lightTheme: "./images/PixelBack.png",
-      darkTheme: "./images/PixelBackDark.png",
+      lightTheme: "./images/Buttons/PixelBack.png",
+      darkTheme: "./images/Buttons/PixelBackDark.png",
       target: "",
     },
     Linkedin: {
-      lightTheme: "./images/PixelLinkedin.png",
-      darkTheme: "./images/PixelLinkedinDark.png",
+      lightTheme: "./images/Buttons/PixelLinkedin.png",
+      darkTheme: "./images/Buttons/PixelLinkedinDark.png",
       target: "_blank",
     },
     Resume: {
-      lightTheme: "./images/PixelResume.png",
-      darkTheme: "./images/PixelResumeDark.png",
+      lightTheme: "./images/Buttons/PixelResume.png",
+      darkTheme: "./images/Buttons/PixelResumeDark.png",
       target: "",
     },
     GitHub: {
-      lightTheme: "./images/PixelGitHub.png",
-      darkTheme: "./images/PixelGitHubDark.png",
+      lightTheme: "./images/Buttons/PixelGitHub.png",
+      darkTheme: "./images/Buttons/PixelGitHubDark.png",
       target: "_blank",
     },
     Download: {
-      lightTheme: "./images/PixelDownload.png",
-      darkTheme: "./images/PixelDownloadDark.png",
+      lightTheme: "./images/Buttons/PixelDownload.png",
+      darkTheme: "./images/Buttons/PixelDownloadDark.png",
+      target: "_blank",
+    },
+    Call: {
+      lightTheme: "./images/Buttons/PixelCall.png",
+      darkTheme: "./images/Buttons/PixelCallDark.png",
       target: "_blank",
     },
   };

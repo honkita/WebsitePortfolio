@@ -15,7 +15,7 @@
   position: absolute;
   left: 2rem;
   bottom: 2rem;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }

@@ -27,6 +27,20 @@ export default function ResumeJobs(props) {
     }
   }
 
+  function addLinkedIn() {
+    if (props.linkedin !== "") {
+      return <PixelButton name="Linkedin" url={props.linkedin} />;
+    }
+    return;
+  }
+
+  function addCall() {
+    if (props.phone !== "") {
+      return <PixelButton name="Call" url={props.phone} />;
+    }
+    return;
+  }
+
   return (
     <ThemeProvider>
       <div className={background()}>
@@ -37,7 +51,9 @@ export default function ResumeJobs(props) {
           <p>{props.employer}</p>
         </section>
         <div className={styles.containerAbsolute}>
+          {addCall()}
           <PixelButton name="Email" url={"mailto:" + props.email} />
+          {addLinkedIn()}
         </div>
       </div>
     </ThemeProvider>
