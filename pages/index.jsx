@@ -7,7 +7,6 @@ import { useTheme, ThemeProvider } from "next-themes";
 import Projects from "../components/Projects";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import Image from "next/image";
 
 export default function Home() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -39,7 +38,8 @@ export default function Home() {
           <section className={utilStyles.headingMd}>
             <p>
               I am a software developer and a third year computer science
-              student at McMaster University.
+              student at McMaster University. More information about me can be
+              found on my resume <a href="./resume">here</a>.
             </p>
           </section>
 

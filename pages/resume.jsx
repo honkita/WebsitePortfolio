@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Head from "next/head";
 import PixelButton from "../components/PixelButton";
 import styles from "../styles/Home.module.css";
@@ -8,6 +7,7 @@ import { useTheme, ThemeProvider } from "next-themes";
 import PixelSwitch from "../components/PixelSwitch";
 import ResumeJobs from "../components/ResumeJobs";
 import ResumeReferences from "../components/ResumeReferences";
+import School from "../components/School";
 import LanguageDex from "../components/LanguageDex";
 
 export default function Resume(pageProps) {
@@ -24,18 +24,12 @@ export default function Resume(pageProps) {
         <section className={utilStyles.heading2Xl}>
           <p>Resume</p>
         </section>
-        <section className={utilStyles.headingXl}>
-          <p>Language Proficiency</p>
-        </section>
+
         <div className={styles.side}>
           <section className={utilStyles.headingXl}></section>
         </div>
         <section className={utilStyles.headingXl}>
-          <p>Education</p>
-        </section>
-        <div></div>
-        <section className={utilStyles.headingXl}>
-          <p>Previous Employment</p>
+          <p>Previous Employment/Experience</p>
         </section>
         <div className={styles.locationGrid}>
           <ResumeJobs
@@ -49,6 +43,24 @@ export default function Resume(pageProps) {
             email="kwillins@newmarket.ca "
           />
         </div>
+        <section className={utilStyles.headingXl}>
+          <p>Education</p>
+        </section>
+        <div className={styles.locationGrid}>
+          <School
+            schoolName="McMaster University"
+            schoolLocation="Hamilton, Ontario"
+            GPA={3.9}
+          />
+          <School
+            schoolName="Newmarket High School"
+            schoolLocation="Newmarket, Ontario"
+            GPA={4.0}
+          />
+        </div>
+        <section className={utilStyles.headingXl}>
+          <p>Language Proficiency</p>
+        </section>
         <section className={utilStyles.headingXl}>
           <p>References</p>
         </section>
