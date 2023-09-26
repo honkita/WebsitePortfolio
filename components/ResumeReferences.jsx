@@ -43,19 +43,17 @@ export default function ResumeJobs(props) {
 
   return (
     <ThemeProvider>
-      <div className={styles.container}>
-        <div className={background()}>
-          <section className={utilStyles.boxLg}>
-            <p>{props.name}</p>
-          </section>
-          <section className={utilStyles.box2Md}>
-            <p>{props.employer}</p>
-          </section>
-          <div className={styles.containerAbsolute}>
-            {addCall()}
-            <PixelButton name="Email" url={"mailto:" + props.email} />
-            {addLinkedIn()}
-          </div>
+      <div className={background()}>
+        <section className={utilStyles.boxLg}>
+          <p>{props.name}</p>
+        </section>
+        <section className={utilStyles.box2Md}>
+          <p>{props.employer}</p>
+        </section>
+        <div className={styles.containerAbsolute}>
+          {addCall()}
+          <PixelButton name="Email" url={"mailto:" + props.email} />
+          {addLinkedIn()}
         </div>
       </div>
     </ThemeProvider>
