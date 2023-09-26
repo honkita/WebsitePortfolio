@@ -1,12 +1,14 @@
 import utilStyles from "../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
-import styles from "../styles/Home.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
-import PixelButton from "./PixelButton";
+import { CircularProgressbarWithChildren } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 export default function School(props) {
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
+
+  const GPA = (props.GPA / 4.0) * 100;
 
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
@@ -30,14 +32,19 @@ export default function School(props) {
   return (
     <ThemeProvider>
       <div className={background()}>
-        <section className={utilStyles.boxLg}>
-          <p>{props.schoolName}</p>
+        <section className={utilStyles.educationBox}>
+          <section className={utilStyles.boxLg}>
+            <p>{props.schoolName}</p>
+          </section>
+          <section className={utilStyles.box2Md}>
+            <p>{props.schoolLocation}</p>
+          </section>
         </section>
-        <section className={utilStyles.box2Md}>
-          <p>{props.schoolLocation}</p>
-        </section>
-        <section className={utilStyles.box2Md}>
-          <p>GPA: {props.GPA.toFixed(1)} / 4.0</p>
+
+        <section className={utilStyles.boxCircleBar}>
+          <CircularProgressbarWithChildren value={GPA}>
+            <div style={{ fontSize: 10 }}>{props.GPA.toFixed(1)}/4.0</div>
+          </CircularProgressbarWithChildren>
         </section>
       </div>
     </ThemeProvider>

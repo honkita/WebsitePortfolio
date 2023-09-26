@@ -65,6 +65,20 @@
   margin: 2rem 3rem;
 }
 
+.boxCircleBar {
+  align-self: center;
+  text-align: center;
+  width: 8rem;
+  height: 8rem;
+  min-width: 8rem;
+  min-height: 8rem;
+  line-height: 1;
+  font-weight: bold;
+  position: absolute;
+  left: 11rem;
+  bottom: 3rem;
+}
+
 .boxMd {
   text-align: center;
   font-size: 1.1rem;
@@ -249,6 +263,11 @@
   transform: scale(1.1);
 }
 
+.educationBox {
+  position: absolute;
+  left: 2rem;
+}
+
 .ProjectsBacker {
   background-image: url("../public/images/PixelSquare.png");
   width: 20rem;
@@ -361,6 +380,25 @@
 }
 
 @media (max-width: 64rem) {
+  .boxCircleBar {
+    align-self: left;
+    text-align: center;
+    width: 5rem;
+    height: 5rem;
+    min-width: 5rem;
+    min-height: 5rem;
+    line-height: 1;
+    font-weight: bold;
+    position: absolute;
+    left: 5%;
+    top: 25%;
+  }
+
+  .educationBox {
+    position: absolute;
+    left: 2rem;
+  }
+
   .boxLg {
     text-align: left;
     font-size: 1rem;
@@ -445,7 +483,7 @@
     word-wrap: break-word;
     background-size: cover;
     transition: all 0.2s;
-    position: relative;
+    position: absolute;
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
   }
@@ -463,9 +501,8 @@
     word-wrap: break-word;
     background-size: cover;
     transition: all 0.2s;
-    position: relative;
+    position: absolute;
     image-rendering: pixelated;
-    align-items: left;
   }
   .ProjectsBackerDark {
     background-image: url("../public/images/PixelShortBoxMobileDark.png");
