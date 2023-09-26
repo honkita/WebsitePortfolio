@@ -201,18 +201,13 @@
   }
 
   .containerAbsolute {
-    padding: 0 0.5rem;
-    display: grid;
-    grid-template-columns: repeat(1, 0);
-    grid-column-gap: 0rem;
-    grid-row-gap: 0rem;
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     left: 5%;
-    top: 0.5rem;
-    align-items: "center";
-    flex: 1;
-    justify-content: "center";
+    top: 20%;
   }
+
   .containerFixedLeft {
     min-height: 5vh;
     max-width: 100vw;
@@ -276,19 +271,11 @@
   }
 
   .containerAbsolute {
-    min-height: 5vh;
-    max-width: 100vw;
-    padding: 0 0.5rem;
-    display: grid;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-    grid-column-gap: 0rem;
-    grid-row-gap: 0rem;
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     left: 5%;
-    top: 5%;
-    align-items: "center";
-    flex: 1;
-    justify-content: "center";
+    top: 20%;
   }
 
   .containerFixedLeft {
