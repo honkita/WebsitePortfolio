@@ -29,7 +29,7 @@ export default function Resume(pageProps) {
           <section className={utilStyles.headingXl}></section>
         </div>
         <section className={utilStyles.headingXl}>
-          <p>Previous Employment/Experience</p>
+          <p>Previous Employment</p>
         </section>
         <div className={styles.locationGrid}>
           <ResumeJobs
