@@ -45,6 +45,7 @@
   line-height: 1;
   font-weight: bold;
   margin: 2rem 2rem;
+  position: relative;
   position: 0 1vh;
 }
 
@@ -404,6 +405,7 @@
     font-size: 1rem;
     line-height: 1;
     font-weight: bold;
+    position: relative;
     margin-left: 5rem;
     margin-top: 2rem;
     margin-bottom: 0;
