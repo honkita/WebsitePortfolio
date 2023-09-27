@@ -26,7 +26,7 @@ export default function LanguageDexMobile(props) {
     {
       name: "Prolog",
       type: "Logic",
-      url: "./images/Logos/Processing.png",
+      url: "./images/Logos/Prolog.png",
     },
     {
       name: "Processing",
