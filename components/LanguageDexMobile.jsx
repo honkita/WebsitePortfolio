@@ -25,6 +25,11 @@ export default function LanguageDexMobile(props) {
     { name: "Elm", type: "Functional", url: "./images/Logos/Elm.png" },
     {
       name: "Processing",
+      type: "Logic",
+      url: "./images/Logos/Prolog.png",
+    },
+    {
+      name: "Prolog",
       type: "Object-Oriented",
       url: "./images/Logos/Processing.png",
     },
