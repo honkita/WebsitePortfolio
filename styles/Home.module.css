@@ -66,6 +66,11 @@
   vertical-align: bottom;
 }
 
+.under {
+  display: flex;
+  flex-direction: column;
+}
+
 .containerLanguageDexBottom {
   position: absolute;
   min-width: 2rem;

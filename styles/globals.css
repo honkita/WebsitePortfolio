@@ -48,3 +48,11 @@ code {
   src: local("dogica"),
     url("../public//dogica/TTF/dogicapixel.ttf") format("truetype");
 }
+
+a:link {
+  color: rgb(197, 69, 69);
+}
+
+a:visited {
+  color: rgb(197, 69, 69);
+}

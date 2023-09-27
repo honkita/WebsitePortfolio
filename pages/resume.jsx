@@ -18,11 +18,23 @@ export default function Resume(pageProps) {
         <Head>
           <title>Resume</title>
         </Head>
-        <PixelSwitch />
       </section>
       <div className={styles.container}>
         <section className={utilStyles.heading2Xl}>
           <p>Resume</p>
+        </section>
+        <section>
+          <PixelButton
+            name="Download"
+            url="./Elite_Lu_Resume.pdf"
+            theme={resolvedTheme}
+          />
+          <PixelButton
+            name="Linkedin"
+            url="https://www.linkedin.com/in/elitelu"
+          />
+          <PixelButton name="GitHub" url="https://github.com/honkita/" />
+          <PixelButton name="Email" url="mailto:elitelulww@gmail.com" />
         </section>
 
         <div className={styles.side}>
@@ -102,17 +114,11 @@ export default function Resume(pageProps) {
             linkedin=""
           />
         </div>
-
+        <PixelSwitch />
         <div className={styles.containerFixedLeft}>
           <PixelButton name="Back" url="/" theme={resolvedTheme} />
         </div>
-        <div className={styles.containerFixedRight}>
-          <PixelButton
-            name="Download"
-            url="./Elite_Lu_Resume.pdf"
-            theme={resolvedTheme}
-          />
-        </div>
+        <div className={styles.containerFixedRight}></div>
         <section></section>
       </div>
     </ThemeProvider>

@@ -18,7 +18,6 @@ export default function Home() {
         <Head>
           <title>{"Elite Lu Portfolio"}</title>
         </Head>
-        <PixelSwitch />
         <div className={styles.container}>
           <section className={utilStyles.heading2Xl}>
             <p>Elite Lu</p>
@@ -127,6 +126,7 @@ export default function Home() {
             />
           </div>
         </div>
+        <PixelSwitch />
       </div>
     </ThemeProvider>
   );

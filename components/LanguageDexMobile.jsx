@@ -10,6 +10,7 @@ export default function LanguageDexMobile(props) {
   const [paradigm, setParadigm] = useState("");
 
   let items = [
+    { name: "ARM", type: "Assembly", url: "./images/Logos/ARM.png" },
     { name: "C", type: "Imperative", url: "./images/Logos/C.png" },
     { name: "C++", type: "Object-Oriented", url: "./images/Logos/C++.png" },
     { name: "C#", type: "Object-Oriented", url: "./images/Logos/CS.png" },
@@ -48,11 +49,11 @@ export default function LanguageDexMobile(props) {
 
   let itemList = items.map((item, index) => {
     return (
-      <div>
+      <div className={styles.under}>
         <button className={utilStyles.logoButtonSmall}>
           <img id={item.name} src={item.url} />
         </button>
-        <section className={utilStyles.headingMd}>{item.name}</section>
+        {item.name}
       </div>
     );
   });
