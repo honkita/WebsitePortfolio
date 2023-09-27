@@ -24,12 +24,12 @@ export default function LanguageDexMobile(props) {
     { name: "Haskell", type: "Functional", url: "./images/Logos/Haskell.png" },
     { name: "Elm", type: "Functional", url: "./images/Logos/Elm.png" },
     {
-      name: "Processing",
+      name: "Prolog",
       type: "Logic",
-      url: "./images/Logos/Prolog.png",
+      url: "./images/Logos/Processing.png",
     },
     {
-      name: "Prolog",
+      name: "Processing",
       type: "Object-Oriented",
       url: "./images/Logos/Processing.png",
     },
