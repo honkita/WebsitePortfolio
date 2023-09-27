@@ -8,7 +8,7 @@ import PixelSwitch from "../components/PixelSwitch";
 import ResumeJobs from "../components/ResumeJobs";
 import ResumeReferences from "../components/ResumeReferences";
 import School from "../components/School";
-import LanguageDex from "../components/LanguageDex";
+import LanguageDexMobile from "../components/LanguageDexMobile";
 
 export default function Resume(pageProps) {
   const { resolvedTheme, setTheme } = useTheme();
@@ -61,6 +61,7 @@ export default function Resume(pageProps) {
         <section className={utilStyles.headingXl}>
           <p>Language Proficiency</p>
         </section>
+        <LanguageDexMobile />
         <section className={utilStyles.headingXl}>
           <p>References</p>
         </section>
