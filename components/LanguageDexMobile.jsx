@@ -45,6 +45,8 @@ export default function LanguageDexMobile(props) {
       url: "./images/Logos/Gradle.png",
     },
     { name: "Latex", type: "Formatted Text", url: "./images/Logos/Latex.png" },
+    { name: "R", type: "Interpreted", url: "./images/Logos/R.png" },
+    { name: "SQL", type: "Relational Database", url: "./images/Logos/SQL.png" },
   ];
 
   function showText(n, p) {
