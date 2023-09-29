@@ -19,19 +19,20 @@ export default function Home() {
           <title>{"Elite Lu Portfolio"}</title>
         </Head>
         <div className={styles.container}>
-          <section className={utilStyles.heading2Xl}>
-            <p>Elite Lu</p>
+          <section className={utilStyles.namePlate}>
+            <section className={utilStyles.heading2Xl2}>Elite Lu</section>
+            <section className={styles.containerButtons}>
+              <PixelButton
+                name="Linkedin"
+                url="https://www.linkedin.com/in/elitelu"
+              />
+              <PixelButton name="GitHub" url="https://github.com/honkita/" />
+              <PixelButton name="Email" url="mailto:elitelulww@gmail.com" />
+              <PixelButton name="Resume" url={"./resume"} />
+            </section>
           </section>
-          <div>
-            <PixelButton
-              name="Linkedin"
-              url="https://www.linkedin.com/in/elitelu"
-            />
-            <PixelButton name="GitHub" url="https://github.com/honkita/" />
-            <PixelButton name="Email" url="mailto:elitelulww@gmail.com" />
-            <PixelButton name="Resume" url={"./resume"} />
-          </div>
-          <section className={utilStyles.headingLg}>
+
+          <section className={utilStyles.headingXl}>
             <p>About Me</p>
           </section>
           <section className={utilStyles.headingMd}>
