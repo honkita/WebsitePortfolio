@@ -12,6 +12,7 @@ export default function App({ Component, pageProps }) {
   return (
     <ThemeProvider>
       <Component {...pageProps} />
+      <meta name="description" content="Elite Lu's website portfolio"></meta>
     </ThemeProvider>
   );
 }

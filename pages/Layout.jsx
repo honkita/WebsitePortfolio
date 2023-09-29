@@ -11,7 +11,6 @@ export default function Layout({ home, children }) {
   return (
     <ThemeProvider>
       <PixelSwitch />
-      <meta name="description" content="Elite Lu's website portfolio"></meta>
       <main>{children}</main>
       {!home && (
         <div className={styles.containerFixedLeft}>
