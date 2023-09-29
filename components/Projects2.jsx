@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
 import PixelButton from "./PixelButton";
 
-export default function Projects(props) {
+export default function Projects2(props) {
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
 
