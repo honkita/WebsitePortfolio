@@ -83,6 +83,7 @@ export default function PixelSwitch() {
   return (
     <ThemeProvider>
       <button
+        id="Theme Toggle"
         className={
           utilStyles.toggle +
           " " +
