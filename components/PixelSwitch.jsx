@@ -25,7 +25,6 @@ export default function PixelSwitch() {
       setTheme("dark");
       setPress(press + 1);
     }
-    console.log(press);
     if (press == 50) {
       window.open("./Special_Thanks.pdf");
       setPress(0);
