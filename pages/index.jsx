@@ -18,6 +18,7 @@ export default function Home() {
       <ThemeProvider>
         <div>
           <Head>
+            <title>{name}</title>
             <meta
               name="description"
               content="Elite Lu's official portfolio site"
