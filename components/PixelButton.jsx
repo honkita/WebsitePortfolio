@@ -67,6 +67,7 @@ export default function PixelButton(props) {
               resolvedTheme === "light" ? utilStyles.logoButtonDark : null
             }
             src={dict[name].darkTheme}
+            alt={name + "Dark"}
           />
         </button>
       </Link>
