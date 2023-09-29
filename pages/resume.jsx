@@ -115,7 +115,6 @@ export default function Resume(pageProps) {
             linkedin=""
           />
         </div>
-        <PixelSwitch />
       </div>
     </Layout>
   );
