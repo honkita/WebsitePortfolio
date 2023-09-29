@@ -57,6 +57,10 @@ export default function Resume(pageProps) {
           />
         </div>
         <section className={utilStyles.headingXl}>
+          <p>Language Proficiency</p>
+        </section>
+        <LanguageDexMobile />
+        <section className={utilStyles.headingXl}>
           <p>Education</p>
         </section>
         <div className={styles.locationGrid}>
@@ -71,10 +75,7 @@ export default function Resume(pageProps) {
             GPA={4.0}
           />
         </div>
-        <section className={utilStyles.headingXl}>
-          <p>Language Proficiency</p>
-        </section>
-        <LanguageDexMobile />
+
         <section className={utilStyles.headingXl}>
           <p>References</p>
         </section>
