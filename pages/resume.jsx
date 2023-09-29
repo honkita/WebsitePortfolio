@@ -9,11 +9,12 @@ import ResumeJobs from "../components/ResumeJobs";
 import ResumeReferences from "../components/ResumeReferences";
 import School from "../components/School";
 import LanguageDexMobile from "../components/LanguageDexMobile";
+import Layout from "./Layout";
 
 export default function Resume(pageProps) {
   const { resolvedTheme, setTheme } = useTheme();
   return (
-    <ThemeProvider>
+    <Layout children>
       <section>
         <Head>
           <title>Resume</title>
@@ -25,16 +26,16 @@ export default function Resume(pageProps) {
         </section>
         <section>
           <PixelButton
-            name="Download"
-            url="./Elite_Lu_Resume.pdf"
-            theme={resolvedTheme}
-          />
-          <PixelButton
             name="Linkedin"
             url="https://www.linkedin.com/in/elitelu"
           />
           <PixelButton name="GitHub" url="https://github.com/honkita/" />
           <PixelButton name="Email" url="mailto:elitelulww@gmail.com" />
+          <PixelButton
+            name="Download"
+            url="./Elite_Lu_Resume.pdf"
+            theme={resolvedTheme}
+          />
         </section>
 
         <div className={styles.side}>
@@ -115,12 +116,7 @@ export default function Resume(pageProps) {
           />
         </div>
         <PixelSwitch />
-        <div className={styles.containerFixedLeft}>
-          <PixelButton name="Back" url="/" theme={resolvedTheme} />
-        </div>
-        <div className={styles.containerFixedRight}></div>
-        <section></section>
       </div>
-    </ThemeProvider>
+    </Layout>
   );
 }
