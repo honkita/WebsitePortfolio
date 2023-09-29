@@ -61,7 +61,7 @@ export default function PixelButton(props) {
     <ThemeProvider>
       <Link href={props.url} target={dict[name].target}>
         <button className={utilStyles.logoButton}>
-          <img src={dict[name].lightTheme} />
+          <img src={dict[name].lightTheme} alt={name} />
           <img
             className={
               resolvedTheme === "light" ? utilStyles.logoButtonDark : null
