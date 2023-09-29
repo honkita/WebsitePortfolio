@@ -397,10 +397,6 @@
   transition: opacity 200ms;
 }
 
-.logoButtonSmall:hover {
-  transform: scale(1.1);
-}
-
 .pixelated {
   image-rendering: pixelated; /* CSS4 Proposed  */
   image-rendering: optimizeSpeed; /* Legal fallback */
