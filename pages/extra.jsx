@@ -3,7 +3,6 @@ import styles from "../styles/Home.module.css";
 import utilStyles from "../styles/theme.util.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
 import Projects2 from "../components/Projects2";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import Layout from "./Layout";
 
 export default function extra() {
