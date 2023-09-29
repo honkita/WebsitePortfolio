@@ -7,6 +7,7 @@ import { useTheme, ThemeProvider } from "next-themes";
 import Projects from "../components/Projects";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import Copyright from "../components/Copyright";
 
 export default function Home() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -130,6 +131,7 @@ export default function Home() {
               languages={[{ name: "Processing" }]}
             />
           </div>
+          <Copyright />
         </div>
         <PixelSwitch />
       </div>
