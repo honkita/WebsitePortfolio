@@ -83,7 +83,8 @@ export default function PixelSwitch() {
   return (
     <ThemeProvider>
       <button
-        id="Theme Toggle"
+        id="ThemeToggle"
+        aria-label="Name"
         className={
           utilStyles.toggle +
           " " +
