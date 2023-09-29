@@ -11,15 +11,18 @@ import Layout from "./Layout";
 
 export default function Home() {
   const { resolvedTheme, setTheme } = useTheme();
-  const name = "Elite Lu";
+  const name = "Elite Lu Portfolio";
 
   return (
     <Layout home>
       <ThemeProvider>
         <div>
           <Head>
-            <title>{"Elite Lu Portfolio"}</title>
-            <meta name="description" content="Elite Lu's portfolio site" />
+            <meta
+              name="description"
+              content="Elite Lu's official portfolio site"
+            />
+            <meta name="og:title" content={name} />
           </Head>
           <div className={styles.container}>
             <section className={utilStyles.namePlate}>
