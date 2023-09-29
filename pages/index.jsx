@@ -133,7 +133,7 @@ export default function Home() {
               />
               <Projects
                 name="Uta Rhythm Game "
-                url="https://github.com/honkita/WebsitePortfolio"
+                url="https://github.com/honkita/UtaRhythmGame"
                 languages={[{ name: "Processing" }]}
               />
             </div>
