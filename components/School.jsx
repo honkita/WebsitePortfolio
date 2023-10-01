@@ -43,7 +43,9 @@ export default function School(props) {
 
         <section className={utilStyles.boxCircleBar}>
           <CircularProgressbarWithChildren value={GPA}>
-            <div style={{ fontSize: 10 }}>{props.GPA.toFixed(1)}/4.0</div>
+            <div className={utilStyles.headingMdCircle}>
+              {props.GPA.toFixed(1)}/4.0
+            </div>
           </CircularProgressbarWithChildren>
         </section>
       </div>
