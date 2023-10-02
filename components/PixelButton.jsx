@@ -49,8 +49,8 @@ export default function PixelButton(props) {
       target: "_blank",
     },
     LinkedIn: {
-      lightTheme: "./images/Buttons/PixelDownload.png",
-      darkTheme: "./images/Buttons/PixelDownloadDark.png",
+      lightTheme: "./images/Buttons/PixelLinkedIn.png",
+      darkTheme: "./images/Buttons/PixelLinkedInDark.png",
       target: "_blank",
     },
   };
