@@ -103,7 +103,6 @@
 }
 
 .namePlate {
-  background-image: url("../public/images/HomePage/NamePlate.png");
   width: 90vw;
   height: 45vw;
   min-width: 90vw;
@@ -123,6 +122,14 @@
   -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
   align-items: center;
   justify-content: center;
+}
+
+.redName {
+  background-image: url("../public/images/NamePlate/NamePlateRed.png");
+}
+
+.yellowName {
+  background-image: url("../public/images/NamePlate/NamePlateYellow.png");
 }
 
 .borderCircle {

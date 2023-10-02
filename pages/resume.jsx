@@ -21,21 +21,21 @@ export default function Resume(pageProps) {
         </Head>
       </section>
       <div className={styles.container}>
-        <section className={utilStyles.heading2Xl}>
-          <p>Resume</p>
-        </section>
-        <section>
-          <PixelButton
-            name="LinkedIn"
-            url="https://www.linkedin.com/in/elitelu"
-          />
-          <PixelButton name="GitHub" url="https://github.com/honkita/" />
-          <PixelButton name="Email" url="mailto:elitelulww@gmail.com" />
-          <PixelButton
-            name="Download"
-            url="./Elite_Lu_Resume.pdf"
-            theme={resolvedTheme}
-          />
+        <section className={`${utilStyles.namePlate} ${utilStyles.yellowName}`}>
+          <section className={utilStyles.heading2Xl2}>Resume</section>
+          <section className={styles.containerButtons}>
+            <PixelButton
+              name="LinkedIn"
+              url="https://www.linkedin.com/in/elitelu"
+            />
+            <PixelButton name="GitHub" url="https://github.com/honkita/" />
+            <PixelButton name="Email" url="mailto:elitelulww@gmail.com" />
+            <PixelButton
+              name="Download"
+              url="./Elite_Lu_Resume.pdf"
+              theme={resolvedTheme}
+            />
+          </section>
         </section>
 
         <div className={styles.side}>

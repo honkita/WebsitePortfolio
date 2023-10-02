@@ -24,7 +24,7 @@ export default function Home() {
           <meta name="og:title" content={name} />
         </Head>
         <div className={styles.container}>
-          <section className={utilStyles.namePlate}>
+          <section className={`${utilStyles.namePlate} ${utilStyles.redName}`}>
             <section className={utilStyles.heading2Xl2}>Elite Lu</section>
             <section className={styles.containerButtons}>
               <PixelButton
