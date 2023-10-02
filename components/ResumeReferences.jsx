@@ -28,8 +28,8 @@ export default function ResumeJobs(props) {
   }
 
   function addLinkedIn() {
-    if (props.linkedin !== "") {
-      return <PixelButton name="Linkedin" url={props.linkedin} />;
+    if (props.LinkedIn !== "") {
+      return <PixelButton name="LinkedIn" url={props.LinkedIn} />;
     }
     return;
   }

@@ -28,9 +28,9 @@ export default function PixelButton(props) {
       darkTheme: "./images/Buttons/PixelBackDark.png",
       target: "",
     },
-    Linkedin: {
-      lightTheme: "./images/Buttons/PixelLinkedin.png",
-      darkTheme: "./images/Buttons/PixelLinkedinDark.png",
+    LinkedIn: {
+      lightTheme: "./images/Buttons/PixelLinkedIn.png",
+      darkTheme: "./images/Buttons/PixelLinkedInDark.png",
       target: "_blank",
     },
     Resume: {

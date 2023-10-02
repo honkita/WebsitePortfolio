@@ -33,6 +33,7 @@ export default function Projects2(props) {
           <p>{props.name}</p>
         </section>
         <div className={styles.containerAbsolute}>
+          <PixelButton name="LinkedIn" url={props.LinkedIn} />
           <PixelButton name="GitHub" url={props.url} />
         </div>
       </div>

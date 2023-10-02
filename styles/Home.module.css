@@ -248,11 +248,13 @@
   }
 
   .containerAbsolute {
+    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     left: 5%;
     top: 20%;
+    transform: none;
   }
 
   .containerFixedLeft {

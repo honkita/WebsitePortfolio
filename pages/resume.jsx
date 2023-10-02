@@ -26,7 +26,7 @@ export default function Resume(pageProps) {
         </section>
         <section>
           <PixelButton
-            name="Linkedin"
+            name="LinkedIn"
             url="https://www.linkedin.com/in/elitelu"
           />
           <PixelButton name="GitHub" url="https://github.com/honkita/" />
@@ -85,35 +85,35 @@ export default function Resume(pageProps) {
             employer="Practice Perfect EMR"
             email="steve@practiceperfectemr.com"
             phone="tel:8555084409"
-            linkedin="https://www.linkedin.com/in/steven-presement-2b5a282b/"
+            LinkedIn="https://www.linkedin.com/in/steven-presement-2b5a282b/"
           />
           <ResumeReferences
             name="Jeff Yang"
             employer="Practice Perfect EMR"
             email="jeff.yang@practiceperfectemr.com"
             phone=""
-            linkedin="https://www.linkedin.com/in/jeff-yang-8185018/"
+            LinkedIn="https://www.linkedin.com/in/jeff-yang-8185018/"
           />
           <ResumeReferences
             name="Christopher Anand"
             employer="McMaster University"
             email="anandc@mcmaster.ca"
             phone=""
-            linkedin="https://www.linkedin.com/in/christopheranand/"
+            LinkedIn="https://www.linkedin.com/in/christopheranand/"
           />
           <ResumeReferences
             name="Kathleen Willins"
             employer="Town of Newmarket"
             email="kwillins@newmarket.ca"
             phone=""
-            linkedin=""
+            LinkedIn=""
           />
           <ResumeReferences
             name="Ricci Tam"
             employer="Newmarket High School"
             email="ricci.tam@yrdsb.ca"
             phone=""
-            linkedin=""
+            LinkedIn=""
           />
         </div>
       </div>

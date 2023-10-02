@@ -28,7 +28,7 @@ export default function Home() {
             <section className={utilStyles.heading2Xl2}>Elite Lu</section>
             <section className={styles.containerButtons}>
               <PixelButton
-                name="Linkedin"
+                name="LinkedIn"
                 url="https://www.linkedin.com/in/elitelu"
               />
               <PixelButton name="GitHub" url="https://github.com/honkita/" />
