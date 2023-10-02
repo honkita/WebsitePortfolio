@@ -60,7 +60,9 @@ export default function PixelButton(props) {
   return (
     <ThemeProvider>
       <Link href={props.url} target={dict[name].target}>
-        <button className={utilStyles.logoButton}>
+        <button
+          className={`${utilStyles.logoButton} ${utilStyles.buttonRendering}`}
+        >
           <img src={dict[name].lightTheme} alt={name} />
           <img
             className={

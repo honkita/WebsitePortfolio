@@ -158,8 +158,9 @@
   min-height: 2rem;
   padding: 0;
   border: None;
-  background-color: transparent;
+
   background-image: url(../public/images/SwitchBack.png);
+  background-color: transparent;
   background-repeat: no-repeat;
   background-size: cover;
   transition: all 0.2s;
@@ -198,6 +199,14 @@
   position: relative;
   image-rendering: pixelated;
   -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+}
+
+.buttonRendering {
+  padding: 0;
+  border: None;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
 }
 
 @media (max-width: 128rem) {
@@ -398,11 +407,6 @@
   height: 4rem;
   min-width: 4rem;
   min-height: 4rem;
-  padding: 0;
-  border: None;
-  background-color: transparent;
-  transition: all 0.2s;
-  position: relative;
 }
 
 .logoButtonSmall > img {
@@ -420,11 +424,6 @@
   height: 4rem;
   min-width: 4rem;
   min-height: 4rem;
-  padding: 0;
-  border: None;
-  background-color: transparent;
-  transition: all 0.2s;
-  position: relative;
 }
 
 .logoButtonSmallSmall > img {
@@ -454,11 +453,6 @@
     height: 3rem;
     min-width: 3rem;
     min-height: 3rem;
-    padding: 0;
-    border: None;
-    background-color: transparent;
-    transition: all 0.2s;
-    position: relative;
   }
 
   .logoButtonSmallSmall > img {
@@ -658,11 +652,6 @@
     height: 3rem;
     min-width: 3rem;
     min-height: 3rem;
-    padding: 0;
-    border: None;
-    background-color: transparent;
-    transition: all 0.2s;
-    position: relative;
   }
 
   .logoButton > img {

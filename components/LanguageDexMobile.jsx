@@ -57,7 +57,9 @@ export default function LanguageDexMobile(props) {
   let itemList = items.map((item, index) => {
     return (
       <div className={styles.under}>
-        <button className={utilStyles.logoButtonSmall}>
+        <button
+          className={`${utilStyles.logoButtonSmall} ${utilStyles.buttonRendering}`}
+        >
           <img id={item.name} src={item.url} />
         </button>
         {item.name}

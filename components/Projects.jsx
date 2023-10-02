@@ -32,7 +32,9 @@ export default function Projects(props) {
 
   props.languages.forEach((item, index) => {
     languages.push(
-      <button className={utilStyles.logoButtonSmallSmall}>
+      <button
+        className={`${utilStyles.logoButtonSmallSmall} ${utilStyles.buttonRendering}`}
+      >
         <img id={item.name} src={returnURL(item.name)} />
       </button>
     );
