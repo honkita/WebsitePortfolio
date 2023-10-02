@@ -179,6 +179,16 @@
 }
 
 @media (max-width: 128rem) {
+  .containerIcons {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+  }
+
   .jobGrid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -205,6 +215,15 @@
 }
 
 @media (max-width: 64rem) {
+  .containerIcons {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    top: 55%;
+    left: 25%;
+    transform: none;
+  }
+
   .grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
