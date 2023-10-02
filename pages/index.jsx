@@ -24,7 +24,9 @@ export default function Home() {
           <meta name="og:title" content={name} />
         </Head>
         <div className={styles.container}>
-          <section className={`${utilStyles.namePlate} ${utilStyles.redName}`}>
+          <section
+            className={`${utilStyles.namePlate} ${utilStyles.redName} ${utilStyles.imageRendering}`}
+          >
             <section className={utilStyles.heading2Xl2}>Elite Lu</section>
             <section className={styles.containerButtons}>
               <PixelButton
@@ -116,7 +118,7 @@ export default function Home() {
           </div>
           <div className={styles.jobGrid}>
             <Projects
-              name="The Simpled Derivatives Game"
+              name="The Simple Derivatives Game"
               url="https://github.com/honkita/Math-App"
               languages={[{ name: "Elm" }]}
             />

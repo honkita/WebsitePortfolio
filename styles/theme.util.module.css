@@ -111,15 +111,6 @@
   padding-right: 2rem;
   padding-bottom: 2rem;
   padding-left: 2rem;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  word-wrap: break-word;
-  background-size: cover;
-  transition: all 0.2s;
-  position: flex;
-  flex-direction: column;
-  image-rendering: pixelated;
-  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
   align-items: center;
   justify-content: center;
 }
@@ -197,6 +188,18 @@
   background-image: url("../public/images/SwitchDark.png");
   transform: translateX(1rem);
 }
+
+.imageRendering {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  word-wrap: break-word;
+  background-size: cover;
+  transition: all 0.2s;
+  position: relative;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+}
+
 @media (max-width: 128rem) {
   .LanguageDex {
     background-image: url("../public/images/LanguageDex.png");

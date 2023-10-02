@@ -21,7 +21,9 @@ export default function Resume(pageProps) {
         </Head>
       </section>
       <div className={styles.container}>
-        <section className={`${utilStyles.namePlate} ${utilStyles.yellowName}`}>
+        <section
+          className={`${utilStyles.namePlate} ${utilStyles.yellowName} ${utilStyles.imageRendering}`}
+        >
           <section className={utilStyles.heading2Xl2}>Resume</section>
           <section className={styles.containerButtons}>
             <PixelButton
