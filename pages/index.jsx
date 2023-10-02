@@ -66,27 +66,27 @@ export default function Home() {
             >
               <div>
                 <img src="./images/ImageCarousel/ICDerivatives0.png" alt="" />
-                <p>The Derivatives Game</p>
+                <p className="legend">The Derivatives Game</p>
               </div>
               <div>
                 <img src="./images/ImageCarousel/ICDerivatives1.png" alt="" />
-                <p>The Derivatives Game</p>
+                <p className="legend">The Derivatives Game</p>
               </div>
               <div>
                 <img src="./images/ImageCarousel/ICDerivatives2.png" alt="" />
-                <p>The Derivatives Game</p>
+                <p className="legend">The Derivatives Game</p>
               </div>
               <div>
                 <img src="./images/ImageCarousel/ICDerivatives3.png" alt="" />
-                <p>The Derivatives Game</p>
+                <p className="legend">The Derivatives Game</p>
               </div>
               <div>
                 <img src="./images/ImageCarousel/ICDerivatives4.png" alt="" />
-                <p>The Derivatives Game</p>
+                <p className="legend">The Derivatives Game</p>
               </div>
               <div>
                 <img src="./images/ImageCarousel/ICDerivatives5.png" alt="" />
-                <p>The Derivatives Game</p>
+                <p className="legend">The Derivatives Game</p>
               </div>
               <div>
                 <img src="./images/ImageCarousel/ICDerivatives6.png" alt="" />
@@ -94,23 +94,23 @@ export default function Home() {
               </div>
               <div>
                 <img src="./images/ImageCarousel/ICDerivatives7.png" alt="" />
-                <p>The Derivatives Game</p>
+                <p className="legend">The Derivatives Game</p>
               </div>
               <div>
                 <img src="./images/ImageCarousel/ICWebsite.png" alt="" />
-                <p>Website</p>
+                <p className="legend">Elite Lu Website Portfolio</p>
               </div>
               <div>
                 <img src="./images/ImageCarousel/ICUta0.png" alt="" />
-                <p>Uta</p>
+                <p className="legend">Uta</p>
               </div>
               <div>
                 <img src="./images/ImageCarousel/ICUta1.png" alt="" />
-                <p>Uta</p>
+                <p className="legend">Uta</p>
               </div>
               <div>
                 <img src="./images/ImageCarousel/ICUta2.png" alt="" />
-                <p>Uta</p>
+                <p className="legend">Uta</p>
               </div>
             </Carousel>
           </div>
