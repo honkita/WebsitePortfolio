@@ -28,11 +28,6 @@ export default function PixelButton(props) {
       darkTheme: "./images/Buttons/PixelBackDark.png",
       target: "",
     },
-    LinkedIn: {
-      lightTheme: "./images/Buttons/PixelLinkedIn.png",
-      darkTheme: "./images/Buttons/PixelLinkedInDark.png",
-      target: "_blank",
-    },
     Resume: {
       lightTheme: "./images/Buttons/PixelResume.png",
       darkTheme: "./images/Buttons/PixelResumeDark.png",
@@ -51,6 +46,11 @@ export default function PixelButton(props) {
     Call: {
       lightTheme: "./images/Buttons/PixelCall.png",
       darkTheme: "./images/Buttons/PixelCallDark.png",
+      target: "_blank",
+    },
+    LinkedIn: {
+      lightTheme: "./images/Buttons/PixelLinkedIn.png",
+      darkTheme: "./images/Buttons/PixelLinkedInDark.png",
       target: "_blank",
     },
   };
