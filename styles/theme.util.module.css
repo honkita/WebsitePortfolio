@@ -158,14 +158,13 @@
   min-height: 2rem;
   padding: 0;
   border: None;
-
   background-image: url(../public/images/SwitchBack.png);
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: cover;
   transition: all 0.2s;
-  position: absolute;
-  right: 1rem;
+  position: relative;
+  right: 0%;
   top: 1rem;
 }
 
@@ -652,6 +651,11 @@
     height: 3rem;
     min-width: 3rem;
     min-height: 3rem;
+    padding: 0;
+    border: None;
+    background-color: transparent;
+    transition: all 0.2s;
+    position: relative;
   }
 
   .logoButton > img {

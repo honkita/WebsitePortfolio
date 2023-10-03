@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import utilStyles from "../styles/theme.util.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
+import style from "../styles/Home.module.css";
 import Link from "next/link";
 
 export default function PixelSwitch() {
@@ -92,16 +93,18 @@ export default function PixelSwitch() {
 
   return (
     <ThemeProvider>
-      <button
-        id="ThemeToggle"
-        aria-label="Name"
-        className={
-          utilStyles.toggle +
-          " " +
-          (resolvedTheme === "dark" ? utilStyles.toggledark : null)
-        }
-        onClick={toggleTheme}
-      />
+      <section className={style.containerRight}>
+        <button
+          id="ThemeToggle"
+          aria-label="Name"
+          className={
+            utilStyles.toggle +
+            " " +
+            (resolvedTheme === "dark" ? utilStyles.toggledark : null)
+          }
+          onClick={toggleTheme}
+        />
+      </section>
     </ThemeProvider>
   );
 }
