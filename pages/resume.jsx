@@ -42,14 +42,21 @@ export default function Resume(pageProps) {
             email="kwillins@newmarket.ca "
           />
         </div>
-        <section className={utilStyles.headingXl}>
-          <p>Language Proficiencies</p>
+        <section className={styles.transformer}>
+          <section>
+            <section className={utilStyles.headingXl}>
+              <p>Language Proficiencies</p>
+            </section>
+            <LanguageDexMobile />
+          </section>
+          <section>
+            <section className={utilStyles.headingXl}>
+              <p>Framework Proficiencies</p>
+            </section>
+            <Frameworks />
+          </section>
         </section>
-        <LanguageDexMobile />
-        <section className={utilStyles.headingXl}>
-          <p>Framework Proficiencies</p>
-        </section>
-        <Frameworks />
+
         <section className={utilStyles.headingXl}>
           <p>Education</p>
         </section>
