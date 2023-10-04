@@ -4,12 +4,13 @@ import styles from "../styles/Home.module.css";
 import utilStyles from "../styles/theme.util.module.css";
 import React, { useState, useEffect, Component } from "react";
 import { useTheme, ThemeProvider } from "next-themes";
-import PixelSwitch from "../components/PixelSwitch";
 import ResumeJobs from "../components/ResumeJobs";
 import ResumeReferences from "../components/ResumeReferences";
 import School from "../components/School";
 import LanguageDexMobile from "../components/LanguageDexMobile";
+import Frameworks from "../components/Frameworks";
 import Layout from "./Layout";
+import Title from "../components/Title";
 
 export default function Resume(pageProps) {
   const { resolvedTheme, setTheme } = useTheme();
@@ -21,24 +22,7 @@ export default function Resume(pageProps) {
         </Head>
       </section>
       <div className={styles.container}>
-        <section
-          className={`${utilStyles.namePlate} ${utilStyles.yellowName} ${utilStyles.imageRendering}`}
-        >
-          <section className={utilStyles.heading2Xl2}>Resume</section>
-          <section className={styles.containerButtons}>
-            <PixelButton
-              name="LinkedIn"
-              url="https://www.linkedin.com/in/elitelu"
-            />
-            <PixelButton name="GitHub" url="https://github.com/honkita/" />
-            <PixelButton name="Email" url="mailto:elitelulww@gmail.com" />
-            <PixelButton
-              name="Download"
-              url="./Elite_Lu_Resume.pdf"
-              theme={resolvedTheme}
-            />
-          </section>
-        </section>
+        <Title name="Resume" colour="yellow" />
 
         <div className={styles.side}>
           <section className={utilStyles.headingXl}></section>
@@ -59,9 +43,13 @@ export default function Resume(pageProps) {
           />
         </div>
         <section className={utilStyles.headingXl}>
-          <p>Language Proficiency</p>
+          <p>Language Proficiencies</p>
         </section>
         <LanguageDexMobile />
+        <section className={utilStyles.headingXl}>
+          <p>Framework Proficiencies</p>
+        </section>
+        <Frameworks />
         <section className={utilStyles.headingXl}>
           <p>Education</p>
         </section>

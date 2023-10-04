@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
 
-export default function LanguageDexMobile(props) {
-  const { resolvedTheme, setTheme } = useTheme();
+export default function LanguageDexMobile() {
   const [mounted, setMounted] = useState(false);
   const [language, setLanguage] = useState("");
   const [paradigm, setParadigm] = useState("");
@@ -49,10 +48,10 @@ export default function LanguageDexMobile(props) {
     { name: "SQL", type: "Relational Database", url: "./images/Logos/SQL.png" },
   ];
 
-  function showText(n, p) {
-    setLanguage(n);
-    setParadigm(p);
-  }
+  // function showText(n, p) {
+  //   setLanguage(n);
+  //   setParadigm(p);
+  // }
 
   let itemList = items.map((item, index) => {
     return (

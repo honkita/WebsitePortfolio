@@ -21,9 +21,9 @@ export default function ResumeJobs(props) {
 
   function background() {
     if (resolvedTheme === "light") {
-      return utilStyles.ResumeBacker;
+      return `${utilStyles.ResumeBacker} ${utilStyles.imageRendering}`;
     } else {
-      return utilStyles.ResumeBackerDark;
+      return `${utilStyles.ResumeBacker} ${utilStyles.imageRendering}`;
     }
   }
 
