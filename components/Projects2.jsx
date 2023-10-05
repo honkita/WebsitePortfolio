@@ -23,7 +23,7 @@ export default function Projects2(props) {
     if (resolvedTheme === "light") {
       return `${utilStyles.ProjectsBacker} ${utilStyles.imageRendering}`;
     } else {
-      return `${utilStyles.ProjectsBacker} ${utilStyles.imageRenderingDark}`;
+      return `${utilStyles.ProjectsBackerDark} ${utilStyles.imageRendering}`;
     }
   }
   return (
