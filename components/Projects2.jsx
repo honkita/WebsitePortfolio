@@ -21,9 +21,9 @@ export default function Projects2(props) {
 
   function background() {
     if (resolvedTheme === "light") {
-      return utilStyles.ProjectsBacker;
+      return `${utilStyles.ProjectsBacker} ${utilStyles.imageRendering}`;
     } else {
-      return utilStyles.ProjectsBackerDark;
+      return `${utilStyles.ProjectsBacker} ${utilStyles.imageRenderingDark}`;
     }
   }
   return (
