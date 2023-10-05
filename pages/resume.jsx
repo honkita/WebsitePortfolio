@@ -11,6 +11,7 @@ import LanguageDexMobile from "../components/LanguageDexMobile";
 import Frameworks from "../components/Frameworks";
 import Layout from "./Layout";
 import Title from "../components/Title";
+import DevTools from "../components/DevTools";
 
 export default function Resume(pageProps) {
   const { resolvedTheme, setTheme } = useTheme();
@@ -58,6 +59,10 @@ export default function Resume(pageProps) {
               <p>Framework Proficiencies</p>
             </section>
             <Frameworks />
+            <section className={utilStyles.headingXl}>
+              <p>Developer Tools Proficiencies</p>
+            </section>
+            <DevTools />
           </section>
         </section>
 
