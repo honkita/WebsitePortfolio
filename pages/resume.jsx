@@ -22,7 +22,11 @@ export default function Resume(pageProps) {
         </Head>
       </section>
       <div className={styles.container}>
-        <Title name="Resume" colour="yellow" />
+        <Title
+          name="Resume"
+          colour="yellow"
+          buttons={["LinkedIn", "GitHub", "Email", "Download"]}
+        />
 
         <div className={styles.side}>
           <section className={utilStyles.headingXl}></section>

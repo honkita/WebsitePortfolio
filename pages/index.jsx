@@ -7,6 +7,7 @@ import Projects from "../components/Projects";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import Layout from "./Layout";
+import Title from "../components/Title";
 
 export default function Home() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -24,20 +25,11 @@ export default function Home() {
           <meta name="og:title" content={name} />
         </Head>
         <div className={styles.container}>
-          <section
-            className={`${utilStyles.namePlate} ${utilStyles.redName} ${utilStyles.imageRendering}`}
-          >
-            <section className={utilStyles.heading2Xl2}>Elite Lu</section>
-            <section className={styles.containerButtons}>
-              <PixelButton
-                name="LinkedIn"
-                url="https://www.linkedin.com/in/elitelu"
-              />
-              <PixelButton name="GitHub" url="https://github.com/honkita/" />
-              <PixelButton name="Email" url="mailto:elitelulww@gmail.com" />
-              <PixelButton name="Resume" url={"./resume"} />
-            </section>
-          </section>
+          <Title
+            name="Elite Lu"
+            colour="red"
+            buttons={["LinkedIn", "GitHub", "Email", "Resume"]}
+          />
 
           <section className={utilStyles.headingXl}>
             <p>About Me</p>

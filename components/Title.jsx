@@ -3,23 +3,33 @@ import styles from "../styles/Home.module.css";
 import utilStyles from "../styles/theme.util.module.css";
 import React, { useState, useEffect, Component } from "react";
 import { useTheme, ThemeProvider } from "next-themes";
+import { returnURL } from "./MainButtons";
 
 export default function Title(props) {
   const { resolvedTheme, setTheme } = useTheme();
+  let itemList = props.buttons.map((item, index) => {
+    return <PixelButton name={item} url={returnURL(item)} />;
+  });
+
+  function background() {
+    switch (props.colour) {
+      case "red":
+        return utilStyles.redName;
+      case "yellow":
+        return utilStyles.yellowName;
+      default:
+        break;
+    }
+  }
+
   return (
     <section
-      className={`${utilStyles.namePlate} ${utilStyles.yellowName} ${utilStyles.imageRendering}`}
+      className={`${utilStyles.namePlate} ${background()} ${
+        utilStyles.imageRendering
+      }`}
     >
       <section className={utilStyles.heading2Xl2}>{props.name}</section>
-      <section className={styles.containerButtons}>
-        <PixelButton
-          name="LinkedIn"
-          url="https://www.linkedin.com/in/elitelu"
-        />
-        <PixelButton name="GitHub" url="https://github.com/honkita/" />
-        <PixelButton name="Email" url="mailto:elitelulww@gmail.com" />
-        <PixelButton name="Download" url="./Elite_Lu_Resume.pdf" />
-      </section>
+      <section className={styles.containerButtons}>{itemList}</section>
     </section>
   );
 }
