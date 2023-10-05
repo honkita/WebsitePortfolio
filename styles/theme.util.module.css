@@ -123,10 +123,6 @@
   background-image: url("../public/images/NamePlate/NamePlateYellow.png");
 }
 
-.borderCircle {
-  border-radius: 9999px;
-}
-
 .colorInherit {
   color: inherit;
 }
