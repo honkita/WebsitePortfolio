@@ -23,7 +23,7 @@ export default function ResumeJobs(props) {
     if (resolvedTheme === "light") {
       return `${utilStyles.ResumeBacker} ${utilStyles.imageRendering}`;
     } else {
-      return `${utilStyles.ResumeBacker} ${utilStyles.imageRendering}`;
+      return `${utilStyles.ResumeBackerDark} ${utilStyles.imageRendering}`;
     }
   }
 
