@@ -6,7 +6,7 @@ import "../styles/globals.css";
 import { ThemeProvider } from "next-themes";
 
 /**
- * Defualt _app.jsx file
+ * Default _app.jsx file
  */
 export default function App({ Component, pageProps }) {
   return (
