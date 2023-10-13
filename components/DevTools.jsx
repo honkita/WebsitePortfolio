@@ -12,6 +12,11 @@ export default function DevTools(props) {
   let items = [
     { name: "DBeaver", url: "./images/DevTools/DBeaver.png" },
     { name: "Eclipse", url: "./images/DevTools/Eclipse.png" },
+    { name: "GitHub", url: "./images/DevTools/GitHub.png" },
+    { name: "JupyterHub", url: "./images/DevTools/JupyterHub.png" },
+    { name: "Matlab", url: "./images/DevTools/Matlab.png" },
+    { name: "Netbeans", url: "./images/DevTools/Netbeans.png" },
+    { name: "Overleaf", url: "./images/DevTools/Overleaf.png" },
     { name: "VS Code", url: "./images/DevTools/VisualStudioCode.png" },
   ];
 
