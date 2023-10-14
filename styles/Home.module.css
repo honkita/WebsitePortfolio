@@ -8,6 +8,11 @@
   margin-right: 1rem;
   display: flex;
   flex-direction: column;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 .containerRight {
