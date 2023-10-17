@@ -2,7 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "dogica";
+  font-family: "Pixelify_Sans";
 }
 * {
   box-sizing: border-box;
@@ -40,13 +40,14 @@ code {
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
-  font-family: "dogica";
+  font-family: "Pixelify_Sans";
 }
 
 @font-face {
-  font-family: "dogica";
-  src: local("dogica"),
-    url("../public//dogica/TTF/dogicapixel.ttf") format("truetype");
+  font-family: "Pixelify_Sans";
+  src: local("Pixelify_Sans"),
+    url("../public/Pixelify_Sans/static/PixelifySans-Regular.ttf")
+      format("truetype");
 }
 
 a:link {
