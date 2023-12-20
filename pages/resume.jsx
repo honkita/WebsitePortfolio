@@ -108,6 +108,13 @@ export default function Resume(pageProps) {
             LinkedIn="https://www.linkedin.com/in/christopheranand/"
           />
           <ResumeReferences
+            name="Geneva Smith"
+            employer="McMaster University"
+            email="smithgm@mcmaster.ca"
+            phone=""
+            LinkedIn=""
+          />
+          <ResumeReferences
             name="Kathleen Willins"
             employer="Town of Newmarket"
             email="kwillins@newmarket.ca"
