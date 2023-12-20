@@ -110,6 +110,11 @@ export default function Home() {
           </div>
           <div className={styles.jobGrid}>
             <Projects
+              name="Pixel Background Generator"
+              url="https://github.com/honkita/Pixel-Background-Generator"
+              languages={[{ name: "Java" }]}
+            />
+            <Projects
               name="The Simple Derivatives Game"
               url="https://github.com/honkita/Math-App"
               languages={[{ name: "Elm" }]}
