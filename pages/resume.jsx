@@ -38,13 +38,18 @@ export default function Resume(pageProps) {
         <div className={styles.locationGrid}>
           <ResumeJobs
             jobName="Software Developer Intern"
+            employer="CIBC"
+            email="Cynthia.wen@cibc.com"
+          />
+          <ResumeJobs
+            jobName="Software Developer Intern"
             employer="Practice Perfect EMR"
             email="steve@practiceperfectemr.com"
           />
           <ResumeJobs
             jobName="Badminton Instructor & Gym Monitor"
             employer="Town of Newmarket"
-            email="kwillins@newmarket.ca "
+            email="kwillins@newmarket.ca"
           />
         </div>
         <section className={styles.transformer}>
@@ -86,6 +91,13 @@ export default function Resume(pageProps) {
           <p>References</p>
         </section>
         <div className={styles.jobGrid}>
+          <ResumeReferences
+            name="Cynthia Wen"
+            employer="CIBC"
+            email="Cynthia.wen@cibc.com"
+            phone=""
+            LinkedIn="https://www.linkedin.com/in/jingcynthiawen/"
+          />
           <ResumeReferences
             name="Steve Presement"
             employer="Practice Perfect EMR"
