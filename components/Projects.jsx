@@ -22,9 +22,9 @@ export default function Projects(props) {
 
   function background() {
     if (resolvedTheme === "light") {
-      return `${utilStyles.ProjectsBacker} ${utilStyles.imageRendering}`;
+      return `${utilStyles.ProjectsBacker}`;
     } else {
-      return `${utilStyles.ProjectsBackerDark} ${utilStyles.imageRendering}`;
+      return `${utilStyles.ProjectsBackerDark}`;
     }
   }
 
@@ -42,7 +42,7 @@ export default function Projects(props) {
 
   return (
     <ThemeProvider>
-      <div className={background()}>
+      <div className={`${background()} ${utilStyles.imageRendering}`}>
         <section className={utilStyles.boxLg}>
           <p>{props.name}</p>
         </section>
