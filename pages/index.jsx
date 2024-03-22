@@ -1,22 +1,24 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import utilStyles from "../styles/theme.util.module.css";
-import PixelButton from "../components/PixelButton";
 import { useTheme, ThemeProvider } from "next-themes";
 import Projects from "../components/Projects";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import Layout from "./Layout";
 import Title from "../components/Title";
+import React from "react";
+
+//json imports
 import ImageCarousel from "../public/Assets/homeCarousel.json";
-import { parse } from "node-html-parser";
-import React, { useEffect, useState } from "react";
+import CodedProjects from "../public/Assets/projects.json";
 
 export default function Home() {
   const { resolvedTheme, setTheme } = useTheme();
   const name = "Elite Lu Portfolio";
 
   var imagesJSON = JSON.parse(JSON.stringify(ImageCarousel));
+  var projectsJSON = JSON.parse(JSON.stringify(CodedProjects));
 
   return (
     <Layout home>
@@ -63,7 +65,7 @@ export default function Home() {
               dynamicHeight={true}
               showArrows={true}
             >
-              {imagesJSON.map((img, index) => (
+              {imagesJSON.map((img) => (
                 <div>
                   <img alt="" src={img.image} />
                   <p className="legend">{img.description} </p>
@@ -71,31 +73,17 @@ export default function Home() {
               ))}
             </Carousel>
           </div>
+
           <div className={styles.jobGrid}>
-            <Projects
-              name="Pixel Background Generator"
-              url="https://github.com/honkita/Pixel-Background-Generator"
-              languages={[{ name: "Java" }]}
-            />
-            <Projects
-              name="The Simple Derivatives Game"
-              url="https://github.com/honkita/Math-App"
-              languages={[{ name: "Elm" }]}
-            />
-            <Projects
-              name="Elite Lu Portfolio Website"
-              url="https://github.com/honkita/WebsitePortfolio"
-              languages={[
-                { name: "JavaScript" },
-                { name: "CSS" },
-                { name: "HTML" },
-              ]}
-            />
-            <Projects
-              name="Uta Rhythm Game "
-              url="https://github.com/honkita/UtaRhythmGame"
-              languages={[{ name: "Processing" }]}
-            />
+            {projectsJSON.map((project) => (
+              <Projects
+                name={project.name}
+                url={project.url}
+                languages={project.languages.map((language) => ({
+                  name: language,
+                }))}
+              />
+            ))}
           </div>
         </div>
       </div>

@@ -1,0 +1,25 @@
+[
+  { "name": "HTML", "type": "Markup", "url": "./images/Logos/HTML.png" },
+  { "name": "CSS", "type": "Style Sheet", "url": "./images/Logos/CSS.png" },
+  {
+    "name": "JavaScript",
+    "type": "Object-Oriented",
+    "url": "./images/Logos/JS.png"
+  },
+  { "name": "Elm", "type": "Functional", "url": "./images/Logos/Elm.png" },
+  {
+    "name": "Processing",
+    "type": "Object-Oriented",
+    "url": "./images/Logos/Processing.png"
+  },
+  {
+    "name": "Java",
+    "type": "Object-Oriented",
+    "url": "./images/Logos/Java.png"
+  },
+  {
+    "name": "Gradle",
+    "type": "Build Tool",
+    "url": "./images/Logos/Gradle.png"
+  }
+]

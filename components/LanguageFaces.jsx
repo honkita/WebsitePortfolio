@@ -1,26 +1,22 @@
-var items = {
-  HTML: { type: "Markup", url: "./images/Logos/HTML.png" },
-  CSS: { type: "Style Sheet", url: "./images/Logos/CSS.png" },
-  JavaScript: {
-    type: "Object-Oriented",
-    url: "./images/Logos/JS.png",
-  },
-  Elm: { type: "Functional", url: "./images/Logos/Elm.png" },
-  Processing: {
-    type: "Object-Oriented",
-    url: "./images/Logos/Processing.png",
-  },
-  Java: { type: "Object-Oriented", url: "./images/Logos/Java.png" },
-};
+import languages from "../public/Assets/languages.json";
+
+var projectsJSON = JSON.parse(JSON.stringify(languages));
 
 export function returnImage(text) {
-  return items[text];
+  return projectsJSON[indexOfLanguage(text)].name;
 }
 
 export function returnURL(text) {
-  return items[text].url;
+  return projectsJSON[indexOfLanguage(text)].url;
 }
 
 export function returnType(text) {
-  return items[text].type;
+  return projectsJSON[indexOfLanguage(text)].type;
+}
+
+function indexOfLanguage(text) {
+  for (let q = 0; q < projectsJSON.length; q++) {
+    if (projectsJSON[q].name == text) return q;
+  }
+  return -1;
 }
