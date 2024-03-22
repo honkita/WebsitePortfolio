@@ -351,6 +351,10 @@
     vertical-align: top;
     align-items: center;
   }
+
+  .under:hover {
+    transform: none;
+  }
 }
 
 @media (max-width: 36rem) {

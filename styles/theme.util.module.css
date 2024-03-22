@@ -501,13 +501,6 @@
     image-rendering: pixelated;
     align-items: left;
   }
-  .ResumeBacker:hover {
-    transform: scale(1.1);
-  }
-
-  .ResumeBackerDark:hover {
-    transform: scale(1.1);
-  }
 
   .ReferenceBacker {
     background-image: url("../public/images/PixelShortBoxMobile.png");
@@ -533,28 +526,12 @@
     min-height: 10rem;
   }
 
-  .ProjectsBacker:hover {
-    transform: scale(1.1);
-  }
-
-  .ProjectsBackerDark:hover {
-    transform: scale(1.1);
-  }
-
-  .ReferenceBacker:hover {
-    transform: scale(1.1);
-  }
-
   .ReferenceBackerDark {
     background-image: url("../public/images/PixelShortBoxMobileDark.png");
     width: 20rem;
     height: 10rem;
     min-width: 20rem;
     min-height: 10rem;
-  }
-
-  .ReferenceBackerDark:hover {
-    transform: scale(1.1);
   }
 
   .logoButton {
@@ -579,12 +556,35 @@
     transition: opacity 200ms;
   }
 
-  .logoButton:hover {
-    transform: scale(1.1);
-  }
-
   .logoButtonDark {
     opacity: 0 !important;
     transition: opacity 200ms;
+  }
+
+  .logoButton:hover {
+    transform: none;
+  }
+
+  .ResumeBacker:hover {
+    transform: none;
+  }
+
+  .ResumeBackerDark:hover {
+    transform: none;
+  }
+  .ProjectsBacker:hover {
+    transform: none;
+  }
+
+  .ProjectsBackerDark:hover {
+    transform: none;
+  }
+
+  .ReferenceBacker:hover {
+    transform: none;
+  }
+
+  .ReferenceBackerDark:hover {
+    transform: none;
   }
 }
