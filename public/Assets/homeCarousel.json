@@ -1,0 +1,62 @@
+[
+  {
+    "name": "SD0",
+    "description": "The Simple Derivatives Game",
+    "image": "./images/ImageCarousel/ICDerivatives0.png"
+  },
+  {
+    "name": "SD1",
+    "description": "The Simple Derivatives Game",
+    "image": "./images/ImageCarousel/ICDerivatives1.png"
+  },
+  {
+    "name": "SD2",
+    "description": "The Simple Derivatives Game",
+    "image": "./images/ImageCarousel/ICDerivatives2.png"
+  },
+  {
+    "name": "SD3",
+    "description": "The Simple Derivatives Game",
+    "image": "./images/ImageCarousel/ICDerivatives3.png"
+  },
+  {
+    "name": "SD4",
+    "description": "The Simple Derivatives Game",
+    "image": "./images/ImageCarousel/ICDerivatives4.png"
+  },
+  {
+    "name": "SD5",
+    "description": "The Simple Derivatives Game",
+    "image": "./images/ImageCarousel/ICDerivatives5.png"
+  },
+  {
+    "name": "SD6",
+    "description": "The Simple Derivatives Game",
+    "image": "./images/ImageCarousel/ICDerivatives6.png"
+  },
+  {
+    "name": "SD7",
+    "description": "The Simple Derivatives Game",
+    "image": "./images/ImageCarousel/ICDerivatives7.png"
+  },
+  {
+    "name": "W0",
+    "description": "Elite Lu Website Portfolio",
+    "image": "./images/ImageCarousel/ICWebsite.png"
+  },
+  {
+    "name": "UG0",
+    "description": "Uta Rhythm Game",
+    "image": "./images/ImageCarousel/ICUta0.png"
+  },
+  {
+    "name": "UG1",
+    "description": "Uta Rhythm Game",
+    "image": "./images/ImageCarousel/ICUta1.png"
+  },
+  {
+    "name": "UG2",
+    "description": "Uta Rhythm Game",
+    "image": "./images/ImageCarousel/ICUta2.png"
+  }
+]

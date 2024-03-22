@@ -445,6 +445,7 @@
     margin-left: 5rem;
     margin-top: 2rem;
     margin-bottom: 0;
+    image-rendering: crisp-edges; /* CSS4 Proposed  */
   }
 
   .box2Md {

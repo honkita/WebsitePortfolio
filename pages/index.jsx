@@ -8,10 +8,15 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import Layout from "./Layout";
 import Title from "../components/Title";
+import ImageCarousel from "../public/Assets/homeCarousel.json";
+import { parse } from "node-html-parser";
+import React, { useEffect, useState } from "react";
 
 export default function Home() {
   const { resolvedTheme, setTheme } = useTheme();
   const name = "Elite Lu Portfolio";
+
+  var imagesJSON = JSON.parse(JSON.stringify(ImageCarousel));
 
   return (
     <Layout home>
@@ -58,54 +63,12 @@ export default function Home() {
               dynamicHeight={true}
               showArrows={true}
             >
-              <div>
-                <img src="./images/ImageCarousel/ICDerivatives0.png" alt="" />
-                <p className="legend">The Simple Derivatives Game</p>
-              </div>
-              <div>
-                <img src="./images/ImageCarousel/ICDerivatives1.png" alt="" />
-                <p className="legend">The Simple Derivatives Game</p>
-              </div>
-              <div>
-                <img src="./images/ImageCarousel/ICDerivatives2.png" alt="" />
-                <p className="legend">The Simple Derivatives Game</p>
-              </div>
-              <div>
-                <img src="./images/ImageCarousel/ICDerivatives3.png" alt="" />
-                <p className="legend">The Simple Derivatives Game</p>
-              </div>
-              <div>
-                <img src="./images/ImageCarousel/ICDerivatives4.png" alt="" />
-                <p className="legend">The Simple Derivatives Game</p>
-              </div>
-              <div>
-                <img src="./images/ImageCarousel/ICDerivatives5.png" alt="" />
-                <p className="legend">The Simple Derivatives Game</p>
-              </div>
-              <div>
-                <img src="./images/ImageCarousel/ICDerivatives6.png" alt="" />
-                <p className="legend">The Simple Derivatives Game</p>
-              </div>
-              <div>
-                <img src="./images/ImageCarousel/ICDerivatives7.png" alt="" />
-                <p className="legend">The Simple Derivatives Game</p>
-              </div>
-              <div>
-                <img src="./images/ImageCarousel/ICWebsite.png" alt="" />
-                <p className="legend">Elite Lu Website Portfolio</p>
-              </div>
-              <div>
-                <img src="./images/ImageCarousel/ICUta0.png" alt="" />
-                <p className="legend">Uta Rhythm Game</p>
-              </div>
-              <div>
-                <img src="./images/ImageCarousel/ICUta1.png" alt="" />
-                <p className="legend">Uta Rhythm Game</p>
-              </div>
-              <div>
-                <img src="./images/ImageCarousel/ICUta2.png" alt="" />
-                <p className="legend">Uta Rhythm Game</p>
-              </div>
+              {imagesJSON.map((img, index) => (
+                <div>
+                  <img alt="" src={img.image} />
+                  <p className="legend">{img.description} </p>
+                </div>
+              ))}
             </Carousel>
           </div>
           <div className={styles.jobGrid}>
