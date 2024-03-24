@@ -152,7 +152,7 @@
   height: 4rem;
   min-width: 3rem;
   min-height: 2rem;
-  padding: 0;
+  margin-top: 0.5rem;
   border: None;
   background-image: url(../public/images/SwitchBack.png);
   background-color: transparent;
@@ -160,8 +160,6 @@
   background-size: cover;
   transition: all 0.2s;
   position: relative;
-  right: 0%;
-  top: 1rem;
 }
 
 .toggle::after {
@@ -183,6 +181,14 @@
 .toggledark::after {
   background-image: url("../public/images/SwitchDark.png");
   transform: translateX(1rem);
+}
+
+.toggle:hover {
+  filter: brightness(75%);
+}
+
+.toggledark:hover {
+  filter: brightness(75%);
 }
 
 .imageRendering {
@@ -342,6 +348,7 @@
 
 .logoButton:hover {
   transform: scale(1.1);
+  filter: brightness(75%);
 }
 
 .logoButtonDark {
@@ -563,6 +570,7 @@
 
   .logoButton:hover {
     transform: none;
+    filter: brightness(75%);
   }
 
   .ResumeBacker:hover {

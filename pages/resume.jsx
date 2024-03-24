@@ -5,16 +5,19 @@ import utilStyles from "../styles/theme.util.module.css";
 import React, { useState, useEffect, Component } from "react";
 import { useTheme, ThemeProvider } from "next-themes";
 import ResumeJobs from "../components/ResumeJobs";
-import ResumeReferences from "../components/ResumeReferences";
 import School from "../components/School";
 import LanguageDexMobile from "../components/LanguageDexMobile";
 import Frameworks from "../components/Frameworks";
 import Layout from "./Layout";
 import Title from "../components/Title";
 import DevTools from "../components/DevTools";
+import resumeJobs from "../public/Assets/resumeJobs.json";
 
 export default function Resume(pageProps) {
   const { resolvedTheme, setTheme } = useTheme();
+
+  var resumeJobsJSON = JSON.parse(JSON.stringify(resumeJobs));
+
   return (
     <Layout children>
       <section>
@@ -36,21 +39,13 @@ export default function Resume(pageProps) {
           <p>Previous Employment</p>
         </section>
         <div className={styles.locationGrid}>
-          <ResumeJobs
-            jobName="Software Developer Intern"
-            employer="CIBC"
-            email="Cynthia.wen@cibc.com"
-          />
-          <ResumeJobs
-            jobName="Software Developer Intern"
-            employer="Practice Perfect EMR"
-            email="steve@practiceperfectemr.com"
-          />
-          <ResumeJobs
-            jobName="Badminton Instructor & Gym Monitor"
-            employer="Town of Newmarket"
-            email="kwillins@newmarket.ca"
-          />
+          {resumeJobsJSON.map((resumeJob) => (
+            <ResumeJobs
+              jobName={resumeJob.jobName}
+              employer={resumeJob.employer}
+              linkedin={resumeJob.linkedin}
+            />
+          ))}
         </div>
         <section className={styles.transformer}>
           <section>
@@ -84,61 +79,6 @@ export default function Resume(pageProps) {
             schoolName="Newmarket High School"
             schoolLocation="Newmarket, Ontario"
             GPA={4.0}
-          />
-        </div>
-
-        <section className={utilStyles.headingXl}>
-          <p>References</p>
-        </section>
-        <div className={styles.jobGrid}>
-          <ResumeReferences
-            name="Cynthia Wen"
-            employer="CIBC"
-            email="Cynthia.wen@cibc.com"
-            phone=""
-            LinkedIn="https://www.linkedin.com/in/jingcynthiawen/"
-          />
-          <ResumeReferences
-            name="Steve Presement"
-            employer="Practice Perfect EMR"
-            email="steve@practiceperfectemr.com"
-            phone="tel:8555084409"
-            LinkedIn="https://www.linkedin.com/in/steven-presement-2b5a282b/"
-          />
-          <ResumeReferences
-            name="Jeff Yang"
-            employer="Practice Perfect EMR"
-            email="jeff.yang@practiceperfectemr.com"
-            phone=""
-            LinkedIn="https://www.linkedin.com/in/jeff-yang-8185018/"
-          />
-          <ResumeReferences
-            name="Christopher Anand"
-            employer="McMaster University"
-            email="anandc@mcmaster.ca"
-            phone=""
-            LinkedIn="https://www.linkedin.com/in/christopheranand/"
-          />
-          <ResumeReferences
-            name="Geneva Smith"
-            employer="McMaster University"
-            email="smithgm@mcmaster.ca"
-            phone=""
-            LinkedIn=""
-          />
-          <ResumeReferences
-            name="Kathleen Willins"
-            employer="Town of Newmarket"
-            email="kwillins@newmarket.ca"
-            phone=""
-            LinkedIn=""
-          />
-          <ResumeReferences
-            name="Ricci Tam"
-            employer="Newmarket High School"
-            email="ricci.tam@yrdsb.ca"
-            phone=""
-            LinkedIn=""
           />
         </div>
       </div>

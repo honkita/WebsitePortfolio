@@ -9,14 +9,11 @@
   --secondary: #ffed7f;
   --secondary-bright: #ffea5f;
   --background: #050505;
-
-  /* Asks browser to behave in dark mode */
-  color-scheme: dark;
 }
 
 /*
- * Light mode theme 
- */
+   * Light mode theme 
+   */
 :root {
   --primary-bright: #050505;
   --primary: #050505;
