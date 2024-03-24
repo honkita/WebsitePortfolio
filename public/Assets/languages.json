@@ -1,25 +1,58 @@
 [
-  { "name": "HTML", "type": "Markup", "url": "./images/Logos/HTML.png" },
+  { "name": "ARM", "type": "Assembly", "url": "./images/Logos/ARM.png" },
+  { "name": "C", "type": "Imperative", "url": "./images/Logos/C.png" },
+  { "name": "C++", "type": "Object-Oriented", "url": "./images/Logos/C++.png" },
+  { "name": "C#", "type": "Object-Oriented", "url": "./images/Logos/CS.png" },
   { "name": "CSS", "type": "Style Sheet", "url": "./images/Logos/CSS.png" },
-  {
-    "name": "JavaScript",
-    "type": "Object-Oriented",
-    "url": "./images/Logos/JS.png"
-  },
+
   { "name": "Elm", "type": "Functional", "url": "./images/Logos/Elm.png" },
+
   {
-    "name": "Processing",
-    "type": "Object-Oriented",
-    "url": "./images/Logos/Processing.png"
+    "name": "Gradle",
+    "type": "Build Tool",
+    "url": "./images/Logos/Gradle.png"
   },
+  {
+    "name": "Haskell",
+    "type": "Functional",
+    "url": "./images/Logos/Haskell.png"
+  },
+
+  { "name": "HTML", "type": "Markup", "url": "./images/Logos/HTML.png" },
   {
     "name": "Java",
     "type": "Object-Oriented",
     "url": "./images/Logos/Java.png"
   },
   {
-    "name": "Gradle",
-    "type": "Build Tool",
-    "url": "./images/Logos/Gradle.png"
+    "name": "JavaScript",
+    "type": "Object-Oriented",
+    "url": "./images/Logos/JS.png"
+  },
+  {
+    "name": "Processing",
+    "type": "Object-Oriented",
+    "url": "./images/Logos/Processing.png"
+  },
+  {
+    "name": "Prolog",
+    "type": "Logic",
+    "url": "./images/Logos/Prolog.png"
+  },
+  {
+    "name": "Python",
+    "type": "Object-Oriented",
+    "url": "./images/Logos/Python.png"
+  },
+  {
+    "name": "Latex",
+    "type": "Formatted Text",
+    "url": "./images/Logos/Latex.png"
+  },
+  { "name": "R", "type": "Interpreted", "url": "./images/Logos/R.png" },
+  {
+    "name": "SQL",
+    "type": "Relational Database",
+    "url": "./images/Logos/SQL.png"
   }
 ]
