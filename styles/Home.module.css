@@ -14,8 +14,10 @@
   -webkit-user-select: none;
   -o-user-select: none;
   overflow-x: hidden;
-  overflow-y: scroll;
+  margin-right: calc (-1 * (100vw - 100%));
 }
+
+ 
 
 .containerRight {
   display: flex;
