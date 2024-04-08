@@ -1,4 +1,4 @@
-.container {
+  .container {
   justify-content: center;
   align-items: center;
   min-height: 5vh;
@@ -13,6 +13,8 @@
   -khtml-user-select: none;
   -webkit-user-select: none;
   -o-user-select: none;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .containerRight {
