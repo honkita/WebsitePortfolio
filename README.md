@@ -1,19 +1,11 @@
-# Elite Lu Website Portfolio
+[![](https://raw.githubusercontent.com/honkita/MD-Links/main/Pixel_GitHub.svg)](https://github.com/honkita) [![](https://raw.githubusercontent.com/honkita/MD-Links/main/Pixel_Link.svg)](https://elitelu.com) [![](https://raw.githubusercontent.com/honkita/MD-Links/main/Pixel_LinkedIn.svg)](https://www.linkedin.com/in/elitelu/)
 
-<p align="center">
-  <a href="https://github.com/honkita">
-    <img title="GitHub" src="https://raw.githubusercontent.com/honkita/MD-Links/main/Pixel_GitHub.svg" width="32">
-  </a>
-
-  <a href="https://www.linkedin.com/in/elitelu/">
-    <img title="LinkedIn" src="https://raw.githubusercontent.com/honkita/MD-Links/main/Pixel_LinkedIn.svg" width="32">
-  </a>
-</p>
+## Elite Lu's Website Portfolio
 
 ## About
 
 This is Elite Lu's official website portfolio.
-To introduce myself, hi, my name is Elite Lu, and I am currently a third year student on coop from McMaster University. As of writing this, I am looking for a software developer position. I enjoy developing applications such as websites (learning Flask) and games alongside art.
+I am currently a third year student on coop from McMaster University. As of writing this, I am looking for a software developer position. I enjoy developing applications such as websites (learning Flask) and games alongside art.
 
 ## Origin
 
