@@ -1,9 +1,19 @@
 # Elite Lu Website Portfolio
 
+<p align="center">
+  <a href="https://github.com/honkita">
+    <img title="GitHub" src="https://raw.githubusercontent.com/honkita/MD-Links/main/Pixel_GitHub.svg" width="32">
+  </a>
+
+  <a href="https://www.linkedin.com/in/elitelu/">
+    <img title="LinkedIn" src="https://raw.githubusercontent.com/honkita/MD-Links/main/Pixel_LinkedIn.svg" width="32">
+  </a>
+</p>
+
 ## About
 
 This is Elite Lu's official website portfolio.
-To introduce myself, hi, my name is Elite Lu, and I am currently a third year student on coop from McMaster University. As of writing this, I am looking for a software developer position. I enjoy developing applications such as websites (learning Flask) and games alongside art. 
+To introduce myself, hi, my name is Elite Lu, and I am currently a third year student on coop from McMaster University. As of writing this, I am looking for a software developer position. I enjoy developing applications such as websites (learning Flask) and games alongside art.
 
 ## Origin
 
@@ -17,4 +27,4 @@ When navigating to the resume page, the user is greeted with a similar view with
 
 ## Why use CSS files instead of Bootstrap CSS or Tailwind CSS
 
-For the development of this particular site, I decided against the usage of these frameworks because I wanted more control over what I designed. I wanted my portfolio site to be a representation of who I am as a person and what I am passionate about. I was able to display my artistic side and this allowed me to utilize different features and objects to best fit my needs and wants. I am currently in the process of developing another site with the Spotify API and I am using Bootstrap CSS. 
+For the development of this particular site, I decided against the usage of these frameworks because I wanted more control over what I designed. I wanted my portfolio site to be a representation of who I am as a person and what I am passionate about. I was able to display my artistic side and this allowed me to utilize different features and objects to best fit my needs and wants. I am currently in the process of developing another site with the Spotify API and I am using Bootstrap CSS.
