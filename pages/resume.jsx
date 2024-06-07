@@ -60,7 +60,7 @@ export default function Resume(pageProps) {
             </section>
             <Frameworks />
             <section className={utilStyles.headingXl}>
-              <p>Developer Tools Proficiencies</p>
+              <p>Developer Platform and Tool Proficiencies</p>
             </section>
             <DevTools />
           </section>

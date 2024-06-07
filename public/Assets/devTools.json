@@ -1,4 +1,9 @@
 [
+  { "name": "Adobe Experience Manager", "url": "./images/DevTools/AEM.png" },
+  {
+    "name": "Cloudflare Workers",
+    "url": "./images/DevTools/CloudflareWorkers.png"
+  },
   { "name": "DBeaver", "url": "./images/DevTools/DBeaver.png" },
   { "name": "Eclipse", "url": "./images/DevTools/Eclipse.png" },
   { "name": "GitHub", "url": "./images/DevTools/GitHub.png" },
