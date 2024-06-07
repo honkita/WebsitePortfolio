@@ -15,6 +15,16 @@
     "languages": ["JavaScript", "CSS", "HTML"]
   },
   {
+    "name": "Pixel Buttons",
+    "url": "https://github.com/honkita/PixelButtons",
+    "languages": []
+  },
+  {
+    "name": "LinkHub",
+    "url": "https://github.com/honkita/LinkHub",
+    "languages": ["JavaScript", "CSS", "HTML"]
+  },
+  {
     "name": "Uta Rhythm Game",
     "url": "https://github.com/honkita/UtaRhythmGame",
     "languages": ["Processing"]

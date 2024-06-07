@@ -1,0 +1,37 @@
+{
+  "Email": {
+    "lightTheme": "./images/Buttons/PixelEmail.svg",
+    "darkTheme": "./images/Buttons/PixelEmailDark.svg",
+    "target": "_blank"
+  },
+  "Back": {
+    "lightTheme": "./images/Buttons/PixelBack.png",
+    "darkTheme": "./images/Buttons/PixelBackDark.png",
+    "target": ""
+  },
+  "Resume": {
+    "lightTheme": "./images/Buttons/PixelResume.svg",
+    "darkTheme": "./images/Buttons/PixelResumeDark.svg",
+    "target": ""
+  },
+  "GitHub": {
+    "lightTheme": "./images/Buttons/PixelGitHub.svg",
+    "darkTheme": "./images/Buttons/PixelGitHubDark.svg",
+    "target": "_blank"
+  },
+  "Download": {
+    "lightTheme": "./images/Buttons/PixelDownload.svg",
+    "darkTheme": "./images/Buttons/PixelDownloadDark.svg",
+    "target": "_blank"
+  },
+  "Call": {
+    "lightTheme": "./images/Buttons/PixelCall.png",
+    "darkTheme": "./images/Buttons/PixelCallDark.png",
+    "target": "_blank"
+  },
+  "LinkedIn": {
+    "lightTheme": "./images/Buttons/PixelLinkedIn.svg",
+    "darkTheme": "./images/Buttons/PixelLinkedInDark.svg",
+    "target": "_blank"
+  }
+}

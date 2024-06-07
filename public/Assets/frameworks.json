@@ -1,4 +1,9 @@
 [
+  { "name": "Flask", "url": "./images/Logos/Flask.png" },
   { "name": "Next.js", "url": "./images/Logos/Nextjs.png" },
-  { "name": "React", "url": "./images/Logos/React.png" }
+  { "name": "Node.js", "url": "./images/Logos/Nodejs.png" },
+  { "name": "Postman", "url": "./images/Logos/Postman.png" },
+  { "name": "React", "url": "./images/Logos/React.png" },
+  { "name": "Swagger", "url": "./images/Logos/Swagger.png" },
+  { "name": "Vue.js", "url": "./images/Logos/Vuejs.png" }
 ]
