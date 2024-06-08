@@ -154,7 +154,7 @@
   min-height: 2rem;
   margin-top: 0.5rem;
   border: None;
-  background-image: url(../public/images/SwitchBack.png);
+  background-image: url(../public/images/Switch/SwitchBack.png);
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: cover;
@@ -163,7 +163,7 @@
 }
 
 .toggle::after {
-  background-image: url("../public/images/Switch.png");
+  background-image: url("../public/images/Switch/Switch.png");
   background-size: 4rem 4rem;
   display: inline-block;
   width: 4rem;
@@ -174,12 +174,12 @@
 }
 
 .toggledark {
-  background-image: url("../public/images/SwitchBackDark.png");
+  background-image: url("../public/images/Switch/SwitchBackDark.png");
   transition: all 0.2s;
 }
 
 .toggledark::after {
-  background-image: url("../public/images/SwitchDark.png");
+  background-image: url("../public/images/Switch/SwitchDark.png");
   transform: translateX(1rem);
 }
 
@@ -211,7 +211,7 @@
   position: relative;
 }
 
-@media (max-width: 128rem) {
+/* @media (max-width: 128rem) {
   .LanguageDex {
     background-image: url("../public/images/LanguageDex.png");
     width: 40rem;
@@ -232,12 +232,12 @@
     vertical-align: top;
     align-items: center;
     image-rendering: pixelated;
-    -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+    -ms-interpolation-mode: nearest-neighbor;
   }
-}
+} */
 
 .ReferenceBacker {
-  background-image: url("../public/images/PixelSquare.png");
+  background-image: url("../public/images/TextBox/PixelSquare.png");
   width: 20rem;
   height: 20rem;
   min-width: 20rem;
@@ -249,7 +249,7 @@
 }
 
 .ReferenceBackerDark {
-  background-image: url("../public/images/PixelSquareDark.png");
+  background-image: url("../public/images/TextBox/PixelSquareDark.png");
   width: 20rem;
   height: 20rem;
   min-width: 20rem;
@@ -261,7 +261,7 @@
 }
 
 .ResumeBacker {
-  background-image: url("../public/images/PixelShortBox.png");
+  background-image: url("../public/images/TextBox/PixelShortBox.png");
   width: 30rem;
   height: 20rem;
   min-width: 18rem;
@@ -269,7 +269,7 @@
 }
 
 .ResumeBackerDark {
-  background-image: url("../public/images/PixelShortBoxDark.png");
+  background-image: url("../public/images/TextBox/PixelShortBoxDark.png");
   width: 30rem;
   height: 20rem;
   min-width: 18rem;
@@ -292,7 +292,7 @@
 }
 
 .ProjectsBacker {
-  background-image: url("../public/images/PixelSquare.png");
+  background-image: url("../public/images/TextBox/PixelSquare.png");
   width: 20rem;
   height: 20rem;
   min-width: 18rem;
@@ -301,7 +301,7 @@
 }
 
 .ProjectsBackerDark {
-  background-image: url("../public/images/PixelSquareDark.png");
+  background-image: url("../public/images/TextBox/PixelSquareDark.png");
   width: 20rem;
   height: 20rem;
   min-width: 18rem;
@@ -467,7 +467,7 @@
   }
 
   .ResumeBacker {
-    background-image: url("../public/images/PixelShortBoxMobile.png");
+    background-image: url("../public/images/TextBox/PixelShortBoxMobile.png");
     width: 20rem;
     height: 10rem;
     min-width: 20rem;
@@ -484,7 +484,7 @@
     align-items: left;
   }
   .ResumeBackerDark {
-    background-image: url("../public/images/PixelShortBoxMobileDark.png");
+    background-image: url("../public/images/TextBox/PixelShortBoxMobileDark.png");
     width: 20rem;
     height: 10rem;
     min-width: 20rem;
@@ -502,7 +502,7 @@
   }
 
   .ReferenceBacker {
-    background-image: url("../public/images/PixelShortBoxMobile.png");
+    background-image: url("../public/images/TextBox/PixelShortBoxMobile.png");
     width: 20rem;
     height: 10rem;
     min-width: 20rem;
@@ -510,7 +510,7 @@
   }
 
   .ProjectsBacker {
-    background-image: url("../public/images/PixelShortBoxMobile.png");
+    background-image: url("../public/images/TextBox/PixelShortBoxMobile.png");
     width: 20rem;
     height: 10rem;
     min-width: 20rem;
@@ -518,7 +518,7 @@
   }
 
   .ProjectsBackerDark {
-    background-image: url("../public/images/PixelShortBoxMobileDark.png");
+    background-image: url("../public/images/TextBox/PixelShortBoxMobileDark.png");
     width: 20rem;
     height: 10rem;
     min-width: 20rem;
@@ -526,7 +526,7 @@
   }
 
   .ReferenceBackerDark {
-    background-image: url("../public/images/PixelShortBoxMobileDark.png");
+    background-image: url("../public/images/TextBox/PixelShortBoxMobileDark.png");
     width: 20rem;
     height: 10rem;
     min-width: 20rem;

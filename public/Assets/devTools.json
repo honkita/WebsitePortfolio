@@ -1,19 +1,19 @@
 [
-  { "name": "Adobe Experience Manager", "url": "./images/DevTools/AEM.png" },
+  { "name": "Adobe Experience Manager", "url": "./images/DevTools/AEM.svg" },
   {
     "name": "Cloudflare Workers",
-    "url": "./images/DevTools/CloudflareWorkers.png"
+    "url": "./images/DevTools/CloudflareWorkers.svg"
   },
-  { "name": "DBeaver", "url": "./images/DevTools/DBeaver.png" },
-  { "name": "Eclipse", "url": "./images/DevTools/Eclipse.png" },
-  { "name": "GitHub", "url": "./images/DevTools/GitHub.png" },
-  { "name": "JupyterHub", "url": "./images/DevTools/JupyterHub.png" },
-  { "name": "Matlab", "url": "./images/DevTools/Matlab.png" },
-  { "name": "Netbeans", "url": "./images/DevTools/Netbeans.png" },
-  { "name": "Overleaf", "url": "./images/DevTools/Overleaf.png" },
-  { "name": "Visual Studio", "url": "./images/DevTools/VisualStudio.png" },
+  { "name": "DBeaver", "url": "./images/DevTools/DBeaver.svg" },
+  { "name": "Eclipse", "url": "./images/DevTools/Eclipse.svg" },
+  { "name": "GitHub", "url": "./images/DevTools/GitHub.svg" },
+  { "name": "JupyterHub", "url": "./images/DevTools/JupyterHub.svg" },
+  { "name": "Matlab", "url": "./images/DevTools/Matlab.svg" },
+  { "name": "Netbeans", "url": "./images/DevTools/Netbeans.svg" },
+  { "name": "Overleaf", "url": "./images/DevTools/Overleaf.svg" },
+  { "name": "Visual Studio", "url": "./images/DevTools/VisualStudio.svg" },
   {
     "name": "Visual Studio Code",
-    "url": "./images/DevTools/VisualStudioCode.png"
+    "url": "./images/DevTools/VisualStudioCode.svg"
   }
 ]

@@ -1,9 +1,9 @@
 [
-  { "name": "Flask", "url": "./images/Logos/Flask.png" },
-  { "name": "Next.js", "url": "./images/Logos/Nextjs.png" },
-  { "name": "Node.js", "url": "./images/Logos/Nodejs.png" },
-  { "name": "Postman", "url": "./images/Logos/Postman.png" },
-  { "name": "React", "url": "./images/Logos/React.png" },
-  { "name": "Swagger", "url": "./images/Logos/Swagger.png" },
-  { "name": "Vue.js", "url": "./images/Logos/Vuejs.png" }
+  { "name": "Flask", "url": "./images/FAL/Flask.svg" },
+  { "name": "Next.js", "url": "./images/FAL/Nextjs.svg" },
+  { "name": "Node.js", "url": "./images/FAL/Nodejs.svg" },
+  { "name": "Postman", "url": "./images/FAL/Postman.svg" },
+  { "name": "React", "url": "./images/FAL/React.svg" },
+  { "name": "Swagger", "url": "./images/FAL/Swagger.svg" },
+  { "name": "Vue.js", "url": "./images/FAL/Vuejs.svg" }
 ]
