@@ -2,6 +2,8 @@
 
 # Elite Lu's Website Portfolio
 
+![](https://raw.githubusercontent.com/honkita/MD-Links/main/Pixel_Maintained.svg)
+
 ## About
 
 This is Elite Lu's official website portfolio.
