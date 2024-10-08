@@ -15,7 +15,7 @@ export default function Layout({ home, children }) {
       <main>{children}</main>
       <section className={styles.container}>
         <section className={styles.headingMd} role="contentinfo">
-          Copyrights © 2023 Elite Lu
+          Copyrights © {new Date().getFullYear()} Elite Lu
         </section>
       </section>
     </ThemeProvider>
