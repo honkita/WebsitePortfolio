@@ -1,21 +1,10 @@
+import utilStyles from "../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
+import styles from "../styles/Home.module.css";
+import { useTheme, ThemeProvider } from "next-themes";
 
 export default function ImageCarousel(props) {
-  const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  return (
-    <div>
-      {props.images.map((image) => (
-        <div className="">
-          <button
-            className={`${utilStyles.logoButtonSmall} ${utilStyles.buttonRendering}`}
-            title={devTool.name}
-          >
-            <img id={devTool.name} src={devTool.url} alt={devTool.name} />
-          </button>
-          {devTool.name}
-        </div>
-      ))}
-    </div>
-  );
+    const { resolvedTheme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+    return <div></div>;
 }

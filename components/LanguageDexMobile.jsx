@@ -5,38 +5,38 @@ import { useTheme, ThemeProvider } from "next-themes";
 import languages from "../public/Assets/languages.json";
 
 export default function LanguageDexMobile() {
-  const [mounted, setMounted] = useState(false);
-  const [language, setLanguage] = useState("");
-  const [paradigm, setParadigm] = useState("");
-  var languagesJSON = JSON.parse(JSON.stringify(languages));
+    const [mounted, setMounted] = useState(false);
+    const [language, setLanguage] = useState("");
+    const [paradigm, setParadigm] = useState("");
+    var languagesJSON = JSON.parse(JSON.stringify(languages));
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
-  if (!mounted) {
-    return null;
-  }
+    if (!mounted) {
+        return null;
+    }
 
-  return (
-    <ThemeProvider>
-      <div className={styles.grid}>
-        {languagesJSON.map((language) => (
-          <div className={styles.under}>
-            <button
-              className={`${utilStyles.logoButtonSmall} ${utilStyles.buttonRendering}`}
-              title={language.name}
-            >
-              <img
-                id={language.name}
-                src={language.url}
-                alt={language.name + " image"}
-              />
-            </button>
-            {language.name}
-          </div>
-        ))}
-      </div>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider>
+            <div className={styles.grid}>
+                {languagesJSON.map((language) => (
+                    <div className={styles.under}>
+                        <button
+                            className={`${utilStyles.logoButtonSmall} ${utilStyles.buttonRendering}`}
+                            title={language.name}
+                        >
+                            <img
+                                id={language.name}
+                                src={language.url}
+                                alt={language.name + " image"}
+                            />
+                        </button>
+                        {language.name}
+                    </div>
+                ))}
+            </div>
+        </ThemeProvider>
+    );
 }
