@@ -25,8 +25,13 @@ export default function LanguageDexMobile() {
           <div className={styles.under}>
             <button
               className={`${utilStyles.logoButtonSmall} ${utilStyles.buttonRendering}`}
+              title={language.name}
             >
-              <img id={language.name} src={language.url} />
+              <img
+                id={language.name}
+                src={language.url}
+                alt={language.name + " image"}
+              />
             </button>
             {language.name}
           </div>

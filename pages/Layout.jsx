@@ -14,7 +14,7 @@ export default function Layout({ home, children }) {
       <Nav />
       <main>{children}</main>
       <section className={styles.container}>
-        <section className={styles.headingMd}>
+        <section className={styles.headingMd} role="contentinfo">
           Copyrights © 2023 Elite Lu
         </section>
       </section>

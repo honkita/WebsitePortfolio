@@ -58,6 +58,7 @@ export default function Home() {
           </section>
           <div className={styles.carousel}>
             <Carousel
+              ariaLabel="carousel"
               infiniteLoop={true}
               autoPlay={true}
               centerMode={true}
@@ -67,7 +68,11 @@ export default function Home() {
             >
               {imagesJSON.map((img) => (
                 <div>
-                  <img alt={img.description} src={img.image} />
+                  <img
+                    role="img"
+                    alt={img.description + " image"}
+                    src={img.image}
+                  />
                   <p className="legend">{img.description} </p>
                 </div>
               ))}

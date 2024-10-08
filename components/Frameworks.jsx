@@ -26,7 +26,11 @@ export default function Frameworks(props) {
               className={`${utilStyles.logoButtonSmall} ${utilStyles.buttonRendering}`}
               title={frameworks.name}
             >
-              <img id={frameworks.name} src={frameworks.url} />
+              <img
+                id={frameworks.name}
+                src={frameworks.url}
+                alt={frameworks.name + " image"}
+              />
             </button>
             {frameworks.name}
           </div>
