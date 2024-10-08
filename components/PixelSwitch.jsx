@@ -101,6 +101,7 @@ export default function PixelSwitch() {
             (resolvedTheme === "dark" ? utilStyles.toggledark : null)
           }
           onClick={toggleTheme}
+          title="Switch"
         />
       </div>
     </ThemeProvider>

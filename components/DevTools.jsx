@@ -25,8 +25,9 @@ export default function DevTools(props) {
           <div className={styles.under}>
             <button
               className={`${utilStyles.logoButtonSmall} ${utilStyles.buttonRendering}`}
+              title={devTool.name}
             >
-              <img id={devTool.name} src={devTool.url} />
+              <img id={devTool.name} src={devTool.url} alt={devTool.name} />
             </button>
             {devTool.name}
           </div>

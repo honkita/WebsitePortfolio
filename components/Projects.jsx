@@ -35,7 +35,7 @@ export default function Projects(props) {
       <button
         className={`${utilStyles.logoButtonSmallSmall} ${utilStyles.buttonRendering}`}
       >
-        <img id={item.name} src={returnURL(item.name)} />
+        <img id={item.name} src={returnURL(item.name)} alt={item.name} />
       </button>
     );
   });

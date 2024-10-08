@@ -32,6 +32,7 @@ export default function PixelButton(props) {
       <Link href={props.url} target={getValue().target}>
         <button
           className={`${utilStyles.logoButton} ${utilStyles.buttonRendering}`}
+          title={PixelButtonsJSON[props.name]}
         >
           <img
             src={

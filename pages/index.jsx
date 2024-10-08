@@ -67,7 +67,7 @@ export default function Home() {
             >
               {imagesJSON.map((img) => (
                 <div>
-                  <img alt="" src={img.image} />
+                  <img alt={img.description} src={img.image} />
                   <p className="legend">{img.description} </p>
                 </div>
               ))}

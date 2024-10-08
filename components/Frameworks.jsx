@@ -24,6 +24,7 @@ export default function Frameworks(props) {
           <div className={styles.under}>
             <button
               className={`${utilStyles.logoButtonSmall} ${utilStyles.buttonRendering}`}
+              title={frameworks.name}
             >
               <img id={frameworks.name} src={frameworks.url} />
             </button>

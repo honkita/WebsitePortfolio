@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useTheme, ThemeProvider } from "next-themes";
 import Link from "next/link";
 import PixelSwitch from "../components/PixelSwitch";
+import styles from "../styles/Home.module.css";
+
 export default function NavBar(props) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -20,16 +22,18 @@ export default function NavBar(props) {
   return (
     <ThemeProvider>
       <nav>
-        <li>
-          <Link href="/">
-            <p>Home</p>
-          </Link>
-        </li>
-        <li>
-          <Link href="/resume">
-            <p>Resume</p>
-          </Link>
-        </li>
+        <ul className={styles.noBullets}>
+          <li>
+            <Link href="/">
+              <p>Home</p>
+            </Link>
+          </li>
+          <li>
+            <Link href="/resume">
+              <p>Resume</p>
+            </Link>
+          </li>
+        </ul>
         <PixelSwitch />
       </nav>
     </ThemeProvider>
