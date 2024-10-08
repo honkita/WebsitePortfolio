@@ -4,7 +4,11 @@ import styles from "../styles/Home.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
 import frameworks from "../public/Assets/frameworks.json";
 
-export default function Frameworks(props) {
+/**
+ *
+ * @returns
+ */
+export default function Frameworks() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   var frameworksJSON = JSON.parse(JSON.stringify(frameworks));
