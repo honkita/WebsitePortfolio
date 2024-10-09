@@ -5,37 +5,37 @@ import PixelSwitch from "../components/PixelSwitch";
 import styles from "../styles/Home.module.css";
 
 export default function NavBar(props) {
-  const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+    const { resolvedTheme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
 
-  // useEffect only runs on the client, so now we can safely show the UI
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+    // useEffect only runs on the client, so now we can safely show the UI
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
-  if (!mounted) {
-    return null;
-  }
+    if (!mounted) {
+        return null;
+    }
 
-  let src;
+    let src;
 
-  return (
-    <ThemeProvider>
-      <nav>
-        <ul className={styles.noBullets}>
-          <li>
-            <Link href="/">
-              <p>Home</p>
-            </Link>
-          </li>
-          <li>
-            <Link href="/resume">
-              <p>Resume</p>
-            </Link>
-          </li>
-        </ul>
-        <PixelSwitch />
-      </nav>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider>
+            <nav>
+                <ul className={styles.noBullets}>
+                    <li>
+                        <Link href="/">
+                            <p>Home</p>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/resume">
+                            <p>Resume</p>
+                        </Link>
+                    </li>
+                </ul>
+                <PixelSwitch />
+            </nav>
+        </ThemeProvider>
+    );
 }

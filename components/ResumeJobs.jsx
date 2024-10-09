@@ -5,40 +5,40 @@ import { useTheme, ThemeProvider } from "next-themes";
 import PixelButton from "./PixelButton";
 
 export default function ResumeJobs(props) {
-  const [mounted, setMounted] = useState(false);
-  const { resolvedTheme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+    const { resolvedTheme, setTheme } = useTheme();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
-  if (!mounted) {
-    return null;
-  }
-
-  let src;
-
-  function background() {
-    if (resolvedTheme === "light") {
-      return `${utilStyles.ResumeBacker} ${utilStyles.imageRendering}`;
-    } else {
-      return `${utilStyles.ResumeBackerDark} ${utilStyles.imageRendering}`;
+    if (!mounted) {
+        return null;
     }
-  }
 
-  return (
-    <ThemeProvider>
-      <div className={background()}>
-        <section className={utilStyles.boxLg}>
-          <p>{props.jobName}</p>
-        </section>
-        <section className={utilStyles.box2Md}>
-          <p>{props.employer}</p>
-        </section>
-        <div className={styles.containerAbsolute}>
-          <PixelButton name="LinkedIn" url={props.linkedin} />
-        </div>
-      </div>
-    </ThemeProvider>
-  );
+    let src;
+
+    function background() {
+        if (resolvedTheme === "light") {
+            return `${utilStyles.ResumeBacker} ${utilStyles.imageRendering}`;
+        } else {
+            return `${utilStyles.ResumeBackerDark} ${utilStyles.imageRendering}`;
+        }
+    }
+
+    return (
+        <ThemeProvider>
+            <div className={background()}>
+                <section className={utilStyles.boxLg}>
+                    <p>{props.jobName}</p>
+                </section>
+                <section className={utilStyles.box2Md}>
+                    <p>{props.employer}</p>
+                </section>
+                <div className={styles.containerAbsolute}>
+                    <PixelButton name="LinkedIn" url={props.linkedin} />
+                </div>
+            </div>
+        </ThemeProvider>
+    );
 }
