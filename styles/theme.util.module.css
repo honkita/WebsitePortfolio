@@ -340,6 +340,7 @@
 
 .logoButton:hover {
   transform: scale(1.1);
+  cursor: pointer;
   filter: brightness(75%);
 }
 
@@ -562,6 +563,7 @@
 
   .logoButton:hover {
     transform: none;
+    cursor: pointer;
     filter: brightness(75%);
   }
 
