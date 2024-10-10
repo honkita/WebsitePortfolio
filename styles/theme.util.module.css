@@ -244,20 +244,12 @@
   min-height: 20rem;
 }
 
-.ReferenceBacker:hover {
-  transform: scale(1.1);
-}
-
 .ReferenceBackerDark {
   background-image: url("../public/images/TextBox/PixelSquareDark.png");
   width: 20rem;
   height: 20rem;
   min-width: 20rem;
   min-height: 20rem;
-}
-
-.ReferenceBackerDark:hover {
-  transform: scale(1.1);
 }
 
 .ResumeBacker {
@@ -276,14 +268,6 @@
   min-height: 12rem;
 }
 
-.ResumeBacker:hover {
-  transform: scale(1.1);
-}
-
-.ResumeBackerDark:hover {
-  transform: scale(1.1);
-}
-
 .educationBox {
   position: relative;
   top: 5%;
@@ -292,28 +276,21 @@
 }
 
 .ProjectsBacker {
-  background-image: url("../public/images/TextBox/PixelSquare.png");
   width: 20rem;
   height: 20rem;
   min-width: 18rem;
   min-height: 18rem;
-  padding: 0;
+  border: 0.5rem solid rgb(150, 150, 150);
+  border-radius: 0.25rem;
 }
 
 .ProjectsBackerDark {
-  background-image: url("../public/images/TextBox/PixelSquareDark.png");
   width: 20rem;
   height: 20rem;
   min-width: 18rem;
   min-height: 18rem;
-}
-
-.ProjectsBacker:hover {
-  transform: scale(1.1);
-}
-
-.ProjectsBackerDark:hover {
-  transform: scale(1.1);
+  border: 0.5rem solid rgb(95, 95, 95);
+  border-radius: 0.25rem;
 }
 
 .logoButton {
@@ -321,7 +298,7 @@
   height: 5rem;
   min-width: 5rem;
   min-height: 5rem;
-  padding: 0;
+
   border: None;
   background-color: transparent;
   transition: all 0.2s;
@@ -335,6 +312,7 @@
   left: 0;
   top: 0;
   opacity: 1;
+  padding: 0.25rem;
   transition: opacity 200ms;
 }
 
@@ -342,6 +320,7 @@
   transform: scale(1.1);
   cursor: pointer;
   filter: brightness(75%);
+  z-index: 100;
 }
 
 .logoButtonDark {
@@ -394,7 +373,7 @@
   -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
 }
 
-@media (max-width: 64rem) {
+@media (max-width: 50rem) {
   .logoButtonSmallSmall {
     width: 3rem;
     height: 3rem;
@@ -510,21 +489,19 @@
     min-height: 10rem;
   }
 
-  .ProjectsBacker {
-    background-image: url("../public/images/TextBox/PixelShortBoxMobile.png");
-    width: 20rem;
+  /* .ProjectsBacker {
+    width: 35%;
     height: 10rem;
     min-width: 20rem;
     min-height: 10rem;
   }
 
   .ProjectsBackerDark {
-    background-image: url("../public/images/TextBox/PixelShortBoxMobileDark.png");
     width: 20rem;
     height: 10rem;
     min-width: 20rem;
     min-height: 10rem;
-  }
+  } */
 
   .ReferenceBackerDark {
     background-image: url("../public/images/TextBox/PixelShortBoxMobileDark.png");
@@ -560,33 +537,39 @@
     opacity: 0 !important;
     transition: opacity 200ms;
   }
+}
 
+.logoButton:hover {
+  cursor: pointer;
+  filter: brightness(75%);
+}
+
+@media not (hover: none) {
   .logoButton:hover {
-    transform: none;
-    cursor: pointer;
-    filter: brightness(75%);
+    transform: scale(1.1);
+    z-index: 100;
   }
 
   .ResumeBacker:hover {
-    transform: none;
+    transform: scale(1.1);
   }
 
   .ResumeBackerDark:hover {
-    transform: none;
+    transform: scale(1.1);
   }
   .ProjectsBacker:hover {
-    transform: none;
+    transform: scale(1.1);
   }
 
   .ProjectsBackerDark:hover {
-    transform: none;
+    transform: scale(1.1);
   }
 
   .ReferenceBacker:hover {
-    transform: none;
+    transform: scale(1.1);
   }
 
   .ReferenceBackerDark:hover {
-    transform: none;
+    transform: scale(1.1);
   }
 }
