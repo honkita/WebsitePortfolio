@@ -84,9 +84,8 @@
 }
 
 .sliderButtons {
-  stroke: white;
+  fill: white;
   color: white;
-  background-color: red;
   all: unset;
   display: block;
   position: absolute;

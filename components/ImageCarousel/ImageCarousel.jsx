@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useTheme, ThemeProvider } from "next-themes";
 import style from "../../styles/Home.module.css";
 
 /**
@@ -8,19 +7,8 @@ import style from "../../styles/Home.module.css";
  * @returns
  */
 export default function ImageCarousel(props) {
-    const { resolvedTheme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
     var imagesJSON = JSON.parse(JSON.stringify(props.images));
     const [index, setIndexValue] = useState(0);
-
-    function nextItem() {
-        setIndexValue((index) => {
-            // if (index + 1 >= Object.keys(imagesJSON).length) return 0;
-            return index++;
-        });
-    }
-
-    function prevItem() {}
 
     return (
         <div style={{ position: "relative" }}>
@@ -48,7 +36,7 @@ export default function ImageCarousel(props) {
                     )
                 }
             >
-                Prev
+                &lt;
             </button>
             <button
                 title="Next"
@@ -62,7 +50,7 @@ export default function ImageCarousel(props) {
                     )
                 }
             >
-                Next
+                &gt;
             </button>
         </div>
     );
