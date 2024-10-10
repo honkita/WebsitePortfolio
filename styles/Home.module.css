@@ -83,6 +83,24 @@
   align-items: center;
 }
 
+.sliderButtons {
+  stroke: white;
+  color: white;
+  background-color: red;
+  all: unset;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.sliderButtons:hover {
+  background-color: rgba(139, 139, 139, 0.2);
+}
+
 .containerLanguageDex {
   position: absolute;
   left: 21rem;
@@ -253,12 +271,6 @@
     vertical-align: top;
     align-items: center;
   }
-
-  .carousel {
-    width: 80%;
-    height: 80%;
-    vertical-align: center;
-  }
 }
 
 @media (max-width: 64rem) {
@@ -298,13 +310,6 @@
     grid-column-gap: 2rem;
     grid-row-gap: 0.5rem;
     vertical-align: top;
-  }
-
-  .carousel {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
   }
 
   .container {

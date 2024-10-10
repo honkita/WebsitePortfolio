@@ -3,21 +3,22 @@ import styles from "../styles/Home.module.css";
 import utilStyles from "../styles/theme.util.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
 import Projects from "../components/Projects";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
+// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+// import { Carousel } from "react-responsive-carousel";
+import ImageCarousel from "../components/ImageCarousel/ImageCarousel";
 import Layout from "./Layout";
 import Title from "../components/Title";
 import React from "react";
 
 //json imports
-import ImageCarousel from "../public/Assets/homeCarousel.json";
+import ImagesForCarousel from "../public/Assets/homeCarousel.json";
 import CodedProjects from "../public/Assets/projects.json";
 
 export default function Home() {
     const { resolvedTheme, setTheme } = useTheme();
     const name = "Elite Lu Portfolio";
 
-    var imagesJSON = JSON.parse(JSON.stringify(ImageCarousel));
+    var imagesJSON = JSON.parse(JSON.stringify(ImagesForCarousel));
     var projectsJSON = JSON.parse(JSON.stringify(CodedProjects));
 
     return (
@@ -57,7 +58,7 @@ export default function Home() {
                     <section className={utilStyles.headingXl}>
                         <p>Projects</p>
                     </section>
-                    <div className={styles.carousel}>
+                    {/* <div className={styles.carousel}>
                         <Carousel
                             ariaLabel="carousel"
                             infiniteLoop={true}
@@ -78,7 +79,8 @@ export default function Home() {
                                 </div>
                             ))}
                         </Carousel>
-                    </div>
+                    </div> */}
+                    <ImageCarousel images={ImagesForCarousel} />
 
                     <div className={styles.jobGrid}>
                         {projectsJSON.map((project) => (
