@@ -55,13 +55,16 @@
 }
 
 .boxLg {
-  text-align: center;
-  float: top;
-  font-size: 1.5rem;
+  position: absolute;
+  text-align: left;
+  font-size: 2vw;
   line-height: 1;
   font-weight: bold;
-  margin: 2rem 2rem;
-  position: 0 1vh;
+  margin-left: 0.5vw;
+  align-items: center;
+  width: 20vw;
+  word-wrap: break-word;
+  bottom: 0;
 }
 
 .boxMdBlack {
@@ -125,10 +128,6 @@
 
 .colorInherit {
   color: inherit;
-}
-
-.padding1px {
-  padding-top: 1px;
 }
 
 .list {
@@ -204,44 +203,16 @@
 }
 
 .buttonRendering {
-  padding: 0;
   border: None;
   background-color: transparent;
   transition: all 0.2s;
   position: relative;
 }
 
-/* @media (max-width: 128rem) {
-  .LanguageDex {
-    background-image: url("../public/images/LanguageDex.png");
-    width: 40rem;
-    height: 30rem;
-    min-width: 24rem;
-    min-height: 18rem;
-    padding: 3.5rem;
-    border: None;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    word-wrap: break-word;
-    background-size: cover;
-    transition: all 0.2s;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    vertical-align: top;
-    align-items: center;
-    image-rendering: pixelated;
-    -ms-interpolation-mode: nearest-neighbor;
-  }
-} */
-
 .ReferenceBacker {
   background-image: url("../public/images/TextBox/PixelSquare.png");
   width: 20rem;
   height: 20rem;
-  min-width: 20rem;
-  min-height: 20rem;
 }
 
 .ReferenceBackerDark {
@@ -276,30 +247,35 @@
 }
 
 .ProjectsBacker {
-  width: 20rem;
-  height: 20rem;
-  min-width: 18rem;
-  min-height: 18rem;
   border: 0.5rem solid rgb(150, 150, 150);
+  background: rgb(220, 220, 220);
   border-radius: 0.25rem;
+  margin: 1rem;
 }
 
 .ProjectsBackerDark {
-  width: 20rem;
-  height: 20rem;
-  min-width: 18rem;
-  min-height: 18rem;
   border: 0.5rem solid rgb(95, 95, 95);
+  background: rgb(40, 40, 40);
   border-radius: 0.25rem;
+  margin: 1rem;
+}
+
+@media only screen and (min-width: 64rem) {
+  .ProjectsBacker {
+    width: 27vw;
+    height: 35vw;
+  }
+
+  .ProjectsBackerDark {
+    width: 27vw;
+    height: 35vw;
+  }
 }
 
 .logoButton {
-  width: 5rem;
-  height: 5rem;
-  min-width: 5rem;
-  min-height: 5rem;
-
-  border: None;
+  width: 5vw;
+  height: 5vw;
+  margin: 0.5vw;
   background-color: transparent;
   transition: all 0.2s;
   position: relative;
@@ -312,7 +288,6 @@
   left: 0;
   top: 0;
   opacity: 1;
-  padding: 0.25rem;
   transition: opacity 200ms;
 }
 
@@ -323,10 +298,10 @@
   z-index: 100;
 }
 
-.logoButtonDark {
+/* .logoButtonDark {
   opacity: 0 !important;
   transition: opacity 200ms;
-}
+} */
 
 .logoButtonSmall {
   width: 4rem;
@@ -373,7 +348,7 @@
   -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
 }
 
-@media (max-width: 50rem) {
+@media (max-width: 64rem) and (min-width: 40rem) {
   .logoButtonSmallSmall {
     width: 3rem;
     height: 3rem;
@@ -417,12 +392,12 @@
   }
 
   .boxLg {
-    text-align: left;
+    text-align: right;
     font-size: 1.3rem;
     line-height: 1;
     font-weight: bold;
-    margin-left: 5rem;
-    margin-top: 2rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
     margin-bottom: 0;
     image-rendering: crisp-edges; /* CSS4 Proposed  */
   }
@@ -463,6 +438,7 @@
     image-rendering: pixelated;
     align-items: left;
   }
+
   .ResumeBackerDark {
     background-image: url("../public/images/TextBox/PixelShortBoxMobileDark.png");
     width: 20rem;
@@ -489,19 +465,15 @@
     min-height: 10rem;
   }
 
-  /* .ProjectsBacker {
-    width: 35%;
-    height: 10rem;
-    min-width: 20rem;
-    min-height: 10rem;
+  .ProjectsBacker {
+    width: 40vw;
+    height: 20vw;
   }
 
   .ProjectsBackerDark {
-    width: 20rem;
-    height: 10rem;
-    min-width: 20rem;
-    min-height: 10rem;
-  } */
+    width: 40vw;
+    height: 20vw;
+  }
 
   .ReferenceBackerDark {
     background-image: url("../public/images/TextBox/PixelShortBoxMobileDark.png");
@@ -544,6 +516,18 @@
   filter: brightness(75%);
 }
 
+@media (max-width: 48rem) {
+  .ProjectsBacker {
+    width: 80vw;
+    height: 20vw;
+  }
+
+  .ProjectsBackerDark {
+    width: 80vw;
+    height: 20vw;
+  }
+}
+
 @media not (hover: none) {
   .logoButton:hover {
     transform: scale(1.1);
@@ -557,6 +541,7 @@
   .ResumeBackerDark:hover {
     transform: scale(1.1);
   }
+
   .ProjectsBacker:hover {
     transform: scale(1.1);
   }

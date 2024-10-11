@@ -50,7 +50,7 @@ export default function Projects(props) {
                 <section className={utilStyles.boxLg}>
                     <p>{props.name}</p>
                 </section>
-                <div className={styles.containerIcons}>{languages}</div>
+                {/* <div className={styles.containerIcons}>{languages}</div> */}
                 <div className={styles.containerAbsolute}>
                     <PixelButton name="GitHub" url={props.url} />
                 </div>

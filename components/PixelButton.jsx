@@ -42,7 +42,7 @@ export default function PixelButton(props) {
                                 ? getValue().lightTheme
                                 : getValue().darkTheme
                         }
-                        title={name + "ButtonImage"}
+                        title={name}
                     />
                 </button>
             </Link>
