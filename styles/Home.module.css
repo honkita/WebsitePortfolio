@@ -244,6 +244,22 @@
   height: 1em;
 }
 
+.link {
+  color: rgb(119, 25, 25);
+}
+
+.linkDark {
+  color: rgb(243, 114, 114);
+}
+
+.link:visited {
+  color: rgb(7, 38, 36);
+}
+
+.darkLink:visited {
+  color: rgb(0, 255, 238);
+}
+
 @media (min-width: 64rem) {
   .jobGrid {
     display: grid;

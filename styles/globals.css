@@ -69,18 +69,11 @@ code {
 
 @font-face {
   font-family: "Pixelify_Sans";
-  src: local("Pixelify_Sans"),
+  src:
+    local("Pixelify_Sans"),
     url("../public/Pixelify_Sans/static/PixelifySans-Regular.ttf")
       format("truetype");
 }
-
-/* a:link {
-  color: rgb(197, 69, 69);
-}
-
-a:visited {
-  color: rgb(138, 207, 202);
-} */
 
 nav {
   position: relative;
