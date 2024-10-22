@@ -35,15 +35,13 @@ export default function School(props) {
     return (
         <ThemeProvider>
             <div
-                className={`${utilStyles.ResumeBacker} ${utilStyles.imageRendering} ${background()}`}
+                className={`${utilStyles.EducationBacker} ${utilStyles.imageRendering} ${background()}`}
             >
-                <section className={utilStyles.educationBox}>
-                    <section className={utilStyles.boxLg}>
-                        <p>{props.schoolName}</p>
-                    </section>
-                    <section className={utilStyles.box2Md}>
-                        <p>{props.schoolLocation}</p>
-                    </section>
+                <h1 className={utilStyles.schoolName}>
+                    <p>{props.schoolName}</p>
+                </h1>
+                <section className={utilStyles.schoolLocation}>
+                    <p>{props.schoolLocation}</p>
                 </section>
 
                 <section className={utilStyles.boxCircleBar}>

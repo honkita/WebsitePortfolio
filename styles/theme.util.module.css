@@ -81,6 +81,22 @@
   bottom: 0;
 }
 
+.schoolName {
+  font-size: 3vw;
+  position: absolute;
+  text-align: left;
+  margin: 0.5vw;
+  top: 0vw;
+}
+
+.schoolLocation {
+  font-size: 2.5vw;
+  position: absolute;
+  text-align: left;
+  margin: 0.5vw;
+  top: 3vw;
+}
+
 .boxMdBlack {
   text-align: center;
   font-size: 1.5rem;
@@ -100,15 +116,15 @@
 .boxCircleBar {
   align-self: center;
   text-align: center;
-  width: 8rem;
-  height: 8rem;
-  min-width: 8rem;
-  min-height: 8rem;
-  line-height: 1;
+  width: 15vw;
+  height: 15vw;
+  font-size: 5vw;
   font-weight: bold;
   position: absolute;
-  left: 11rem;
-  bottom: 3rem;
+  left: 50%;
+  bottom: 20%;
+  transform: translate(-50%, 0);
+  margin-bottom: 2vw;
 }
 
 .boxMd {
@@ -236,6 +252,11 @@
   height: 20vw;
 }
 
+.EducationBacker {
+  width: 45vw;
+  height: 45vw;
+}
+
 .educationBox {
   position: relative;
   top: 5%;
@@ -275,11 +296,6 @@
   filter: brightness(75%);
   z-index: 100;
 }
-
-/* .logoButtonDark {
-  opacity: 0 !important;
-  transition: opacity 200ms;
-} */
 
 .logoButtonSmall {
   width: 4rem;
@@ -350,7 +366,7 @@
     line-height: 1.5;
   }
 
-  .boxCircleBar {
+  /* .boxCircleBar {
     align-self: left;
     text-align: center;
     width: 5rem;
@@ -362,7 +378,7 @@
     position: absolute;
     left: 5%;
     top: 25%;
-  }
+  } */
 
   .educationBox {
     position: absolute;
@@ -500,6 +516,11 @@
   }
 
   .ReferenceBackerDark:hover {
+    transform: scale(1.1);
+  }
+
+  .EducationBacker:hover {
+    z-index: 1;
     transform: scale(1.1);
   }
 }
