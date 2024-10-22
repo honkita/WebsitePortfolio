@@ -1,5 +1,10 @@
 [
   {
+    "name": "GHS0",
+    "description": "GitHub Stats (Elite's version)",
+    "image": "./images/ImageCarousel/ICGitHubStats0.png"
+  },
+  {
     "name": "SD0",
     "description": "The Simple Derivatives Game",
     "image": "./images/ImageCarousel/ICDerivatives0.png"

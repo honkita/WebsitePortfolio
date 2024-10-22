@@ -9,7 +9,7 @@
     "darkTheme": "./images/Buttons/PixelBackDark.png",
     "target": ""
   },
-  "Resume": {
+  "AboutMe": {
     "lightTheme": "./images/Buttons/PixelResume.svg",
     "darkTheme": "./images/Buttons/PixelResumeDark.svg",
     "target": ""

@@ -20,15 +20,17 @@ export default function ResumeJobs(props) {
 
     function background() {
         if (resolvedTheme === "light") {
-            return `${utilStyles.ResumeBacker} ${utilStyles.imageRendering}`;
+            return `${utilStyles.lightBorder}`;
         } else {
-            return `${utilStyles.ResumeBackerDark} ${utilStyles.imageRendering}`;
+            return `${utilStyles.darkBorder}`;
         }
     }
 
     return (
         <ThemeProvider>
-            <div className={background()}>
+            <div
+                className={`${utilStyles.ResumeBacker} ${utilStyles.imageRendering} ${background()}`}
+            >
                 <section className={utilStyles.boxLg}>
                     <p>{props.jobName}</p>
                 </section>

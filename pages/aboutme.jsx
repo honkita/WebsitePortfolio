@@ -13,7 +13,7 @@ import Title from "../components/Title";
 import DevTools from "../components/DevTools";
 import resumeJobs from "../public/Assets/resumeJobs.json";
 
-export default function Resume(pageProps) {
+export default function AboutMe(pageProps) {
     const { resolvedTheme, setTheme } = useTheme();
 
     var resumeJobsJSON = JSON.parse(JSON.stringify(resumeJobs));
@@ -22,12 +22,12 @@ export default function Resume(pageProps) {
         <Layout children>
             <section>
                 <Head>
-                    <title>Resume</title>
+                    <title>About Me</title>
                 </Head>
             </section>
             <div className={styles.container}>
                 <Title
-                    name="Resume"
+                    name="About Me"
                     colour="yellow"
                     buttons={["LinkedIn", "GitHub", "Email", "Download"]}
                 />

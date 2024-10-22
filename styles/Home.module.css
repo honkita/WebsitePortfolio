@@ -184,6 +184,15 @@
   vertical-align: top;
 }
 
+.locationGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-column-gap: 0.75rem;
+  grid-row-gap: 0.5rem;
+  vertical-align: top;
+  align-items: center;
+}
+
 .side {
   flex-direction: row;
   display: flex;
@@ -265,7 +274,7 @@
 
   .locationGrid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(1, minmax(0, 1fr));
     grid-column-gap: 0.75rem;
     grid-row-gap: 0.5rem;
     vertical-align: top;
@@ -318,16 +327,6 @@
     flex-direction: column;
   }
 
-  .containerAbsolute {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    left: 5%;
-    top: 20%;
-    transform: none;
-  }
-
   .containerFixedLeft {
     min-height: 5vh;
     max-width: 100vw;
@@ -369,14 +368,6 @@
     vertical-align: top;
     align-items: center;
   }
-  .locationGrid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-column-gap: 0.75rem;
-    grid-row-gap: 0.5rem;
-    vertical-align: top;
-    align-items: center;
-  }
 
   .under:hover {
     transform: none;
@@ -384,6 +375,11 @@
 }
 
 @media (max-width: 48rem) {
+  .transformer {
+    display: flex;
+    flex-direction: column;
+  }
+
   .grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -417,11 +413,10 @@
   }
 
   .containerAbsolute {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    left: 5%;
-    top: 20%;
+    display: absolute;
+    right: 0%;
+    top: 50%;
+    transform: translate(0%, -50%);
   }
 
   .containerFixedLeft {

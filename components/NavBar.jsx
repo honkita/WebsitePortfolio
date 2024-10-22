@@ -29,8 +29,8 @@ export default function NavBar(props) {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/resume">
-                            <p>Resume</p>
+                        <Link href="/aboutme">
+                            <p>About Me</p>
                         </Link>
                     </li>
                 </ul>

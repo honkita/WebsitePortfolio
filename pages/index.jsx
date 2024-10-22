@@ -36,7 +36,7 @@ export default function Home() {
                     <Title
                         name="Elite Lu"
                         colour="red"
-                        buttons={["LinkedIn", "GitHub", "Email", "Resume"]}
+                        buttons={["LinkedIn", "GitHub", "Email", "AboutMe"]}
                     />
 
                     <section className={utilStyles.headingXl}>
