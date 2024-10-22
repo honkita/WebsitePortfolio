@@ -36,7 +36,7 @@ export default function Home() {
                     <Title
                         name="Elite Lu"
                         colour="red"
-                        buttons={["LinkedIn", "GitHub", "Email", "Resume"]}
+                        buttons={["LinkedIn", "GitHub", "Email", "AboutMe"]}
                     />
 
                     <section className={utilStyles.headingXl}>
@@ -58,30 +58,7 @@ export default function Home() {
                     <section className={utilStyles.headingXl}>
                         <p>Projects</p>
                     </section>
-                    {/* <div className={styles.carousel}>
-                        <Carousel
-                            ariaLabel="carousel"
-                            infiniteLoop={true}
-                            autoPlay={true}
-                            centerMode={true}
-                            centerSlidePercentage={100}
-                            dynamicHeight={true}
-                            showArrows={true}
-                        >
-                            {imagesJSON.map((img) => (
-                                <div>
-                                    <img
-                                        role="img"
-                                        alt={img.description + " image"}
-                                        src={img.image}
-                                    />
-                                    <p className="legend">{img.description} </p>
-                                </div>
-                            ))}
-                        </Carousel>
-                    </div> */}
                     <ImageCarousel images={ImagesForCarousel} />
-
                     <div className={styles.jobGrid}>
                         {projectsJSON.map((project) => (
                             <Projects

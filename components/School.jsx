@@ -26,22 +26,22 @@ export default function School(props) {
 
     function background() {
         if (resolvedTheme === "light") {
-            return `${utilStyles.ResumeBacker} ${utilStyles.imageRendering}`;
+            return `${utilStyles.lightBorder}`;
         } else {
-            return `${utilStyles.ResumeBackerDark} ${utilStyles.imageRendering}`;
+            return `${utilStyles.darkBorder}`;
         }
     }
 
     return (
         <ThemeProvider>
-            <div className={background()}>
-                <section className={utilStyles.educationBox}>
-                    <section className={utilStyles.boxLg}>
-                        <p>{props.schoolName}</p>
-                    </section>
-                    <section className={utilStyles.box2Md}>
-                        <p>{props.schoolLocation}</p>
-                    </section>
+            <div
+                className={`${utilStyles.EducationBacker} ${utilStyles.imageRendering} ${background()}`}
+            >
+                <h1 className={utilStyles.schoolName}>
+                    <p>{props.schoolName}</p>
+                </h1>
+                <section className={utilStyles.schoolLocation}>
+                    <p>{props.schoolLocation}</p>
                 </section>
 
                 <section className={utilStyles.boxCircleBar}>

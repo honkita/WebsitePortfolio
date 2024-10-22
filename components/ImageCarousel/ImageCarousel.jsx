@@ -15,8 +15,8 @@ export default function ImageCarousel(props) {
             <img
                 src={imagesJSON[index].image}
                 style={{
-                    width: "80%",
-                    height: "80%",
+                    width: "90%",
+                    height: "90%",
                     display: "block",
                     marginLeft: "auto",
                     marginRight: "auto",

@@ -32,7 +32,9 @@ export default function PixelButton(props) {
             <Link href={props.url} target={getValue().target}>
                 <button
                     className={`${utilStyles.logoButton} ${utilStyles.buttonRendering}`}
-                    title={PixelButtonsJSON[props.name]}
+                    title={name}
+                    alt={"Go to " + name}
+                    type="button"
                 >
                     <img
                         src={
@@ -40,15 +42,8 @@ export default function PixelButton(props) {
                                 ? getValue().lightTheme
                                 : getValue().darkTheme
                         }
-                        alt={name}
+                        title={name}
                     />
-                    {/* <img
-            className={
-              resolvedTheme === "light" ? utilStyles.logoButtonDark : null
-            }
-            src={dict[name].darkTheme}
-            alt={name + "Dark"}
-          /> */}
                 </button>
             </Link>
         </ThemeProvider>

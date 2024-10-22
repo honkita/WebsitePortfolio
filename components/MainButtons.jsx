@@ -7,7 +7,7 @@ export function returnURL(text) {
         LinkedIn: {
             url: "https://www.linkedin.com/in/elitelu",
         },
-        Resume: { url: "./resume" },
+        AboutMe: { url: "./aboutme" },
         Email: {
             url: "mailto:elitelulww@gmail.com",
         },

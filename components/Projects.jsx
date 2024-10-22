@@ -22,9 +22,9 @@ export default function Projects(props) {
 
     function background() {
         if (resolvedTheme === "light") {
-            return `${utilStyles.ProjectsBacker}`;
+            return `${utilStyles.lightBorder}`;
         } else {
-            return `${utilStyles.ProjectsBackerDark}`;
+            return `${utilStyles.darkBorder}`;
         }
     }
 
@@ -46,11 +46,13 @@ export default function Projects(props) {
 
     return (
         <ThemeProvider>
-            <div className={`${background()} ${utilStyles.imageRendering}`}>
+            <div
+                className={`${utilStyles.imageRendering} ${utilStyles.ProjectsBacker} ${background()} `}
+            >
                 <section className={utilStyles.boxLg}>
                     <p>{props.name}</p>
                 </section>
-                <div className={styles.containerIcons}>{languages}</div>
+                {/* <div className={styles.containerIcons}>{languages}</div> */}
                 <div className={styles.containerAbsolute}>
                     <PixelButton name="GitHub" url={props.url} />
                 </div>
