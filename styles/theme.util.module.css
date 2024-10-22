@@ -211,14 +211,6 @@
   transform: translateX(1rem);
 }
 
-.toggle:hover {
-  filter: brightness(75%);
-}
-
-.toggledark:hover {
-  filter: brightness(75%);
-}
-
 .imageRendering {
   padding: 0;
   border: None;
@@ -497,5 +489,13 @@
   .EducationBacker:hover {
     z-index: 1;
     transform: scale(1.1);
+  }
+
+  .toggle:hover {
+    filter: brightness(75%);
+  }
+
+  .toggledark:hover {
+    filter: brightness(75%);
   }
 }
