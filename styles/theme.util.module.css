@@ -366,35 +366,10 @@
     line-height: 1.5;
   }
 
-  /* .boxCircleBar {
-    align-self: left;
-    text-align: center;
-    width: 5rem;
-    height: 5rem;
-    min-width: 5rem;
-    min-height: 5rem;
-    line-height: 1;
-    font-weight: bold;
-    position: absolute;
-    left: 5%;
-    top: 25%;
-  } */
-
   .educationBox {
     position: absolute;
     left: 2rem;
   }
-
-  /* .boxLg {
-    text-align: right;
-    font-size: 1.3rem;
-    line-height: 1;
-    font-weight: bold;
-    margin-right: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 0;
-    image-rendering: crisp-edges;
-  } */
 
   .box2Md {
     text-align: left;
