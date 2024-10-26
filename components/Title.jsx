@@ -28,7 +28,7 @@ export default function Title(props) {
                 utilStyles.imageRendering
             }`}
         >
-            <section className={utilStyles.heading2Xl2}>{props.name}</section>
+            <h1 className={utilStyles.heading2Xl2}>{props.name}</h1>
             <section className={styles.containerButtons}>{itemList}</section>
         </section>
     );

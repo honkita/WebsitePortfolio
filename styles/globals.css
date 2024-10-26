@@ -69,7 +69,8 @@ code {
 
 @font-face {
   font-family: "Pixelify_Sans";
-  src: local("Pixelify_Sans"),
+  src:
+    local("Pixelify_Sans"),
     url("../public/Pixelify_Sans/static/PixelifySans-Regular.ttf")
       format("truetype");
 }
@@ -116,4 +117,8 @@ li a:hover {
   background-color: var(--primary);
   animation: fadeIn 5s;
   transition: all 0.2ms;
+}
+
+h1 {
+  margin: 0;
 }
