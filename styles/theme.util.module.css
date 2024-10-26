@@ -137,8 +137,6 @@
 .namePlate {
   width: 90vw;
   height: 45vw;
-  min-width: 90vw;
-  min-height: 45vw;
   align-items: center;
   justify-content: center;
 }
@@ -321,6 +319,32 @@
   top: 0;
   opacity: 1;
   transition: opacity 200ms;
+}
+
+.titleButtons {
+  width: 8vw;
+  height: 8vw;
+  margin: 0.5vw;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.titleButtons > img {
+  width: 100%;
+  image-rendering: pixelated;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.titleButtons:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  filter: brightness(75%);
+  z-index: 100;
 }
 
 .pixelated {

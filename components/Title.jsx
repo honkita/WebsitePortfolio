@@ -8,7 +8,7 @@ import { returnURL } from "./MainButtons";
 export default function Title(props) {
     const { resolvedTheme, setTheme } = useTheme();
     let itemList = props.buttons.map((item, index) => {
-        return <PixelButton name={item} url={returnURL(item)} />;
+        return <PixelButton name={item} url={returnURL(item)} extra={true} />;
     });
 
     function background() {
