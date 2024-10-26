@@ -31,7 +31,7 @@ export default function PixelButton(props) {
         <ThemeProvider>
             <Link href={props.url} target={getValue().target}>
                 <button
-                    className={`${utilStyles.logoButton} ${utilStyles.buttonRendering}`}
+                    className={`${utilStyles.buttonRendering} ${props.extra != true ? utilStyles.logoButton : utilStyles.titleButtons}`}
                     title={name}
                     alt={"Go to " + name}
                     type="button"
