@@ -29,23 +29,26 @@ export default function PixelButton(props) {
 
     return (
         <ThemeProvider>
-            <Link href={props.url} target={getValue().target}>
+            <a href={props.url} target={getValue().target} aria-hidden="true">
                 <button
                     className={`${utilStyles.buttonRendering} ${props.extra != true ? utilStyles.logoButton : utilStyles.titleButtons}`}
                     title={name}
                     alt={"Go to " + name}
                     type="button"
+                    tabindex="-1"
                 >
                     <img
+                        id="Icon"
                         src={
                             resolvedTheme === "light"
                                 ? getValue().lightTheme
                                 : getValue().darkTheme
                         }
                         title={name}
+                        aria-hidden="true"
                     />
                 </button>
-            </Link>
+            </a>
         </ThemeProvider>
     );
 }

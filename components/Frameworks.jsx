@@ -29,6 +29,7 @@ export default function Frameworks() {
                         <button
                             className={`${utilStyles.logoButtonSmall} ${utilStyles.buttonRendering}`}
                             title={frameworks.name}
+                            tabindex="-1"
                         >
                             <img
                                 id={frameworks.name}

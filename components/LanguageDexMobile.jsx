@@ -20,12 +20,13 @@ export default function LanguageDexMobile() {
 
     return (
         <ThemeProvider>
-            <div className={styles.grid}>
+            <div className={styles.grid} aria-hidden="true">
                 {languagesJSON.map((language) => (
                     <div className={styles.under}>
                         <button
                             className={`${utilStyles.logoButtonSmall} ${utilStyles.buttonRendering}`}
                             title={language.name}
+                            tabindex="-1"
                         >
                             <img
                                 id={language.name}

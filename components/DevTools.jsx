@@ -26,6 +26,7 @@ export default function DevTools(props) {
                         <button
                             className={`${utilStyles.logoButtonSmall} ${utilStyles.buttonRendering}`}
                             title={devTool.name}
+                            tabindex="-1"
                         >
                             <img
                                 id={devTool.name}
