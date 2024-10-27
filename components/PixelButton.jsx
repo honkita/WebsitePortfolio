@@ -29,7 +29,7 @@ export default function PixelButton(props) {
 
     return (
         <ThemeProvider>
-            <a href={props.url} target={getValue().target} aria-hidden="true">
+            <a href={props.url} target={getValue().target}>
                 <button
                     className={`${utilStyles.buttonRendering} ${props.extra != true ? utilStyles.logoButton : utilStyles.titleButtons}`}
                     title={name}
