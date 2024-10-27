@@ -47,7 +47,7 @@ export default function Home() {
                             I am a software developer and a third year computer
                             science student at McMaster University. More
                             information about me can be found on my{" "}
-                            <a href="./resume">resume</a>.
+                            <a href="./aboutme">about me</a>.
                         </p>
                         <p>
                             In addition to this, I am an artist and illustrator.
