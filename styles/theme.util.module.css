@@ -176,11 +176,9 @@
   -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
   width: 6rem;
   height: 4rem;
-  min-width: 3rem;
-  min-height: 2rem;
   margin-top: 0.5rem;
   border: None;
-  background-image: url(../public/images/Switch/SwitchBack.png);
+  background-image: url("../public/images/Switch/SwitchBack.png");
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: cover;
@@ -196,7 +194,8 @@
   height: 4rem;
   content: "";
   transition: all 0.2s;
-  transform: translateX(-1rem);
+  margin-top: -0.125rem;
+  transform: translateX(-1.25rem);
 }
 
 .toggledark {
@@ -206,7 +205,7 @@
 
 .toggledark::after {
   background-image: url("../public/images/Switch/SwitchDark.png");
-  transform: translateX(1rem);
+  transform: translateX(1.25rem);
 }
 
 .imageRendering {
