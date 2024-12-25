@@ -13,7 +13,7 @@
   height: 4rem;
   margin-top: 0.5rem;
   border: None;
-  background-image: url("../../public/images/Switch/SwitchBack.png");
+  background-image: url("/images/Switch/SwitchBack.png");
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: cover;
@@ -22,7 +22,7 @@
 }
 
 .toggle::after {
-  background-image: url("../../public/images/Switch/Switch.png");
+  background-image: url("/images/Switch/Switch.png");
   background-size: 4rem 4rem;
   display: inline-block;
   width: 4rem;
@@ -41,4 +41,14 @@
 .toggledark::after {
   background-image: url("../../public/images/Switch/SwitchDark.png");
   transform: translateX(1.25rem);
+}
+
+@media not (hover: none) {
+  .toggle:hover {
+    filter: brightness(75%);
+  }
+
+  .toggledark:hover {
+    filter: brightness(75%);
+  }
 }

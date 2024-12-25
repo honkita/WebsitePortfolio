@@ -3,11 +3,9 @@ import styles from "../styles/Home.module.css";
 import utilStyles from "../styles/theme.util.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
 import Projects from "../components/Projects";
-// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-// import { Carousel } from "react-responsive-carousel";
 import ImageCarousel from "../components/ImageCarousel/ImageCarousel";
 import Layout from "./Layout";
-import Title from "../components/Title";
+import Title from "../components/Title/Title";
 import React from "react";
 
 //json imports

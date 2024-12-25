@@ -17,15 +17,6 @@
   margin-right: calc (-1 * (100vw - 100%));
 }
 
-.containerButtons {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  transform: scale(1.25);
-}
-
 .containerAbsolute {
   position: absolute;
   right: 0;

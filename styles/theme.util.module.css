@@ -134,23 +134,8 @@
   margin: 2rem 3rem;
 }
 
-.namePlate {
-  width: 90vw;
-  height: 45vw;
-  align-items: center;
-  justify-content: center;
-}
-
 .circleBackground {
   background: transparent;
-}
-
-.redName {
-  background-image: url("../public/images/NamePlate/NamePlateRed.png");
-}
-
-.yellowName {
-  background-image: url("../public/images/NamePlate/NamePlateYellow.png");
 }
 
 .colorInherit {
@@ -395,13 +380,5 @@
   .EducationBacker:hover {
     z-index: 1;
     transform: scale(1.1);
-  }
-
-  .toggle:hover {
-    filter: brightness(75%);
-  }
-
-  .toggledark:hover {
-    filter: brightness(75%);
   }
 }

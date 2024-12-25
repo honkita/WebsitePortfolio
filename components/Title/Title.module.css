@@ -1,0 +1,23 @@
+.redName {
+  background-image: url("/images/NamePlate/NamePlateRed.png");
+}
+
+.yellowName {
+  background-image: url("/images/NamePlate/NamePlateYellow.png");
+}
+
+.namePlate {
+  width: 90vw;
+  height: 45vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.containerButtons {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  transform: scale(1.25);
+}

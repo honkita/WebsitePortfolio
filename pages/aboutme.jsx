@@ -1,20 +1,17 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import utilStyles from "../styles/theme.util.module.css";
-import React from "react";
 import { useTheme } from "next-themes";
 import ResumeJobs from "../components/ResumeJobs";
 import School from "../components/School";
 import LanguageDexMobile from "../components/LanguageDexMobile";
 import Frameworks from "../components/Frameworks";
 import Layout from "./Layout";
-import Title from "../components/Title";
+import Title from "../components/Title/Title";
 import DevTools from "../components/DevTools";
 import resumeJobs from "../public/Assets/resumeJobs.json";
 
-export default function AboutMe(pageProps) {
-    const { resolvedTheme, setTheme } = useTheme();
-
+export default function AboutMe() {
     var resumeJobsJSON = JSON.parse(JSON.stringify(resumeJobs));
 
     return (
