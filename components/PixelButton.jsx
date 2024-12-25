@@ -29,13 +29,13 @@ export default function PixelButton(props) {
 
     return (
         <ThemeProvider>
-            <a href={props.url} target={getValue().target}>
+            <Link href={props.url} target={getValue().target}>
                 <button
                     className={`${utilStyles.buttonRendering} ${props.extra != true ? utilStyles.logoButton : utilStyles.titleButtons}`}
-                    title={name}
+                    aria-label={name}
                     alt={"Go to " + name}
                     type="button"
-                    tabindex="-1"
+                    tabIndex={-1}
                 >
                     <img
                         id="Icon"
@@ -45,10 +45,11 @@ export default function PixelButton(props) {
                                 : getValue().darkTheme
                         }
                         title={name}
-                        aria-hidden="true"
+                        aria-hidden={true}
+                        tabIndex={-1}
                     />
                 </button>
-            </a>
+            </Link>
         </ThemeProvider>
     );
 }
