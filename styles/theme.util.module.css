@@ -185,43 +185,6 @@
   }
 }
 
-.toggle {
-  image-rendering: pixelated;
-  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
-  width: 6rem;
-  height: 4rem;
-  margin-top: 0.5rem;
-  border: None;
-  background-image: url("../public/images/Switch/SwitchBack.png");
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-size: cover;
-  transition: all 0.2s;
-  position: relative;
-}
-
-.toggle::after {
-  background-image: url("../public/images/Switch/Switch.png");
-  background-size: 4rem 4rem;
-  display: inline-block;
-  width: 4rem;
-  height: 4rem;
-  content: "";
-  transition: all 0.2s;
-  margin-top: -0.125rem;
-  transform: translateX(-1.25rem);
-}
-
-.toggledark {
-  background-image: url("../public/images/Switch/SwitchBackDark.png");
-  transition: all 0.2s;
-}
-
-.toggledark::after {
-  background-image: url("../public/images/Switch/SwitchDark.png");
-  transform: translateX(1.25rem);
-}
-
 .imageRendering {
   padding: 0;
   border: None;

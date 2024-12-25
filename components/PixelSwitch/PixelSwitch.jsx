@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import utilStyles from "../../styles/theme.util.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
-import style from "../../styles/Home.module.css";
+import PixelSwitchCSS from "./PixelSwitch.module.css";
 
 export default function PixelSwitch() {
     const [mounted, setMounted] = useState(false);
@@ -92,14 +91,14 @@ export default function PixelSwitch() {
 
     return (
         <ThemeProvider>
-            <div className={style.containerRight}>
+            <div className={PixelSwitchCSS.container}>
                 <button
                     id="ThemeToggle"
                     className={
-                        utilStyles.toggle +
+                        PixelSwitchCSS.toggle +
                         " " +
                         (resolvedTheme === "dark"
-                            ? utilStyles.toggledark
+                            ? PixelSwitchCSS.toggledark
                             : null)
                     }
                     onClick={toggleTheme}
