@@ -15,8 +15,8 @@ export default function ImageCarousel(props) {
             <img
                 src={imagesJSON[index].image}
                 style={{
-                    width: "90%",
-                    height: "90%",
+                    width: "90vw",
+                    height: "45vw",
                     display: "block",
                     marginLeft: "auto",
                     marginRight: "auto",
@@ -27,7 +27,7 @@ export default function ImageCarousel(props) {
             <button
                 title="Prev"
                 className={style.sliderButtons}
-                style={{ left: "10%" }}
+                style={{ left: "0%" }}
                 onClick={() =>
                     setIndexValue(
                         index == 0
@@ -41,7 +41,7 @@ export default function ImageCarousel(props) {
             <button
                 title="Next"
                 className={style.sliderButtons}
-                style={{ right: "10%" }}
+                style={{ right: "0%" }}
                 onClick={() =>
                     setIndexValue(
                         index + 1 >= Object.keys(imagesJSON).length
