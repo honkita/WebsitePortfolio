@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTheme, ThemeProvider } from "next-themes";
 import Link from "next/link";
-import PixelSwitch from "../components/PixelSwitch";
+import PixelSwitch from "../components/PixelSwitch/PixelSwitch";
 import styles from "../styles/Home.module.css";
 
 export default function NavBar(props) {

@@ -1,7 +1,4 @@
-import Head from "next/head";
-import PixelButton from "../components/PixelButton";
 import styles from "../styles/Home.module.css";
-import utilStyles from "../styles/theme.util.module.css";
 import React, { useState, useEffect, Component } from "react";
 import { useTheme, ThemeProvider } from "next-themes";
 

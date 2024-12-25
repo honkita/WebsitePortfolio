@@ -2,7 +2,7 @@ import utilStyles from "../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
-import PixelButton from "./PixelButton";
+import PixelButton from "./PixelButton/PixelButton";
 
 export default function ResumeJobs(props) {
     const [mounted, setMounted] = useState(false);

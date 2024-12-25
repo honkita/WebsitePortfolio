@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import utilStyles from "../styles/theme.util.module.css";
+import utilStyles from "../../styles/theme.util.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
-import style from "../styles/Home.module.css";
+import style from "../../styles/Home.module.css";
 
 export default function PixelSwitch() {
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme, setTheme } = useTheme();
     const [press, setPress] = useState(0);
-    var url = "";
+
     // useEffect only runs on the client, so now we can safely show the UI
     useEffect(() => {
         setMounted(true);

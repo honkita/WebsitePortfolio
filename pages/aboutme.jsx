@@ -1,9 +1,8 @@
 import Head from "next/head";
-import PixelButton from "../components/PixelButton";
 import styles from "../styles/Home.module.css";
 import utilStyles from "../styles/theme.util.module.css";
-import React, { useState, useEffect, Component } from "react";
-import { useTheme, ThemeProvider } from "next-themes";
+import React from "react";
+import { useTheme } from "next-themes";
 import ResumeJobs from "../components/ResumeJobs";
 import School from "../components/School";
 import LanguageDexMobile from "../components/LanguageDexMobile";

@@ -1,12 +1,10 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import utilStyles from "../styles/theme.util.module.css";
-import { useTheme, ThemeProvider } from "next-themes";
 import Projects2 from "../components/Projects2";
 import Layout from "./Layout";
 
 export default function extra() {
-    const { resolvedTheme, setTheme } = useTheme();
     const name = "Elite Lu Portfolio";
 
     let people = [

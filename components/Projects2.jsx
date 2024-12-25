@@ -2,7 +2,7 @@ import utilStyles from "../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
-import PixelButton from "./PixelButton";
+import PixelButton from "./PixelButton/PixelButton";
 
 export default function Projects2(props) {
     const [mounted, setMounted] = useState(false);
@@ -21,14 +21,17 @@ export default function Projects2(props) {
 
     function background() {
         if (resolvedTheme === "light") {
-            return `${utilStyles.ProjectsBacker} ${utilStyles.imageRendering}`;
+            return `${utilStyles.lightBorder}`;
         } else {
-            return `${utilStyles.ProjectsBackerDark} ${utilStyles.imageRendering}`;
+            return `${utilStyles.darkBorder}`;
         }
     }
+
     return (
         <ThemeProvider>
-            <div className={background()}>
+            <div
+                className={`${utilStyles.imageRendering} ${utilStyles.ProjectsBacker} ${background()} `}
+            >
                 <section className={utilStyles.boxLg}>
                     <p>{props.name}</p>
                 </section>

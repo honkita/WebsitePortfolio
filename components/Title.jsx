@@ -1,4 +1,4 @@
-import PixelButton from "../components/PixelButton";
+import PixelButton from "./PixelButton/PixelButton";
 import styles from "../styles/Home.module.css";
 import utilStyles from "../styles/theme.util.module.css";
 import React from "react";

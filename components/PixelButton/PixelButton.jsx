@@ -1,12 +1,13 @@
-import utilStyles from "../styles/theme.util.module.css";
+import utilStyles from "../../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
 import { useTheme, ThemeProvider } from "next-themes";
 import Link from "next/link";
-import PixelButtons from "../public/Assets/PixelButtons.json";
+import PixelButtons from "../../public/Assets/PixelButtons.json";
+import PixelButtonCSS from "./PixelButton.module.css";
 
 export default function PixelButton(props) {
     const [mounted, setMounted] = useState(false);
-    const { resolvedTheme, setTheme } = useTheme();
+    const { resolvedTheme, _ } = useTheme();
     const name = props.name;
     var PixelButtonsJSON = JSON.parse(JSON.stringify(PixelButtons));
 
@@ -31,7 +32,7 @@ export default function PixelButton(props) {
         <ThemeProvider>
             <Link href={props.url} target={getValue().target}>
                 <button
-                    className={`${utilStyles.buttonRendering} ${props.extra != true ? utilStyles.logoButton : utilStyles.titleButtons}`}
+                    className={`${utilStyles.buttonRendering} ${props.extra != true ? PixelButtonCSS.button : PixelButtonCSS.titleButtons}`}
                     aria-label={name}
                     alt={"Go to " + name}
                     type="button"

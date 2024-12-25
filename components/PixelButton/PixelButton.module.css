@@ -1,0 +1,80 @@
+.button {
+  width: 6vw;
+  height: 6vw;
+  padding: 0.5vw;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.button > img {
+  width: 100%;
+  image-rendering: pixelated;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  filter: brightness(75%);
+  z-index: 100;
+}
+
+.titleButtons {
+  width: 8vw;
+  height: 8vw;
+  margin: 0.5vw;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.titleButtons > img {
+  width: 100%;
+  image-rendering: pixelated;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+@media (max-width: 64rem) and (min-width: 40rem) {
+  .button {
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    min-height: 3rem;
+    padding: 0;
+    border: None;
+    background-color: transparent;
+    transition: all 0.2s;
+    position: relative;
+  }
+}
+
+@media (max-width: 48rem) {
+  .button {
+    min-width: 4rem;
+    min-height: 4rem;
+  }
+}
+
+@media not (hover: none) {
+  .button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    filter: brightness(75%);
+    z-index: 100;
+  }
+
+  .titleButtons:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    filter: brightness(75%);
+    z-index: 100;
+  }
+}

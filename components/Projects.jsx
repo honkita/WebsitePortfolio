@@ -2,7 +2,7 @@ import utilStyles from "../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
-import PixelButton from "./PixelButton";
+import PixelButton from "./PixelButton/PixelButton";
 import { returnURL } from "./LanguageFaces";
 
 export default function Projects(props) {
