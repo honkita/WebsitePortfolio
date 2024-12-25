@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
 import devTools from "../public/Assets/devTools.json";
 
-export default function DevTools(props) {
+export default function DevTools() {
     const { resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 

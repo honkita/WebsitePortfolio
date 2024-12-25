@@ -1,12 +1,10 @@
 import PixelButton from "../components/PixelButton";
 import styles from "../styles/Home.module.css";
 import utilStyles from "../styles/theme.util.module.css";
-import React, { useState, useEffect, Component } from "react";
-import { useTheme, ThemeProvider } from "next-themes";
+import React from "react";
 import { returnURL } from "./MainButtons";
 
 export default function Title(props) {
-    const { resolvedTheme, setTheme } = useTheme();
     let itemList = props.buttons.map((item, index) => {
         return <PixelButton name={item} url={returnURL(item)} extra={true} />;
     });
@@ -28,7 +26,11 @@ export default function Title(props) {
                 utilStyles.imageRendering
             }`}
         >
-            <h1 className={utilStyles.heading2Xl2}>{props.name}</h1>
+            <h1
+                className={`${utilStyles.heading2Xl2} ${utilStyles.fadeInAnimation}`}
+            >
+                {props.name}
+            </h1>
             <section className={styles.containerButtons}>{itemList}</section>
         </section>
     );

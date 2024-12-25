@@ -11,7 +11,7 @@ I am currently a third year student on coop from McMaster University. As of writ
 
 ## Origin
 
-During the beginning of my third year of university, I decided to start making a website. The website was created originally to learn HTMl, Javascript, and CSS but now has become a hub for my resume and projects. In addition to this, I used this website as an outlet to display my creative side as all the assets were hand drawn by me.
+During the beginning of my third year of university, I decided to start making a website. The website was created originally to learn HTML, Javascript, and CSS but now has become a hub for my resume and projects. In addition to this, I used this website as an outlet to display my creative side as all the assets were hand drawn by me.
 
 ## About the site
 
