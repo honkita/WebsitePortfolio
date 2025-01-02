@@ -1,13 +1,13 @@
-import utilStyles from "../styles/theme.util.module.css";
+import utilStyles from "../../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
-import styles from "../styles/Home.module.css";
-import { useTheme, ThemeProvider } from "next-themes";
-import languages from "../public/Assets/languages.json";
+import styles from "../../styles/Home.module.css";
+import { ThemeProvider } from "next-themes";
+import languages from "../../public/Assets/languages.json";
+
+import IconsCSS from "./Icons.module.css";
 
 export default function LanguageDexMobile() {
     const [mounted, setMounted] = useState(false);
-    const [language, setLanguage] = useState("");
-    const [paradigm, setParadigm] = useState("");
     var languagesJSON = JSON.parse(JSON.stringify(languages));
 
     useEffect(() => {
@@ -24,7 +24,7 @@ export default function LanguageDexMobile() {
                 {languagesJSON.map((language) => (
                     <div className={styles.under}>
                         <button
-                            className={`${utilStyles.logoButtonSmall} ${utilStyles.buttonRendering}`}
+                            className={`${IconsCSS.logoButtonSmall} ${utilStyles.buttonRendering}`}
                             title={language.name}
                             tabindex="-1"
                         >

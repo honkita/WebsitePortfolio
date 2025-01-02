@@ -48,7 +48,7 @@ export default function ResumeJobs(props) {
                     <p>{props.name}</p>
                 </section>
                 <section className={utilStyles.box2Md}>
-                    <p>{props.employer}</p>
+                    <p>{props.employerName}</p>
                 </section>
                 <div className={styles.containerAbsolute}>
                     {addCall()}

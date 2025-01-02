@@ -1,15 +1,15 @@
-import utilStyles from "../styles/theme.util.module.css";
+import utilStyles from "../../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
-import styles from "../styles/Home.module.css";
-import { useTheme, ThemeProvider } from "next-themes";
-import frameworks from "../public/Assets/frameworks.json";
+import styles from "../../styles/Home.module.css";
+import { ThemeProvider } from "next-themes";
+import frameworks from "../../public/Assets/frameworks.json";
+import IconsCSS from "./Icons.module.css";
 
 /**
  *
  * @returns
  */
 export default function Frameworks() {
-    const { resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     var frameworksJSON = JSON.parse(JSON.stringify(frameworks));
 
@@ -27,7 +27,7 @@ export default function Frameworks() {
                 {frameworksJSON.map((frameworks) => (
                     <div className={styles.under}>
                         <button
-                            className={`${utilStyles.logoButtonSmall} ${utilStyles.buttonRendering}`}
+                            className={`${IconsCSS.logoButtonSmall} ${utilStyles.buttonRendering}`}
                             title={frameworks.name}
                             tabindex="-1"
                         >

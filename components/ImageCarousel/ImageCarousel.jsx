@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+// CSS
 import style from "../../styles/Home.module.css";
 import ImageCarouselCSS from "./ImageCarousel.module.css";
 

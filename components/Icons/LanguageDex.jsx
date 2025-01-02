@@ -1,11 +1,11 @@
 import utilStyles from "../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
-import { useTheme, ThemeProvider } from "next-themes";
+import { ThemeProvider } from "next-themes";
+import IconsCSS from "./Icons.module.css";
 
-export default function LanguageDex(props) {
+export default function LanguageDex() {
     const [mounted, setMounted] = useState(false);
-    const { theme, setTheme } = useTheme();
     const [language, setLanguage] = useState("");
     const [paradigm, setParadigm] = useState("");
 
@@ -65,7 +65,7 @@ export default function LanguageDex(props) {
                 onClick={() => {
                     showText(item.name, item.type);
                 }}
-                className={utilStyles.logoButtonSmall}
+                className={IconsCSS.logoButtonSmall}
             >
                 <img id={item.name} src={item.url} />
             </button>

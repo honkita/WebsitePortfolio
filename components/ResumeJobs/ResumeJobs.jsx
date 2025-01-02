@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import styles from "../../styles/Home.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
 import PixelButton from "../PixelButton/PixelButton";
+import ResumeJobsCSS from "./ResumeJobs.module.css";
 
 /**
  *
  * @param {object} props
+ * @param {string} props.employerName Name of employer
  * @param {string} props.jobName Name of position
- * @param {string} props.employer Name of employer
  * @returns
  */
 export default function ResumeJobs(props) {
@@ -38,13 +39,13 @@ export default function ResumeJobs(props) {
             <div
                 className={`${utilStyles.ResumeBacker} ${utilStyles.imageRendering} ${background()}`}
             >
-                <section className={utilStyles.boxLg}>
+                <section className={ResumeJobsCSS.employerName}>
+                    <p>{props.employerName}</p>
+                </section>
+                <section className={ResumeJobsCSS.jobName}>
                     <p>{props.jobName}</p>
                 </section>
-                <section className={utilStyles.box2Md}>
-                    <p>{props.employer}</p>
-                </section>
-                <div className={styles.containerAbsolute}>
+                <div className={ResumeJobsCSS.buttonPlacement}>
                     <PixelButton name="LinkedIn" url={props.linkedin} />
                 </div>
             </div>

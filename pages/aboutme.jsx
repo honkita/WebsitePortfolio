@@ -3,11 +3,11 @@ import styles from "../styles/Home.module.css";
 import utilStyles from "../styles/theme.util.module.css";
 import ResumeJobs from "../components/ResumeJobs/ResumeJobs";
 import School from "../components/School";
-import LanguageDexMobile from "../components/LanguageDexMobile";
-import Frameworks from "../components/Frameworks";
+import LanguageDexMobile from "../components/Icons/LanguageDexMobile";
+import Frameworks from "../components/Icons/Frameworks";
 import Layout from "./Layout";
 import Title from "../components/Title/Title";
-import DevTools from "../components/DevTools";
+import DevTools from "../components/Icons/DevTools";
 import resumeJobs from "../public/Assets/resumeJobs.json";
 
 export default function AboutMe() {
@@ -37,7 +37,7 @@ export default function AboutMe() {
                     {resumeJobsJSON.map((resumeJob) => (
                         <ResumeJobs
                             jobName={resumeJob.jobName}
-                            employer={resumeJob.employer}
+                            employerName={resumeJob.employerName}
                             linkedin={resumeJob.linkedin}
                         />
                     ))}

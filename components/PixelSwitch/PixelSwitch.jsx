@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTheme, ThemeProvider } from "next-themes";
+
+// CSS
 import PixelSwitchCSS from "./PixelSwitch.module.css";
 
 export default function PixelSwitch() {

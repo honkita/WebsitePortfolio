@@ -1,9 +1,13 @@
-import utilStyles from "../../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
 import { useTheme, ThemeProvider } from "next-themes";
 import Link from "next/link";
-import PixelButtons from "../../public/Assets/PixelButtons.json";
+
+// CSS
+import utilStyles from "../../styles/theme.util.module.css";
 import PixelButtonCSS from "./PixelButton.module.css";
+
+// JSONs
+import PixelButtons from "../../public/Assets/PixelButtons.json";
 
 export default function PixelButton(props) {
     const [mounted, setMounted] = useState(false);

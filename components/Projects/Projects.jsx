@@ -1,8 +1,12 @@
-import utilStyles from "../../styles/theme.util.module.css";
-import ProjectsCSS from "./Projects.module.css";
 import React, { useEffect, useState } from "react";
 import { useTheme, ThemeProvider } from "next-themes";
+
+// Child Components
 import PixelButton from "../PixelButton/PixelButton";
+
+// CSS
+import utilStyles from "../../styles/theme.util.module.css";
+import ProjectsCSS from "./Projects.module.css";
 
 /**
  *

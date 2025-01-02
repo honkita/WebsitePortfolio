@@ -1,0 +1,56 @@
+.buttonPlacement {
+  position: absolute;
+  right: 0%;
+  bottom: 0%;
+  align-self: right;
+  margin-right: 0.5vw;
+  margin-bottom: 0.5vw;
+}
+
+.jobName {
+  position: absolute;
+  text-align: left;
+  font-size: 2vw;
+  line-height: 1;
+  font-weight: bold;
+  margin-left: 0.5vw;
+  align-items: center;
+  width: 20vw;
+  word-wrap: break-word;
+  bottom: 0;
+}
+
+.employerName {
+  position: absolute;
+  font-size: 2.5vw;
+  top: 0;
+  line-height: 1;
+  font-weight: bold;
+  margin-left: 0.5vw;
+  margin-top: 0.5vw;
+}
+
+@media (max-width: 48rem) {
+  .buttonPlacement {
+    display: absolute;
+    right: 0%;
+    top: 50%;
+    transform: translate(0%, -50%);
+  }
+
+  .jobName {
+    text-align: left;
+    font-size: 4vw;
+    line-height: 1;
+    width: 50vw;
+    font-weight: bold;
+    margin-left: 1rem;
+  }
+
+  .employerName {
+    text-align: left;
+    font-size: 5vw;
+    line-height: 1;
+    font-weight: bold;
+  }
+}
