@@ -42,6 +42,13 @@
   transition: opacity 200ms;
 }
 
+.buttonRendering {
+  border: None;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
+}
+
 @media (max-width: 64rem) and (min-width: 40rem) {
   .button {
     width: 3rem;

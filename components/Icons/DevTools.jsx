@@ -1,10 +1,12 @@
-import utilStyles from "../../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/Home.module.css";
 import { ThemeProvider } from "next-themes";
-import devTools from "../../public/Assets/devTools.json";
 
+// CSS
+import styles from "../../styles/Home.module.css";
 import IconsCSS from "./Icons.module.css";
+
+// JSONs
+import devTools from "../../public/Assets/devTools.json";
 
 export default function DevTools() {
     const [mounted, setMounted] = useState(false);
@@ -23,9 +25,9 @@ export default function DevTools() {
         <ThemeProvider>
             <div className={styles.grid3}>
                 {devToolsJSON.map((devTool) => (
-                    <div className={styles.under}>
+                    <div className={IconsCSS.under}>
                         <button
-                            className={`${IconsCSS.logoButtonSmall} ${utilStyles.buttonRendering}`}
+                            className={`${IconsCSS.logoButtonSmall} ${IconsCSS.buttonRendering}`}
                             title={devTool.name}
                             tabindex="-1"
                         >

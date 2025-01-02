@@ -14,3 +14,24 @@
   opacity: 1;
   transition: opacity 200ms;
 }
+
+.buttonRendering {
+  border: None;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.under {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+@media not (hover: none) {
+  .under:hover {
+    transform: scale(1.1);
+  }
+}

@@ -1,9 +1,12 @@
-import utilStyles from "../../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/Home.module.css";
 import { ThemeProvider } from "next-themes";
-import frameworks from "../../public/Assets/frameworks.json";
+
+// CSS
+import styles from "../../styles/Home.module.css";
 import IconsCSS from "./Icons.module.css";
+
+// JSONs
+import frameworks from "../../public/Assets/frameworks.json";
 
 /**
  *
@@ -25,9 +28,9 @@ export default function Frameworks() {
         <ThemeProvider>
             <div className={styles.grid2}>
                 {frameworksJSON.map((frameworks) => (
-                    <div className={styles.under}>
+                    <div className={IconsCSS.under}>
                         <button
-                            className={`${IconsCSS.logoButtonSmall} ${utilStyles.buttonRendering}`}
+                            className={`${IconsCSS.logoButtonSmall} ${IconsCSS.buttonRendering}`}
                             title={frameworks.name}
                             tabindex="-1"
                         >

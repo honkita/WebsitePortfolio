@@ -3,7 +3,6 @@ import { useTheme, ThemeProvider } from "next-themes";
 import Link from "next/link";
 
 // CSS
-import utilStyles from "../../styles/theme.util.module.css";
 import PixelButtonCSS from "./PixelButton.module.css";
 
 // JSONs
@@ -36,7 +35,7 @@ export default function PixelButton(props) {
         <ThemeProvider>
             <Link href={props.url} target={getValue().target}>
                 <button
-                    className={`${utilStyles.buttonRendering} ${props.extra != true ? PixelButtonCSS.button : PixelButtonCSS.titleButtons}`}
+                    className={`${PixelButtonCSS.buttonRendering} ${props.extra != true ? PixelButtonCSS.button : PixelButtonCSS.titleButtons}`}
                     aria-label={name}
                     alt={"Go to " + name}
                     type="button"

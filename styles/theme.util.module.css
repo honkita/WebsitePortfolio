@@ -182,13 +182,6 @@
   image-rendering: pixelated;
 }
 
-.buttonRendering {
-  border: None;
-  background-color: transparent;
-  transition: all 0.2s;
-  position: relative;
-}
-
 .ReferenceBacker {
   border: 0.5rem solid rgb(150, 150, 150);
   background: rgb(220, 220, 220);

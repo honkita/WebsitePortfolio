@@ -4,6 +4,7 @@ import styles from "../../styles/Home.module.css";
 import { ThemeProvider } from "next-themes";
 import languages from "../../public/Assets/languages.json";
 
+// CSS
 import IconsCSS from "./Icons.module.css";
 
 export default function LanguageDexMobile() {
@@ -22,9 +23,9 @@ export default function LanguageDexMobile() {
         <ThemeProvider>
             <div className={styles.grid} aria-hidden="true">
                 {languagesJSON.map((language) => (
-                    <div className={styles.under}>
+                    <div className={IconsCSS.under}>
                         <button
-                            className={`${IconsCSS.logoButtonSmall} ${utilStyles.buttonRendering}`}
+                            className={`${IconsCSS.logoButtonSmall} ${IconsCSS.buttonRendering}`}
                             title={language.name}
                             tabindex="-1"
                         >
