@@ -1,9 +1,16 @@
-import utilStyles from "../styles/theme.util.module.css";
+import utilStyles from "../../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
-import PixelButton from "./PixelButton/PixelButton";
+import PixelButton from "../PixelButton/PixelButton";
 
+/**
+ *
+ * @param {object} props
+ * @param {string} props.jobName Name of position
+ * @param {string} props.employer Name of employer
+ * @returns
+ */
 export default function ResumeJobs(props) {
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme, setTheme } = useTheme();

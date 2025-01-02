@@ -1,8 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import utilStyles from "../styles/theme.util.module.css";
-import { useTheme } from "next-themes";
-import ResumeJobs from "../components/ResumeJobs";
+import ResumeJobs from "../components/ResumeJobs/ResumeJobs";
 import School from "../components/School";
 import LanguageDexMobile from "../components/LanguageDexMobile";
 import Frameworks from "../components/Frameworks";
