@@ -187,12 +187,6 @@
   margin-right: 3rem;
 }
 
-.noBullets {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
 .card {
   margin: 1rem;
   flex-basis: 45%;

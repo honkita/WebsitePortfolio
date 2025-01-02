@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "next-themes";
 import Link from "next/link";
 import PixelSwitch from "../../components/PixelSwitch/PixelSwitch";
-import styles from "../../styles/Home.module.css";
 import NavBarCSS from "./NavBar.module.css";
 
 export default function NavBar() {
@@ -25,7 +24,7 @@ export default function NavBar() {
     return (
         <ThemeProvider>
             <nav>
-                <ul className={styles.noBullets}>
+                <ul className={NavBarCSS.noBullets}>
                     {pages.map((page) => (
                         <li className={NavBarCSS.navBarItem}>
                             <Link href={page.link}>
