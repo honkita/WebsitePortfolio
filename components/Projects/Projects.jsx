@@ -3,8 +3,14 @@ import ProjectsCSS from "./Projects.module.css";
 import React, { useEffect, useState } from "react";
 import { useTheme, ThemeProvider } from "next-themes";
 import PixelButton from "../PixelButton/PixelButton";
-import { returnURL } from "../LanguageFaces";
 
+/**
+ *
+ * @param {object} props
+ * @param {string} props.name Project Name
+ * @param {string} props.url GitHub link to repository of project
+ * @returns
+ */
 export default function Projects(props) {
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme, _ } = useTheme();
@@ -18,8 +24,6 @@ export default function Projects(props) {
         return null;
     }
 
-    let src;
-
     function background() {
         if (resolvedTheme === "light") {
             return `${utilStyles.lightBorder}`;
@@ -27,22 +31,6 @@ export default function Projects(props) {
             return `${utilStyles.darkBorder}`;
         }
     }
-
-    let languages = [];
-
-    props.languages.forEach((item, _) => {
-        languages.push(
-            <button
-                className={`${utilStyles.logoButtonSmallSmall} ${utilStyles.buttonRendering}`}
-            >
-                <img
-                    id={item.name}
-                    src={returnURL(item.name)}
-                    alt={item.name}
-                />
-            </button>
-        );
-    });
 
     return (
         <ThemeProvider>

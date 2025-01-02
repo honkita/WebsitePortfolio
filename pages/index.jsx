@@ -59,15 +59,7 @@ export default function Home() {
                     <ImageCarousel images={ImagesForCarousel} />
                     <div className={styles.jobGrid}>
                         {projectsJSON.map((project) => (
-                            <Projects
-                                name={project.name}
-                                url={project.url}
-                                languages={project.languages.map(
-                                    (language) => ({
-                                        name: language,
-                                    })
-                                )}
-                            />
+                            <Projects name={project.name} url={project.url} />
                         ))}
                     </div>
                 </div>
