@@ -2,7 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import utilStyles from "../styles/theme.util.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
-import Projects from "../components/Projects";
+import Projects from "../components/Projects/Projects";
 import ImageCarousel from "../components/ImageCarousel/ImageCarousel";
 import Layout from "./Layout";
 import Title from "../components/Title/Title";

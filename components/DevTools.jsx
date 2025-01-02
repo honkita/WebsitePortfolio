@@ -1,11 +1,10 @@
 import utilStyles from "../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
-import { useTheme, ThemeProvider } from "next-themes";
+import { ThemeProvider } from "next-themes";
 import devTools from "../public/Assets/devTools.json";
 
 export default function DevTools() {
-    const { resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
     var devToolsJSON = JSON.parse(JSON.stringify(devTools));

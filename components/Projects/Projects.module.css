@@ -1,0 +1,47 @@
+.buttonPlacement {
+  position: absolute;
+  right: 0%;
+  bottom: 0%;
+  align-self: right;
+  margin-right: 0.5vw;
+  margin-bottom: 0.5vw;
+}
+
+.projectTitle {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  text-align: left;
+  font-size: 2vw;
+  line-height: 1;
+  font-weight: bold;
+  margin-left: 0.5vw;
+  align-items: center;
+  width: 20vw;
+  word-wrap: break-word;
+}
+
+@media (max-width: 48rem) {
+  .buttonPlacement {
+    display: absolute;
+    right: 0%;
+    top: 50%;
+    transform: translate(0%, -50%);
+  }
+
+  .projectTitle {
+    text-align: left;
+    font-size: 1.3rem;
+    line-height: 1;
+    width: 50vw;
+    font-weight: bold;
+    margin-left: 1rem;
+    image-rendering: crisp-edges;
+    justify-content: "center";
+    vertical-align: "center";
+    align-items: "center";
+    left: 0%;
+    top: 50%;
+    transform: translate(0%, -50%);
+  }
+}

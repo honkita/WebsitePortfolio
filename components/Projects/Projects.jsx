@@ -1,13 +1,13 @@
-import utilStyles from "../styles/theme.util.module.css";
+import utilStyles from "../../styles/theme.util.module.css";
+import ProjectsCSS from "./Projects.module.css";
 import React, { useEffect, useState } from "react";
-import styles from "../styles/Home.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
-import PixelButton from "./PixelButton/PixelButton";
-import { returnURL } from "./LanguageFaces";
+import PixelButton from "../PixelButton/PixelButton";
+import { returnURL } from "../LanguageFaces";
 
 export default function Projects(props) {
     const [mounted, setMounted] = useState(false);
-    const { resolvedTheme, setTheme } = useTheme();
+    const { resolvedTheme, _ } = useTheme();
 
     // useEffect only runs on the client, so now we can safely show the UI
     useEffect(() => {
@@ -30,7 +30,7 @@ export default function Projects(props) {
 
     let languages = [];
 
-    props.languages.forEach((item, index) => {
+    props.languages.forEach((item, _) => {
         languages.push(
             <button
                 className={`${utilStyles.logoButtonSmallSmall} ${utilStyles.buttonRendering}`}
@@ -49,11 +49,10 @@ export default function Projects(props) {
             <div
                 className={`${utilStyles.imageRendering} ${utilStyles.ProjectsBacker} ${background()} `}
             >
-                <section className={utilStyles.boxLg}>
+                <section className={ProjectsCSS.projectTitle}>
                     <p>{props.name}</p>
                 </section>
-                {/* <div className={styles.containerIcons}>{languages}</div> */}
-                <div className={styles.containerAbsolute}>
+                <div className={ProjectsCSS.buttonPlacement}>
                     <PixelButton name="GitHub" url={props.url} />
                 </div>
             </div>
