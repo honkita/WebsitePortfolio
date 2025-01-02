@@ -8,6 +8,7 @@ import PixelButton from "../PixelButton/PixelButton";
  *
  * @param {object} props
  * @param {string} props.name Project Name
+ * @param {string} props.img Project thumbnail image
  * @param {string} props.url GitHub link to repository of project
  * @returns
  */

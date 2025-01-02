@@ -99,9 +99,9 @@ nav {
   line-height: 60px;
 }
 
-li {
-  float: left;
-  width: fit-content;
+ul li {
+  display: list-item;
+  text-align: left;
 }
 
 li a {
