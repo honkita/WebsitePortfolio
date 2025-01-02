@@ -1,10 +1,14 @@
-import utilStyles from "../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
 import { useTheme, ThemeProvider } from "next-themes";
+
+// Child Components
 import {
     CircularProgressbarWithChildren,
     buildStyles,
 } from "react-circular-progressbar";
+
+// CSS
+import utilStyles from "../../styles/theme.util.module.css";
 import "react-circular-progressbar/dist/styles.css";
 
 export default function School(props) {
