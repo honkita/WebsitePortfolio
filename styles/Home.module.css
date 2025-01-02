@@ -17,48 +17,6 @@
   margin-right: calc (-1 * (100vw - 100%));
 }
 
-.containerAbsolute {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-.containerFixedLeft {
-  min-height: 5vh;
-  max-width: 100vw;
-  padding: 0 0.5rem;
-  display: flex;
-  position: fixed;
-  left: 1rem;
-  bottom: 1rem;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.containerFixedRight {
-  min-height: 5vh;
-  max-width: 100vw;
-  padding: 0 0.5rem;
-  display: flex;
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.containerBox {
-  min-height: 5vh;
-  max-width: 100vw;
-  padding: 1 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .sliderButtons {
   fill: white;
   color: white;
@@ -219,26 +177,9 @@
     vertical-align: top;
     align-items: center;
   }
-
-  .containerIcons {
-    position: absolute;
-    float: right;
-    right: 0;
-    bottom: 0;
-  }
 }
 
 @media (max-width: 64rem) and (min-width: 48rem) {
-  .containerIcons {
-    position: absolute;
-    display: flex;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    justify-content: center;
-    align-items: center;
-  }
-
   .locationGrid {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -251,15 +192,6 @@
   .transformer {
     display: flex;
     flex-direction: column;
-  }
-
-  .containerIcons {
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    top: 55%;
-    left: 25%;
-    transform: none;
   }
 
   .grid {
@@ -294,41 +226,6 @@
     flex-direction: column;
   }
 
-  .containerFixedLeft {
-    min-height: 5vh;
-    max-width: 100vw;
-    padding: 0 0.5rem;
-    display: flex;
-    position: fixed;
-    left: 0.5rem;
-    bottom: 0.5rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .containerFixedRight {
-    min-height: 5vh;
-    max-width: 100vw;
-    padding: 0 0.5rem;
-    display: flex;
-    position: fixed;
-    right: 0.5rem;
-    bottom: 0.5rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .containerBox {
-    min-height: 5vh;
-    max-width: 100vw;
-    padding: 0.5 0.5rem;
-    display: absolute;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
   .jobGrid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -373,49 +270,6 @@
     padding: 0 0.5rem;
     display: flex;
     flex-direction: column;
-  }
-
-  .containerAbsolute {
-    display: absolute;
-    right: 0%;
-    top: 50%;
-    transform: translate(0%, -50%);
-  }
-
-  .containerFixedLeft {
-    min-height: 5vh;
-    max-width: 100vw;
-    padding: 0 0.5rem;
-    display: flex;
-    position: fixed;
-    left: 0.5rem;
-    bottom: 0.5rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .containerFixedRight {
-    min-height: 5vh;
-    max-width: 100vw;
-    padding: 0 0.5rem;
-    display: flex;
-    position: fixed;
-    right: 0.5rem;
-    bottom: 0.5rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .containerBox {
-    min-height: 5vh;
-    max-width: 100vw;
-    padding: 0.5 0.5rem;
-    display: absolute;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
   }
 
   .jobGrid {

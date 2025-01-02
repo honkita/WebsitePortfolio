@@ -40,7 +40,7 @@ export default function Projects(props) {
     return (
         <ThemeProvider>
             <div
-                className={`${utilStyles.imageRendering} ${utilStyles.ProjectsBacker} ${background()} `}
+                className={`${utilStyles.imageRendering} ${ProjectsCSS.ProjectsBacker} ${background()} `}
             >
                 <section className={ProjectsCSS.projectTitle}>
                     <p>{props.name}</p>

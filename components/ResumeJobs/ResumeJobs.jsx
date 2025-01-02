@@ -1,8 +1,11 @@
-import utilStyles from "../../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/Home.module.css";
 import { useTheme, ThemeProvider } from "next-themes";
+
+// Child Components
 import PixelButton from "../PixelButton/PixelButton";
+
+// CSS
+import utilStyles from "../../styles/theme.util.module.css";
 import ResumeJobsCSS from "./ResumeJobs.module.css";
 
 /**
@@ -24,8 +27,6 @@ export default function ResumeJobs(props) {
         return null;
     }
 
-    let src;
-
     function background() {
         if (resolvedTheme === "light") {
             return `${utilStyles.lightBorder}`;
@@ -37,7 +38,7 @@ export default function ResumeJobs(props) {
     return (
         <ThemeProvider>
             <div
-                className={`${utilStyles.ResumeBacker} ${utilStyles.imageRendering} ${background()}`}
+                className={`${ResumeJobsCSS.ResumeBacker} ${utilStyles.imageRendering} ${background()}`}
             >
                 <section className={ResumeJobsCSS.employerName}>
                     <p>{props.employerName}</p>

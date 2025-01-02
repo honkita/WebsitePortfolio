@@ -1,13 +1,17 @@
+import React from "react";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import utilStyles from "../styles/theme.util.module.css";
+import Layout from "./Layout";
+
+// Child Components
 import Projects from "../components/Projects/Projects";
 import ImageCarousel from "../components/ImageCarousel/ImageCarousel";
-import Layout from "./Layout";
 import Title from "../components/Title/Title";
-import React from "react";
 
-//json imports
+// CSS
+import styles from "../styles/Home.module.css";
+import utilStyles from "../styles/theme.util.module.css";
+
+//JSONs
 import ImagesForCarousel from "../public/Assets/homeCarousel.json";
 import CodedProjects from "../public/Assets/projects.json";
 

@@ -1,3 +1,8 @@
+.ResumeBacker {
+  width: 45vw;
+  height: 20vw;
+}
+
 .buttonPlacement {
   position: absolute;
   right: 0%;
@@ -30,7 +35,28 @@
   margin-top: 0.5vw;
 }
 
+@media (max-width: 64rem) and (min-width: 48rem) {
+  .ResumeBacker {
+    width: 80vw;
+    height: 20vh;
+    padding: 0;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    word-wrap: break-word;
+    background-size: cover;
+    transition: all 0.2s;
+    position: relative;
+    image-rendering: pixelated;
+    align-items: left;
+  }
+}
+
 @media (max-width: 48rem) {
+  .ResumeBacker {
+    width: 80vw;
+    height: 30vw;
+  }
+
   .buttonPlacement {
     display: absolute;
     right: 0%;
@@ -52,5 +78,11 @@
     font-size: 5vw;
     line-height: 1;
     font-weight: bold;
+  }
+}
+
+@media not (hover: none) {
+  .ResumeBacker:hover {
+    transform: scale(1.1);
   }
 }

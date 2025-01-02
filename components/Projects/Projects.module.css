@@ -21,7 +21,26 @@
   word-wrap: break-word;
 }
 
+@media only screen and (min-width: 64rem) {
+  .ProjectsBacker {
+    width: 27vw;
+    height: 36vw;
+  }
+}
+
+@media (max-width: 64rem) and (min-width: 48rem) {
+  .ProjectsBacker {
+    width: 36vw;
+    height: 48vw;
+  }
+}
+
 @media (max-width: 48rem) {
+  .ProjectsBacker {
+    width: 80vw;
+    height: 30vw;
+  }
+
   .buttonPlacement {
     display: absolute;
     right: 0%;
@@ -43,5 +62,11 @@
     left: 0%;
     top: 50%;
     transform: translate(0%, -50%);
+  }
+}
+
+@media not (hover: none) {
+  .ProjectsBacker:hover {
+    transform: scale(1.1);
   }
 }

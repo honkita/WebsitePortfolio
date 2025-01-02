@@ -1,11 +1,10 @@
 import styles from "../styles/Home.module.css";
-import React, { useState, useEffect, Component } from "react";
-import { useTheme, ThemeProvider } from "next-themes";
+import React from "react";
+import { ThemeProvider } from "next-themes";
 
 import Nav from "../components/NavBar/NavBar";
 
 export default function Layout({ home, children }) {
-    const { resolvedTheme, setTheme } = useTheme();
     return (
         <ThemeProvider>
             <Nav />

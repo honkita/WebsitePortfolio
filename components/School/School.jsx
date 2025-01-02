@@ -9,6 +9,7 @@ import {
 
 // CSS
 import utilStyles from "../../styles/theme.util.module.css";
+import SchoolCSS from "./School.module.css";
 import "react-circular-progressbar/dist/styles.css";
 
 export default function School(props) {
@@ -39,16 +40,16 @@ export default function School(props) {
     return (
         <ThemeProvider>
             <div
-                className={`${utilStyles.EducationBacker} ${utilStyles.imageRendering} ${background()}`}
+                className={`${SchoolCSS.EducationBacker} ${utilStyles.imageRendering} ${background()}`}
             >
-                <h1 className={utilStyles.schoolName}>
+                <h1 className={SchoolCSS.schoolName}>
                     <p>{props.schoolName}</p>
                 </h1>
-                <section className={utilStyles.schoolLocation}>
+                <section className={SchoolCSS.schoolLocation}>
                     <p>{props.schoolLocation}</p>
                 </section>
 
-                <section className={utilStyles.boxCircleBar}>
+                <section className={SchoolCSS.boxCircleBar}>
                     <CircularProgressbarWithChildren
                         styles={buildStyles({
                             strokeLinecap: "butt",
@@ -60,7 +61,7 @@ export default function School(props) {
                         })}
                         value={GPA}
                     >
-                        <div className={utilStyles.headingMdCircle}>
+                        <div className={SchoolCSS.headingMdCircle}>
                             {props.GPA.toFixed(1)}/4.0
                         </div>
                     </CircularProgressbarWithChildren>
