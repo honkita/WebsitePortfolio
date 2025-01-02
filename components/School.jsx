@@ -9,7 +9,7 @@ import "react-circular-progressbar/dist/styles.css";
 
 export default function School(props) {
     const [mounted, setMounted] = useState(false);
-    const { resolvedTheme, setTheme } = useTheme();
+    const { resolvedTheme } = useTheme();
 
     const GPA = (props.GPA / 4.0) * 100;
 

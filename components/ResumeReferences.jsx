@@ -6,7 +6,7 @@ import PixelButton from "./PixelButton/PixelButton";
 
 export default function ResumeJobs(props) {
     const [mounted, setMounted] = useState(false);
-    const { resolvedTheme, setTheme } = useTheme();
+    const { resolvedTheme } = useTheme();
 
     // useEffect only runs on the client, so now we can safely show the UI
     useEffect(() => {

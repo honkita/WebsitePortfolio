@@ -10,7 +10,7 @@ import PixelButtons from "../../public/Assets/PixelButtons.json";
 
 export default function PixelButton(props) {
     const [mounted, setMounted] = useState(false);
-    const { resolvedTheme, _ } = useTheme();
+    const { resolvedTheme } = useTheme();
     const name = props.name;
     var PixelButtonsJSON = JSON.parse(JSON.stringify(PixelButtons));
 

@@ -18,7 +18,7 @@ import ProjectsCSS from "./Projects.module.css";
  */
 export default function Projects(props) {
     const [mounted, setMounted] = useState(false);
-    const { resolvedTheme, _ } = useTheme();
+    const { resolvedTheme } = useTheme();
 
     // useEffect only runs on the client, so now we can safely show the UI
     useEffect(() => {

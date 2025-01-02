@@ -1,7 +1,7 @@
-import { useTheme, ThemeProvider } from "next-themes";
+import { useTheme } from "next-themes";
 
 export function returnURL(text) {
-    const { resolvedTheme, setTheme } = useTheme();
+    const { resolvedTheme } = useTheme();
     var items = {
         GitHub: { url: "https://github.com/honkita/" },
         LinkedIn: {

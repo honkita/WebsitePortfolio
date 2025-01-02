@@ -14,7 +14,7 @@ import ResumeJobsCSS from "./ResumeJobs.module.css";
  */
 export default function ResumeJobs(props) {
     const [mounted, setMounted] = useState(false);
-    const { resolvedTheme, setTheme } = useTheme();
+    const { resolvedTheme } = useTheme();
 
     useEffect(() => {
         setMounted(true);
