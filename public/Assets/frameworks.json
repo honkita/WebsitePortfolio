@@ -1,9 +1,12 @@
 [
   { "name": "Flask", "url": "./images/FAL/Flask.svg" },
+  { "name": "Gradle", "url": "./images/FAL/Gradle.svg" },
   { "name": "Next.js", "url": "./images/FAL/Nextjs.svg" },
   { "name": "Node.js", "url": "./images/FAL/Nodejs.svg" },
-  { "name": "Postman", "url": "./images/FAL/Postman.svg" },
+  {
+    "name": "Processing",
+    "url": "./images/FAL/Processing.svg"
+  },
   { "name": "React", "url": "./images/FAL/React.svg" },
-  { "name": "Swagger", "url": "./images/FAL/Swagger.svg" },
   { "name": "Vue.js", "url": "./images/FAL/Vuejs.svg" }
 ]

@@ -11,6 +11,8 @@
   { "name": "Matlab", "url": "./images/DevTools/Matlab.svg" },
   { "name": "Netbeans", "url": "./images/DevTools/Netbeans.svg" },
   { "name": "Overleaf", "url": "./images/DevTools/Overleaf.svg" },
+  { "name": "Postman", "url": "./images/DevTools/Postman.svg" },
+  { "name": "Swagger", "url": "./images/DevTools/Swagger.svg" },
   { "name": "Visual Studio", "url": "./images/DevTools/VisualStudio.svg" },
   {
     "name": "Visual Studio Code",

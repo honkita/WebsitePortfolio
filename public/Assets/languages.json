@@ -6,12 +6,6 @@
   { "name": "CSS", "type": "Style Sheet", "url": "./images/Logos/CSS.svg" },
 
   { "name": "Elm", "type": "Functional", "url": "./images/Logos/Elm.svg" },
-
-  {
-    "name": "Gradle",
-    "type": "Build Tool",
-    "url": "./images/Logos/Gradle.svg"
-  },
   {
     "name": "Haskell",
     "type": "Functional",
@@ -30,9 +24,9 @@
     "url": "./images/Logos/JS.svg"
   },
   {
-    "name": "Processing",
-    "type": "Object-Oriented",
-    "url": "./images/Logos/Processing.svg"
+    "name": "Latex",
+    "type": "Formatted Text",
+    "url": "./images/Logos/Latex.svg"
   },
   {
     "name": "Prolog",
@@ -43,11 +37,6 @@
     "name": "Python",
     "type": "Object-Oriented",
     "url": "./images/Logos/Python.svg"
-  },
-  {
-    "name": "Latex",
-    "type": "Formatted Text",
-    "url": "./images/Logos/Latex.svg"
   },
   { "name": "R", "type": "Interpreted", "url": "./images/Logos/R.svg" },
   {
