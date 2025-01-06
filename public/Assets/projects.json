@@ -3,42 +3,42 @@
     "name": "Pixel Background Generator",
     "url": "https://github.com/honkita/Pixel-Background-Generator",
     "languages": ["Java", "Gradle"],
-    "preview": ""
+    "img": "PixelBackgroundGenerator.png"
   },
   {
     "name": "GitHub Stats (Elite's version)",
     "url": "https://github.com/honkita/GitHub-Stats-Backend",
     "languages": ["JavaScript"],
-    "preview": ""
+    "img": "GitHubStats.png"
   },
   {
     "name": "The Simple Derivatives Game",
     "url": "https://github.com/honkita/Math-App",
     "languages": ["Elm"],
-    "preview": ""
+    "img": "Derivatives.png"
   },
   {
     "name": "Elite Lu Portfolio Website",
     "url": "https://github.com/honkita/WebsitePortfolio",
     "languages": ["JavaScript", "CSS", "HTML"],
-    "preview": ""
+    "img": "Website.png"
   },
   {
     "name": "Pixel Buttons",
     "url": "https://github.com/honkita/PixelButtons",
     "languages": [],
-    "preview": ""
+    "img": "PixelButtons.png"
   },
   {
     "name": "LinkHub",
     "url": "https://github.com/honkita/LinkHub",
     "languages": ["JavaScript", "CSS", "HTML"],
-    "preview": ""
+    "img": "LinkHub.png"
   },
   {
     "name": "Uta Rhythm Game",
     "url": "https://github.com/honkita/UtaRhythmGame",
     "languages": ["Processing"],
-    "preview": ""
+    "img": "Uta.png"
   }
 ]

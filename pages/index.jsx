@@ -57,7 +57,7 @@ export default function Home() {
                         {projectsJSON.map((project) => (
                             <Projects
                                 name={project.name}
-                                img=""
+                                img={project.img}
                                 url={project.url}
                             />
                         ))}

@@ -30,9 +30,8 @@ export default function ResumeJobs(props) {
     function background() {
         if (resolvedTheme === "light") {
             return `${utilStyles.lightBorder}`;
-        } else {
-            return `${utilStyles.darkBorder}`;
         }
+        return `${utilStyles.darkBorder}`;
     }
 
     return (

@@ -32,19 +32,29 @@ export default function Projects(props) {
     function background() {
         if (resolvedTheme === "light") {
             return `${utilStyles.lightBorder}`;
-        } else {
-            return `${utilStyles.darkBorder}`;
         }
+        return `${utilStyles.darkBorder}`;
+    }
+
+    function getImage() {
+        if (props.img != "") {
+            return "/images/Projects/" + props.img;
+        }
+        return "/images/TestImages/honoka.jpg";
     }
 
     return (
         <ThemeProvider>
             <div
-                className={`${utilStyles.imageRendering} ${ProjectsCSS.ProjectsBacker} ${background()} `}
+                className={`${utilStyles.imageRendering} ${ProjectsCSS.projectsBacker} ${background()} `}
             >
                 <section className={ProjectsCSS.projectTitle}>
                     <p>{props.name}</p>
                 </section>
+                <img
+                    className={`${ProjectsCSS.projectsImage} ${background()}`}
+                    src={getImage()}
+                ></img>
                 <div className={ProjectsCSS.buttonPlacement}>
                     <PixelButton name="GitHub" url={props.url} />
                 </div>
