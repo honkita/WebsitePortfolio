@@ -8,11 +8,11 @@
   margin-right: 1rem;
   display: flex;
   flex-direction: column;
-  user-select: none;
+  /* user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
-  -o-user-select: none;
+  -o-user-select: none; */
   overflow-x: hidden;
   margin-right: calc (-1 * (100vw - 100%));
 }
