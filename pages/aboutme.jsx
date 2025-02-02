@@ -48,24 +48,6 @@ export default function AboutMe() {
                         />
                     ))}
                 </div>
-                <section className={styles.transformer}>
-                    <section>
-                        <section className={utilStyles.headingXl}>
-                            <p>Language Proficiencies</p>
-                        </section>
-                        <LanguageDexMobile />
-                    </section>
-                    <section>
-                        <section className={utilStyles.headingXl}>
-                            <p>Framework, API, and Library Proficiencies</p>
-                        </section>
-                        <Frameworks />
-                        <section className={utilStyles.headingXl}>
-                            <p>Developer Platform and Tool Proficiencies</p>
-                        </section>
-                        <DevTools />
-                    </section>
-                </section>
 
                 <section className={utilStyles.headingXl}>
                     <p>Education</p>
@@ -83,6 +65,45 @@ export default function AboutMe() {
                     />
                 </div>
             </div>
+            <div
+                className={`${utilStyles.headingXl} ${styles.paddingTopBottom}`}
+            >
+                Technologies
+            </div>
+            <table className={styles.table}>
+                <tbody>
+                    <tr className={styles.tableRow}>
+                        <td
+                            className={`${styles.tableItem} ${utilStyles.headingMd} ${styles.paddingRight}`}
+                        >
+                            Languages
+                        </td>
+                        <td>
+                            <LanguageDexMobile />
+                        </td>
+                    </tr>
+                    <tr className={styles.tableRow}>
+                        <td
+                            className={`${styles.tableItem} ${utilStyles.headingMd} ${styles.paddingRight}`}
+                        >
+                            Frameworks, APIs, and Libraries
+                        </td>
+                        <td>
+                            <Frameworks />
+                        </td>
+                    </tr>
+                    <tr className={styles.tableRow}>
+                        <td
+                            className={`${styles.tableItem} ${utilStyles.headingMd} ${styles.paddingRight}`}
+                        >
+                            Developer Platforms and Tools
+                        </td>
+                        <td>
+                            <DevTools />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </Layout>
     );
 }

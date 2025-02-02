@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "next-themes";
 
 // CSS
-import styles from "../../styles/Home.module.css";
 import IconsCSS from "./Icons.module.css";
 
 // JSONs
@@ -26,7 +25,7 @@ export default function Frameworks() {
 
     return (
         <ThemeProvider>
-            <div className={styles.grid2}>
+            <div className={IconsCSS.grid}>
                 {frameworksJSON.map((frameworks) => (
                     <div className={IconsCSS.under}>
                         <button
@@ -40,7 +39,7 @@ export default function Frameworks() {
                                 alt={frameworks.name + " image"}
                             />
                         </button>
-                        {frameworks.name}
+                        {/* {frameworks.name} */}
                     </div>
                 ))}
             </div>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "next-themes";
 
 // CSS
-import styles from "../../styles/Home.module.css";
 import IconsCSS from "./Icons.module.css";
 
 // JSONs
@@ -23,7 +22,7 @@ export default function DevTools() {
 
     return (
         <ThemeProvider>
-            <div className={styles.grid3}>
+            <div className={IconsCSS.grid} aria-hidden="true">
                 {devToolsJSON.map((devTool) => (
                     <div className={IconsCSS.under}>
                         <button
@@ -34,10 +33,10 @@ export default function DevTools() {
                             <img
                                 id={devTool.name}
                                 src={devTool.url}
-                                alt={devTool.name}
+                                alt={devTool.name + " image "}
                             />
                         </button>
-                        {devTool.name}
+                        {/* {devTool.name} */}
                     </div>
                 ))}
             </div>

@@ -1,8 +1,8 @@
 .logoButtonSmall {
-  width: 4rem;
-  height: 4rem;
-  min-width: 4rem;
-  min-height: 4rem;
+  width: 5vw;
+  height: 5vw;
+  min-width: 3rem;
+  min-height: 3rem;
 }
 
 .logoButtonSmall > img {
@@ -28,6 +28,25 @@
   justify-content: center;
   align-items: center;
   transition: all 0.2s;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-column-gap: 4vw;
+  grid-row-gap: 0vw;
+  vertical-align: top;
+}
+
+@media (max-width: 48rem) {
+  .grid {
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(calc(100vw / 4.5rem), minmax(0, 1fr));
+    grid-column-gap: 3vw;
+    grid-row-gap: 0vw;
+    vertical-align: top;
+  }
 }
 
 @media not (hover: none) {

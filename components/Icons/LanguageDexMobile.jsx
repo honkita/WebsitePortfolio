@@ -1,11 +1,11 @@
-import utilStyles from "../../styles/theme.util.module.css";
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/Home.module.css";
 import { ThemeProvider } from "next-themes";
-import languages from "../../public/Assets/languages.json";
 
 // CSS
 import IconsCSS from "./Icons.module.css";
+
+// JSONs
+import languages from "../../public/Assets/languages.json";
 
 export default function LanguageDexMobile() {
     const [mounted, setMounted] = useState(false);
@@ -21,7 +21,7 @@ export default function LanguageDexMobile() {
 
     return (
         <ThemeProvider>
-            <div className={styles.grid} aria-hidden="true">
+            <div className={IconsCSS.grid} aria-hidden="true">
                 {languagesJSON.map((language) => (
                     <div className={IconsCSS.under}>
                         <button
@@ -35,7 +35,7 @@ export default function LanguageDexMobile() {
                                 alt={language.name + " image"}
                             />
                         </button>
-                        {language.name}
+                        {/* {language.name} */}
                     </div>
                 ))}
             </div>
