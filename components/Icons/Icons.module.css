@@ -32,7 +32,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(calc(70vw / 4.5rem), minmax(0, 1fr));
   grid-column-gap: 4vw;
   grid-row-gap: 0vw;
   vertical-align: top;
