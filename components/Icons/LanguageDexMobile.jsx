@@ -35,7 +35,7 @@ export default function LanguageDexMobile() {
                                 alt={language.name + " image"}
                             />
                         </button>
-                        {/* {language.name} */}
+                        <div className={IconsCSS.hide}>{language.name}</div>
                     </div>
                 ))}
             </div>

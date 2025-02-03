@@ -36,7 +36,7 @@ export default function DevTools() {
                                 alt={devTool.name + " image "}
                             />
                         </button>
-                        {/* {devTool.name} */}
+                        <div className={IconsCSS.hide}>{devTool.name}</div>
                     </div>
                 ))}
             </div>
