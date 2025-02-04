@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { ThemeProvider } from "next-themes";
 
 // CSS
 import IconsCSS from "./Icons.module.css";
@@ -24,25 +23,23 @@ export default function Frameworks() {
     }
 
     return (
-        <ThemeProvider>
-            <div className={IconsCSS.grid}>
-                {frameworksJSON.map((frameworks) => (
-                    <div className={IconsCSS.under}>
-                        <button
-                            className={`${IconsCSS.logoButtonSmall} ${IconsCSS.buttonRendering}`}
-                            title={frameworks.name}
-                            tabindex="-1"
-                        >
-                            <img
-                                id={frameworks.name}
-                                src={frameworks.url}
-                                alt={frameworks.name + " image"}
-                            />
-                        </button>
-                        <div className={IconsCSS.hide}>{frameworks.name}</div>
-                    </div>
-                ))}
-            </div>
-        </ThemeProvider>
+        <div className={IconsCSS.grid}>
+            {frameworksJSON.map((frameworks, index) => (
+                <div className={IconsCSS.under} key={index}>
+                    <button
+                        className={`${IconsCSS.logoButtonSmall} ${IconsCSS.buttonRendering}`}
+                        title={frameworks.name}
+                        tabIndex="-1"
+                    >
+                        <img
+                            id={frameworks.name}
+                            src={frameworks.url}
+                            alt={frameworks.name + " image"}
+                        />
+                    </button>
+                    <div className={IconsCSS.hide}>{frameworks.name}</div>
+                </div>
+            ))}
+        </div>
     );
 }

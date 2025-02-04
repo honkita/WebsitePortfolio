@@ -1,5 +1,5 @@
 .schoolName {
-  font-size: 3vw;
+  font-size: 2rem;
   position: absolute;
   text-align: left;
   margin: 0.5vw;
@@ -7,7 +7,7 @@
 }
 
 .schoolLocation {
-  font-size: 2.5vw;
+  font-size: 1.5rem;
   position: absolute;
   text-align: left;
   margin: 0.5vw;
@@ -25,16 +25,22 @@
   line-height: 1.5;
 }
 
+.colour {
+  fill: transparent;
+  stroke: var(--secondary);
+  background-color: var(--primary-bright);
+}
+
 .boxCircleBar {
   align-self: center;
   text-align: center;
-  width: 20vw;
-  height: 20vw;
+  width: 80%;
+  height: 80%;
   font-size: 5vw;
   font-weight: bold;
   position: absolute;
-  left: 50%;
-  bottom: 20%;
+  left: 45%;
+  bottom: 5%;
   transform: translate(-50%, 0);
   margin-bottom: 2vw;
 }

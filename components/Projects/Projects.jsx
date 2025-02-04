@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useTheme, ThemeProvider } from "next-themes";
+import { useTheme } from "next-themes";
 
 // Child Components
 import PixelButton from "../PixelButton/PixelButton";
@@ -44,7 +44,7 @@ export default function Projects(props) {
     }
 
     return (
-        <ThemeProvider>
+        <div>
             <div
                 className={`${utilStyles.imageRendering} ${ProjectsCSS.projectsBacker} ${background()} `}
             >
@@ -59,6 +59,6 @@ export default function Projects(props) {
                     <PixelButton name="GitHub" url={props.url} />
                 </div>
             </div>
-        </ThemeProvider>
+        </div>
     );
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import { ThemeProvider } from "next-themes";
 
 // Child Components
 import Nav from "../components/NavBar/NavBar";
@@ -7,9 +6,9 @@ import Nav from "../components/NavBar/NavBar";
 // CSS
 import styles from "../styles/Home.module.css";
 
-export default function Layout({ home, children }) {
+export default function Layout({ children }) {
     return (
-        <ThemeProvider>
+        <div>
             <Nav />
             <main>{children}</main>
             <section className={styles.container}>
@@ -17,6 +16,6 @@ export default function Layout({ home, children }) {
                     Copyrights © {new Date().getFullYear()} Elite Lu
                 </section>
             </section>
-        </ThemeProvider>
+        </div>
     );
 }

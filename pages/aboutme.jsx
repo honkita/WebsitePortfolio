@@ -40,8 +40,9 @@ export default function AboutMe() {
                     <p>Previous Employment</p>
                 </section>
                 <div className={styles.locationGrid}>
-                    {resumeJobsJSON.map((resumeJob) => (
+                    {resumeJobsJSON.map((resumeJob, index) => (
                         <ResumeJobs
+                            key={index}
                             jobName={resumeJob.jobName}
                             employerName={resumeJob.employerName}
                             linkedin={resumeJob.linkedin}

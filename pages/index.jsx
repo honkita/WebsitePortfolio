@@ -54,8 +54,9 @@ export default function Home() {
                     </section>
                     <ImageCarousel images={ImagesForCarousel} />
                     <div className={styles.jobGrid}>
-                        {projectsJSON.map((project) => (
+                        {projectsJSON.map((project, index) => (
                             <Projects
+                                key={index}
                                 name={project.name}
                                 img={project.img}
                                 url={project.url}

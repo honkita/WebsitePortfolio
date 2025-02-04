@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useTheme, ThemeProvider } from "next-themes";
+import { useTheme } from "next-themes";
 
 // CSS
 import PixelSwitchCSS from "./PixelSwitch.module.css";
@@ -22,21 +22,19 @@ export default function PixelSwitch() {
     };
 
     return (
-        <ThemeProvider>
-            <div className={PixelSwitchCSS.container}>
-                <button
-                    id="ThemeToggle"
-                    className={
-                        PixelSwitchCSS.toggle +
-                        " " +
-                        (resolvedTheme === "dark"
-                            ? PixelSwitchCSS.toggledark
-                            : null)
-                    }
-                    onClick={toggleTheme}
-                    title="Switch"
-                />
-            </div>
-        </ThemeProvider>
+        <div className={PixelSwitchCSS.container}>
+            <button
+                id="ThemeToggle"
+                className={
+                    PixelSwitchCSS.toggle +
+                    " " +
+                    (resolvedTheme === "dark"
+                        ? PixelSwitchCSS.toggledark
+                        : null)
+                }
+                onClick={toggleTheme}
+                title="Switch"
+            />
+        </div>
     );
 }

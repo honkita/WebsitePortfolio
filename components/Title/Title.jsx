@@ -12,8 +12,15 @@ import TitleCSS from "./Title.module.css";
  * @returns
  */
 export default function Title(props) {
-    let itemList = props.buttons.map((item, _) => {
-        return <PixelButton name={item} url={returnURL(item)} extra={true} />;
+    let itemList = props.buttons.map((item, index) => {
+        return (
+            <PixelButton
+                key={index}
+                name={item}
+                url={returnURL(item)}
+                extra={true}
+            />
+        );
     });
 
     function background() {

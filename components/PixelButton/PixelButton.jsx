@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useTheme, ThemeProvider } from "next-themes";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 
 // CSS
@@ -32,28 +32,27 @@ export default function PixelButton(props) {
     let src;
 
     return (
-        <ThemeProvider>
-            <Link href={props.url} target={getValue().target}>
-                <button
-                    className={`${PixelButtonCSS.buttonRendering} ${props.extra != true ? PixelButtonCSS.button : PixelButtonCSS.titleButtons}`}
-                    aria-label={name}
-                    alt={"Go to " + name}
-                    type="button"
+        <Link href={props.url} target={getValue().target}>
+            <button
+                className={`${PixelButtonCSS.buttonRendering} ${props.extra != true ? PixelButtonCSS.button : PixelButtonCSS.titleButtons}`}
+                aria-label={name}
+                alt={"Go to " + name}
+                type="button"
+                tabIndex={-1}
+            >
+                <img
+                    id="Icon"
+                    key={name}
+                    src={
+                        resolvedTheme === "light"
+                            ? getValue().lightTheme
+                            : getValue().darkTheme
+                    }
+                    title={name}
+                    aria-hidden={true}
                     tabIndex={-1}
-                >
-                    <img
-                        id="Icon"
-                        src={
-                            resolvedTheme === "light"
-                                ? getValue().lightTheme
-                                : getValue().darkTheme
-                        }
-                        title={name}
-                        aria-hidden={true}
-                        tabIndex={-1}
-                    />
-                </button>
-            </Link>
-        </ThemeProvider>
+                />
+            </button>
+        </Link>
     );
 }

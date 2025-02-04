@@ -67,6 +67,25 @@ code {
   font-family: "Pixelify_Sans";
 }
 
+circle {
+  width: 200px;
+  height: 200px;
+}
+
+circle {
+  position: absolute;
+  fill: none;
+  stroke-width: 10;
+  transform: translate(10px, 10px);
+  stroke-dasharray: 440;
+  stroke-linecap: round;
+}
+
+circle:nth-child(1) {
+  stroke-dashoffset: 0;
+  stroke: #424242;
+}
+
 @font-face {
   font-family: "Pixelify_Sans";
   src:

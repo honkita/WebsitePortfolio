@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useTheme, ThemeProvider } from "next-themes";
-
-// Child Components
-import {
-    CircularProgressbarWithChildren,
-    buildStyles,
-} from "react-circular-progressbar";
+import { useTheme } from "next-themes";
 
 // CSS
 import utilStyles from "../../styles/theme.util.module.css";
@@ -16,9 +10,6 @@ export default function School(props) {
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();
 
-    const GPA = (props.GPA / 4.0) * 100;
-
-    // useEffect only runs on the client, so now we can safely show the UI
     useEffect(() => {
         setMounted(true);
     }, []);
@@ -36,36 +27,47 @@ export default function School(props) {
         return `${utilStyles.darkBorder}`;
     }
 
+    const r = 50;
+    const cx = r * 4;
+    const cy = r * 4;
+    const GPA = props.GPA / 4.0;
+    const circumference = 2 * r * 3.14;
+    const p = GPA * circumference;
+    const angle = GPA * 360;
+
     return (
-        <ThemeProvider>
-            <div
-                className={`${SchoolCSS.EducationBacker} ${utilStyles.imageRendering} ${background()}`}
+        <div
+            className={`${SchoolCSS.EducationBacker} ${utilStyles.imageRendering} ${background()}`}
+        >
+            <h1 className={SchoolCSS.schoolName}>
+                <p>{props.schoolName}</p>
+            </h1>
+            <section className={SchoolCSS.schoolLocation}>
+                <p>{props.schoolLocation}</p>
+            </section>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={SchoolCSS.boxCircleBar}
+                viewBox={"0 0 " + cx + " " + cy}
             >
-                <h1 className={SchoolCSS.schoolName}>
-                    <p>{props.schoolName}</p>
-                </h1>
-                <section className={SchoolCSS.schoolLocation}>
-                    <p>{props.schoolLocation}</p>
-                </section>
-
-                <section className={SchoolCSS.boxCircleBar}>
-                    <CircularProgressbarWithChildren
-                        styles={buildStyles({
-                            strokeLinecap: "butt",
-                            textSize: "16px",
-
-                            pathTransitionDuration: 0.5,
-                            pathColor: `rgba(255, 0, 0, ${66 / 100})`,
-                            trailColor: `rgba(69, 69, 69, 1)`,
-                        })}
-                        value={GPA}
-                    >
-                        <div className={SchoolCSS.headingMdCircle}>
-                            {props.GPA.toFixed(1)}/4.0
-                        </div>
-                    </CircularProgressbarWithChildren>
-                </section>
-            </div>
-        </ThemeProvider>
+                <circle
+                    r={r}
+                    cx={cx / 2}
+                    cy={cy / 2}
+                    className={SchoolCSS.colour}
+                />
+                <circle
+                    r={r}
+                    cx={cx / 2}
+                    cy={cy / 2}
+                    className={SchoolCSS.colour}
+                    style={{
+                        strokeWidth: `${r / 8}`,
+                        strokeDasharray: `${p} ${circumference}`,
+                        transform: `rotate(${angle - 90}deg ${cx / 2} ${cy / 2})`,
+                    }}
+                />
+            </svg>
+        </div>
     );
 }

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { ThemeProvider } from "next-themes";
 
 // CSS
 import IconsCSS from "./Icons.module.css";
@@ -20,25 +19,23 @@ export default function LanguageDexMobile() {
     }
 
     return (
-        <ThemeProvider>
-            <div className={IconsCSS.grid} aria-hidden="true">
-                {languagesJSON.map((language) => (
-                    <div className={IconsCSS.under}>
-                        <button
-                            className={`${IconsCSS.logoButtonSmall} ${IconsCSS.buttonRendering}`}
-                            title={language.name}
-                            tabindex="-1"
-                        >
-                            <img
-                                id={language.name}
-                                src={language.url}
-                                alt={language.name + " image"}
-                            />
-                        </button>
-                        <div className={IconsCSS.hide}>{language.name}</div>
-                    </div>
-                ))}
-            </div>
-        </ThemeProvider>
+        <div className={IconsCSS.grid} aria-hidden="true">
+            {languagesJSON.map((language, index) => (
+                <div className={IconsCSS.under} key={index}>
+                    <button
+                        className={`${IconsCSS.logoButtonSmall} ${IconsCSS.buttonRendering}`}
+                        title={language.name}
+                        tabIndex="-1"
+                    >
+                        <img
+                            id={language.name}
+                            src={language.url}
+                            alt={language.name + " image"}
+                        />
+                    </button>
+                    <div className={IconsCSS.hide}>{language.name}</div>
+                </div>
+            ))}
+        </div>
     );
 }

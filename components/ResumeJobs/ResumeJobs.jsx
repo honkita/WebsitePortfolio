@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useTheme, ThemeProvider } from "next-themes";
+import { useTheme } from "next-themes";
 
 // Child Components
 import PixelButton from "../PixelButton/PixelButton";
@@ -35,7 +35,7 @@ export default function ResumeJobs(props) {
     }
 
     return (
-        <ThemeProvider>
+        <div>
             <div
                 className={`${ResumeJobsCSS.ResumeBacker} ${utilStyles.imageRendering} ${background()}`}
             >
@@ -49,6 +49,6 @@ export default function ResumeJobs(props) {
                     <PixelButton name="LinkedIn" url={props.linkedin} />
                 </div>
             </div>
-        </ThemeProvider>
+        </div>
     );
 }

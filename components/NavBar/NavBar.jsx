@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { ThemeProvider } from "next-themes";
 import Link from "next/link";
 
 // Child Components
@@ -26,19 +25,17 @@ export default function NavBar() {
     ];
 
     return (
-        <ThemeProvider>
-            <nav>
-                <ul className={NavBarCSS.noBullets}>
-                    {pages.map((page) => (
-                        <li className={NavBarCSS.navBarItem}>
-                            <Link href={page.link}>
-                                <p>{page.name}</p>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-                <PixelSwitch />
-            </nav>
-        </ThemeProvider>
+        <nav>
+            <ul className={NavBarCSS.noBullets}>
+                {pages.map((page, index) => (
+                    <li className={NavBarCSS.navBarItem} key={index}>
+                        <Link href={page.link}>
+                            <p>{page.name}</p>
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+            <PixelSwitch />
+        </nav>
     );
 }

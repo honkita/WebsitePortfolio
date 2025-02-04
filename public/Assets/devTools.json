@@ -1,5 +1,5 @@
 [
-  { "name": "Adobe Experience Manager", "url": "./images/DevTools/AEM.svg" },
+  { "name": "AEM", "url": "./images/DevTools/AEM.svg" },
   {
     "name": "Cloudflare Workers",
     "url": "./images/DevTools/CloudflareWorkers.svg"

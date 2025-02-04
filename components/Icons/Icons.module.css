@@ -32,8 +32,16 @@
 }
 
 .grid {
-  display: grid;
+  /* display: flex;
+  flex-direction: row;
   grid-template-columns: repeat(calc(70vw / 4.5rem), minmax(0, 1fr));
+  grid-template-rows: repeat(1fr auto auto);
+  grid-column-gap: 4vw;
+  grid-row-gap: 1rem;
+  vertical-align: top; */
+
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
   grid-column-gap: 4vw;
   grid-row-gap: 0vw;
   vertical-align: top;
@@ -46,8 +54,7 @@
 @media (max-width: 48rem) {
   .grid {
     display: grid;
-    margin: auto;
-    grid-template-columns: repeat(calc(100vw / 4.5rem), minmax(0, 1fr));
+    grid-template-columns: repeat(calc(100% / 4.5em), minmax(0, 1fr));
     grid-column-gap: 3vw;
     grid-row-gap: 0vw;
     vertical-align: top;
@@ -66,7 +73,7 @@
     position: absolute;
     top: 100%;
     z-index: 10;
-
+    white-space: nowrap;
     background-color: var(--primary-dark);
   }
 }
