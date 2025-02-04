@@ -201,11 +201,6 @@
     align-items: center;
   }
 
-  .transformer {
-    display: flex;
-    flex-direction: column;
-  }
-
   .container {
     min-height: 0vh;
     max-width: 100vw;
@@ -274,6 +269,9 @@
     display: inline-flex;
     flex-direction: column;
     padding-bottom: 2rem;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
   }
 
   .table {

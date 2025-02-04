@@ -50,7 +50,7 @@ export default function AboutMe() {
                     ))}
                 </div>
 
-                <section className={utilStyles.headingXl}>
+                {/* <section className={utilStyles.headingXl}>
                     <p>Education</p>
                 </section>
                 <div className={styles.locationGrid}>
@@ -64,7 +64,7 @@ export default function AboutMe() {
                         schoolLocation="Newmarket, Ontario"
                         GPA={4.0}
                     />
-                </div>
+                </div> */}
             </div>
             <div
                 className={`${utilStyles.headingXl} ${styles.paddingTopBottom}`}

@@ -41,8 +41,9 @@
   vertical-align: top; */
 
   display: grid;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-  grid-column-gap: 4vw;
+  grid-template-columns: repeat(auto-fill, minmax(4.5em, 1fr));
+  grid-template-rows: repeat(1fr auto auto);
+  grid-column-gap: 2vw;
   grid-row-gap: 0vw;
   vertical-align: top;
 }
@@ -53,8 +54,9 @@
 
 @media (max-width: 48rem) {
   .grid {
-    display: grid;
-    grid-template-columns: repeat(calc(100% / 4.5em), minmax(0, 1fr));
+    display: grid !important;
+    margin: auto;
+    grid-template-columns: repeat(4, minmax(4.5em, 1fr));
     grid-column-gap: 3vw;
     grid-row-gap: 0vw;
     vertical-align: top;
