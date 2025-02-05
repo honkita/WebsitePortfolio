@@ -1,10 +1,21 @@
+.navBarColour {
+  background-color: var(--background);
+}
+
 .navBarItem {
   float: left;
   width: fit-content;
+  transition: opacity 200ms;
 }
 
 .noBullets {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+@media not (hover: none) {
+  .navBarItem:hover {
+    filter: brightness(75%);
+  }
 }

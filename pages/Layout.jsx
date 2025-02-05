@@ -8,7 +8,7 @@ import styles from "../styles/Home.module.css";
 
 export default function Layout({ children }) {
     return (
-        <div>
+        <div className={styles.containerColour}>
             <Nav />
             <main>{children}</main>
             <section className={styles.container}>

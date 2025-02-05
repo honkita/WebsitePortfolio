@@ -27,7 +27,6 @@
 
 .colour {
   fill: transparent;
-  stroke: var(--secondary);
   background-color: var(--primary-bright);
 }
 

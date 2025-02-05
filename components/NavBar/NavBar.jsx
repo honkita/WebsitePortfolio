@@ -25,7 +25,7 @@ export default function NavBar() {
     ];
 
     return (
-        <nav>
+        <nav className={NavBarCSS.navBarColour}>
             <ul className={NavBarCSS.noBullets}>
                 {pages.map((page, index) => (
                     <li className={NavBarCSS.navBarItem} key={index}>
