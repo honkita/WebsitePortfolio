@@ -2,16 +2,19 @@
   {
     "jobName": "Frontend Developer Intern",
     "employerName": "OLG",
-    "linkedin": "https://www.linkedin.com/company/olg/"
+    "linkedin": "https://www.linkedin.com/company/olg/",
+    "logo": "./images/Jobs/OLG.svg"
   },
   {
     "jobName": "Software Developer Intern",
     "employerName": "CIBC",
-    "linkedin": "https://www.linkedin.com/company/cibc/"
+    "linkedin": "https://www.linkedin.com/company/cibc/",
+    "logo": "./images/Jobs/CIBC.svg"
   },
   {
     "jobName": "Software Developer Intern",
     "employerName": "Practice Perfect EMR",
-    "linkedin": "https://www.linkedin.com/company/practice-perfect-emr-management-software/"
+    "linkedin": "https://www.linkedin.com/company/practice-perfect-emr-management-software/",
+    "logo": "./images/Jobs/PracticePerfect.svg"
   }
 ]

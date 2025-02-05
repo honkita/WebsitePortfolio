@@ -39,12 +39,16 @@ export default function ResumeJobs(props) {
             <div
                 className={`${ResumeJobsCSS.ResumeBacker} ${utilStyles.imageRendering} ${background()}`}
             >
-                <section className={ResumeJobsCSS.employerName}>
-                    <p>{props.employerName}</p>
-                </section>
+                <img
+                    id={props.jobName}
+                    src={props.logo}
+                    alt={props.employerName + " image "}
+                    className={`${ResumeJobsCSS.logo} ${ResumeJobsCSS.buttonRendering}`}
+                />
                 <section className={ResumeJobsCSS.jobName}>
                     <p>{props.jobName}</p>
                 </section>
+
                 <div className={ResumeJobsCSS.buttonPlacement}>
                     <PixelButton name="LinkedIn" url={props.linkedin} />
                 </div>

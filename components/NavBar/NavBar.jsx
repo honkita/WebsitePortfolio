@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 
 // Child Components
@@ -9,6 +10,7 @@ import NavBarCSS from "./NavBar.module.css";
 
 export default function NavBar() {
     const [mounted, setMounted] = useState(false);
+    const { resolvedTheme } = useTheme();
 
     // useEffect only runs on the client, so now we can safely show the UI
     useEffect(() => {
@@ -19,20 +21,44 @@ export default function NavBar() {
         return null;
     }
 
+    const path = "./images/NavBar/";
+
     const pages = [
-        { name: "Home", link: "/" },
-        { name: "About Me", link: "/aboutme" },
+        { name: "Home", link: "/", file: "Home" },
+        { name: "About Me", link: "/aboutme", file: "AboutMe" },
     ];
 
+    function getButton(name, light) {
+        if (light) return path + "Pixel_" + name + ".svg";
+        return path + "Pixel_" + name + "_Dark.svg";
+    }
+
     return (
-        <nav className={NavBarCSS.navBarColour}>
+        <nav className={NavBarCSS.navBar}>
             <ul className={NavBarCSS.noBullets}>
                 {pages.map((page, index) => (
-                    <li className={NavBarCSS.navBarItem} key={index}>
-                        <Link href={page.link}>
-                            <p>{page.name}</p>
-                        </Link>
-                    </li>
+                    <Link href={page.link} key={index}>
+                        <button
+                            className={`${NavBarCSS.buttonRendering} ${NavBarCSS.button}`}
+                            aria-label={page.name}
+                            alt={"Go to " + page.name}
+                            type="button"
+                            tabIndex={-1}
+                        >
+                            <img
+                                id="Icon"
+                                key={page.name}
+                                src={
+                                    resolvedTheme === "light"
+                                        ? getButton(page.file, true)
+                                        : getButton(page.file, false)
+                                }
+                                title={page.name}
+                                aria-hidden={true}
+                                tabIndex={-1}
+                            />
+                        </button>
+                    </Link>
                 ))}
             </ul>
             <PixelSwitch />

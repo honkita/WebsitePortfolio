@@ -1,6 +1,8 @@
 .ResumeBacker {
-  width: 45vw;
+  width: 40vw;
   height: 20vw;
+  min-width: 20rem;
+  min-height: 10rem;
 }
 
 .buttonPlacement {
@@ -12,17 +14,34 @@
   margin-bottom: 0.5vw;
 }
 
+.buttonRendering {
+  border: None;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.logo {
+  width: 16vw;
+  height: 16vw;
+  min-width: 8rem;
+  min-height: 8rem;
+  position: absolute;
+  bottom: 5%;
+  top: 5%;
+}
+
 .jobName {
   position: absolute;
   text-align: left;
   font-size: 2vw;
   line-height: 1;
   font-weight: bold;
-  margin-left: 0.5vw;
   align-items: center;
   width: 20vw;
   word-wrap: break-word;
-  bottom: 0;
+  left: 45%;
+  top: 0%;
 }
 
 .employerName {
@@ -35,10 +54,10 @@
   margin-top: 0.5vw;
 }
 
-@media (max-width: 64rem) and (min-width: 48rem) {
+@media (max-width: 64rem) {
   .ResumeBacker {
     width: 80vw;
-    height: 20vh;
+    height: 25vw;
     padding: 0;
     background-color: transparent;
     background-repeat: no-repeat;
@@ -49,21 +68,29 @@
     image-rendering: pixelated;
     align-items: left;
   }
+
+  .logo {
+    width: 20vw;
+    height: 20vw;
+    position: absolute;
+    bottom: 5%;
+    top: 5%;
+  }
+
+  .jobName {
+    text-align: left;
+    font-size: 1.5rem;
+    line-height: 1;
+    width: 50vw;
+    font-weight: bold;
+    margin-left: 1rem;
+    position: absolute;
+    left: 25%;
+    top: 5%;
+  }
 }
 
 @media (max-width: 48rem) {
-  .ResumeBacker {
-    width: 80vw;
-    height: 30vw;
-  }
-
-  .buttonPlacement {
-    display: absolute;
-    right: 0%;
-    top: 50%;
-    transform: translate(0%, -50%);
-  }
-
   .jobName {
     text-align: left;
     font-size: 4vw;
@@ -71,13 +98,8 @@
     width: 50vw;
     font-weight: bold;
     margin-left: 1rem;
-  }
-
-  .employerName {
-    text-align: left;
-    font-size: 5vw;
-    line-height: 1;
-    font-weight: bold;
+    left: 30vw;
+    top: 5%;
   }
 }
 

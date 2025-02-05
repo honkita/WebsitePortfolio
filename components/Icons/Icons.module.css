@@ -1,6 +1,6 @@
 .logoButtonSmall {
-  width: 4.5em;
-  height: 4.5em;
+  width: 4.5rem;
+  height: 4.5rem;
 }
 
 .logoButtonSmall > img {
@@ -30,14 +30,6 @@
 }
 
 .grid {
-  /* display: flex;
-  flex-direction: row;
-  grid-template-columns: repeat(calc(70vw / 4.5rem), minmax(0, 1fr));
-  grid-template-rows: repeat(1fr auto auto);
-  grid-column-gap: 4vw;
-  grid-row-gap: 1rem;
-  vertical-align: top; */
-
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(4.5em, 1fr));
   grid-template-rows: repeat(1fr auto auto);
@@ -74,6 +66,6 @@
     top: 100%;
     z-index: 10;
     white-space: nowrap;
-    background-color: var(--primary-dark);
+    background-color: var(--background);
   }
 }

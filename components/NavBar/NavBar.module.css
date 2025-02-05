@@ -1,11 +1,29 @@
-.navBarColour {
-  background-color: var(--background);
+.button {
+  width: 4rem;
+  height: 4rem;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
 }
 
-.navBarItem {
-  float: left;
-  width: fit-content;
-  transition: opacity 200ms;
+.button > img {
+  width: 100%;
+  image-rendering: pixelated;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+}
+
+.navBar {
+  background-color: var(--background);
+  display: flex;
+  align-self: flex-end;
+  justify-content: flex-end;
+  flex-direction: row;
+  margin-top: 0.5rem;
 }
 
 .noBullets {
@@ -14,8 +32,14 @@
   padding: 0;
 }
 
+.buttonRendering {
+  border: None;
+  background-color: transparent;
+  transition: all 0.2s;
+}
+
 @media not (hover: none) {
-  .navBarItem:hover {
+  .button:hover {
     filter: brightness(75%);
   }
 }

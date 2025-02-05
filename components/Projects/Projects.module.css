@@ -10,7 +10,7 @@
 .projectTitle {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -1rem;
   text-align: left;
   font-size: 2vw;
   line-height: 1;

@@ -22,7 +22,7 @@ export default function PixelSwitch() {
     };
 
     return (
-        <div className={PixelSwitchCSS.container}>
+        <div>
             <button
                 id="ThemeToggle"
                 className={

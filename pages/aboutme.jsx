@@ -46,6 +46,7 @@ export default function AboutMe() {
                             jobName={resumeJob.jobName}
                             employerName={resumeJob.employerName}
                             linkedin={resumeJob.linkedin}
+                            logo={resumeJob.logo}
                         />
                     ))}
                 </div>
