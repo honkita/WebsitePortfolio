@@ -67,16 +67,16 @@ export default function AboutMe() {
                     />
                 </div> */}
             </div>
-            <div
+            <section
                 className={`${utilStyles.headingXl} ${styles.paddingTopBottom}`}
             >
                 Technologies
-            </div>
+            </section>
             <table className={styles.table}>
                 <tbody>
                     <tr className={styles.tableRow}>
                         <td
-                            className={`${styles.tableItem} ${utilStyles.headingMd} ${styles.paddingRight}`}
+                            className={`${styles.tableItem} ${utilStyles.headingSm} ${styles.paddingRight}`}
                         >
                             Languages
                         </td>
@@ -86,7 +86,7 @@ export default function AboutMe() {
                     </tr>
                     <tr className={styles.tableRow}>
                         <td
-                            className={`${styles.tableItem} ${utilStyles.headingMd} ${styles.paddingRight}`}
+                            className={`${styles.tableItem} ${utilStyles.headingSm} ${styles.paddingRight}`}
                         >
                             Frameworks, APIs, and Libraries
                         </td>
@@ -96,7 +96,7 @@ export default function AboutMe() {
                     </tr>
                     <tr className={styles.tableRow}>
                         <td
-                            className={`${styles.tableItem} ${utilStyles.headingMd} ${styles.paddingRight}`}
+                            className={`${styles.tableItem} ${utilStyles.headingSm} ${styles.paddingRight}`}
                         >
                             Developer Platforms and Tools
                         </td>

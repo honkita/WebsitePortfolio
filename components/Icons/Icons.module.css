@@ -1,6 +1,8 @@
 .logoButtonSmall {
-  width: 4.5rem;
-  height: 4.5rem;
+  min-width: 4.5rem;
+  min-height: 4.5rem;
+  width: 4.5vw;
+  height: 4.5vw;
 }
 
 .logoButtonSmall > img {
@@ -31,15 +33,21 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(4.5em, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(4.5vw, 1fr));
   grid-template-rows: repeat(1fr auto auto);
-  grid-column-gap: 3;
+  grid-column-gap: 2vw;
   grid-row-gap: 0vw;
   vertical-align: top;
 }
 
 .hide {
   display: none;
+}
+
+.logoText {
+  text-align: center;
+  font-size: calc(0.5rem + 1vw);
+  line-height: 1.5;
 }
 
 @media (max-width: 48rem) {

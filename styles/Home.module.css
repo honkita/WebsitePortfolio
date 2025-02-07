@@ -21,7 +21,7 @@
 }
 
 .paddingTopBottom {
-  padding-top: 12rem;
+  padding-top: 3rem;
   padding-bottom: 1rem;
 }
 
@@ -130,13 +130,6 @@
     color 0.15s ease,
     border-color 0.15s ease;
 }
-
-/* .card:hover,
-.card:focus,
-.card:active {
-  color: var(--secondary);
-  border-color: var(--secondary);
-} */
 
 .card h3 {
   margin: 0 0 1rem 0;

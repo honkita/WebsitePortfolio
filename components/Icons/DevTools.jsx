@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 // CSS
 import IconsCSS from "./Icons.module.css";
+import utilStyles from "../../styles/theme.util.module.css";
 
 // JSONs
 import devTools from "../../public/Assets/devTools.json";
@@ -34,7 +35,9 @@ export default function DevTools() {
                             alt={devTool.name + " image "}
                         />
                     </button>
-                    <div className={IconsCSS.hide}>{devTool.name}</div>
+                    <div className={`${IconsCSS.hide} ${IconsCSS.logoText}`}>
+                        {devTool.name}
+                    </div>
                 </div>
             ))}
         </div>

@@ -37,7 +37,9 @@ export default function Frameworks() {
                             alt={frameworks.name + " image"}
                         />
                     </button>
-                    <div className={IconsCSS.hide}>{frameworks.name}</div>
+                    <div className={`${IconsCSS.hide} ${IconsCSS.logoText}`}>
+                        {frameworks.name}
+                    </div>
                 </div>
             ))}
         </div>
