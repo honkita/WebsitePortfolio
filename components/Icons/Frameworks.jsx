@@ -27,7 +27,7 @@ export default function Frameworks() {
             {frameworksJSON.map((frameworks, index) => (
                 <div className={IconsCSS.under} key={index}>
                     <button
-                        className={`${IconsCSS.logoButtonSmall} ${IconsCSS.buttonRendering}`}
+                        className={`${IconsCSS.logoButton} ${IconsCSS.buttonRendering}`}
                         title={frameworks.name}
                         tabIndex="-1"
                     >

@@ -1,11 +1,11 @@
-.logoButtonSmall {
+.logoButton {
   min-width: 4.5rem;
   min-height: 4.5rem;
   width: 4.5vw;
   height: 4.5vw;
 }
 
-.logoButtonSmall > img {
+.logoButton > img {
   width: 100%;
   image-rendering: pixelated;
   position: absolute;
@@ -52,12 +52,10 @@
 
 @media (max-width: 48rem) {
   .grid {
-    display: grid !important;
     margin: auto;
     grid-template-columns: repeat(4, minmax(3em, 1fr));
     grid-column-gap: 10vw;
     grid-row-gap: 0vw;
-    vertical-align: top;
   }
 }
 

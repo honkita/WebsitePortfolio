@@ -23,7 +23,7 @@ export default function LanguageDexMobile() {
             {languagesJSON.map((language, index) => (
                 <div className={IconsCSS.under} key={index}>
                     <button
-                        className={`${IconsCSS.logoButtonSmall} ${IconsCSS.buttonRendering}`}
+                        className={`${IconsCSS.logoButton} ${IconsCSS.buttonRendering}`}
                         title={language.name}
                         tabIndex="-1"
                     >
