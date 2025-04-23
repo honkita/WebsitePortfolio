@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import IconsCSS from "./Icons.module.css";
 
 // JSONs
-import devTools from "/public/Assets/devTools.json";
+import devTools from "@assets/devTools.json";
 
 export default function DevTools() {
     const [mounted, setMounted] = useState(false);

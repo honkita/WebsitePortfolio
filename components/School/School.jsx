@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
 // CSS
-import utilStyles from "../../styles/theme.util.module.css";
+import utilStyles from "@styles/theme.util.module.css";
 import SchoolCSS from "./School.module.css";
 import "react-circular-progressbar/dist/styles.css";
 
@@ -19,8 +19,6 @@ export default function School(props) {
     if (!mounted) {
         return null;
     }
-
-    let src;
 
     function background() {
         if (resolvedTheme === "light") {

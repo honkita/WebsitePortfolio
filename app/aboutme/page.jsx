@@ -14,7 +14,7 @@ import styles from "@app/ui/home.module.css";
 import utilStyles from "@app/ui/theme.util.module.css";
 
 // JSONs
-import resumeJobs from "/public/Assets/resumeJobs.json";
+import resumeJobs from "@assets/resumeJobs.json";
 
 export default function AboutMe() {
     var resumeJobsJSON = JSON.parse(JSON.stringify(resumeJobs));

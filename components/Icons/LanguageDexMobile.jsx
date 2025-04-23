@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import IconsCSS from "./Icons.module.css";
 
 // JSONs
-import languages from "../../public/Assets/languages.json";
+import languages from "@assets/languages.json";
 
 export default function LanguageDexMobile() {
     const [mounted, setMounted] = useState(false);

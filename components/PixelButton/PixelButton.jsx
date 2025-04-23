@@ -8,7 +8,7 @@ import Link from "next/link";
 import PixelButtonCSS from "./PixelButton.module.css";
 
 // JSONs
-import PixelButtons from "../../public/Assets/PixelButtons.json";
+import PixelButtons from "@assets/PixelButtons.json";
 
 export default function PixelButton(props) {
     const [mounted, setMounted] = useState(false);

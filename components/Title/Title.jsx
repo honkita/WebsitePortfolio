@@ -1,9 +1,14 @@
 "use client";
 
-import PixelButton from "../PixelButton/PixelButton";
-import utilStyles from "../../styles/theme.util.module.css";
-import { returnURL } from "../../hooks/MainButtons";
+// Child Components
+import PixelButton from "@components/PixelButton/PixelButton";
+
+// CSS
+import utilStyles from "@styles/theme.util.module.css";
 import TitleCSS from "./Title.module.css";
+
+// Hooks
+import { returnURL } from "@hooks/MainButtons";
 
 /**
  *

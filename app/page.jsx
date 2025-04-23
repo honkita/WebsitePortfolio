@@ -11,8 +11,8 @@ import styles from "@app/ui/home.module.css";
 import utilStyles from "@app/ui/theme.util.module.css";
 
 //JSONs
-import ImagesForCarousel from "/public/Assets/homeCarousel.json";
-import CodedProjects from "/public/Assets/projects.json";
+import ImagesForCarousel from "@assets/homeCarousel.json";
+import CodedProjects from "@assets/projects.json";
 
 export default function Home() {
     const name = "Elite Lu Portfolio";
