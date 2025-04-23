@@ -66,9 +66,8 @@ circle:nth-child(1) {
 
 @font-face {
   font-family: "Pixelify_Sans";
-  src:
-    local("Pixelify_Sans"),
-    url("../public/Pixelify_Sans/static/PixelifySans-Regular.ttf")
+  src: local("Pixelify_Sans"),
+    url("../../public/Pixelify_Sans/static/PixelifySans-Regular.ttf")
       format("truetype");
 }
 

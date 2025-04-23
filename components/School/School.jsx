@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
@@ -37,7 +39,9 @@ export default function School(props) {
 
     return (
         <div
-            className={`${SchoolCSS.EducationBacker} ${utilStyles.imageRendering} ${background()}`}
+            className={`${SchoolCSS.EducationBacker} ${
+                utilStyles.imageRendering
+            } ${background()}`}
         >
             <h1 className={SchoolCSS.schoolName}>
                 <p>{props.schoolName}</p>
@@ -64,7 +68,9 @@ export default function School(props) {
                     style={{
                         strokeWidth: `${r / 8}`,
                         strokeDasharray: `${p} ${circumference}`,
-                        transform: `rotate(${angle - 90}deg ${cx / 2} ${cy / 2})`,
+                        transform: `rotate(${angle - 90}deg ${cx / 2} ${
+                            cy / 2
+                        })`,
                     }}
                 />
             </svg>

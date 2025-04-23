@@ -1,26 +1,26 @@
+"use client";
+
 import Head from "next/head";
-import Layout from "./Layout";
 
 // Child Components
-import Title from "../components/Title/Title";
-import DevTools from "../components/Icons/DevTools";
-import ResumeJobs from "../components/ResumeJobs/ResumeJobs";
-import School from "../components/School/School";
-import LanguageDexMobile from "../components/Icons/LanguageDexMobile";
-import Frameworks from "../components/Icons/Frameworks";
+import Title from "@components/Title/Title";
+import DevTools from "@components/Icons/DevTools";
+import ResumeJobs from "@components/ResumeJobs/ResumeJobs";
+import LanguageDexMobile from "@components/Icons/LanguageDexMobile";
+import Frameworks from "@components/Icons/Frameworks";
 
 // CSS
-import styles from "../styles/Home.module.css";
-import utilStyles from "../styles/theme.util.module.css";
+import styles from "@app/ui/home.module.css";
+import utilStyles from "@app/ui/theme.util.module.css";
 
 // JSONs
-import resumeJobs from "../public/Assets/resumeJobs.json";
+import resumeJobs from "/public/Assets/resumeJobs.json";
 
 export default function AboutMe() {
     var resumeJobsJSON = JSON.parse(JSON.stringify(resumeJobs));
 
     return (
-        <Layout children>
+        <div>
             <section>
                 <Head>
                     <title>About Me</title>
@@ -106,6 +106,6 @@ export default function AboutMe() {
                     </tr>
                 </tbody>
             </table>
-        </Layout>
+        </div>
     );
 }

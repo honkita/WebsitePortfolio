@@ -1,11 +1,12 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 
 // CSS
 import IconsCSS from "./Icons.module.css";
-import utilStyles from "../../styles/theme.util.module.css";
 
 // JSONs
-import devTools from "../../public/Assets/devTools.json";
+import devTools from "/public/Assets/devTools.json";
 
 export default function DevTools() {
     const [mounted, setMounted] = useState(false);

@@ -21,3 +21,13 @@
   position: relative;
   transform: scale(1.25);
 }
+
+.title {
+  text-align: center;
+  font-size: 15vw;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.05rem;
+  margin-top: 15%;
+  color: #f5f5f5;
+}

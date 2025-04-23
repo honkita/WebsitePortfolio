@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
@@ -37,7 +39,9 @@ export default function ResumeJobs(props) {
     return (
         <div>
             <div
-                className={`${ResumeJobsCSS.ResumeBacker} ${utilStyles.imageRendering} ${background()}`}
+                className={`${ResumeJobsCSS.ResumeBacker} ${
+                    utilStyles.imageRendering
+                } ${background()}`}
             >
                 <img
                     id={props.jobName}

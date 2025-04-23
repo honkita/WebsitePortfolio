@@ -25,35 +25,7 @@
   padding-bottom: 1rem;
 }
 
-.sliderButtons {
-  fill: white;
-  color: white;
-  all: unset;
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  padding: 2rem;
-  cursor: pointer;
-  background-color: rgba(139, 139, 139, 0.6);
-  transition: all 0.2s;
-}
-
-.sliderButtons:hover {
-  filter: brightness(75%);
-  z-index: 100;
-}
-
-.containerLanguageDex {
-  position: absolute;
-  left: 21rem;
-  top: 7rem;
-  align-items: "center";
-  justify-content: center;
-  vertical-align: bottom;
-}
-
-.transformer {
+/* .transformer {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -66,7 +38,7 @@
   align-items: "center";
   justify-content: center;
   vertical-align: bottom;
-}
+} */
 
 .title a {
   color: var(--secondary);
@@ -126,9 +98,7 @@
   text-decoration: none;
   border: 1px solid var(--primary-dark);
   border-radius: 10px;
-  transition:
-    color 0.15s ease,
-    border-color 0.15s ease;
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .card h3 {

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
@@ -10,7 +12,7 @@ import PixelSwitchCSS from "./PixelSwitch.module.css";
  */
 export default function PixelSwitch() {
     const [mounted, setMounted] = useState(false);
-    const { resolvedTheme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme("light");
 
     // useEffect only runs on the client, so now we can safely show the UI
     useEffect(() => {

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
@@ -34,7 +36,11 @@ export default function PixelButton(props) {
     return (
         <Link href={props.url} target={getValue().target}>
             <button
-                className={`${PixelButtonCSS.buttonRendering} ${props.extra != true ? PixelButtonCSS.button : PixelButtonCSS.titleButtons}`}
+                className={`${PixelButtonCSS.buttonRendering} ${
+                    props.extra != true
+                        ? PixelButtonCSS.button
+                        : PixelButtonCSS.titleButtons
+                }`}
                 aria-label={name}
                 alt={"Go to " + name}
                 type="button"

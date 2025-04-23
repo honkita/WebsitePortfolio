@@ -1,3 +1,5 @@
+"use client";
+
 import PixelButton from "../PixelButton/PixelButton";
 import utilStyles from "../../styles/theme.util.module.css";
 import { returnURL } from "../../hooks/MainButtons";
@@ -34,17 +36,15 @@ export default function Title(props) {
         }
     }
 
+    // ${utilStyles.fadeInAnimation}
+
     return (
         <section
             className={`${TitleCSS.namePlate} ${background()} ${
                 utilStyles.imageRendering
             }`}
         >
-            <h1
-                className={`${utilStyles.heading2Xl2} ${utilStyles.fadeInAnimation}`}
-            >
-                {props.name}
-            </h1>
+            <h1 className={`${TitleCSS.title} `}>{props.name}</h1>
             <section className={TitleCSS.containerButtons}>{itemList}</section>
         </section>
     );

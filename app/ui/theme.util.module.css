@@ -1,15 +1,32 @@
-.lightBorder {
-  border: 1vw solid var(--secondary) !important;
-  background: #dcdcdc;
-  border-radius: 0.25rem;
-  margin: 1rem;
+.headingXl {
+  text-align: center;
+  font-size: calc(1rem + 4vw);
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: -0.05rem;
+  margin: 1rem 3rem;
 }
 
-.darkBorder {
-  border: 0.5rem solid var(--secondary) !important;
-  background: #282828;
-  border-radius: 0.25rem;
-  margin: 1rem;
+.headingMd {
+  text-align: center;
+  font-size: calc(1rem + 2vw);
+  line-height: 1.5;
+}
+
+.headingSm {
+  text-align: center;
+  font-size: calc(1rem + 1vw);
+  line-height: 1.5;
+}
+
+.colorInherit {
+  color: inherit;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .fadeInAnimation {
