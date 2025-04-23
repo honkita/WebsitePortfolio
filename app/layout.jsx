@@ -7,8 +7,8 @@ import Nav from "@components/NavBar/NavBar";
 import { ThemeProvider } from "next-themes";
 
 // CSS
-import styles from "./ui/home.module.css";
-import utilStyles from "./ui/theme.util.module.css";
+import styles from "@app/ui/home.module.css";
+import utilStyles from "@app/ui/theme.util.module.css";
 import "@app/ui/globals.css";
 import "@app/ui/variables.css";
 
