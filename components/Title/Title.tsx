@@ -11,15 +11,16 @@ import TitleCSS from "./Title.module.css";
 import { returnURL } from "@hooks/MainButtons";
 
 /**
- *
- * @param {object} props
- * @param {string} props.name Main title
- * @param {string} props.colour Colour of background for page
- * @param {[string]} props.buttons Buttons used for the page
- * @returns
+ * Props Interface
  */
-export default function Title(props) {
-    let itemList = props.buttons.map((item, index) => {
+interface TitleProps {
+    colour: string;
+    buttons: [string];
+    name: string;
+}
+
+export default function Title(props: TitleProps) {
+    let itemList = props.buttons.map((item, index: number) => {
         return (
             <PixelButton
                 key={index}

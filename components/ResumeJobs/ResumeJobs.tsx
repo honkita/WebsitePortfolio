@@ -11,13 +11,16 @@ import utilStyles from "@styles/theme.util.module.css";
 import ResumeJobsCSS from "./ResumeJobs.module.css";
 
 /**
- *
- * @param {object} props
- * @param {string} props.employerName Name of employer
- * @param {string} props.jobName Name of position
- * @returns
+ * Props Interface
  */
-export default function ResumeJobs(props) {
+interface ResumeJobsProps {
+    employerName: string;
+    jobName: string;
+    linkedin: string;
+    logo: string;
+}
+
+export default function ResumeJobs(props: ResumeJobsProps) {
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();
 

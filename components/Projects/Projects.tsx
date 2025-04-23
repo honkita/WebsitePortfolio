@@ -11,14 +11,15 @@ import utilStyles from "@styles/theme.util.module.css";
 import ProjectsCSS from "./Projects.module.css";
 
 /**
- *
- * @param {object} props
- * @param {string} props.name Project Name
- * @param {string} props.img Project thumbnail image
- * @param {string} props.url GitHub link to repository of project
- * @returns
+ * Props Interface
  */
-export default function Projects(props) {
+interface ProjectsProps {
+    name: string;
+    img: string;
+    url: boolean;
+}
+
+export default function Projects(props: ProjectsProps) {
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();
 

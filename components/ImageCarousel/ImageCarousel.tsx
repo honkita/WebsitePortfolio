@@ -6,11 +6,13 @@ import React, { useState } from "react";
 import ImageCarouselCSS from "./ImageCarousel.module.css";
 
 /**
- * @param {object} props
- * @param {JSONString} props.images
- * @returns
+ * Props Interface
  */
-export default function ImageCarousel(props) {
+interface ImageCarouselProps {
+    images: string;
+}
+
+export default function ImageCarousel(props: ImageCarouselProps) {
     var imagesJSON = JSON.parse(JSON.stringify(props.images));
     const [index, setIndexValue] = useState(0);
 
@@ -26,7 +28,7 @@ export default function ImageCarousel(props) {
                         marginLeft: "auto",
                         marginRight: "auto",
                         alignItems: "center",
-                        objectFit: "cover",
+                        objectFit: "cover"
                     }}
                     alt={imagesJSON[index].image + " image"}
                 />
@@ -59,8 +61,8 @@ export default function ImageCarousel(props) {
                     &gt;
                 </button>
             </div>
-            <div className={ImageCarouselCSS.indicators}>
-                {imagesJSON.map((_, id) => {
+            {/* <div className={ImageCarouselCSS.indicators}>
+                {imagesJSON.map((_: number, id: number) => {
                     <button
                         key={id}
                         onClick={null}
@@ -70,7 +72,7 @@ export default function ImageCarousel(props) {
                         idk
                     </button>;
                 })}
-            </div>
+            </div> */}
         </div>
     );
 }

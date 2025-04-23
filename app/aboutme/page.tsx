@@ -3,11 +3,11 @@
 import Head from "next/head";
 
 // Child Components
-import Title from "@components/Title/Title";
 import DevTools from "@components/Icons/DevTools";
-import ResumeJobs from "@components/ResumeJobs/ResumeJobs";
-import LanguageDexMobile from "@components/Icons/LanguageDexMobile";
 import Frameworks from "@components/Icons/Frameworks";
+import LanguageDexMobile from "@components/Icons/LanguageDexMobile";
+import ResumeJobs from "@components/ResumeJobs/ResumeJobs";
+import Title from "@components/Title/Title";
 
 // CSS
 import styles from "@app/ui/home.module.css";
@@ -40,15 +40,25 @@ export default function AboutMe() {
                     <p>Previous Employment</p>
                 </section>
                 <div className={styles.locationGrid}>
-                    {resumeJobsJSON.map((resumeJob, index) => (
-                        <ResumeJobs
-                            key={index}
-                            jobName={resumeJob.jobName}
-                            employerName={resumeJob.employerName}
-                            linkedin={resumeJob.linkedin}
-                            logo={resumeJob.logo}
-                        />
-                    ))}
+                    {resumeJobsJSON.map(
+                        (
+                            resumeJob: {
+                                jobName: string;
+                                employerName: string;
+                                linkedin: string;
+                                logo: string;
+                            },
+                            index: number
+                        ) => (
+                            <ResumeJobs
+                                key={index}
+                                jobName={resumeJob.jobName}
+                                employerName={resumeJob.employerName}
+                                linkedin={resumeJob.linkedin}
+                                logo={resumeJob.logo}
+                            />
+                        )
+                    )}
                 </div>
 
                 {/* <section className={utilStyles.headingXl}>

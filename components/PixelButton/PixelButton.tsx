@@ -10,7 +10,16 @@ import PixelButtonCSS from "./PixelButton.module.css";
 // JSONs
 import PixelButtons from "@assets/PixelButtons.json";
 
-export default function PixelButton(props) {
+/**
+ * Props Interface
+ */
+interface PixelButtonProps {
+    name: string;
+    url: string;
+    extra: boolean;
+}
+
+export default function PixelButton(props: PixelButtonProps) {
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();
     const name = props.name;
@@ -41,8 +50,8 @@ export default function PixelButton(props) {
                         ? PixelButtonCSS.button
                         : PixelButtonCSS.titleButtons
                 }`}
-                aria-label={name}
-                alt={"Go to " + name}
+                title={name}
+                aria-label={"Go to " + name}
                 type="button"
                 tabIndex={-1}
             >
