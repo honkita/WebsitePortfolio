@@ -1,9 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-    i18n: {
-        locales: ["en"],
-        defaultLocale: "en",
-    },
+module.exports = {
+  // ... other config
+  // experimental: {
+  //   appDir: true,
+  // },
 };
-
-module.exports = nextConfig;

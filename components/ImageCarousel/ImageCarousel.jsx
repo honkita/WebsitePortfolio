@@ -1,7 +1,8 @@
+"use client";
+
 import React, { useState } from "react";
 
 // CSS
-import style from "../../styles/Home.module.css";
 import ImageCarouselCSS from "./ImageCarousel.module.css";
 
 /**
@@ -31,7 +32,7 @@ export default function ImageCarousel(props) {
                 />
                 <button
                     title="Prev"
-                    className={style.sliderButtons}
+                    className={ImageCarouselCSS.sliderButtons}
                     style={{ left: "0%" }}
                     onClick={() =>
                         setIndexValue(
@@ -45,7 +46,7 @@ export default function ImageCarousel(props) {
                 </button>
                 <button
                     title="Next"
-                    className={style.sliderButtons}
+                    className={ImageCarouselCSS.sliderButtons}
                     style={{ right: "0%" }}
                     onClick={() =>
                         setIndexValue(

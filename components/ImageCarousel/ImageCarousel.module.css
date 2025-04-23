@@ -12,3 +12,22 @@
   border: none;
   outline: none;
 }
+
+.sliderButtons {
+  fill: white;
+  color: white;
+  all: unset;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding: 2rem;
+  cursor: pointer;
+  background-color: rgba(139, 139, 139, 0.6);
+  transition: all 0.2s;
+}
+
+.sliderButtons:hover {
+  filter: brightness(75%);
+  z-index: 100;
+}

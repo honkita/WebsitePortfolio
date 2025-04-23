@@ -1,10 +1,12 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 
 // CSS
 import IconsCSS from "./Icons.module.css";
 
 // JSONs
-import frameworks from "../../public/Assets/frameworks.json";
+import frameworks from "@assets/frameworks.json";
 
 /**
  *

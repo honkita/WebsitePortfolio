@@ -1,11 +1,13 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
 // Child Components
-import PixelButton from "../PixelButton/PixelButton";
+import PixelButton from "@components/PixelButton/PixelButton";
 
 // CSS
-import utilStyles from "../../styles/theme.util.module.css";
+import utilStyles from "@styles/theme.util.module.css";
 import ProjectsCSS from "./Projects.module.css";
 
 /**
@@ -46,7 +48,9 @@ export default function Projects(props) {
     return (
         <div>
             <div
-                className={`${utilStyles.imageRendering} ${ProjectsCSS.projectsBacker} ${background()} `}
+                className={`${utilStyles.imageRendering} ${
+                    ProjectsCSS.projectsBacker
+                } ${background()} `}
             >
                 <section className={ProjectsCSS.projectTitle}>
                     <p>{props.name}</p>
