@@ -4,6 +4,10 @@ import { useTheme } from "next-themes";
 // CSS
 import PixelSwitchCSS from "./PixelSwitch.module.css";
 
+/**
+ *
+ * @returns
+ */
 export default function PixelSwitch() {
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme, setTheme } = useTheme();
