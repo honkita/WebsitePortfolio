@@ -1,5 +1,6 @@
 "use client";
 
+// JSONs
 import languages from "@assets/languages.json";
 
 var projectsJSON = JSON.parse(JSON.stringify(languages));
