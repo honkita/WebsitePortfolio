@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { ReactNode } from "react";
 
 // Child Components
 import Nav from "@components/NavBar/NavBar";
@@ -12,7 +12,15 @@ import utilStyles from "@app/ui/theme.util.module.css";
 import "@app/ui/globals.css";
 import "@app/ui/variables.css";
 
-export default function RootLayout({ children }) {
+/**
+ * Props Interface
+ */
+interface LayoutProps {
+    children?: ReactNode;
+    // any props that come into the component
+}
+
+export default function RootLayout({ children }: LayoutProps) {
     return (
         <html lang="en" suppressHydrationWarning={false}>
             <body>

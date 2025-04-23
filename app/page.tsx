@@ -3,8 +3,8 @@ import Head from "next/head";
 
 // Child Components
 import Projects from "@components/Projects/Projects";
-import ImageCarousel from "@components//ImageCarousel/ImageCarousel";
-import Title from "@components//Title/Title";
+import ImageCarousel from "@components/ImageCarousel/ImageCarousel";
+import Title from "@components/Title/Title";
 
 // CSS
 import styles from "@app/ui/home.module.css";
@@ -50,14 +50,19 @@ export default function Home() {
                 </section>
                 <ImageCarousel images={ImagesForCarousel} />
                 <div className={styles.jobGrid}>
-                    {projectsJSON.map((project, index) => (
-                        <Projects
-                            key={index}
-                            name={project.name}
-                            img={project.img}
-                            url={project.url}
-                        />
-                    ))}
+                    {projectsJSON.map(
+                        (
+                            project: { name: string; img: string; url: string },
+                            index: number
+                        ) => (
+                            <Projects
+                                key={index}
+                                name={project.name}
+                                img={project.img}
+                                url={project.url}
+                            />
+                        )
+                    )}
                 </div>
             </div>
         </div>

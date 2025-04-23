@@ -8,7 +8,16 @@ import utilStyles from "@styles/theme.util.module.css";
 import SchoolCSS from "./School.module.css";
 import "react-circular-progressbar/dist/styles.css";
 
-export default function School(props) {
+/**
+ * Props Interface
+ */
+interface SchoolProps {
+    GPA: number;
+    schoolLocation: string;
+    schoolName: string;
+}
+
+export default function School(props: SchoolProps) {
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();
 
@@ -68,7 +77,7 @@ export default function School(props) {
                         strokeDasharray: `${p} ${circumference}`,
                         transform: `rotate(${angle - 90}deg ${cx / 2} ${
                             cy / 2
-                        })`,
+                        })`
                     }}
                 />
             </svg>

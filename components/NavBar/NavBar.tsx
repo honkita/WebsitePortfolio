@@ -27,10 +27,10 @@ export default function NavBar() {
 
     const pages = [
         { name: "Home", link: "/", file: "Home" },
-        { name: "About Me", link: "/aboutme", file: "AboutMe" },
+        { name: "About Me", link: "/aboutme", file: "AboutMe" }
     ];
 
-    function getButton(name, light) {
+    function getButton(name: string, light: boolean) {
         if (light) return path + "Pixel_" + name + ".svg";
         return path + "Pixel_" + name + "_Dark.svg";
     }
@@ -42,8 +42,8 @@ export default function NavBar() {
                     <Link href={page.link} key={index}>
                         <button
                             className={`${NavBarCSS.buttonRendering} ${NavBarCSS.button}`}
-                            aria-label={page.name}
-                            alt={"Go to " + page.name}
+                            title={page.name}
+                            aria-label={"Go to " + page.name}
                             type="button"
                             tabIndex={-1}
                         >
