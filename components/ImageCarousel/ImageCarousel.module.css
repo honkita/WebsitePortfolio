@@ -1,3 +1,49 @@
+.carouselContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.sliderTrack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.activeSlide {
+  transform: translateX(0);
+}
+
+.prevSlide {
+  transform: translateX(-100%);
+}
+
+.nextSlide {
+  transform: translateX(100%);
+}
+
+.slideOutLeft {
+  transform: translateX(-100%);
+}
+
+.slideOutRight {
+  transform: translateX(100%);
+}
+
 .indicators {
   display: flex;
   position: absolute;
@@ -13,21 +59,68 @@
   outline: none;
 }
 
+.images {
+  width: 90vw;
+  height: 50vw;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  object-fit: cover;
+}
+
 .sliderButtons {
   fill: white;
   color: white;
   all: unset;
-  display: block;
+  display: flex;
   position: absolute;
-  top: 0;
-  bottom: 0;
+  font-size: calc(0.5rem + 2vw);
+  top: 50%;
   padding: 2rem;
   cursor: pointer;
-  background-color: rgba(139, 139, 139, 0.6);
-  transition: all 0.2s;
+  background-color: rgba(70, 69, 69, 0.6);
+  transition: 0.6s ease;
+  height: 5vw;
+  width: 5vw;
+  text-align: center;
+  transform: translate(0, -50%);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
 }
 
 .sliderButtons:hover {
   filter: brightness(75%);
   z-index: 100;
+}
+
+.slideLeft {
+  animation: slideLeft 0.5s ease-in-out;
+}
+
+.slideRight {
+  animation: slideRight 0.5s ease-in-out;
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

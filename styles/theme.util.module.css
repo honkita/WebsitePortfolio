@@ -1,5 +1,5 @@
 .lightBorder {
-  border: 1vw solid var(--secondary) !important;
+  border: 0.5rem solid var(--secondary) !important;
   background: #dcdcdc;
   border-radius: 0.25rem;
   margin: 1rem;
@@ -39,6 +39,7 @@
 }
 
 .pixelated {
+  shape-rendering: crispEdges;
   image-rendering: pixelated; /* CSS4 Proposed  */
   image-rendering: optimizeSpeed; /* Legal fallback */
   image-rendering: -moz-crisp-edges; /* Firefox        */

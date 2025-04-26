@@ -28,13 +28,11 @@ export default function RootLayout({ children }: LayoutProps) {
                     <div className={styles.containerColour}>
                         <Nav />
                         <main>{children}</main>
-                        <section className={styles.container}>
-                            <section
-                                className={utilStyles.headingSm}
-                                role="contentinfo"
-                            >
-                                Copyrights © {new Date().getFullYear()} Elite Lu
-                            </section>
+                        <section
+                            className={utilStyles.headingSm}
+                            role="contentinfo"
+                        >
+                            Copyrights © {new Date().getFullYear()} Elite Lu
                         </section>
                     </div>
                 </ThemeProvider>
