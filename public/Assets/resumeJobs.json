@@ -3,18 +3,38 @@
     "jobName": "Frontend Developer Intern",
     "employerName": "OLG",
     "linkedin": "https://www.linkedin.com/company/olg/",
-    "logo": "./images/Jobs/OLG.svg"
+    "logo": "./images/Jobs/OLG.svg",
+    "location": "North York, Ontario, Canada",
+    "info": [
+      "Focused on refactoring site from Vue 2 to Vue 3's Composable API",
+      "Developing the OLG.ca website with A11y, increasing site accessibility by 70%",
+      "Working alongside diﬀerent labs (teams) such as payment and accounts lab on diﬀerent parts of the site (health, playbreaks, etc.)"
+    ]
   },
   {
     "jobName": "Software Developer Intern",
     "employerName": "CIBC",
     "linkedin": "https://www.linkedin.com/company/cibc/",
-    "logo": "./images/Jobs/CIBC.svg"
+    "logo": "./images/Jobs/CIBC.svg",
+    "location": "Toronto, Ontario, Canada",
+    "info": [
+      "Part of the RMVV (Risk Management Vetting and Validation), DA (Deal Analyzer), and CDD (Climate Data Dashboard) teams",
+      "Focused on development of the diﬀerent applications by utilizing user stories",
+      "Created the documentation for the CDD Macros and for the DA Admin Application, which increased the usability of the macros by and hastened development by 80%",
+      "Leads the daily meetings as scrum master, thus fostering team support and facilitating agile development"
+    ]
   },
   {
     "jobName": "Software Developer Intern",
     "employerName": "Practice Perfect EMR",
     "linkedin": "https://www.linkedin.com/company/practice-perfect-emr-management-software/",
-    "logo": "./images/Jobs/PracticePerfect.svg"
+    "logo": "./images/Jobs/PracticePerfect.svg",
+    "location": "Concord, Ontario, Canada",
+    "info": [
+      "Designed an API tester that checks server health along with producing PDFs from APIS",
+      "Generated JSON files from server calls",
+      "Created a GUI for the application in Java for a better user experience",
+      "Decreased overall test duration and bug fix times by 50%"
+    ]
   }
 ]

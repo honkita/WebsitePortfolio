@@ -1,17 +1,102 @@
+/* Main container */
+.resumeContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Side panel styles */
+.sidePanel {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  width: 8vw;
+  height: 8vw;
+  min-width: 4rem;
+  min-height: 4rem;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
+  border: 0.25rem solid transparent;
+}
+
+.button > img {
+  width: 95%;
+  image-rendering: pixelated;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.activeJobButton {
+  border: 0.25rem solid var(--foreground) !important;
+  border-radius: 0.25rem;
+}
+
+.jobInfo {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+
+.jobTitle {
+  font-size: calc(1rem + 1.5vw);
+  margin: 0;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.employer {
+  font-size: calc(1rem + 1vw);
+  margin: 0;
+  opacity: 0.8;
+}
+
+.location {
+  font-size: calc(1rem + 0.7vw);
+  margin: 0;
+  opacity: 0.8;
+}
+
+.bullets {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px dashed var(--primary);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  margin-right: 0.75rem;
+}
+
+.bullet {
+  color: var(--foreground);
+  font-size: calc(1rem + 0.6vw);
+  margin-right: 0.5rem;
+}
+
 .ResumeBacker {
-  width: 40vw;
-  height: 20vw;
+  position: relative;
+  width: 80vw;
   min-width: 20rem;
-  min-height: 10rem;
+  min-height: 40rem;
 }
 
 .buttonPlacement {
   position: absolute;
-  right: 0%;
-  bottom: 0%;
+  right: 0;
+  top: 0;
   align-self: right;
-  margin-right: 0.5vw;
-  margin-bottom: 0.5vw;
+  margin-top: 1rem;
+  margin-right: 1rem;
 }
 
 .buttonRendering {
@@ -19,16 +104,6 @@
   background-color: transparent;
   transition: all 0.2s;
   position: relative;
-}
-
-.logo {
-  width: 16vw;
-  height: 16vw;
-  min-width: 8rem;
-  min-height: 8rem;
-  position: absolute;
-  bottom: 5%;
-  top: 5%;
 }
 
 .jobName {
@@ -41,7 +116,7 @@
   width: 20vw;
   word-wrap: break-word;
   left: 45%;
-  top: 0%;
+  top: -5%;
 }
 
 .employerName {
@@ -55,28 +130,6 @@
 }
 
 @media (max-width: 64rem) {
-  .ResumeBacker {
-    width: 80vw;
-    height: 25vw;
-    padding: 0;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    word-wrap: break-word;
-    background-size: cover;
-    transition: all 0.2s;
-    position: relative;
-    image-rendering: pixelated;
-    align-items: left;
-  }
-
-  .logo {
-    width: 20vw;
-    height: 20vw;
-    position: absolute;
-    bottom: 5%;
-    top: 5%;
-  }
-
   .jobName {
     text-align: left;
     font-size: 1.5rem;
@@ -91,6 +144,29 @@
 }
 
 @media (max-width: 48rem) {
+  /* Main container */
+  .resumeContainer {
+    flex-direction: column; /* Stack vertically */
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ResumeBacker {
+    width: 80vw;
+    min-height: 40rem;
+    background-color: var(--background);
+    justify-content: center;
+  }
+
+  .sidePanel {
+    flex-direction: row; /* Make logos horizontal */
+    flex-wrap: wrap; /* Allow multiple rows if needed */
+    justify-content: center; /* Center logos */
+    min-width: auto;
+    padding: 1rem 0;
+  }
+
   .jobName {
     text-align: left;
     font-size: 4vw;
@@ -104,7 +180,7 @@
 }
 
 @media not (hover: none) {
-  .ResumeBacker:hover {
+  .button:hover {
     transform: scale(1.1);
   }
 }

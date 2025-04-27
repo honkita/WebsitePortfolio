@@ -10,7 +10,7 @@
   --secondary-bright: #4800ff;
   --background: #fafafa;
   --background-secondary: #fafafa;
-  --foreground: #00ff00;
+  --foreground: #d57e04;
 }
 
 /*
@@ -25,6 +25,6 @@
   --secondary-bright: #ffea5f;
   --background: #282828;
   --background-secondary: #484848;
-  --foreground: #ff0000;
+  --foreground: #2d45e6;
   /* transition: background-color 0.3s ease, color 0.3s ease; */
 }

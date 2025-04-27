@@ -39,27 +39,7 @@ export default function AboutMe() {
                 <section className={utilStyles.headingXl}>
                     <p>Previous Employment</p>
                 </section>
-                <div className={styles.locationGrid}>
-                    {resumeJobsJSON.map(
-                        (
-                            resumeJob: {
-                                jobName: string;
-                                employerName: string;
-                                linkedin: string;
-                                logo: string;
-                            },
-                            index: number
-                        ) => (
-                            <ResumeJobs
-                                key={index}
-                                jobName={resumeJob.jobName}
-                                employerName={resumeJob.employerName}
-                                linkedin={resumeJob.linkedin}
-                                logo={resumeJob.logo}
-                            />
-                        )
-                    )}
-                </div>
+                <ResumeJobs />
 
                 {/* <section className={utilStyles.headingXl}>
                     <p>Education</p>
