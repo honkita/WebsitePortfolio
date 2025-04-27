@@ -67,6 +67,22 @@
   opacity: 0.8;
 }
 
+.bullets {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px dashed var(--primary);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  margin-right: 0.75rem;
+}
+
+.bullet {
+  color: var(--foreground);
+  font-size: calc(1rem + 0.6vw);
+  margin-right: 0.5rem;
+}
+
 .ResumeBacker {
   position: relative;
   width: 80vw;

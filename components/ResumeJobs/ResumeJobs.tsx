@@ -18,14 +18,34 @@ interface JobData {
     jobName: string;
     employerName: string;
     linkedin: string;
-    location: string;
     logo: string;
+    location: string;
+    info: string[];
 }
 
 export default function ResumeJobs() {
     const [mounted, setMounted] = useState(false);
     const [selectedJobIndex, setSelectedJobIndex] = useState(0);
     const { resolvedTheme } = useTheme();
+
+    function BulletList(points: string[]) {
+        return (
+            <ul
+                style={{
+                    listStyleType: "none",
+                    paddingLeft: 0,
+                    margin: "1rem 0"
+                }}
+            >
+                {points.map((point: string, index: number) => (
+                    <li key={index} className={ResumeJobsCSS.bullets}>
+                        <span className={ResumeJobsCSS.bullet}>•</span>
+                        {point}
+                    </li>
+                ))}
+            </ul>
+        );
+    }
 
     useEffect(() => {
         setMounted(true);
@@ -82,6 +102,7 @@ export default function ResumeJobs() {
                     <h3 className={ResumeJobsCSS.location}>
                         {selectedJob.location}
                     </h3>
+                    {BulletList(selectedJob.info)}
                     <div className={ResumeJobsCSS.buttonPlacement}>
                         <PixelButton
                             name="LinkedIn"
