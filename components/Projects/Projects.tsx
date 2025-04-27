@@ -32,13 +32,6 @@ export default function Projects(props: ProjectsProps) {
         return null;
     }
 
-    function background() {
-        if (resolvedTheme === "light") {
-            return `${utilStyles.lightBorder}`;
-        }
-        return `${utilStyles.darkBorder}`;
-    }
-
     function getImage() {
         if (props.img != "") {
             return "/images/Projects/" + props.img;
@@ -49,15 +42,13 @@ export default function Projects(props: ProjectsProps) {
     return (
         <div>
             <div
-                className={`${utilStyles.imageRendering} ${
-                    ProjectsCSS.projectsBacker
-                } ${background()} `}
+                className={`${utilStyles.imageRendering} ${ProjectsCSS.projectsBacker} ${utilStyles.border} `}
             >
                 <section className={ProjectsCSS.projectTitle}>
                     <p>{props.name}</p>
                 </section>
                 <img
-                    className={`${ProjectsCSS.projectsImage} ${background()}`}
+                    className={`${ProjectsCSS.projectsImage} ${utilStyles.border}`}
                     src={getImage()}
                 ></img>
                 <div className={ProjectsCSS.buttonPlacement}>

@@ -55,12 +55,6 @@ export default function ResumeJobs() {
         return null;
     }
 
-    const background = () => {
-        return resolvedTheme === "light"
-            ? utilStyles.lightBorder
-            : utilStyles.darkBorder;
-    };
-
     const handleJobSelect = (index: number) => {
         setSelectedJobIndex(index);
     };
@@ -91,7 +85,9 @@ export default function ResumeJobs() {
             </div>
 
             {/* Job Details Display */}
-            <div className={`${ResumeJobsCSS.ResumeBacker} ${background()}`}>
+            <div
+                className={`${ResumeJobsCSS.ResumeBacker} ${utilStyles.border}`}
+            >
                 <section className={ResumeJobsCSS.jobInfo}>
                     <h1 className={ResumeJobsCSS.jobTitle}>
                         {selectedJob.jobName}

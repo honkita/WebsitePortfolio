@@ -29,13 +29,6 @@ export default function School(props: SchoolProps) {
         return null;
     }
 
-    function background() {
-        if (resolvedTheme === "light") {
-            return `${utilStyles.lightBorder}`;
-        }
-        return `${utilStyles.darkBorder}`;
-    }
-
     const r = 50;
     const cx = r * 4;
     const cy = r * 4;
@@ -46,9 +39,7 @@ export default function School(props: SchoolProps) {
 
     return (
         <div
-            className={`${SchoolCSS.EducationBacker} ${
-                utilStyles.imageRendering
-            } ${background()}`}
+            className={`${SchoolCSS.EducationBacker} ${utilStyles.imageRendering} ${utilStyles.border}`}
         >
             <h1 className={SchoolCSS.schoolName}>
                 <p>{props.schoolName}</p>
