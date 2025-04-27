@@ -33,18 +33,20 @@ export default function AboutMe() {
                     colour="yellow"
                     buttons={["LinkedIn", "GitHub", "Email", "Download"]}
                 />
-            </div>
 
-            {/* <div className={styles.side}>
+                {/* <div className={styles.side}>
                     <section className={utilStyles.headingXl}></section>
                 </div> */}
-            <div className={divstyling.hr} style={{ marginTop: "5rem" }}></div>
-            <section className={utilStyles.headingXl}>
-                <p>Previous Employment</p>
-            </section>
-            <ResumeJobs />
+                <div
+                    className={divstyling.hr}
+                    style={{ marginTop: "5rem" }}
+                ></div>
+                <section className={utilStyles.headingXl}>
+                    <p>Previous Employment</p>
+                </section>
+                <ResumeJobs />
 
-            {/* <section className={utilStyles.headingXl}>
+                {/* <section className={utilStyles.headingXl}>
                     <p>Education</p>
                 </section>
                 <div className={styles.locationGrid}>
@@ -60,46 +62,50 @@ export default function AboutMe() {
                     />
                 </div> */}
 
-            <div className={divstyling.hr} style={{ marginTop: "5rem" }}></div>
-            <section
-                className={`${utilStyles.headingXl} ${styles.paddingTopBottom}`}
-            >
-                Technologies
-            </section>
-            <table className={styles.table}>
-                <tbody>
-                    <tr className={styles.tableRow}>
-                        <td
-                            className={`${styles.tableItem} ${utilStyles.headingSm} ${styles.paddingRight}`}
-                        >
-                            Languages
-                        </td>
-                        <td>
-                            <LanguageDexMobile />
-                        </td>
-                    </tr>
-                    <tr className={styles.tableRow}>
-                        <td
-                            className={`${styles.tableItem} ${utilStyles.headingSm} ${styles.paddingRight}`}
-                        >
-                            Frameworks, APIs, and Libraries
-                        </td>
-                        <td>
-                            <Frameworks />
-                        </td>
-                    </tr>
-                    <tr className={styles.tableRow}>
-                        <td
-                            className={`${styles.tableItem} ${utilStyles.headingSm} ${styles.paddingRight}`}
-                        >
-                            Developer Platforms and Tools
-                        </td>
-                        <td>
-                            <DevTools />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <div
+                    className={divstyling.hr}
+                    style={{ marginTop: "5rem" }}
+                ></div>
+                <section
+                    className={`${utilStyles.headingXl} ${styles.paddingTopBottom}`}
+                >
+                    Technologies
+                </section>
+                <table className={styles.table}>
+                    <tbody>
+                        <tr className={styles.tableRow}>
+                            <td
+                                className={`${styles.tableItem} ${utilStyles.headingSm} ${styles.paddingRight}`}
+                            >
+                                Languages
+                            </td>
+                            <td>
+                                <LanguageDexMobile />
+                            </td>
+                        </tr>
+                        <tr className={styles.tableRow}>
+                            <td
+                                className={`${styles.tableItem} ${utilStyles.headingSm} ${styles.paddingRight}`}
+                            >
+                                Frameworks, APIs, and Libraries
+                            </td>
+                            <td>
+                                <Frameworks />
+                            </td>
+                        </tr>
+                        <tr className={styles.tableRow}>
+                            <td
+                                className={`${styles.tableItem} ${utilStyles.headingSm} ${styles.paddingRight}`}
+                            >
+                                Developer Platforms and Tools
+                            </td>
+                            <td>
+                                <DevTools />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

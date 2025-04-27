@@ -92,14 +92,10 @@ export default function ResumeJobs() {
                     <h3 className={ResumeJobsCSS.location}>
                         {selectedJob.location}
                     </h3>
+
+                    <PixelButton name="LinkedIn" url={selectedJob.linkedin} />
                     <div className={divstyling.hr}></div>
                     {BulletList(selectedJob.info)}
-                    <div className={ResumeJobsCSS.buttonPlacement}>
-                        <PixelButton
-                            name="LinkedIn"
-                            url={selectedJob.linkedin}
-                        />
-                    </div>
                 </section>
             </div>
         </div>
