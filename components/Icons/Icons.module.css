@@ -33,10 +33,10 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(4.5vw, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
   grid-template-rows: repeat(1fr auto auto);
   grid-column-gap: 2vw;
-  grid-row-gap: 0vw;
+  grid-row-gap: 0.5rem;
   vertical-align: top;
 }
 

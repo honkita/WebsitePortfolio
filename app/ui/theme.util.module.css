@@ -15,6 +15,12 @@
 
 .headingSm {
   text-align: center;
+  font-size: calc(0.5rem + 1vw);
+  line-height: 1.5;
+}
+
+.headingTable {
+  text-align: center;
   font-size: calc(1rem + 1vw);
   line-height: 1.5;
 }
