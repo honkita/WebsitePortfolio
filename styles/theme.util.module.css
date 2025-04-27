@@ -1,13 +1,13 @@
 .lightBorder {
   border: 0.5rem solid var(--secondary) !important;
-  background: #dcdcdc;
+  background-color: var(--background);
   border-radius: 0.25rem;
   margin: 1rem;
 }
 
 .darkBorder {
   border: 0.5rem solid var(--secondary) !important;
-  background: #282828;
+  background-color: var(--background);
   border-radius: 0.25rem;
   margin: 1rem;
 }

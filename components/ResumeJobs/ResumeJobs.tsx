@@ -10,18 +10,21 @@ import PixelButton from "@components/PixelButton/PixelButton";
 import utilStyles from "@styles/theme.util.module.css";
 import ResumeJobsCSS from "./ResumeJobs.module.css";
 
-/**
- * Props Interface
- */
-interface ResumeJobsProps {
-    employerName: string;
+// JSONs
+import resumeJobs from "@assets/resumeJobs.json";
+
+// Interfaces
+interface JobData {
     jobName: string;
+    employerName: string;
     linkedin: string;
+    location: string;
     logo: string;
 }
 
-export default function ResumeJobs(props: ResumeJobsProps) {
+export default function ResumeJobs() {
     const [mounted, setMounted] = useState(false);
+    const [selectedJobIndex, setSelectedJobIndex] = useState(0);
     const { resolvedTheme } = useTheme();
 
     useEffect(() => {
@@ -32,33 +35,60 @@ export default function ResumeJobs(props: ResumeJobsProps) {
         return null;
     }
 
-    function background() {
-        if (resolvedTheme === "light") {
-            return `${utilStyles.lightBorder}`;
-        }
-        return `${utilStyles.darkBorder}`;
-    }
+    const background = () => {
+        return resolvedTheme === "light"
+            ? utilStyles.lightBorder
+            : utilStyles.darkBorder;
+    };
+
+    const handleJobSelect = (index: number) => {
+        setSelectedJobIndex(index);
+    };
+
+    const selectedJob = resumeJobs[selectedJobIndex];
 
     return (
-        <div>
-            <div
-                className={`${ResumeJobsCSS.ResumeBacker} ${
-                    utilStyles.imageRendering
-                } ${background()}`}
-            >
-                <img
-                    id={props.jobName}
-                    src={props.logo}
-                    alt={props.employerName + " image "}
-                    className={`${ResumeJobsCSS.logo} ${ResumeJobsCSS.buttonRendering}`}
-                />
-                <section className={ResumeJobsCSS.jobName}>
-                    <p>{props.jobName}</p>
-                </section>
+        <div className={ResumeJobsCSS.resumeContainer}>
+            {/* Side Button Panel */}
+            <div className={ResumeJobsCSS.sidePanel}>
+                {resumeJobs.map((job: JobData, index: number) => (
+                    <button
+                        key={index}
+                        className={`${ResumeJobsCSS.button} ${
+                            index === selectedJobIndex
+                                ? ResumeJobsCSS.activeJobButton
+                                : ""
+                        }`}
+                        onClick={() => handleJobSelect(index)}
+                    >
+                        <img
+                            src={job.logo}
+                            alt={`${job.employerName} logo`}
+                            className={`${ResumeJobsCSS.buttonRendering}`}
+                        />
+                    </button>
+                ))}
+            </div>
 
-                <div className={ResumeJobsCSS.buttonPlacement}>
-                    <PixelButton name="LinkedIn" url={props.linkedin} />
-                </div>
+            {/* Job Details Display */}
+            <div className={`${ResumeJobsCSS.ResumeBacker} ${background()}`}>
+                <section className={ResumeJobsCSS.jobInfo}>
+                    <h1 className={ResumeJobsCSS.jobTitle}>
+                        {selectedJob.jobName}
+                    </h1>
+                    <h2 className={ResumeJobsCSS.employer}>
+                        {selectedJob.employerName}
+                    </h2>
+                    <h3 className={ResumeJobsCSS.location}>
+                        {selectedJob.location}
+                    </h3>
+                    <div className={ResumeJobsCSS.buttonPlacement}>
+                        <PixelButton
+                            name="LinkedIn"
+                            url={selectedJob.linkedin}
+                        />
+                    </div>
+                </section>
             </div>
         </div>
     );
