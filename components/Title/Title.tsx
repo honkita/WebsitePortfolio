@@ -4,7 +4,7 @@
 import PixelButton from "@components/PixelButton/PixelButton";
 
 // CSS
-import utilStyles from "@styles/theme.util.module.css";
+import divstyling from "@styles/divstyling.module.css";
 import TitleCSS from "./Title.module.css";
 
 // Hooks
@@ -42,12 +42,10 @@ export default function Title(props: TitleProps) {
         }
     }
 
-    // ${utilStyles.fadeInAnimation}
-
     return (
         <section
             className={`${TitleCSS.namePlate} ${background()} ${
-                utilStyles.imageRendering
+                divstyling.imageRendering
             }`}
         >
             <h1 className={`${TitleCSS.title} `}>{props.name}</h1>

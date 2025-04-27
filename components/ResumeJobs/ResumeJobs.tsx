@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 import PixelButton from "@components/PixelButton/PixelButton";
 
 // CSS
-import utilStyles from "@styles/theme.util.module.css";
+import divstyling from "@styles/divstyling.module.css";
 import ResumeJobsCSS from "./ResumeJobs.module.css";
 
 // JSONs
@@ -30,13 +30,7 @@ export default function ResumeJobs() {
 
     function BulletList(points: string[]) {
         return (
-            <ul
-                style={{
-                    listStyleType: "none",
-                    paddingLeft: 0,
-                    margin: "1rem 0"
-                }}
-            >
+            <ul className={ResumeJobsCSS.list}>
                 {points.map((point: string, index: number) => (
                     <li key={index} className={ResumeJobsCSS.bullets}>
                         <span className={ResumeJobsCSS.bullet}>•</span>
@@ -86,7 +80,7 @@ export default function ResumeJobs() {
 
             {/* Job Details Display */}
             <div
-                className={`${ResumeJobsCSS.ResumeBacker} ${utilStyles.border}`}
+                className={`${ResumeJobsCSS.ResumeBacker} ${divstyling.border}`}
             >
                 <section className={ResumeJobsCSS.jobInfo}>
                     <h1 className={ResumeJobsCSS.jobTitle}>
@@ -98,6 +92,7 @@ export default function ResumeJobs() {
                     <h3 className={ResumeJobsCSS.location}>
                         {selectedJob.location}
                     </h3>
+                    <div className={divstyling.hr}></div>
                     {BulletList(selectedJob.info)}
                     <div className={ResumeJobsCSS.buttonPlacement}>
                         <PixelButton

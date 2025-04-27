@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
 // CSS
-import utilStyles from "@styles/theme.util.module.css";
+import divstyling from "@styles/divstyling.module.css";
 import SchoolCSS from "./School.module.css";
 import "react-circular-progressbar/dist/styles.css";
 
@@ -39,7 +39,7 @@ export default function School(props: SchoolProps) {
 
     return (
         <div
-            className={`${SchoolCSS.EducationBacker} ${utilStyles.imageRendering} ${utilStyles.border}`}
+            className={`${SchoolCSS.EducationBacker} ${divstyling.imageRendering} ${divstyling.border}`}
         >
             <h1 className={SchoolCSS.schoolName}>
                 <p>{props.schoolName}</p>

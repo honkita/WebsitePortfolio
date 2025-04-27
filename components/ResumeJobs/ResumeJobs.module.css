@@ -62,15 +62,20 @@
 }
 
 .location {
-  font-size: calc(1rem + 0.7vw);
+  font-size: calc(1rem + 0.8vw);
   margin: 0;
   opacity: 0.8;
+}
+
+.list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0.5rem 0;
 }
 
 .bullets {
   display: flex;
   align-items: center;
-  border-bottom: 2px dashed var(--primary);
   padding-bottom: 0.75rem;
   margin-bottom: 0.75rem;
   font-size: 1.1rem;
@@ -79,7 +84,7 @@
 
 .bullet {
   color: var(--foreground);
-  font-size: calc(1rem + 0.6vw);
+  font-size: calc(1rem + 0.75vw);
   margin-right: 0.5rem;
 }
 
@@ -104,29 +109,6 @@
   background-color: transparent;
   transition: all 0.2s;
   position: relative;
-}
-
-.jobName {
-  position: absolute;
-  text-align: left;
-  font-size: 2vw;
-  line-height: 1;
-  font-weight: bold;
-  align-items: center;
-  width: 20vw;
-  word-wrap: break-word;
-  left: 45%;
-  top: -5%;
-}
-
-.employerName {
-  position: absolute;
-  font-size: 2.5vw;
-  top: 0;
-  line-height: 1;
-  font-weight: bold;
-  margin-left: 0.5vw;
-  margin-top: 0.5vw;
 }
 
 @media (max-width: 64rem) {

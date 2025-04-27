@@ -1,13 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
 
 // Child Components
 import PixelButton from "@components/PixelButton/PixelButton";
 
 // CSS
-import utilStyles from "@styles/theme.util.module.css";
+import divstyling from "@styles/divstyling.module.css";
 import ProjectsCSS from "./Projects.module.css";
 
 /**
@@ -21,7 +20,6 @@ interface ProjectsProps {
 
 export default function Projects(props: ProjectsProps) {
     const [mounted, setMounted] = useState(false);
-    const { resolvedTheme } = useTheme();
 
     // useEffect only runs on the client, so now we can safely show the UI
     useEffect(() => {
@@ -42,13 +40,13 @@ export default function Projects(props: ProjectsProps) {
     return (
         <div>
             <div
-                className={`${utilStyles.imageRendering} ${ProjectsCSS.projectsBacker} ${utilStyles.border} `}
+                className={`${divstyling.imageRendering} ${ProjectsCSS.projectsBacker} ${divstyling.border} `}
             >
                 <section className={ProjectsCSS.projectTitle}>
                     <p>{props.name}</p>
                 </section>
                 <img
-                    className={`${ProjectsCSS.projectsImage} ${utilStyles.border}`}
+                    className={`${ProjectsCSS.projectsImage} ${divstyling.border}`}
                     src={getImage()}
                 ></img>
                 <div className={ProjectsCSS.buttonPlacement}>

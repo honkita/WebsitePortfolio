@@ -12,6 +12,7 @@ import Title from "@components/Title/Title";
 // CSS
 import styles from "@app/ui/home.module.css";
 import utilStyles from "@app/ui/theme.util.module.css";
+import divstyling from "@styles/divstyling.module.css";
 
 // JSONs
 import resumeJobs from "@assets/resumeJobs.json";
@@ -32,16 +33,18 @@ export default function AboutMe() {
                     colour="yellow"
                     buttons={["LinkedIn", "GitHub", "Email", "Download"]}
                 />
+            </div>
 
-                <div className={styles.side}>
+            {/* <div className={styles.side}>
                     <section className={utilStyles.headingXl}></section>
-                </div>
-                <section className={utilStyles.headingXl}>
-                    <p>Previous Employment</p>
-                </section>
-                <ResumeJobs />
+                </div> */}
+            <div className={divstyling.hr} style={{ marginTop: "5rem" }}></div>
+            <section className={utilStyles.headingXl}>
+                <p>Previous Employment</p>
+            </section>
+            <ResumeJobs />
 
-                {/* <section className={utilStyles.headingXl}>
+            {/* <section className={utilStyles.headingXl}>
                     <p>Education</p>
                 </section>
                 <div className={styles.locationGrid}>
@@ -56,7 +59,8 @@ export default function AboutMe() {
                         GPA={4.0}
                     />
                 </div> */}
-            </div>
+
+            <div className={divstyling.hr} style={{ marginTop: "5rem" }}></div>
             <section
                 className={`${utilStyles.headingXl} ${styles.paddingTopBottom}`}
             >
