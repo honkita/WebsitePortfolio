@@ -23,7 +23,7 @@
 }
 
 .button > img {
-  width: 95%;
+  width: 100%;
   image-rendering: pixelated;
   position: absolute;
   left: 0;
