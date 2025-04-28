@@ -1,9 +1,11 @@
 "use client";
 
 import React, { ReactNode } from "react";
+import { usePathname } from "next/navigation";
 
 // Child Components
 import Nav from "@components/NavBar/NavBar";
+import { useEffect } from "react";
 import { ThemeProvider } from "next-themes";
 
 // CSS
@@ -21,15 +23,23 @@ interface LayoutProps {
 }
 
 export default function RootLayout({ children }: LayoutProps) {
+    const pathname = usePathname();
+    useEffect(() => {
+        // Animation will automatically restart on component mount
+    }, [pathname]);
+
     return (
         <html lang="en" suppressHydrationWarning={false}>
             <body>
                 <ThemeProvider>
-                    <div className={styles.containerColour}>
+                    <div
+                        key={pathname}
+                        className={`${styles.containerColour} ${styles.animateUp}`}
+                    >
                         <Nav />
                         <main>{children}</main>
                         <section
-                            className={utilStyles.headingSm}
+                            className={utilStyles.headingCopyright}
                             role="contentinfo"
                         >
                             Copyrights © {new Date().getFullYear()} Elite Lu

@@ -22,6 +22,10 @@
   padding-bottom: 1rem;
 }
 
+.tableItem {
+  padding: 0;
+}
+
 /* .transformer {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -126,10 +130,18 @@
   padding-bottom: 5vh;
 }
 
+.jobGrid {
+  vertical-align: top;
+  align-items: center;
+  grid-template-columns: repeat(3, minmax(0rem, 1fr));
+  justify-content: center;
+  align-items: center;
+}
+
 @media (min-width: 64rem) {
   .jobGrid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0.25rem, 1fr));
+    /* grid-template-columns: repeat(3, minmax(0.25rem, 1fr)); */
     padding: 1rem;
     vertical-align: top;
     align-items: center;
@@ -137,8 +149,8 @@
 
   .table {
     table-layout: auto;
-    margin-left: 5vw;
-    margin-right: 5vw;
+    margin-left: 1rem;
+    margin-right: 1rem;
     border-collapse: separate;
     border-spacing: 2rem;
   }
@@ -221,9 +233,9 @@
     display: inline-flex;
     flex-direction: column;
     padding-bottom: 2rem;
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
   }
 
   .table {

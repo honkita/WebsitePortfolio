@@ -28,27 +28,27 @@ export default function Home() {
                 />
                 <meta name="og:title" content={name} />
             </Head>
+
+            <Title
+                name="Elite Lu"
+                colour="red"
+                buttons={["LinkedIn", "GitHub", "Email", "AboutMe"]}
+            />
+            <section className={utilStyles.headingXl}>
+                <p>About Me</p>
+            </section>
+            <section className={utilStyles.headingMd}>
+                <ul>
+                    <li>Software developer</li>
+                    <li>Fourth year Computer Science McMaster Student</li>
+                </ul>
+            </section>
+
+            <section className={utilStyles.headingXl}>
+                <p>Projects</p>
+            </section>
+            <ImageCarousel images={ImagesForCarousel} />
             <div className={styles.container}>
-                <Title
-                    name="Elite Lu"
-                    colour="red"
-                    buttons={["LinkedIn", "GitHub", "Email", "AboutMe"]}
-                />
-
-                <section className={utilStyles.headingXl}>
-                    <p>About Me</p>
-                </section>
-                <section className={utilStyles.headingMd}>
-                    <ul>
-                        <li>Software developer</li>
-                        <li>Fourth year Computer Science McMaster Student</li>
-                    </ul>
-                </section>
-
-                <section className={utilStyles.headingXl}>
-                    <p>Projects</p>
-                </section>
-                <ImageCarousel images={ImagesForCarousel} />
                 <div className={styles.jobGrid}>
                     {projectsJSON.map(
                         (

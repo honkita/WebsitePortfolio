@@ -48,8 +48,15 @@ export default function Title(props: TitleProps) {
                 divstyling.imageRendering
             }`}
         >
-            <h1 className={`${TitleCSS.title} `}>{props.name}</h1>
-            <section className={TitleCSS.containerButtons}>{itemList}</section>
+            <div
+                className={`${TitleCSS.titleCenter}
+            }`}
+            >
+                <h1 className={`${TitleCSS.title} `}>{props.name}</h1>
+                <section className={TitleCSS.containerButtons}>
+                    {itemList}
+                </section>
+            </div>
         </section>
     );
 }
