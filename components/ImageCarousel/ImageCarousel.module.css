@@ -81,8 +81,8 @@
   cursor: pointer;
   background-color: rgba(70, 69, 69, 0.6);
   transition: 0.6s ease;
-  height: 5vw;
-  width: 5vw;
+  height: 2vw;
+  width: 2vw;
   text-align: center;
   transform: translate(0, -50%);
   border-radius: 50%;

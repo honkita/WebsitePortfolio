@@ -13,7 +13,7 @@ interface ImageCarouselProps {
 }
 
 export default function ImageCarousel(props: ImageCarouselProps) {
-    var imagesJSON = JSON.parse(JSON.stringify(props.images));
+    let imagesJSON = JSON.parse(JSON.stringify(props.images));
     const [index, setIndexValue] = useState(0);
     const [transitionDirection, setTransitionDirection] = useState("");
     const [animate, setAnimate] = useState(false);
@@ -46,7 +46,7 @@ export default function ImageCarousel(props: ImageCarouselProps) {
             <div style={{ position: "relative", overflow: "hidden" }}>
                 <div
                     key={index}
-                    className={`${ImageCarouselCSS.sliderContainer} ${
+                    className={`${ImageCarouselCSS.carouselContainer} ${
                         animate &&
                         (transitionDirection === "slide-left"
                             ? ImageCarouselCSS.slideLeft
@@ -62,7 +62,7 @@ export default function ImageCarousel(props: ImageCarouselProps) {
                 <button
                     title="Prev"
                     className={ImageCarouselCSS.sliderButtons}
-                    style={{ left: "2%" }}
+                    style={{ left: "8%" }}
                     onClick={handlePrev}
                 >
                     &lt;
@@ -70,7 +70,7 @@ export default function ImageCarousel(props: ImageCarouselProps) {
                 <button
                     title="Next"
                     className={ImageCarouselCSS.sliderButtons}
-                    style={{ right: "2%" }}
+                    style={{ right: "8%" }}
                     onClick={handleNext}
                 >
                     &gt;
