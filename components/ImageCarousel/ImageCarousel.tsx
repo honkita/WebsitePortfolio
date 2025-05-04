@@ -1,81 +1,64 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-
-// CSS
+import React, { useState } from "react";
 import ImageCarouselCSS from "./ImageCarousel.module.css";
 
-/**
- * Props Interface
- */
 interface ImageCarouselProps {
     images: string;
 }
 
 export default function ImageCarousel(props: ImageCarouselProps) {
-    let imagesJSON = JSON.parse(JSON.stringify(props.images));
-    const [index, setIndexValue] = useState(0);
-    const [transitionDirection, setTransitionDirection] = useState("");
-    const [animate, setAnimate] = useState(false);
+    const imagesJSON = Array.isArray(props.images)
+        ? props.images
+        : JSON.parse(props.images);
 
-    useEffect(() => {
-        // Trigger animation when index changes
-        setAnimate(true);
-
-        // Reset animation state after the animation completes
-        const timer = setTimeout(() => setAnimate(false), 500);
-        return () => clearTimeout(timer);
-    }, [index]);
+    const [index, setIndex] = useState(0);
 
     const handlePrev = () => {
-        setTransitionDirection("slide-right");
-        setIndexValue(
-            index == 0 ? Object.keys(imagesJSON).length - 1 : index - 1
+        setIndex((prevIndex) =>
+            prevIndex === 0 ? imagesJSON.length - 1 : prevIndex - 1
         );
     };
 
     const handleNext = () => {
-        setTransitionDirection("slide-left");
-        setIndexValue(
-            index + 1 >= Object.keys(imagesJSON).length ? 0 : index + 1
+        setIndex((prevIndex) =>
+            prevIndex === imagesJSON.length - 1 ? 0 : prevIndex + 1
         );
     };
 
     return (
-        <div>
-            <div style={{ position: "relative", overflow: "hidden" }}>
-                <div
-                    key={index}
-                    className={`${ImageCarouselCSS.carouselContainer} ${
-                        animate &&
-                        (transitionDirection === "slide-left"
-                            ? ImageCarouselCSS.slideLeft
-                            : ImageCarouselCSS.slideRight)
-                    }`}
-                >
+        <div className={ImageCarouselCSS.carouselWrapper}>
+            <div
+                className={ImageCarouselCSS.carouselTrack}
+                style={{
+                    transform: `translateX(-${index * 100}%)`
+                }}
+            >
+                {imagesJSON.map((item: any, i: number) => (
                     <img
-                        src={imagesJSON[index].image}
-                        className={ImageCarouselCSS.images}
-                        alt={imagesJSON[index].image + " image"}
+                        key={i}
+                        src={item.image}
+                        className={ImageCarouselCSS.carouselImage}
+                        alt={`carousel-img-${i}`}
                     />
-                </div>
-                <button
-                    title="Prev"
-                    className={ImageCarouselCSS.sliderButtons}
-                    style={{ left: "8%" }}
-                    onClick={handlePrev}
-                >
-                    &lt;
-                </button>
-                <button
-                    title="Next"
-                    className={ImageCarouselCSS.sliderButtons}
-                    style={{ right: "8%" }}
-                    onClick={handleNext}
-                >
-                    &gt;
-                </button>
+                ))}
             </div>
+            <button
+                title="Prev"
+                className={ImageCarouselCSS.sliderButtons}
+                style={{ left: "5%" }}
+                onClick={handlePrev}
+            >
+                &lt;
+            </button>
+            <button
+                title="Next"
+                className={ImageCarouselCSS.sliderButtons}
+                style={{ right: "5%" }}
+                onClick={handleNext}
+            >
+                &gt;
+            </button>
         </div>
     );
 }
