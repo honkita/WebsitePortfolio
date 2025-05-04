@@ -8,7 +8,7 @@
 
 .carouselTrack {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  width: 100%;
   height: 100%;
 }
 
@@ -21,20 +21,50 @@
 
 .sliderButtons {
   all: unset;
+  display: flex;
   position: absolute;
+  font-size: calc(0.5rem + 2vw);
   top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(70, 69, 69, 0.6);
-  color: white;
-  font-size: 2rem;
-  padding: 1rem;
-  border-radius: 50%;
+  padding: 2rem;
   cursor: pointer;
-  z-index: 10;
-  user-select: none;
-  transition: 0.3s ease;
+  background-color: var(--background-secondary);
+  transition: 0.6s ease;
+  height: 2vw;
+  width: 2vw;
+  text-align: center;
+  transform: translate(0, -50%);
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border: 0.25rem solid var(--secondary) !important;
 }
 
 .sliderButtons:hover {
   filter: brightness(75%);
+}
+
+.indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+  background-color: var(--background);
+  padding: 0.5rem;
+  border: 0.25rem solid var(--secondary) !important;
+  margin: 1rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: var(--foreground-transparent);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.activeDot {
+  background-color: var(--foreground);
 }
