@@ -1,80 +1,126 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-
-// CSS
+import React, { useEffect, useRef, useState } from "react";
 import ImageCarouselCSS from "./ImageCarousel.module.css";
 
-/**
- * Props Interface
- */
 interface ImageCarouselProps {
     images: string;
 }
 
 export default function ImageCarousel(props: ImageCarouselProps) {
-    let imagesJSON = JSON.parse(JSON.stringify(props.images));
-    const [index, setIndexValue] = useState(0);
-    const [transitionDirection, setTransitionDirection] = useState("");
-    const [animate, setAnimate] = useState(false);
+    const rawImages = Array.isArray(props.images)
+        ? props.images
+        : JSON.parse(props.images);
 
-    useEffect(() => {
-        // Trigger animation when index changes
-        setAnimate(true);
+    // Clone last and first images for seamless looping
+    const imagesJSON = [
+        rawImages[rawImages.length - 1],
+        ...rawImages,
+        rawImages[0]
+    ];
 
-        // Reset animation state after the animation completes
-        const timer = setTimeout(() => setAnimate(false), 500);
-        return () => clearTimeout(timer);
-    }, [index]);
+    const [index, setIndex] = useState(1); // Start at first real image
+    const [isTransitioning, setIsTransitioning] = useState(false);
+    const trackRef = useRef<HTMLDivElement>(null);
 
     const handlePrev = () => {
-        setTransitionDirection("slide-right");
-        setIndexValue(
-            index == 0 ? Object.keys(imagesJSON).length - 1 : index - 1
-        );
+        if (isTransitioning) return;
+        setIndex((prev) => prev - 1);
+        setIsTransitioning(true);
     };
 
     const handleNext = () => {
-        setTransitionDirection("slide-left");
-        setIndexValue(
-            index + 1 >= Object.keys(imagesJSON).length ? 0 : index + 1
-        );
+        if (isTransitioning) return;
+        setIndex((prev) => prev + 1);
+        setIsTransitioning(true);
     };
 
+    const handleDotClick = (i: number) => {
+        if (isTransitioning) return;
+        setIndex(i + 1);
+        setIsTransitioning(true);
+    };
+
+    useEffect(() => {
+        if (!isTransitioning) return;
+
+        const handleTransitionEnd = () => {
+            setIsTransitioning(false);
+
+            if (index === 0) {
+                setIndex(imagesJSON.length - 2); // Jump to last real
+                if (trackRef.current) {
+                    trackRef.current.style.transition = "none";
+                    trackRef.current.style.transform = `translateX(-${
+                        (imagesJSON.length - 2) * 100
+                    }%)`;
+                }
+            } else if (index === imagesJSON.length - 1) {
+                setIndex(1); // Jump to first real
+                if (trackRef.current) {
+                    trackRef.current.style.transition = "none";
+                    trackRef.current.style.transform = `translateX(-100%)`;
+                }
+            }
+        };
+
+        const track = trackRef.current;
+        track?.addEventListener("transitionend", handleTransitionEnd);
+
+        return () => {
+            track?.removeEventListener("transitionend", handleTransitionEnd);
+        };
+    }, [index, imagesJSON.length, isTransitioning]);
+
+    useEffect(() => {
+        if (trackRef.current) {
+            trackRef.current.style.transition = isTransitioning
+                ? "transform 0.5s ease-in-out"
+                : "none";
+            trackRef.current.style.transform = `translateX(-${index * 100}%)`;
+        }
+    }, [index, isTransitioning]);
+
     return (
-        <div>
-            <div style={{ position: "relative", overflow: "hidden" }}>
-                <div
-                    key={index}
-                    className={`${ImageCarouselCSS.carouselContainer} ${
-                        animate &&
-                        (transitionDirection === "slide-left"
-                            ? ImageCarouselCSS.slideLeft
-                            : ImageCarouselCSS.slideRight)
-                    }`}
-                >
+        <div className={ImageCarouselCSS.carouselWrapper}>
+            <div ref={trackRef} className={ImageCarouselCSS.carouselTrack}>
+                {imagesJSON.map((item: any, i: number) => (
                     <img
-                        src={imagesJSON[index].image}
-                        className={ImageCarouselCSS.images}
-                        alt={imagesJSON[index].image + " image"}
+                        key={i}
+                        src={item.image}
+                        className={ImageCarouselCSS.carouselImage}
+                        alt={`carousel-img-${i}`}
                     />
-                </div>
-                <button
-                    title="Prev"
-                    className={ImageCarouselCSS.sliderButtons}
-                    style={{ left: "8%" }}
-                    onClick={handlePrev}
-                >
-                    &lt;
-                </button>
-                <button
-                    title="Next"
-                    className={ImageCarouselCSS.sliderButtons}
-                    style={{ right: "8%" }}
-                    onClick={handleNext}
-                >
-                    &gt;
-                </button>
+                ))}
+            </div>
+
+            <button
+                title="Prev"
+                className={ImageCarouselCSS.sliderButtons}
+                style={{ left: "5%" }}
+                onClick={handlePrev}
+            >
+                &lt;
+            </button>
+            <button
+                title="Next"
+                className={ImageCarouselCSS.sliderButtons}
+                style={{ right: "5%" }}
+                onClick={handleNext}
+            >
+                &gt;
+            </button>
+
+            <div className={ImageCarouselCSS.indicators}>
+                {rawImages.map((_: any, i: number) => (
+                    <span
+                        key={i}
+                        className={`${ImageCarouselCSS.dot} ${
+                            index === i + 1 ? ImageCarouselCSS.activeDot : ""
+                        }`}
+                        onClick={() => handleDotClick(i)}
+                    />
+                ))}
             </div>
         </div>
     );

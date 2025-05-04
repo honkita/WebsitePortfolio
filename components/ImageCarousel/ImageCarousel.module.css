@@ -1,77 +1,25 @@
-.carouselContainer {
+.carouselWrapper {
   position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-.sliderTrack {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  transition: transform 0.5s ease-in-out;
-}
-
-.slide img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.activeSlide {
-  transform: translateX(0);
-}
-
-.prevSlide {
-  transform: translateX(-100%);
-}
-
-.nextSlide {
-  transform: translateX(100%);
-}
-
-.slideOutLeft {
-  transform: translateX(-100%);
-}
-
-.slideOutRight {
-  transform: translateX(100%);
-}
-
-.indicators {
-  display: flex;
-  position: absolute;
-  bottom: 1rem;
-}
-
-.indicator {
-  background-color: white;
-  height: 0.5rem;
-  width: 0.5rem;
-  border-radius: 100%;
-  border: none;
-  outline: none;
-}
-
-.images {
   width: 90vw;
   height: 50vw;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
+  overflow: hidden;
+  margin: auto;
+}
+
+.carouselTrack {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.carouselImage {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
 .sliderButtons {
-  fill: white;
-  color: white;
   all: unset;
   display: flex;
   position: absolute;
@@ -79,48 +27,44 @@
   top: 50%;
   padding: 2rem;
   cursor: pointer;
-  background-color: rgba(70, 69, 69, 0.6);
+  background-color: var(--background-secondary);
   transition: 0.6s ease;
   height: 2vw;
   width: 2vw;
   text-align: center;
   transform: translate(0, -50%);
-  border-radius: 50%;
   align-items: center;
   justify-content: center;
+  padding: 0.5rem;
+  border: 0.25rem solid var(--secondary) !important;
 }
 
 .sliderButtons:hover {
   filter: brightness(75%);
-  z-index: 100;
 }
 
-.slideLeft {
-  animation: slideLeft 0.5s ease-in-out;
+.indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+  background-color: var(--background);
+  padding: 0.5rem;
+  border: 0.25rem solid var(--secondary) !important;
+  margin: 1rem;
 }
 
-.slideRight {
-  animation: slideRight 0.5s ease-in-out;
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: var(--foreground-transparent);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-@keyframes slideLeft {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideRight {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+.activeDot {
+  background-color: var(--foreground);
 }
