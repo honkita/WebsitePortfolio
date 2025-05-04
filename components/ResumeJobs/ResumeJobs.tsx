@@ -71,6 +71,7 @@ export default function ResumeJobs() {
                     >
                         <img
                             src={job.logo}
+                            fetchPriority={"high"}
                             alt={`${job.employerName} logo`}
                             className={`${ResumeJobsCSS.buttonRendering}`}
                         />

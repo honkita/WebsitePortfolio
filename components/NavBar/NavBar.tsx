@@ -58,6 +58,7 @@ export default function NavBar() {
                                 title={page.name}
                                 aria-hidden={true}
                                 tabIndex={-1}
+                                fetchPriority={"high"}
                             />
                         </button>
                     </Link>

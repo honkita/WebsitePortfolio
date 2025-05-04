@@ -34,6 +34,7 @@ export default function DevTools() {
                             <img
                                 id={devTool.name}
                                 src={devTool.url}
+                                fetchPriority={"high"}
                                 alt={devTool.name + " image "}
                             />
                         </button>

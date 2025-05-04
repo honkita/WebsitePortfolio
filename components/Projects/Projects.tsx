@@ -47,6 +47,7 @@ export default function Projects(props: ProjectsProps) {
                 </section>
                 <img
                     className={`${ProjectsCSS.projectsImage} ${divstyling.border}`}
+                    fetchPriority={"high"}
                     src={getImage()}
                 ></img>
                 <div className={ProjectsCSS.buttonPlacement}>

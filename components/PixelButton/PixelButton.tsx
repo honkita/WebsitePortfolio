@@ -58,6 +58,7 @@ export default function PixelButton(props: PixelButtonProps) {
                 <img
                     id="Icon"
                     key={name}
+                    fetchPriority={"high"}
                     src={
                         resolvedTheme === "light"
                             ? getValue().lightTheme

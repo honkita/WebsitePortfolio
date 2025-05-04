@@ -88,6 +88,7 @@ export default function ImageCarousel(props: ImageCarouselProps) {
                     <img
                         key={i}
                         src={item.image}
+                        fetchPriority={"high"}
                         className={ImageCarouselCSS.carouselImage}
                         alt={`carousel-img-${i}`}
                     />

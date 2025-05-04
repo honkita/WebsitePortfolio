@@ -31,6 +31,7 @@ export default function LanguageDexMobile() {
                             <img
                                 id={language.name}
                                 src={language.url}
+                                fetchPriority={"high"}
                                 alt={language.name + " image"}
                             />
                         </button>
