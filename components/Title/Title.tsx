@@ -14,47 +14,49 @@ import { returnURL } from "@hooks/MainButtons";
  * Props Interface
  */
 interface TitleProps {
-   colour: string;
-   buttons: [string];
-   name: string;
+    colour: string;
+    buttons: [string];
+    name: string;
 }
 
 export default function Title(props: TitleProps) {
-   let itemList = props.buttons.map((item, index: number) => {
-      return (
-         <PixelButton
-            key={index}
-            name={item}
-            url={returnURL(item)}
-            extra={true}
-         />
-      );
-   });
+    let itemList = props.buttons.map((item, index: number) => {
+        return (
+            <PixelButton
+                key={index}
+                name={item}
+                url={returnURL(item)}
+                extra={true}
+            />
+        );
+    });
 
-   function background() {
-      switch (props.colour) {
-         case "red":
-            return TitleCSS.redName;
-         case "yellow":
-            return TitleCSS.yellowName;
-         default:
-            break;
-      }
-   }
+    function background() {
+        switch (props.colour) {
+            case "red":
+                return TitleCSS.redName;
+            case "yellow":
+                return TitleCSS.yellowName;
+            default:
+                break;
+        }
+    }
 
-   return (
-      <section
-         className={`${TitleCSS.namePlate} ${background()} ${
-            divstyling.imageRendering
-         }`}
-      >
-         <div
-            className={`${TitleCSS.titleCenter}
+    return (
+        <section
+            className={`${TitleCSS.namePlate} ${background()} ${
+                divstyling.imageRendering
             }`}
-         >
-            <h1 className={`${TitleCSS.title} `}>{props.name}</h1>
-            <section className={TitleCSS.containerButtons}>{itemList}</section>
-         </div>
-      </section>
-   );
+        >
+            <div
+                className={`${TitleCSS.titleCenter}
+            }`}
+            >
+                <h1 className={`${TitleCSS.title} `}>{props.name}</h1>
+                <section className={TitleCSS.containerButtons}>
+                    {itemList}
+                </section>
+            </div>
+        </section>
+    );
 }

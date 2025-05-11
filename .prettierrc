@@ -1,13 +1,13 @@
 {
   "overrides": [
     {
-      "files": ["*.tsx", ".prettierrc"],
+      "files": "*.tsx",
       "options": {
         "singleQuote": false,
         "printWidth": 80,
         "editor.formatOnSave": true,
         "proseWrap": "always",
-        "tabWidth": 3,
+        "tabWidth": 4,
         "requireConfig": false,
         "useTabs": false,
         "trailingComma": "none",
