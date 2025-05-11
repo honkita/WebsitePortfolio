@@ -18,35 +18,35 @@ import "@app/ui/variables.css";
  * Props Interface
  */
 interface LayoutProps {
-    children?: ReactNode;
-    // any props that come into the component
+   children?: ReactNode;
+   // any props that come into the component
 }
 
 export default function RootLayout({ children }: LayoutProps) {
-    const pathname = usePathname();
-    useEffect(() => {
-        // Animation will automatically restart on component mount
-    }, [pathname]);
+   const pathname = usePathname();
+   useEffect(() => {
+      // Animation will automatically restart on component mount
+   }, [pathname]);
 
-    return (
-        <html lang="en" suppressHydrationWarning={false}>
-            <body>
-                <ThemeProvider>
-                    <div
-                        key={pathname}
-                        className={`${styles.containerColour} ${styles.animateUp}`}
-                    >
-                        <Nav />
-                        <main>{children}</main>
-                        <section
-                            className={utilStyles.headingCopyright}
-                            role="contentinfo"
-                        >
-                            Copyrights © {new Date().getFullYear()} Elite Lu
-                        </section>
-                    </div>
-                </ThemeProvider>
-            </body>
-        </html>
-    );
+   return (
+      <html lang="en" suppressHydrationWarning={false}>
+         <body>
+            <ThemeProvider>
+               <div
+                  key={pathname}
+                  className={`${styles.containerColour} ${styles.animateUp}`}
+               >
+                  <Nav />
+                  <main>{children}</main>
+                  <section
+                     className={utilStyles.headingCopyright}
+                     role="contentinfo"
+                  >
+                     Copyrights © {new Date().getFullYear()} Elite Lu
+                  </section>
+               </div>
+            </ThemeProvider>
+         </body>
+      </html>
+   );
 }
