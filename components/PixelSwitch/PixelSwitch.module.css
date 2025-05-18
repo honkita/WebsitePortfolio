@@ -44,9 +44,11 @@
 @media not (hover: none) {
   .toggle:hover {
     filter: brightness(75%);
+    cursor: pointer;
   }
 
   .toggledark:hover {
     filter: brightness(75%);
+    cursor: pointer;
   }
 }

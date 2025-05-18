@@ -20,6 +20,7 @@
   transition: all 0.2s;
   position: relative;
   border: 0.25rem solid transparent;
+  cursor: pointer;
 }
 
 .button > img {
