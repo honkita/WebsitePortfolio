@@ -80,7 +80,6 @@
   grid-row-gap: 0.5rem;
   vertical-align: top;
   align-items: center;
-  justify-content: center;
 }
 
 .side {
@@ -199,6 +198,10 @@
 }
 
 @media (max-width: 48rem) {
+  .paddingRight {
+    margin-bottom: 1rem;
+  }
+
   .container {
     max-width: 100vw;
     padding: 0 0.5rem;

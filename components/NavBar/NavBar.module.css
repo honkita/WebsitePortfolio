@@ -42,6 +42,18 @@
   transition: all 0.2s;
 }
 
+@media (max-width: 48rem) {
+  .navBar {
+    background-color: var(--background-secondary);
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    flex-direction: row;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
 @media not (hover: none) {
   .button:hover {
     filter: brightness(75%);
