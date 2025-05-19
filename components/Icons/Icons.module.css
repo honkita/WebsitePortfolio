@@ -33,10 +33,10 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(3em, 1fr));
   grid-template-rows: repeat(1fr auto auto);
-  grid-column-gap: 2vw;
-  grid-row-gap: 0.5rem;
+  grid-column-gap: 3rem;
+  grid-row-gap: 2rem;
   vertical-align: top;
 }
 
@@ -52,10 +52,9 @@
 
 @media (max-width: 48rem) {
   .grid {
-    margin: auto;
     grid-template-columns: repeat(4, minmax(3em, 1fr));
     grid-column-gap: 10vw;
-    grid-row-gap: 0vw;
+    grid-row-gap: 2rem;
   }
 }
 

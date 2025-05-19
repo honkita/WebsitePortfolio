@@ -17,7 +17,7 @@ import divstyling from "@styles/divstyling.module.css";
 
 export default function AboutMe() {
     return (
-        <div>
+        <div className={styles.pageContainer}>
             <section>
                 <Head>
                     <title>About Me</title>
@@ -28,71 +28,67 @@ export default function AboutMe() {
                 colour="yellow"
                 buttons={["LinkedIn", "GitHub", "Email", "Download"]}
             />
-            {/* <div className={styles.side}>
-                    <section className={utilStyles.headingXl}></section>
-                </div> */}
-            <div className={divstyling.hr} style={{ marginTop: "3rem" }}></div>
-            <section className={utilStyles.headingXl}>
-                <p>Previous Employment</p>
-            </section>
-            <ResumeJobs />
 
-            {/* <section className={utilStyles.headingXl}>
-                <p>Education</p>
-            </section>
-            <div className={styles.locationGrid}>
-                <School
-                    schoolName="McMaster University"
-                    schoolLocation="Hamilton, Ontario"
-                    GPA={3.9}
-                />
-                <School
-                    schoolName="Newmarket High School"
-                    schoolLocation="Newmarket, Ontario"
-                    GPA={4.0}
-                />
-            </div> */}
+            <div className={styles.contentWrapper}>
+                <div
+                    className={divstyling.hr}
+                    style={{ marginTop: "3rem" }}
+                ></div>
 
-            <div className={divstyling.hr} style={{ marginTop: "5rem" }}></div>
-            <section
-                className={`${utilStyles.headingXl} ${styles.paddingTopBottom}`}
-            >
-                Technologies
-            </section>
-            <table className={styles.table}>
-                <tbody>
-                    <tr className={styles.tableRow}>
-                        <td
-                            className={`${styles.tableItem} ${utilStyles.headingSm} ${styles.paddingRight}`}
-                        >
-                            Languages
-                        </td>
-                        <td>
-                            <LanguageDexMobile />
-                        </td>
-                    </tr>
-                    <tr className={styles.tableRow}>
-                        <td
-                            className={`${styles.tableItem} ${utilStyles.headingTable} ${styles.paddingRight}`}
-                        >
-                            Frameworks & Technologies
-                        </td>
-                        <td>
-                            <Frameworks />
-                        </td>
-                    </tr>
-                    <tr className={styles.tableRow}>
-                        <td
-                            className={`${styles.tableItem} ${utilStyles.headingTable} ${styles.paddingRight}`}
-                        >
-                            Developer Platforms & Tools
-                        </td>
-                        <td>
-                            <DevTools />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <div className={styles.centeredContent}>
+                    <section className={utilStyles.headingXl}>
+                        <p>Previous Employment</p>
+                    </section>
+                    <ResumeJobs />
+                </div>
+
+                <div
+                    className={divstyling.hr}
+                    style={{ marginTop: "5rem" }}
+                ></div>
+
+                <div className={styles.centeredContent}>
+                    <section
+                        className={`${utilStyles.headingXl} ${styles.paddingTopBottom}`}
+                    >
+                        Technologies
+                    </section>
+                    <table className={styles.table}>
+                        <tbody>
+                            <tr className={`${styles.tableRow}`}>
+                                <td
+                                    className={`${utilStyles.headingSm} ${styles.tableTitle}`}
+                                >
+                                    Languages
+                                </td>
+                                <td className={styles.tableValue}>
+                                    <LanguageDexMobile />
+                                </td>
+                            </tr>
+                            <tr className={styles.tableRow}>
+                                <td
+                                    className={`${utilStyles.headingTable} ${styles.tableTitle}`}
+                                >
+                                    Frameworks & Technologies
+                                </td>
+                                <td>
+                                    <Frameworks />
+                                </td>
+                            </tr>
+                            <tr className={styles.tableRow}>
+                                <td
+                                    className={`${utilStyles.headingTable} ${styles.tableTitle}`}
+                                >
+                                    Developer Platforms & Tools
+                                </td>
+                                <td>
+                                    <DevTools />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     );
 }
