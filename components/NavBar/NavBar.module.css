@@ -44,13 +44,8 @@
 
 @media (max-width: 48rem) {
   .navBar {
-    background-color: var(--background-secondary);
-    display: flex;
     align-self: center;
     justify-content: center;
-    flex-direction: row;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
   }
 }
 

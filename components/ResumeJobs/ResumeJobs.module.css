@@ -106,7 +106,7 @@
 }
 
 .buttonRendering {
-  border: None;
+  border: none;
   background-color: transparent;
   transition: all 0.2s;
   position: relative;
