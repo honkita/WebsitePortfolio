@@ -54,7 +54,7 @@
   background-color: var(--background);
   padding: 0.5rem;
   border: 0.25rem solid var(--secondary) !important;
-  margin: 1rem;
+  margin-bottom: 1rem;
 }
 
 .dot {
