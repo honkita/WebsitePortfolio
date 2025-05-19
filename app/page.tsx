@@ -34,9 +34,9 @@ export default function Home() {
                 colour="red"
                 buttons={["LinkedIn", "GitHub", "Email", "AboutMe"]}
             />
-            <section className={utilStyles.headingXl}>
+            {/* <section className={utilStyles.headingXl}>
                 <p>About Me</p>
-            </section>
+            </section> */}
             <section className={utilStyles.headingMd}>
                 <ul>
                     <li>Software developer</li>

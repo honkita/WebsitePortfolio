@@ -7,6 +7,7 @@ import DevTools from "@components/Icons/DevTools";
 import Frameworks from "@components/Icons/Frameworks";
 import LanguageDexMobile from "@components/Icons/LanguageDexMobile";
 import ResumeJobs from "@components/ResumeJobs/ResumeJobs";
+import School from "@components/School/School";
 import Title from "@components/Title/Title";
 
 // CSS
@@ -37,20 +38,20 @@ export default function AboutMe() {
             <ResumeJobs />
 
             {/* <section className={utilStyles.headingXl}>
-                    <p>Education</p>
-                </section>
-                <div className={styles.locationGrid}>
-                    <School
-                        schoolName="McMaster University"
-                        schoolLocation="Hamilton, Ontario"
-                        GPA={3.9}
-                    />
-                    <School
-                        schoolName="Newmarket High School"
-                        schoolLocation="Newmarket, Ontario"
-                        GPA={4.0}
-                    />
-                </div> */}
+                <p>Education</p>
+            </section>
+            <div className={styles.locationGrid}>
+                <School
+                    schoolName="McMaster University"
+                    schoolLocation="Hamilton, Ontario"
+                    GPA={3.9}
+                />
+                <School
+                    schoolName="Newmarket High School"
+                    schoolLocation="Newmarket, Ontario"
+                    GPA={4.0}
+                />
+            </div> */}
 
             <div className={divstyling.hr} style={{ marginTop: "5rem" }}></div>
             <section

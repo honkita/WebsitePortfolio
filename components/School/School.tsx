@@ -19,7 +19,6 @@ interface SchoolProps {
 
 export default function School(props: SchoolProps) {
     const [mounted, setMounted] = useState(false);
-    const { resolvedTheme } = useTheme();
 
     useEffect(() => {
         setMounted(true);

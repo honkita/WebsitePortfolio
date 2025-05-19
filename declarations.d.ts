@@ -15,6 +15,7 @@ declare module "@components/PixelButton/PixelButton";
 declare module "@components/PixelSwitch/PixelSwitch";
 declare module "@components/Projects/Projects";
 declare module "@components/ResumeJobs/ResumeJobs";
+declare module "@components/School/School";
 declare module "@components/Title/Title";
 
 declare module "@hooks/MainButtons";
