@@ -1,9 +1,9 @@
 .redName {
-  background-image: url("/images/NamePlate/NamePlateRed.png");
+  background-image: url("/images/NamePlate/Red/Normal.png");
 }
 
 .yellowName {
-  background-image: url("/images/NamePlate/NamePlateYellow.png");
+  background-image: url("/images/NamePlate/Yellow/Normal.png");
 }
 
 .namePlate {
@@ -40,11 +40,11 @@
 
 @media (max-width: 48rem) {
   .redName {
-    background-image: url("/images/NamePlate/NamePlateRedSmall.png");
+    background-image: url("/images/NamePlate/Red/Small.png");
   }
 
   .yellowName {
-    background-image: url("/images/NamePlate/NamePlateYellowSmall.png");
+    background-image: url("/images/NamePlate/Yellow/Small.png");
   }
 
   .namePlate {

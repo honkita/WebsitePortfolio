@@ -19,3 +19,4 @@ declare module "@components/School/School";
 declare module "@components/Title/Title";
 
 declare module "@hooks/MainButtons";
+declare module "@hooks/ScreenSize";
