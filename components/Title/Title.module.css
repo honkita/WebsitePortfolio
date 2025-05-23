@@ -1,41 +1,18 @@
+.namePlate {
+  width: 100vw;
+  height: 50vw;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* Responsive background images */
 .redName {
   background-image: url("/images/NamePlate/Red/Normal.png");
 }
 
 .yellowName {
   background-image: url("/images/NamePlate/Yellow/Normal.png");
-}
-
-.namePlate {
-  width: 100vw;
-  height: 50vw;
-}
-
-.containerButtons {
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  transform: scale(1.25);
-}
-
-.title {
-  min-width: 100vw;
-  text-align: center;
-  font-size: 15vw;
-  line-height: 1.2;
-  font-weight: 800;
-  letter-spacing: -0.05rem;
-  color: #f5f5f5;
-}
-
-.titleCenter {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 @media (max-width: 48rem) {
@@ -48,22 +25,42 @@
   }
 
   .namePlate {
-    width: 100vw;
     height: 100vw;
   }
 
   .title {
-    min-width: 100vw;
-    text-align: center;
     font-size: 20vw;
-    line-height: 1.2;
-    font-weight: 800;
-    letter-spacing: -0.05rem;
-    color: #f5f5f5;
   }
 
   .containerButtons {
     margin-top: 1rem;
     transform: scale(2);
   }
+}
+
+/* Title layout */
+.titleCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  min-width: 100vw;
+  text-align: center;
+  font-size: 15vw;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.05rem;
+  color: #f5f5f5;
+}
+
+.containerButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform: scale(1.25);
 }
