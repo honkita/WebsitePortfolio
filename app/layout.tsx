@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import { usePathname } from "next/navigation";
 
 // Child Components
@@ -13,6 +13,9 @@ import styles from "@app/ui/home.module.css";
 import utilStyles from "@app/ui/theme.util.module.css";
 import "@app/ui/globals.css";
 import "@app/ui/variables.css";
+
+// Hooks
+import LoadImages from "@hooks/LoadImages";
 
 /**
  * Props Interface
@@ -28,23 +31,42 @@ export default function RootLayout({ children }: LayoutProps) {
         // Animation will automatically restart on component mount
     }, [pathname]);
 
+    const imagesLoaded = LoadImages();
+    const [showContent, setShowContent] = useState(false);
+    useEffect(() => {
+        if (imagesLoaded) {
+            // Optional: Add a small delay for smoother transition
+            const timer = setTimeout(() => {
+                setShowContent(true);
+            }, 100);
+            return () => clearTimeout(timer);
+        }
+    }, [imagesLoaded]);
+
     return (
         <html lang="en" suppressHydrationWarning={false}>
             <body>
                 <ThemeProvider>
-                    <div
-                        key={pathname}
-                        className={`${styles.containerColour} ${styles.animateUp}`}
-                    >
-                        <Nav />
-                        <main>{children}</main>
-                        <section
-                            className={utilStyles.headingCopyright}
-                            role="contentinfo"
+                    {showContent ? (
+                        <div
+                            key={pathname}
+                            className={`${styles.containerColour} ${styles.animateUp}`}
                         >
-                            Copyrights © {new Date().getFullYear()} Elite Lu
-                        </section>
-                    </div>
+                            <>
+                                <Nav />
+                                <main>{children}</main>
+                                <section
+                                    className={utilStyles.headingCopyright}
+                                    role="contentinfo"
+                                >
+                                    Copyrights © {new Date().getFullYear()}{" "}
+                                    Elite Lu
+                                </section>
+                            </>
+                        </div>
+                    ) : (
+                        <></>
+                    )}
                 </ThemeProvider>
             </body>
         </html>
