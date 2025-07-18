@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 
 // Components
 import PixelButton from "@components/PixelButton/PixelButton";
@@ -43,6 +44,7 @@ const preloadImage = (url: string): Promise<void> => {
 
 export default function Title({ colour, buttons, name }: TitleProps) {
     const [bgLoaded, setBgLoaded] = useState(false);
+    const { resolvedTheme } = useTheme(); // ✅ safely called at top level
 
     useEffect(() => {
         const imageUrl = getBackgroundUrl(colour);
@@ -75,7 +77,7 @@ export default function Title({ colour, buttons, name }: TitleProps) {
                         <PixelButton
                             key={index}
                             name={item}
-                            url={returnURL(item)}
+                            url={returnURL(item, resolvedTheme)} // ✅ now safe
                             extra={true}
                         />
                     ))}

@@ -1,28 +1,16 @@
-"use client";
+export function returnURL(text: string, resolvedTheme: string) {
+    const resumeTheme = () =>
+        resolvedTheme === "light"
+            ? "./Elite_Lu_Resume.pdf"
+            : "./Elite_Lu_Resume_Dark.pdf";
 
-import { useTheme } from "next-themes";
-
-interface itemsType {
-    [key: string]: string;
-}
-
-export function returnURL(text: string) {
-    const { resolvedTheme } = useTheme();
-    const items: itemsType = {
+    const items: { [key: string]: string } = {
         GitHub: "https://github.com/honkita/",
         LinkedIn: "https://www.linkedin.com/in/elitelu",
         AboutMe: "./aboutme",
         Email: "mailto:elitelulww@gmail.com",
         Download: resumeTheme()
     };
-
-    function resumeTheme() {
-        if (resolvedTheme == "light") {
-            return "./Elite_Lu_Resume.pdf";
-        } else {
-            return "./Elite_Lu_Resume_Dark.pdf";
-        }
-    }
 
     return items[text];
 }
