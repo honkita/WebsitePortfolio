@@ -1,6 +1,6 @@
 "use client";
 
-import Head from "next/head";
+import type { Metadata } from "next";
 
 // Child Components
 import DevTools from "@components/Icons/DevTools";
@@ -15,14 +15,14 @@ import styles from "@app/ui/home.module.css";
 import utilStyles from "@app/ui/theme.util.module.css";
 import divstyling from "@styles/divstyling.module.css";
 
+export const metadata: Metadata = {
+    title: "About Me"
+};
+
 export default function AboutMe() {
     return (
         <div className={styles.pageContainer}>
-            <section>
-                <Head>
-                    <title>About Me</title>
-                </Head>
-            </section>
+            <section></section>
             <Title
                 name="About Me"
                 colour="yellow"

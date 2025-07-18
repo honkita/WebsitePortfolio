@@ -1,5 +1,5 @@
 import React from "react";
-import Head from "next/head";
+import type { Metadata } from "next";
 
 // Child Components
 import Projects from "@components/Projects/Projects";
@@ -14,21 +14,15 @@ import utilStyles from "@app/ui/theme.util.module.css";
 import ImagesForCarousel from "@assets/homeCarousel.json";
 import CodedProjects from "@assets/projects.json";
 
+export const metadata: Metadata = {
+    title: "Elite Lu Portfolio"
+};
+
 export default function Home() {
-    const name = "Elite Lu Portfolio";
     var projectsJSON = JSON.parse(JSON.stringify(CodedProjects));
 
     return (
         <div>
-            <Head>
-                <title>{name}</title>
-                <meta
-                    name="description"
-                    content="Elite Lu's official portfolio site"
-                />
-                <meta name="og:title" content={name} />
-            </Head>
-
             <Title
                 name="Elite Lu"
                 colour="red"
