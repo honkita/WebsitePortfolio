@@ -44,7 +44,7 @@ export default function RootLayout({ children }: LayoutProps) {
     }, [imagesLoaded]);
 
     return (
-        <html lang="en" suppressHydrationWarning={false}>
+        <html lang="en" suppressHydrationWarning={true}>
             <body>
                 <ThemeProvider>
                     {showContent ? (
