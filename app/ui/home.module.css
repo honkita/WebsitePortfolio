@@ -297,8 +297,7 @@
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    z-index: 9999; /* Ensure it's on top of everything else */
-    /* Add any loading animations here, e.g., spinner */
+    z-index: 9999;
     opacity: 1;
     transition: opacity 0.3s ease-in-out; /* Smooth fade out */
 }
@@ -309,9 +308,7 @@
     pointer-events: none; /* Allows clicks through once hidden */
 }
 
-/* If you want the content to animate up, ensure it's positioned correctly */
 .containerColour {
-    /* Ensure this allows for the animateUp transition */
     transform: translateY(20px); /* Initial state for animation */
     opacity: 0;
     transition: transform 0.5s ease-out, opacity 0.5s ease-out;
