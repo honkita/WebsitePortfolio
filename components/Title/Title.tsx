@@ -44,8 +44,7 @@ const preloadImage = (url: string): Promise<void> => {
 
 export default function Title({ colour, buttons, name }: TitleProps) {
     const [bgLoaded, setBgLoaded] = useState(false);
-    const { resolvedTheme } = useTheme(); // ✅ safely called at top level
-
+    const { resolvedTheme } = useTheme();
     useEffect(() => {
         const imageUrl = getBackgroundUrl(colour);
         if (imageUrl) {
@@ -67,22 +66,25 @@ export default function Title({ colour, buttons, name }: TitleProps) {
         colour === "red" ? TitleCSS.redName : TitleCSS.yellowName;
 
     return (
-        <section
-            className={`${TitleCSS.namePlate} ${backgroundClass} ${divstyling.imageRendering}`}
-        >
-            <div className={TitleCSS.titleCenter}>
-                <h1 className={TitleCSS.title}>{name}</h1>
-                <section className={TitleCSS.containerButtons}>
-                    {buttons.map((item, index) => (
-                        <PixelButton
-                            key={index}
-                            name={item}
-                            url={returnURL(item, resolvedTheme)} // ✅ now safe
-                            extra={true}
-                        />
-                    ))}
-                </section>
-            </div>
-        </section>
+        <div>
+            <div className={TitleCSS.namePlateBackground} />
+            <section
+                className={`${TitleCSS.namePlate} ${backgroundClass} ${divstyling.imageRendering}`}
+            >
+                <div className={TitleCSS.titleCenter}>
+                    <h1 className={TitleCSS.title}>{name}</h1>
+                    <section className={TitleCSS.containerButtons}>
+                        {buttons.map((item, index) => (
+                            <PixelButton
+                                key={index}
+                                name={item}
+                                url={returnURL(item, resolvedTheme)}
+                                extra={true}
+                            />
+                        ))}
+                    </section>
+                </div>
+            </section>
+        </div>
     );
 }
