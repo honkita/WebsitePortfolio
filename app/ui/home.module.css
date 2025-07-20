@@ -282,34 +282,30 @@
   }
 }
 
-
-/* @app/ui/home.module.css or a new file */
-
 .fullPageLoader {
-    position: fixed; /* Fixed position to cover the entire viewport */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: var(--background-color, #ffffff); /* Use your theme's background color */
-    color: var(--text-color, #333333); /* Use your theme's text color */
+    background-color: var(--background-color, #ffffff);
+    color: var(--text-color, #333333);
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
     z-index: 9999;
     opacity: 1;
-    transition: opacity 0.3s ease-in-out; /* Smooth fade out */
+    transition: opacity 0.3s ease-in-out;
 }
 
-/* Optional: Fade out effect for the loader */
 .fullPageLoader.hidden {
     opacity: 0;
-    pointer-events: none; /* Allows clicks through once hidden */
+    pointer-events: none;
 }
 
 .containerColour {
-    transform: translateY(20px); /* Initial state for animation */
+    transform: translateY(20px);
     opacity: 0;
     transition: transform 0.5s ease-out, opacity 0.5s ease-out;
 }
@@ -319,27 +315,23 @@
     opacity: 1;
 }
 
-
-/* @app/ui/home.module.css or a new file */
-
 .fullPageLoader {
-    position: fixed; /* Fixed position to cover the entire viewport */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: var(--background-color); /* Use your theme's background color */
-    color: var(--primary); /* Use your theme's text color */
+    background-color: var(--background-color);
+    color: var(--primary);
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
     z-index: 9999;
     opacity: 1;
-    transition: opacity 0.3s ease-in-out; /* Smooth fade out */
+    transition: opacity 0.3s ease-in-out;
 }
 
-/* Optional: Fade out effect for the loader */
 .fullPageLoader.hidden {
     opacity: 0;
     pointer-events: none;

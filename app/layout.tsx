@@ -60,7 +60,7 @@ export default function RootLayout({ children }: LayoutProps) {
                 <ThemeProvider>
                     {isLoadingInitialLoad && (
                         <div className={styles.fullPageLoader}>
-                            Loading your awesome content...
+                            Please wait ...
                         </div>
                     )}
 
