@@ -54,14 +54,6 @@ export default function Title({ colour, buttons, name }: TitleProps) {
         }
     }, [colour]);
 
-    if (!bgLoaded) {
-        return (
-            <section className="flex justify-center items-center h-[50vw]">
-                <p className="text-xl">Loading...</p>
-            </section>
-        );
-    }
-
     const backgroundClass =
         colour === "red" ? TitleCSS.redName : TitleCSS.yellowName;
 
