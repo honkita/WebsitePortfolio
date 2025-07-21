@@ -34,13 +34,11 @@ export default function RootLayout({ children }: LayoutProps) {
         setShouldAnimate(false);
 
         const animationTriggerTimer = setTimeout(() => {
-            if (imagesLoaded) {
-                setShouldAnimate(true);
-            }
+            setShouldAnimate(true);
         }, 50);
 
         return () => clearTimeout(animationTriggerTimer);
-    }, [pathname, isMounted, imagesLoaded]);
+    }, [pathname, isMounted]);
 
     return (
         <html lang="en" suppressHydrationWarning={true}>
