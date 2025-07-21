@@ -18,6 +18,7 @@ declare module "@components/Project/Project";
 declare module "@components/ResumeJobs/ResumeJobs";
 declare module "@components/School/School";
 declare module "@components/Title/Title";
+declare module "@components/Title/HomeTitle";
 
 declare module "@hooks/LoadImages";
 declare module "@hooks/MainButtons";
