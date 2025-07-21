@@ -16,7 +16,6 @@ import divstyling from "@styles/divstyling.module.css";
 export default function AboutMeClient() {
     return (
         <div className={styles.pageContainer}>
-            <section></section>
             <Title
                 name="About Me"
                 colour="yellow"
