@@ -58,7 +58,7 @@ export default function Title({ colour, buttons, name }: TitleProps) {
 
         if (imageUrl) {
             preloadImage(imageUrl).then(() => {
-                const delay = process.env.NODE_ENV === "production" ? 1000 : 0;
+                const delay = process.env.NODE_ENV === "production" ? 100 : 0;
 
                 const timer = setTimeout(() => {
                     setBgIsVisible(true);

@@ -20,9 +20,9 @@ main {
   display: flex;
   border: none !important;
   transition: background-color 0.3s ease, color 0.3s ease;
-  opacity: 0;
-  transform: translateY(1000px);
-  animation: slideUp 0.6s ease forwards;
+  opacity: 1;
+  /* transform: translateY(1000px);
+  animation: slideUp 0.6s ease forwards; */
   overflow-x: hidden;
 }
 
@@ -124,11 +124,10 @@ h1 {
   margin: 0;
 }
 
-/* Apply to all elements you want to animate */
 .animate-up {
   opacity: 0;
-  transform: translateY(1000px);
-  animation: slideUp 0.6s ease forwards;
+  /* transform: translateY(1000px);
+  animation: slideUp 0.6s ease forwards; */
 }
 
 /* Delay animations for staggered effect */
