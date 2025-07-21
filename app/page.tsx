@@ -28,9 +28,6 @@ export default function Home() {
                 colour="red"
                 buttons={["LinkedIn", "GitHub", "Email", "AboutMe"]}
             />
-            {/* <section className={utilStyles.headingXl}>
-                <p>About Me</p>
-            </section> */}
             <div className={styles.contentWrapper}>
                 <div
                     className={divstyling.hr}
@@ -43,8 +40,21 @@ export default function Home() {
                     </ul>
                 </section>
                 <ProgressBarGenerator
-                    label={"Proj"}
-                    percentage={10}
+                    label={"PROJ"}
+                    numerator={10}
+                    denominator={100}
+                    colour={"red"}
+                />
+                <ProgressBarGenerator
+                    label={"ART"}
+                    numerator={10}
+                    denominator={22}
+                    colour={"red"}
+                />
+                <ProgressBarGenerator
+                    label={"GPA"}
+                    numerator={11}
+                    denominator={12}
                     colour={"red"}
                 />
             </div>

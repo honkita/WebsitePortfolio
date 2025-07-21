@@ -24,6 +24,11 @@
     "darkTheme": "./images/Buttons/PixelDownloadDark.svg",
     "target": "_blank"
   },
+  "ResumeDownload": {
+    "lightTheme": "./images/Buttons/PixelResumeDownload.svg",
+    "darkTheme": "./images/Buttons/PixelResumeDownloadDark.svg",
+    "target": "_blank"
+  },
   "Call": {
     "lightTheme": "./images/Buttons/PixelCall.png",
     "darkTheme": "./images/Buttons/PixelCallDark.png",

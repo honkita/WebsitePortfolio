@@ -19,7 +19,7 @@ export default function AboutMeClient() {
             <Title
                 name="About Me"
                 colour="yellow"
-                buttons={["LinkedIn", "GitHub", "Email", "Download"]}
+                buttons={["LinkedIn", "GitHub", "Email", "ResumeDownload"]}
             />
 
             <div className={styles.contentWrapper}>

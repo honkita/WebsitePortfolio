@@ -30,9 +30,6 @@ export default function Projects() {
                 colour="blue"
                 buttons={["LinkedIn", "GitHub", "Email", "AboutMe"]}
             />
-            {/* <section className={utilStyles.headingXl}>
-                <p>About Me</p>
-            </section> */}
             <div className={styles.contentWrapper}>
                 <div
                     className={divstyling.hr}

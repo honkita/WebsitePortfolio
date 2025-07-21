@@ -7,27 +7,32 @@ import ProgressBarCSS from "./ProgressBar.module.css";
 
 // Props definition
 interface ProgressBarProps {
-    percentage: number;
+    numerator: number;
+    denominator: number;
     colour?: "green" | "blue" | "red";
     label: string;
 }
 
 // Component
 export default function ProgressBar(props: ProgressBarProps) {
-    const fillWidth = Math.max(0, Math.min(100, props.percentage));
+    const fillWidth = Math.max(0, Math.min(props.denominator, props.numerator));
 
     return (
         <div className={ProgressBarCSS.progressBarRow}>
             <div className={ProgressBarCSS.progressBarLabel}>{props.label}</div>
             <div className={ProgressBarCSS.progressBarContainer}>
                 <div className={ProgressBarCSS.progressBarTextTop}>
-                    {props.percentage}
+                    {props.numerator}
                 </div>
                 <div className={ProgressBarCSS.progressBarBorder}>
                     <div className={ProgressBarCSS.progressBarTrack}>
                         <div
                             className={ProgressBarCSS.progressBarFill}
-                            style={{ width: `${fillWidth}%` }}
+                            style={{
+                                width: `${
+                                    (props.numerator / props.denominator) * 100
+                                }%`
+                            }}
                         ></div>
                     </div>
                 </div>

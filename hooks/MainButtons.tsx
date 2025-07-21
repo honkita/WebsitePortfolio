@@ -9,7 +9,7 @@ export function returnURL(text: string, resolvedTheme: string) {
         LinkedIn: "https://www.linkedin.com/in/elitelu",
         AboutMe: "./aboutme",
         Email: "mailto:elitelulww@gmail.com",
-        Download: resumeTheme()
+        ResumeDownload: resumeTheme()
     };
 
     return items[text];

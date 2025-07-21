@@ -23,6 +23,8 @@ export interface TitleProps {
 // Helper: Map colour to background image URL
 const getBackgroundUrl = (colour: string): string => {
     switch (colour) {
+        case "blue":
+            return "/images/NamePlate/Blue/Normal.png";
         case "red":
             return "/images/NamePlate/Red/Normal.png";
         case "yellow":
