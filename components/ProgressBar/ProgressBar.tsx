@@ -22,7 +22,7 @@ export default function ProgressBar(props: ProgressBarProps) {
             <div className={ProgressBarCSS.progressBarLabel}>{props.label}</div>
             <div className={ProgressBarCSS.progressBarContainer}>
                 <div className={ProgressBarCSS.progressBarTextTop}>
-                    {props.numerator}
+                    {props.numerator} / {props.denominator}
                 </div>
                 <div className={ProgressBarCSS.progressBarBorder}>
                     <div className={ProgressBarCSS.progressBarTrack}>

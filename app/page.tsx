@@ -10,17 +10,13 @@ import divstyling from "@styles/divstyling.module.css";
 import styles from "@app/ui/home.module.css";
 import utilStyles from "@app/ui/theme.util.module.css";
 
-//JSONs
-import ImagesForCarousel from "@assets/homeCarousel.json";
-import CodedProjects from "@assets/projects.json";
-
 export const metadata: Metadata = {
     title: "Elite Lu Portfolio"
 };
 
 export default function Home() {
-    var projectsJSON = JSON.parse(JSON.stringify(CodedProjects));
-
+    const year = new Date().getFullYear();
+    const age = year - 2003;
     return (
         <div>
             <Title
@@ -40,21 +36,27 @@ export default function Home() {
                     </ul>
                 </section>
                 <ProgressBarGenerator
-                    label={"PROJ"}
-                    numerator={10}
-                    denominator={100}
+                    label={"GPA"}
+                    numerator={10.8}
+                    denominator={12}
+                    colour={"red"}
+                />
+                <ProgressBarGenerator
+                    label={"CODE"}
+                    numerator={year - 2017}
+                    denominator={age}
                     colour={"red"}
                 />
                 <ProgressBarGenerator
                     label={"ART"}
-                    numerator={10}
-                    denominator={22}
+                    numerator={year - 2014}
+                    denominator={age}
                     colour={"red"}
                 />
                 <ProgressBarGenerator
-                    label={"GPA"}
-                    numerator={11}
-                    denominator={12}
+                    label={"SEW"}
+                    numerator={year - 2019}
+                    denominator={age}
                     colour={"red"}
                 />
             </div>

@@ -28,7 +28,7 @@ export default function Projects() {
             <Title
                 name="Projects"
                 colour="blue"
-                buttons={["LinkedIn", "GitHub", "Email", "AboutMe"]}
+                buttons={["LinkedIn", "GitHub", "Email"]}
             />
             <div className={styles.contentWrapper}>
                 <div
@@ -57,11 +57,6 @@ export default function Projects() {
                         )}
                     </div>
                 </div>
-                <ProgressBarGenerator
-                    label={"Proj"}
-                    percentage={10}
-                    colour={"red"}
-                />
             </div>
         </div>
     );
