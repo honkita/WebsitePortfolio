@@ -1,10 +1,9 @@
 "use client";
 
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 import Nav from "@components/NavBar/NavBar";
-import { useEffect } from "react";
 import { ThemeProvider } from "next-themes";
 
 import styles from "@app/ui/home.module.css";
@@ -20,9 +19,8 @@ interface LayoutProps {
 
 export default function RootLayout({ children }: LayoutProps) {
     const pathname = usePathname();
-    useEffect(() => {}, [pathname]);
-
     const imagesLoaded = LoadImages();
+
     const [isMounted, setIsMounted] = useState(false);
     const [shouldAnimate, setShouldAnimate] = useState(false);
 
@@ -31,25 +29,30 @@ export default function RootLayout({ children }: LayoutProps) {
     }, []);
 
     useEffect(() => {
-        if (isMounted && imagesLoaded) {
-            const timer = setTimeout(() => {
+        if (!isMounted) return;
+
+        setShouldAnimate(false);
+
+        const animationTriggerTimer = setTimeout(() => {
+            if (imagesLoaded) {
                 setShouldAnimate(true);
-            }, 100);
-            return () => clearTimeout(timer);
-        }
-    }, [isMounted, imagesLoaded]);
+            }
+        }, 50);
+
+        return () => clearTimeout(animationTriggerTimer);
+    }, [pathname, isMounted, imagesLoaded]);
 
     return (
         <html lang="en" suppressHydrationWarning={true}>
             <body>
                 <ThemeProvider>
+                    <Nav />
                     <div
                         key={pathname}
                         className={`${styles.containerColour} ${
                             styles.initialHide
                         } ${shouldAnimate ? styles.animateUp : ""}`}
                     >
-                        <Nav />
                         <main>{children}</main>
                         <section
                             className={utilStyles.headingCopyright}
