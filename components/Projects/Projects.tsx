@@ -46,14 +46,10 @@ export default function Projects(props: ProjectsProps) {
                 <section className={ProjectsCSS.projectTitle}>
                     <p>{props.name}</p>
                 </section>
-                <Image
+                <img
                     className={`${ProjectsCSS.projectsImage} ${divstyling.border}`}
                     fetchPriority={"high"}
                     src={getImage()}
-                    alt={props.name + " image"}
-                    fill
-                    priority={true}
-                    sizes="100vw"
                 />
                 <div className={ProjectsCSS.buttonPlacement}>
                     <PixelButton name="GitHub" url={props.url} />
