@@ -14,9 +14,9 @@ import TitleCSS from "./Title.module.css";
 import { returnURL } from "@hooks/MainButtons";
 
 // Props Interface
-interface TitleProps {
+export interface TitleProps {
     colour: "red" | "yellow";
-    buttons: [string];
+    buttons: string[];
     name: string;
 }
 
@@ -58,25 +58,22 @@ export default function Title({ colour, buttons, name }: TitleProps) {
         colour === "red" ? TitleCSS.redName : TitleCSS.yellowName;
 
     return (
-        <div>
-            <div className={TitleCSS.namePlateBackground} />
-            <section
-                className={`${TitleCSS.namePlate} ${backgroundClass} ${divstyling.imageRendering}`}
-            >
-                <div className={TitleCSS.titleCenter}>
-                    <h1 className={TitleCSS.title}>{name}</h1>
-                    <section className={TitleCSS.containerButtons}>
-                        {buttons.map((item, index) => (
-                            <PixelButton
-                                key={index}
-                                name={item}
-                                url={returnURL(item, resolvedTheme)}
-                                extra={true}
-                            />
-                        ))}
-                    </section>
-                </div>
-            </section>
-        </div>
+        <section
+            className={`${TitleCSS.namePlate} ${backgroundClass} ${divstyling.imageRendering}`}
+        >
+            <div className={TitleCSS.titleCenter}>
+                <h1 className={TitleCSS.title}>{name}</h1>
+                <section className={TitleCSS.containerButtons}>
+                    {buttons.map((item, index) => (
+                        <PixelButton
+                            key={index}
+                            name={item}
+                            url={returnURL(item, resolvedTheme)}
+                            extra={true}
+                        />
+                    ))}
+                </section>
+            </div>
+        </section>
     );
 }
