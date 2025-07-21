@@ -5,24 +5,22 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 
-// Child Components
 import PixelSwitch from "@components/PixelSwitch/PixelSwitch";
 
-// CSS
 import NavBarCSS from "./NavBar.module.css";
 
 export default function NavBar() {
-    const [mounted, setMounted] = useState(false);
+    const [isNavInitiallyMounted, setIsNavInitiallyMounted] = useState(false);
+    const [isThemeMounted, setIsThemeMounted] = useState(false);
     const { resolvedTheme } = useTheme();
 
-    // useEffect only runs on the client, so now we can safely show the UI
     useEffect(() => {
-        setMounted(true);
+        setIsNavInitiallyMounted(true);
     }, []);
 
-    if (!mounted) {
-        return null;
-    }
+    useEffect(() => {
+        setIsThemeMounted(true);
+    }, []);
 
     const path = "./images/NavBar/";
 
@@ -36,8 +34,16 @@ export default function NavBar() {
         return path + "Pixel_" + name + "_Dark.svg";
     }
 
+    const actualResolvedTheme = isThemeMounted ? resolvedTheme : "light";
+
     return (
-        <nav className={NavBarCSS.navBar}>
+        <nav
+            className={`${NavBarCSS.navBar} ${
+                isNavInitiallyMounted
+                    ? NavBarCSS.navBarVisible
+                    : NavBarCSS.navBarHidden
+            }`}
+        >
             <ul className={NavBarCSS.noBullets}>
                 {pages.map((page, index) => (
                     <Link href={page.link} key={index}>
@@ -52,7 +58,7 @@ export default function NavBar() {
                                 id="Icon"
                                 key={page.name}
                                 src={
-                                    resolvedTheme === "light"
+                                    actualResolvedTheme === "light"
                                         ? getButton(page.file, true)
                                         : getButton(page.file, false)
                                 }

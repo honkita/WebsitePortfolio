@@ -28,6 +28,16 @@
   flex-direction: row;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+
+  transition: opacity 0.7s ease-out;
+}
+
+.navBarHidden {
+  opacity: 0;
+}
+
+.navBarVisible {
+  opacity: 1;
 }
 
 .noBullets {
