@@ -1,5 +1,7 @@
 .containerColour {
   background-color: var(--background);
+  min-height: 100vh;
+  position: relative;
 }
 
 .container {
@@ -280,4 +282,15 @@
     margin-right: 1vw;
     border-spacing: 2rem;
   }
+}
+
+.initialHide {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.animateUp {
+  opacity: 1;
+  transform: translateY(0);
 }

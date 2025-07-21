@@ -3,24 +3,19 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
-// Components
 import PixelButton from "@components/PixelButton/PixelButton";
 
-// CSS
 import divstyling from "@styles/divstyling.module.css";
 import TitleCSS from "./Title.module.css";
 
-// Hooks
 import { returnURL } from "@hooks/MainButtons";
 
-// Props Interface
 export interface TitleProps {
     colour: "red" | "yellow";
     buttons: string[];
     name: string;
 }
 
-// Helper: Map colour to background image URL
 const getBackgroundUrl = (colour: string): string => {
     switch (colour) {
         case "red":
@@ -32,7 +27,6 @@ const getBackgroundUrl = (colour: string): string => {
     }
 };
 
-// Preload image helper
 const preloadImage = (url: string): Promise<void> => {
     return new Promise((resolve) => {
         const img = new Image();
@@ -44,18 +38,49 @@ const preloadImage = (url: string): Promise<void> => {
 
 export default function Title({ colour, buttons, name }: TitleProps) {
     const [bgLoaded, setBgLoaded] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();
+
     useEffect(() => {
-        const imageUrl = getBackgroundUrl(colour);
-        if (imageUrl) {
-            preloadImage(imageUrl).then(() => setBgLoaded(true));
-        } else {
-            setBgLoaded(true);
+        setMounted(true);
+    }, []);
+
+    useEffect(() => {
+        if (mounted) {
+            const imageUrl = getBackgroundUrl(colour);
+            if (imageUrl) {
+                preloadImage(imageUrl).then(() => setBgLoaded(true));
+            } else {
+                setBgLoaded(true);
+            }
         }
-    }, [colour]);
+    }, [colour, mounted]);
 
     const backgroundClass =
         colour === "red" ? TitleCSS.redName : TitleCSS.yellowName;
+
+    if (!mounted) {
+        const serverRenderedTheme = "light";
+        return (
+            <section
+                className={`${TitleCSS.namePlate} ${backgroundClass} ${divstyling.imageRendering}`}
+            >
+                <div className={TitleCSS.titleCenter}>
+                    <h1 className={TitleCSS.title}>{name}</h1>
+                    <section className={TitleCSS.containerButtons}>
+                        {buttons.map((item, index) => (
+                            <PixelButton
+                                key={index}
+                                name={item}
+                                url={returnURL(item, serverRenderedTheme)}
+                                extra={true}
+                            />
+                        ))}
+                    </section>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section
