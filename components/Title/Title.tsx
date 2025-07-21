@@ -37,7 +37,7 @@ const preloadImage = (url: string): Promise<void> => {
 };
 
 export default function Title({ colour, buttons, name }: TitleProps) {
-    const [bgLoaded, setBgLoaded] = useState(false);
+    const [bgIsVisible, setBgIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();
 
@@ -46,45 +46,37 @@ export default function Title({ colour, buttons, name }: TitleProps) {
     }, []);
 
     useEffect(() => {
-        if (mounted) {
-            const imageUrl = getBackgroundUrl(colour);
-            if (imageUrl) {
-                preloadImage(imageUrl).then(() => setBgLoaded(true));
-            } else {
-                setBgLoaded(true);
-            }
+        if (!mounted) return;
+
+        const imageUrl = getBackgroundUrl(colour);
+
+        if (imageUrl) {
+            preloadImage(imageUrl).then(() => {
+                const delay = process.env.NODE_ENV === "production" ? 1000 : 0;
+
+                const timer = setTimeout(() => {
+                    setBgIsVisible(true);
+                }, delay);
+
+                return () => clearTimeout(timer);
+            });
+        } else {
+            setBgIsVisible(true);
         }
     }, [colour, mounted]);
 
     const backgroundClass =
         colour === "red" ? TitleCSS.redName : TitleCSS.yellowName;
 
-    if (!mounted) {
-        const serverRenderedTheme = "light";
-        return (
-            <section
-                className={`${TitleCSS.namePlate} ${backgroundClass} ${divstyling.imageRendering}`}
-            >
-                <div className={TitleCSS.titleCenter}>
-                    <h1 className={TitleCSS.title}>{name}</h1>
-                    <section className={TitleCSS.containerButtons}>
-                        {buttons.map((item, index) => (
-                            <PixelButton
-                                key={index}
-                                name={item}
-                                url={returnURL(item, serverRenderedTheme)}
-                                extra={true}
-                            />
-                        ))}
-                    </section>
-                </div>
-            </section>
-        );
-    }
+    const visibilityClass = bgIsVisible
+        ? TitleCSS.loadedAndVisible
+        : TitleCSS.notYetVisible;
+
+    const actualResolvedTheme = mounted ? resolvedTheme : "light";
 
     return (
         <section
-            className={`${TitleCSS.namePlate} ${backgroundClass} ${divstyling.imageRendering}`}
+            className={`${TitleCSS.namePlate} ${backgroundClass} ${visibilityClass} ${divstyling.imageRendering}`}
         >
             <div className={TitleCSS.titleCenter}>
                 <h1 className={TitleCSS.title}>{name}</h1>
@@ -93,7 +85,7 @@ export default function Title({ colour, buttons, name }: TitleProps) {
                         <PixelButton
                             key={index}
                             name={item}
-                            url={returnURL(item, resolvedTheme)}
+                            url={returnURL(item, actualResolvedTheme)}
                             extra={true}
                         />
                     ))}

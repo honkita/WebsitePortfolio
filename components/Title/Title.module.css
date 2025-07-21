@@ -6,17 +6,7 @@
   position: relative;
   z-index: 11;
   opacity: 1;
-}
-
-.namePlateBackground {
-  width: 100vw;
-  height: 50vw;
-  background: #2A7B9B;
-  background: linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
-  z-index: 10;
-  background-size: cover;
-  background-position: center;
-  position: absolute;
+  transition: opacity 0.7s ease-out; /* Controls the fade-in of the entire section including background */
 }
 
 /* Responsive background images */
@@ -76,4 +66,12 @@
   align-items: center;
   position: relative;
   transform: scale(1.25);
+}
+
+.notYetVisible {
+  opacity: 0;
+}
+
+.loadedAndVisible {
+  opacity: 1;
 }
