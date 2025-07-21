@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 // CSS
 import IconsCSS from "./Icons.module.css";
@@ -31,11 +32,13 @@ export default function DevTools() {
                             title={devTool.name}
                             tabIndex={-1}
                         >
-                            <img
+                            <Image
                                 id={devTool.name}
                                 src={devTool.url}
-                                fetchPriority={"high"}
                                 alt={devTool.name + " image "}
+                                fill
+                                priority={true}
+                                sizes="100vw"
                             />
                         </button>
                         <div

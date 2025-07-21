@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 import Link from "next/link";
 
 // CSS
@@ -55,7 +56,7 @@ export default function PixelButton(props: PixelButtonProps) {
                 type="button"
                 tabIndex={-1}
             >
-                <img
+                <Image
                     id="Icon"
                     key={name}
                     fetchPriority={"high"}
@@ -65,8 +66,12 @@ export default function PixelButton(props: PixelButtonProps) {
                             : getValue().darkTheme
                     }
                     title={name}
+                    alt={name + " image"}
                     aria-hidden={true}
                     tabIndex={-1}
+                    fill
+                    priority={true}
+                    sizes="100vw"
                 />
             </button>
         </Link>

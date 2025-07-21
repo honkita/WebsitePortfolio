@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 // CSS
 import IconsCSS from "./Icons.module.css";
@@ -34,10 +35,13 @@ export default function Frameworks() {
                             title={frameworks.name}
                             tabIndex={-1}
                         >
-                            <img
+                            <Image
                                 id={frameworks.name}
                                 src={frameworks.url}
                                 alt={frameworks.name + " image"}
+                                fill
+                                priority={true}
+                                sizes="100vw"
                             />
                         </button>
                         <div

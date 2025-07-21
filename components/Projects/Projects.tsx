@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 // Child Components
 import PixelButton from "@components/PixelButton/PixelButton";
@@ -45,11 +46,15 @@ export default function Projects(props: ProjectsProps) {
                 <section className={ProjectsCSS.projectTitle}>
                     <p>{props.name}</p>
                 </section>
-                <img
+                <Image
                     className={`${ProjectsCSS.projectsImage} ${divstyling.border}`}
                     fetchPriority={"high"}
                     src={getImage()}
-                ></img>
+                    alt={props.name + " image"}
+                    fill
+                    priority={true}
+                    sizes="100vw"
+                />
                 <div className={ProjectsCSS.buttonPlacement}>
                     <PixelButton name="GitHub" url={props.url} />
                 </div>

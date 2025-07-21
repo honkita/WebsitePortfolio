@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
+import Image from "next/image";
 
 // Child Components
 import PixelButton from "@components/PixelButton/PixelButton";
@@ -26,7 +26,6 @@ interface JobData {
 export default function ResumeJobs() {
     const [mounted, setMounted] = useState(false);
     const [selectedJobIndex, setSelectedJobIndex] = useState(0);
-    const { resolvedTheme } = useTheme();
 
     function BulletList(points: string[]) {
         return (
@@ -69,11 +68,13 @@ export default function ResumeJobs() {
                         }`}
                         onClick={() => handleJobSelect(index)}
                     >
-                        <img
+                        <Image
                             src={job.logo}
-                            fetchPriority={"high"}
                             alt={`${job.employerName} logo`}
                             className={`${ResumeJobsCSS.buttonRendering}`}
+                            fill
+                            priority={true}
+                            sizes="100vw"
                         />
                     </button>
                 ))}

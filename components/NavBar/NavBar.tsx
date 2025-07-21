@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 import Link from "next/link";
 
 // Child Components
@@ -47,7 +48,7 @@ export default function NavBar() {
                             type="button"
                             tabIndex={-1}
                         >
-                            <img
+                            <Image
                                 id="Icon"
                                 key={page.name}
                                 src={
@@ -56,9 +57,12 @@ export default function NavBar() {
                                         : getButton(page.file, false)
                                 }
                                 title={page.name}
+                                alt={page.name + " image"}
                                 aria-hidden={true}
                                 tabIndex={-1}
-                                fetchPriority={"high"}
+                                fill
+                                priority={true}
+                                sizes="100vw"
                             />
                         </button>
                     </Link>
