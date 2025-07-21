@@ -1,0 +1,59 @@
+.progressBarRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progressBarLabel {
+  width: 5rem;
+  text-align: left;
+  font-size: 2rem;
+  color: var(--primary);
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.progressBarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressBarBorder {
+  margin-left: 1rem;
+  width: 10rem;
+  height: 1rem;
+  background-color: #383838;
+  border: 2px solid #1a1a1a;
+  position: relative;
+  overflow: hidden;
+  image-rendering: pixelated;
+}
+
+.progressBarTrack {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background-color: #6d6d6d;
+}
+
+.progressBarFill {
+  height: 100%;
+  background-color: #4caf50;
+  width: 0%;
+  transition: width 0.5s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fix text position */
+.progressBarTextTop {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--primary);
+  text-align: center;
+  position: static; /* remove absolute to restore layout flow */
+}

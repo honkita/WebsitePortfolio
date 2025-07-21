@@ -2,8 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 
 // Child Components
-import Projects from "@components/Projects/Projects";
-import ImageCarousel from "@components/ImageCarousel/ImageCarousel";
+import ProgressBarGenerator from "@components/ProgressBar/ProgressBar";
 import Title from "@components/Title/Title";
 
 // CSS
@@ -43,32 +42,11 @@ export default function Home() {
                         <li>Fourth year Computer Science McMaster Student</li>
                     </ul>
                 </section>
-
-                <section className={utilStyles.headingXl}>
-                    <p>Projects</p>
-                </section>
-                <ImageCarousel images={ImagesForCarousel} />
-                <div className={styles.container}>
-                    <div className={styles.jobGrid}>
-                        {projectsJSON.map(
-                            (
-                                project: {
-                                    name: string;
-                                    img: string;
-                                    url: string;
-                                },
-                                index: number
-                            ) => (
-                                <Projects
-                                    key={index}
-                                    name={project.name}
-                                    img={project.img}
-                                    url={project.url}
-                                />
-                            )
-                        )}
-                    </div>
-                </div>
+                <ProgressBarGenerator
+                    label={"Proj"}
+                    percentage={10}
+                    colour={"red"}
+                />
             </div>
         </div>
     );

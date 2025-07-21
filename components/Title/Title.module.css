@@ -7,6 +7,10 @@
   opacity: 1;
 }
 
+.blueName {
+  background-image: url("/images/NamePlate/Blue/Normal.png");
+}
+
 .redName {
   background-image: url("/images/NamePlate/Red/Normal.png");
 }
@@ -16,6 +20,10 @@
 }
 
 @media (max-width: 48rem) {
+  .blueName {
+    background-image: url("/images/NamePlate/Blue/Small.png");
+  }
+
   .redName {
     background-image: url("/images/NamePlate/Red/Small.png");
   }

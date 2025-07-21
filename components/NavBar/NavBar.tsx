@@ -26,7 +26,8 @@ export default function NavBar() {
 
     const pages = [
         { name: "Home", link: "/", file: "Home" },
-        { name: "About Me", link: "/aboutme", file: "AboutMe" }
+        { name: "About Me", link: "/aboutme", file: "AboutMe" },
+        { name: "Projects", link: "/projects", file: "Projects" }
     ];
 
     function getButton(name: string, light: boolean) {
