@@ -4,9 +4,7 @@
   background-size: cover;
   background-position: center;
   position: relative;
-  z-index: 11;
   opacity: 1;
-  transition: opacity 0.7s ease-out; /* Controls the fade-in of the entire section including background */
 }
 
 /* Responsive background images */

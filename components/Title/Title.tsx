@@ -3,19 +3,24 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
+// Components
 import PixelButton from "@components/PixelButton/PixelButton";
 
+// CSS
 import divstyling from "@styles/divstyling.module.css";
 import TitleCSS from "./Title.module.css";
 
+// Hooks
 import { returnURL } from "@hooks/MainButtons";
 
+// Props Interface
 export interface TitleProps {
     colour: "red" | "yellow";
     buttons: string[];
     name: string;
 }
 
+// Helper: Map colour to background image URL
 const getBackgroundUrl = (colour: string): string => {
     switch (colour) {
         case "red":
@@ -27,6 +32,7 @@ const getBackgroundUrl = (colour: string): string => {
     }
 };
 
+// Preload image helper
 const preloadImage = (url: string): Promise<void> => {
     return new Promise((resolve) => {
         const img = new Image();
