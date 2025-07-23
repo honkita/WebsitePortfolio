@@ -15,8 +15,6 @@ interface ProgressBarProps {
 
 // Component
 export default function ProgressBar(props: ProgressBarProps) {
-    const fillWidth = Math.max(0, Math.min(props.denominator, props.numerator));
-
     return (
         <div className={ProgressBarCSS.progressBarRow}>
             <div className={ProgressBarCSS.progressBarLabel}>{props.label}</div>

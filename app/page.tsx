@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 
 // Child Components
-import Title from "@components/Title/HomeTitle";
+import HomeTitle from "@components/Title/HomeTitle";
 
 // CSS
 import divstyling from "@styles/divstyling.module.css";
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function Home() {
     return (
         <div>
-            <Title name="Elite Lu" colour="red" />
+            <HomeTitle name="Elite Lu" colour="red" />
             <div className={styles.contentWrapper}>
                 <div
                     className={divstyling.hr}

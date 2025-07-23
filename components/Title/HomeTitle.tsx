@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import NextImage from "next/image";
 
 // Components
 import ProgressBarGenerator from "@components/ProgressBar/ProgressBar";
-import PixelButton from "@components/PixelButton/PixelButton";
 
 // CSS
 import divstyling from "@styles/divstyling.module.css";
@@ -90,8 +90,18 @@ export default function HomeTitle({ colour, buttons, name }: TitleProps) {
         ? TitleCSS.loadedAndVisible
         : TitleCSS.notYetVisible;
 
+    const [imageIndex, setImageIndex] = useState(0);
+    const images = [
+        "/images/TestImages/honoka.jpg",
+        "/images/TestImages/rowlet.png"
+    ];
+
     function getImage() {
-        return "/images/TestImages/honoka.jpg";
+        return images[imageIndex % images.length];
+    }
+
+    function handleSwapImage() {
+        setImageIndex((prev) => prev + 1);
     }
 
     return (
@@ -102,40 +112,71 @@ export default function HomeTitle({ colour, buttons, name }: TitleProps) {
                 divstyling.imageRendering
             }`}
         >
-            <div className={TitleCSS.titleCenter}>
-                <h1 className={TitleCSS.title}>{name}</h1>
+            <div className={TitleCSS.outerContainer}>
+                <div className={TitleCSS.imageNameWrapper}>
+                    <img
+                        className={`${TitleCSS.mainImage}`}
+                        fetchPriority={"high"}
+                        src={getImage()}
+                    />
+                    <div className={TitleCSS.nameRow}>
+                        <div className={TitleCSS.nameBox}>
+                            <h1 className={TitleCSS.nameText}>{name}</h1>
+                        </div>
+                        <button
+                            className={TitleCSS.swapButton}
+                            onClick={handleSwapImage}
+                            aria-label="Swap image"
+                        >
+                            <NextImage
+                                id="Icon"
+                                key={name}
+                                fetchPriority={"high"}
+                                src={
+                                    resolvedTheme === "light"
+                                        ? "./images/NavBar/Pixel_Swap.svg"
+                                        : "./images/NavBar/Pixel_Swap_Dark.svg"
+                                }
+                                title={name}
+                                alt={name + " image"}
+                                aria-hidden={true}
+                                tabIndex={-1}
+                                fill
+                                priority={true}
+                                sizes="100vw"
+                            />
+                        </button>
+                    </div>
+                    <h1 className={TitleCSS.levelText}>LV: {year - 2003}</h1>
+                </div>
+
+                <div className={TitleCSS.statsWrapper}>
+                    <ProgressBarGenerator
+                        label={"GPA"}
+                        numerator={10.8}
+                        denominator={12}
+                        colour={"red"}
+                    />
+                    <ProgressBarGenerator
+                        label={"CODE"}
+                        numerator={year - 2017}
+                        denominator={age}
+                        colour={"red"}
+                    />
+                    <ProgressBarGenerator
+                        label={"ART"}
+                        numerator={year - 2014}
+                        denominator={age}
+                        colour={"red"}
+                    />
+                    <ProgressBarGenerator
+                        label={"SEW"}
+                        numerator={year - 2019}
+                        denominator={age}
+                        colour={"red"}
+                    />
+                </div>
             </div>
-
-            <img
-                className={`${TitleCSS.projectsImage} ${divstyling.border}`}
-                fetchPriority={"high"}
-                src={getImage()}
-            />
-
-            <ProgressBarGenerator
-                label={"GPA"}
-                numerator={10.8}
-                denominator={12}
-                colour={"red"}
-            />
-            <ProgressBarGenerator
-                label={"CODE"}
-                numerator={year - 2017}
-                denominator={age}
-                colour={"red"}
-            />
-            <ProgressBarGenerator
-                label={"ART"}
-                numerator={year - 2014}
-                denominator={age}
-                colour={"red"}
-            />
-            <ProgressBarGenerator
-                label={"SEW"}
-                numerator={year - 2019}
-                denominator={age}
-                colour={"red"}
-            />
         </section>
     );
 }
