@@ -11,6 +11,7 @@ interface ProgressBarProps {
     denominator: number;
     colour?: "green" | "blue" | "red";
     label: string;
+    suffix: string;
 }
 
 // Component
@@ -20,7 +21,7 @@ export default function ProgressBar(props: ProgressBarProps) {
             <div className={ProgressBarCSS.progressBarLabel}>{props.label}</div>
             <div className={ProgressBarCSS.progressBarContainer}>
                 <div className={ProgressBarCSS.progressBarTextTop}>
-                    {props.numerator} / {props.denominator}
+                    {props.numerator} / {props.denominator} {props.suffix}
                 </div>
                 <div className={ProgressBarCSS.progressBarBorder}>
                     <div className={ProgressBarCSS.progressBarTrack}>

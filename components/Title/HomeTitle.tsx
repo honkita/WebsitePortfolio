@@ -92,8 +92,8 @@ export default function HomeTitle({ colour, buttons, name }: TitleProps) {
 
     const [imageIndex, setImageIndex] = useState(0);
     const images = [
-        "/images/TestImages/honoka.jpg",
-        "/images/TestImages/rowlet.png"
+        "/images/HomeScreen/GBA_PFP.png",
+        "/images/HomeScreen/IRL_PFP.png"
     ];
 
     function getImage() {
@@ -162,18 +162,21 @@ export default function HomeTitle({ colour, buttons, name }: TitleProps) {
                         numerator={year - 2017}
                         denominator={age}
                         colour={"red"}
+                        suffix={"YRS"}
                     />
                     <ProgressBarGenerator
                         label={"ART"}
                         numerator={year - 2014}
                         denominator={age}
                         colour={"red"}
+                        suffix={"YRS"}
                     />
                     <ProgressBarGenerator
                         label={"SEW"}
                         numerator={year - 2019}
                         denominator={age}
                         colour={"red"}
+                        suffix={"YRS"}
                     />
                 </div>
             </div>
