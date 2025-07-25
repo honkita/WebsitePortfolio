@@ -5,6 +5,11 @@
   height: 4.5vw;
 }
 
+.logoButtonBadge {
+  width: min(4.5vw, 4rem);
+  height: min(4.5vw, 4rem);
+}
+
 .logoButton > img {
   width: 100%;
   image-rendering: pixelated;

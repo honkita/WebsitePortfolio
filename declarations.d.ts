@@ -1,3 +1,4 @@
+declare module "@assets/badges.json";
 declare module "@assets/devTools.json";
 declare module "@assets/frameworks.json";
 declare module "@assets/homeCarousel.json";
@@ -6,6 +7,7 @@ declare module "@assets/languages.json";
 declare module "@assets/projects.json";
 declare module "@assets/resumeJobs.json";
 
+declare module "@components/Icons/Badges";
 declare module "@components/Icons/DevTools";
 declare module "@components/Icons/Frameworks";
 declare module "@components/Icons/LanguageDexMobile";

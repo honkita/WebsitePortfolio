@@ -13,6 +13,32 @@
   justify-content: center;
 }
 
+.imageWrapperWithExtras,
+.statsWrapperWithExtras {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: min(1vw, 1rem);
+}
+
+.badgeBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.5rem 2rem;
+  background-color: var(--background-secondary);
+  border: 2px solid var(--primary);
+  border-radius: 0.75rem;
+  font-size: 0.85rem;
+  height: fit-content;
+  width: inherit;
+  z-index: 1;
+  pointer-events: auto;
+  text-align: center;
+}
+
 .blueName {
   background-image: url("/images/NamePlate/Blue/Normal.png");
 }

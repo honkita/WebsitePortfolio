@@ -5,16 +5,19 @@ import { useTheme } from "next-themes";
 import NextImage from "next/image";
 
 // Components
+import Badges from "@components/Icons/Badges";
 import ProgressBarGenerator from "@components/ProgressBar/ProgressBar";
 
 // CSS
 import divstyling from "@styles/divstyling.module.css";
 import TitleCSS from "./Title.module.css";
 
+// JSONs
+import badges from "@assets/badges.json";
+
 // Props Interface
 export interface TitleProps {
     colour: "blue" | "red" | "yellow";
-    buttons: string[];
     name: string;
 }
 
@@ -42,7 +45,8 @@ const preloadImage = (url: string): Promise<void> => {
     });
 };
 
-export default function HomeTitle({ colour, buttons, name }: TitleProps) {
+export default function HomeTitle({ colour, name }: TitleProps) {
+    var badgesJSON = JSON.parse(JSON.stringify(badges));
     const [bgIsVisible, setBgIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();
@@ -113,41 +117,59 @@ export default function HomeTitle({ colour, buttons, name }: TitleProps) {
             }`}
         >
             <div className={TitleCSS.outerContainer}>
-                <div className={TitleCSS.imageNameWrapper}>
-                    <img
-                        className={`${TitleCSS.mainImage}`}
-                        fetchPriority={"high"}
-                        src={getImage()}
-                    />
-                    <div className={TitleCSS.nameRow}>
-                        <div className={TitleCSS.nameBox}>
-                            <h1 className={TitleCSS.nameText}>{name}</h1>
+                <div className={TitleCSS.imageWrapperWithExtras}>
+                    <div className={TitleCSS.imageNameWrapper}>
+                        <img
+                            className={`${TitleCSS.mainImage}`}
+                            fetchPriority={"high"}
+                            src={getImage()}
+                        />
+                        <div className={TitleCSS.nameRow}>
+                            <div className={TitleCSS.nameBox}>
+                                <h1 className={TitleCSS.nameText}>{name}</h1>
+                            </div>
+                            <button
+                                className={TitleCSS.swapButton}
+                                onClick={handleSwapImage}
+                                aria-label="Swap image"
+                            >
+                                <NextImage
+                                    id="Icon"
+                                    key={name}
+                                    fetchPriority={"high"}
+                                    src={
+                                        resolvedTheme === "light"
+                                            ? "./images/NavBar/Pixel_Swap.svg"
+                                            : "./images/NavBar/Pixel_Swap_Dark.svg"
+                                    }
+                                    title={name}
+                                    alt={name + " image"}
+                                    aria-hidden={true}
+                                    tabIndex={-1}
+                                    fill
+                                    priority={true}
+                                    sizes="100vw"
+                                />
+                            </button>
                         </div>
-                        <button
-                            className={TitleCSS.swapButton}
-                            onClick={handleSwapImage}
-                            aria-label="Swap image"
-                        >
-                            <NextImage
-                                id="Icon"
-                                key={name}
-                                fetchPriority={"high"}
-                                src={
-                                    resolvedTheme === "light"
-                                        ? "./images/NavBar/Pixel_Swap.svg"
-                                        : "./images/NavBar/Pixel_Swap_Dark.svg"
-                                }
-                                title={name}
-                                alt={name + " image"}
-                                aria-hidden={true}
-                                tabIndex={-1}
-                                fill
-                                priority={true}
-                                sizes="100vw"
-                            />
-                        </button>
+                        <h1 className={TitleCSS.levelText}>
+                            LV: {year - 2003}
+                        </h1>
                     </div>
-                    <h1 className={TitleCSS.levelText}>LV: {year - 2003}</h1>
+                    <div className={TitleCSS.badgeBox}>
+                        {badgesJSON.map(
+                            (
+                                badge: { name: string; url: string },
+                                index: number
+                            ) => (
+                                <Badges
+                                    key={badge.name + index}
+                                    name={badge.name}
+                                    url={badge.url}
+                                />
+                            )
+                        )}
+                    </div>
                 </div>
 
                 <div className={TitleCSS.statsWrapper}>
