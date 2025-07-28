@@ -124,41 +124,45 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                             fetchPriority={"high"}
                             src={getImage()}
                         />
-                        <div className={TitleCSS.nameRow}>
-                            <div className={TitleCSS.nameBox}>
-                                <h1 className={TitleCSS.nameText}>{name}</h1>
+                        <div>
+                            <div className={TitleCSS.nameRow}>
+                                <div className={TitleCSS.nameBox}>
+                                    <h1 className={TitleCSS.nameText}>
+                                        {name}
+                                    </h1>
+                                </div>
+                                <button
+                                    className={TitleCSS.swapButton}
+                                    onClick={handleSwapImage}
+                                    aria-label="Swap image"
+                                >
+                                    <NextImage
+                                        id="Icon"
+                                        key={name}
+                                        fetchPriority={"high"}
+                                        src={
+                                            resolvedTheme === "light"
+                                                ? "./images/NavBar/Pixel_Swap.svg"
+                                                : "./images/NavBar/Pixel_Swap_Dark.svg"
+                                        }
+                                        title={name}
+                                        alt={name + " image"}
+                                        aria-hidden={true}
+                                        tabIndex={-1}
+                                        fill
+                                        priority={true}
+                                        sizes="100vw"
+                                    />
+                                </button>
                             </div>
-                            <button
-                                className={TitleCSS.swapButton}
-                                onClick={handleSwapImage}
-                                aria-label="Swap image"
-                            >
-                                <NextImage
-                                    id="Icon"
-                                    key={name}
-                                    fetchPriority={"high"}
-                                    src={
-                                        resolvedTheme === "light"
-                                            ? "./images/NavBar/Pixel_Swap.svg"
-                                            : "./images/NavBar/Pixel_Swap_Dark.svg"
-                                    }
-                                    title={name}
-                                    alt={name + " image"}
-                                    aria-hidden={true}
-                                    tabIndex={-1}
-                                    fill
-                                    priority={true}
-                                    sizes="100vw"
-                                />
-                            </button>
+                            <h1 className={TitleCSS.levelText}>
+                                LV: {year - 2003}
+                            </h1>
                         </div>
-                        <h1 className={TitleCSS.levelText}>
-                            LV: {year - 2003}
-                        </h1>
                     </div>
                 </div>
 
-                <div className={TitleCSS.imageWrapperWithExtras}>
+                <div className={TitleCSS.statsWrapperWithExtras}>
                     <div className={TitleCSS.statsWrapper}>
                         <ProgressBarGenerator
                             label={"GPA"}
@@ -188,24 +192,26 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                             suffix={"YRS"}
                         />
                     </div>
-                    <div className={TitleCSS.badgeBox}>
-                        {badgesJSON.map(
-                            (
-                                badge: {
-                                    name: string;
-                                    type: string;
-                                    url: string;
-                                },
-                                index: number
-                            ) => (
-                                <Badges
-                                    key={badge.name + index}
-                                    type={badge.type}
-                                    name={badge.name}
-                                    url={badge.url}
-                                />
-                            )
-                        )}
+                    <div className={TitleCSS.statsWrapperSmallScreen}>
+                        <div className={TitleCSS.badgeBox}>
+                            {badgesJSON.map(
+                                (
+                                    badge: {
+                                        name: string;
+                                        type: string;
+                                        url: string;
+                                    },
+                                    index: number
+                                ) => (
+                                    <Badges
+                                        key={badge.name + index}
+                                        type={badge.type}
+                                        name={badge.name}
+                                        url={badge.url}
+                                    />
+                                )
+                            )}
+                        </div>
                     </div>
                     <div className={TitleCSS.infoBox}>
                         <div className={TitleCSS.infoText}>
