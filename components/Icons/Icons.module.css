@@ -20,6 +20,18 @@
   transition: opacity 200ms;
 }
 
+.badgeWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* space between icon and text */
+}
+
+.badgeText {
+  font-size: 1rem;
+  color: var(--primary); /* adjust to your theme */
+  text-align: center;
+}
+
 .buttonRendering {
   border: None;
   background-color: transparent;

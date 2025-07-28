@@ -13,6 +13,7 @@ import badges from "@assets/badges.json";
 export interface BadgesProps {
     name: string;
     url: string;
+    type: string;
 }
 
 export default function Badges(props: BadgesProps) {
@@ -22,25 +23,26 @@ export default function Badges(props: BadgesProps) {
         setMounted(true);
     }, []);
 
-    if (!mounted) {
-        return null;
-    }
+    if (!mounted) return null;
 
     return (
-        <button
-            className={`${IconsCSS.logoButtonBadge} ${IconsCSS.buttonRendering}`}
-            title={props.name}
-            tabIndex={-1}
-            aria-hidden="true"
-        >
-            <Image
-                id={props.name}
-                src={props.url}
-                alt={props.name + " image "}
-                fill
-                priority={true}
-                sizes="100vw"
-            />
-        </button>
+        <div className={IconsCSS.badgeWrapper}>
+            <span className={IconsCSS.badgeText}>{props.type}</span>
+            <button
+                className={`${IconsCSS.logoButtonBadge} ${IconsCSS.buttonRendering}`}
+                title={props.name}
+                tabIndex={-1}
+                aria-hidden="true"
+            >
+                <Image
+                    id={props.name}
+                    src={props.url}
+                    alt={props.name + " image "}
+                    fill
+                    priority={true}
+                    sizes="100vw"
+                />
+            </button>
+        </div>
     );
 }

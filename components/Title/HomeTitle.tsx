@@ -156,50 +156,63 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                             LV: {year - 2003}
                         </h1>
                     </div>
+                </div>
+
+                <div className={TitleCSS.imageWrapperWithExtras}>
+                    <div className={TitleCSS.statsWrapper}>
+                        <ProgressBarGenerator
+                            label={"GPA"}
+                            numerator={10.8}
+                            denominator={12}
+                            colour={"red"}
+                        />
+                        <ProgressBarGenerator
+                            label={"CODE"}
+                            numerator={year - 2017}
+                            denominator={age}
+                            colour={"red"}
+                            suffix={"YRS"}
+                        />
+                        <ProgressBarGenerator
+                            label={"ART"}
+                            numerator={year - 2014}
+                            denominator={age}
+                            colour={"red"}
+                            suffix={"YRS"}
+                        />
+                        <ProgressBarGenerator
+                            label={"SEW"}
+                            numerator={year - 2019}
+                            denominator={age}
+                            colour={"red"}
+                            suffix={"YRS"}
+                        />
+                    </div>
                     <div className={TitleCSS.badgeBox}>
                         {badgesJSON.map(
                             (
-                                badge: { name: string; url: string },
+                                badge: {
+                                    name: string;
+                                    type: string;
+                                    url: string;
+                                },
                                 index: number
                             ) => (
                                 <Badges
                                     key={badge.name + index}
+                                    type={badge.type}
                                     name={badge.name}
                                     url={badge.url}
                                 />
                             )
                         )}
                     </div>
-                </div>
-
-                <div className={TitleCSS.statsWrapper}>
-                    <ProgressBarGenerator
-                        label={"GPA"}
-                        numerator={10.8}
-                        denominator={12}
-                        colour={"red"}
-                    />
-                    <ProgressBarGenerator
-                        label={"CODE"}
-                        numerator={year - 2017}
-                        denominator={age}
-                        colour={"red"}
-                        suffix={"YRS"}
-                    />
-                    <ProgressBarGenerator
-                        label={"ART"}
-                        numerator={year - 2014}
-                        denominator={age}
-                        colour={"red"}
-                        suffix={"YRS"}
-                    />
-                    <ProgressBarGenerator
-                        label={"SEW"}
-                        numerator={year - 2019}
-                        denominator={age}
-                        colour={"red"}
-                        suffix={"YRS"}
-                    />
+                    <div className={TitleCSS.infoBox}>
+                        <div className={TitleCSS.infoText}>
+                            Elite is a software developer from McMaster. He is
+                            currently in his fourth year of study.
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
