@@ -79,8 +79,6 @@ export default function ResumeJobs() {
                     </button>
                 ))}
             </div>
-
-            {/* Job Details Display */}
             <div
                 className={`${ResumeJobsCSS.ResumeBacker} ${divstyling.border}`}
             >

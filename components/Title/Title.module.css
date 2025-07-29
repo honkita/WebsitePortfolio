@@ -207,12 +207,11 @@
   }
 
   .title {
-    font-size: 20vw;
+    font-size: min(20vw, 6rem);
   }
 
   .containerButtons {
     margin-top: 1rem;
-    transform: scale(2);
   }
 
   .imageNameWrapper {
@@ -365,7 +364,7 @@
 .title {
   min-width: 100vw;
   text-align: center;
-  font-size: 15vw;
+  font-size: min(15vw, 18rem);
   line-height: 1.2;
   font-weight: 800;
   letter-spacing: -0.05rem;
@@ -378,7 +377,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  transform: scale(1.25);
+  gap: min(0.5vw, 1rem);
 }
 
 .notYetVisible {
