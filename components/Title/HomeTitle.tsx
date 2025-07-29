@@ -158,6 +158,27 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                             <h1 className={TitleCSS.levelText}>
                                 LV: {year - 2003}
                             </h1>
+                            <div className={TitleCSS.statsWrapperSmallScreen}>
+                                <div className={TitleCSS.badgeBox}>
+                                    {badgesJSON.map(
+                                        (
+                                            badge: {
+                                                name: string;
+                                                type: string;
+                                                url: string;
+                                            },
+                                            index: number
+                                        ) => (
+                                            <Badges
+                                                key={badge.name + index}
+                                                type={badge.type}
+                                                name={badge.name}
+                                                url={badge.url}
+                                            />
+                                        )
+                                    )}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -192,7 +213,7 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                             suffix={"YRS"}
                         />
                     </div>
-                    <div className={TitleCSS.statsWrapperSmallScreen}>
+                    <div className={TitleCSS.statsWrapperLargeScreen}>
                         <div className={TitleCSS.badgeBox}>
                             {badgesJSON.map(
                                 (

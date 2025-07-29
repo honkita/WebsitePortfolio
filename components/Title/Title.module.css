@@ -183,6 +183,12 @@
   justify-content: center;
 }
 
+@media (min-width: 48rem) {
+  .statsWrapperSmallScreen {
+    display: none;
+  }
+}
+
 @media (max-width: 48rem) {
   .blueName {
     background-image: url("/images/NamePlate/Blue/Small.png");
@@ -288,7 +294,7 @@
     max-width: 100vw;
   }
 
-  .statsWrapperSmallScreen {
+  .statsWrapperLargeScreen {
     display: none;
   }
 
