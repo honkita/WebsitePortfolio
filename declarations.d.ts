@@ -8,8 +8,7 @@ declare module "@assets/projects.json";
 declare module "@assets/resumeJobs.json";
 
 declare module "@components/Icons/Badges";
-declare module "@components/Icons/DevTools";
-declare module "@components/Icons/Frameworks";
+declare module "@components/Icons/Icons";
 declare module "@components/Icons/LanguageDexMobile";
 declare module "@components/ImageCarousel/ImageCarousel";
 declare module "@components/NavBar/NavBar";

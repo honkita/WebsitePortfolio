@@ -1,6 +1,9 @@
 .button {
   width: calc(1rem + 4vw);
   height: calc(1rem + 4vw);
+  max-width: 6rem;
+  max-height: 6rem;
+  aspect-ratio: 1/1;
   padding: 0.5vw;
   background-color: transparent;
   transition: all 0.2s;

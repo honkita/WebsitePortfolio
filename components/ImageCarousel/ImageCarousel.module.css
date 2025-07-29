@@ -1,7 +1,10 @@
 .carouselWrapper {
   position: relative;
   width: 90vw;
+  max-width: 90rem;
   height: 50vw;
+  max-height: 50rem;
+  aspect-ratio: 9/5;
   overflow: hidden;
   margin: auto;
 }

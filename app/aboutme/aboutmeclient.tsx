@@ -1,11 +1,9 @@
 "use client";
 
 // Child Components
-import DevTools from "@components/Icons/DevTools";
-import Frameworks from "@components/Icons/Frameworks";
-import LanguageDexMobile from "@components/Icons/LanguageDexMobile";
 import ResumeJobs from "@components/ResumeJobs/ResumeJobs";
 import School from "@components/School/School";
+import Icons from "@components/Icons/Icons";
 import Title from "@components/Title/Title";
 
 // CSS
@@ -13,7 +11,16 @@ import styles from "@app/ui/home.module.css";
 import utilStyles from "@app/ui/theme.util.module.css";
 import divstyling from "@styles/divstyling.module.css";
 
+// JSONs
+import devTools from "@assets/devTools.json";
+import frameworks from "@assets/frameworks.json";
+import languages from "@assets/languages.json";
+
 export default function AboutMeClient() {
+    let devToolsJSON = JSON.parse(JSON.stringify(devTools));
+    let frameworksJSON = JSON.parse(JSON.stringify(frameworks));
+    let languagesJSON = JSON.parse(JSON.stringify(languages));
+
     return (
         <div className={styles.pageContainer}>
             <Title
@@ -55,7 +62,7 @@ export default function AboutMeClient() {
                                     Languages
                                 </td>
                                 <td className={styles.tableValue}>
-                                    <LanguageDexMobile />
+                                    <Icons icons={languagesJSON} />
                                 </td>
                             </tr>
                             <tr className={styles.tableRow}>
@@ -65,7 +72,7 @@ export default function AboutMeClient() {
                                     Frameworks & Technologies
                                 </td>
                                 <td>
-                                    <Frameworks />
+                                    <Icons icons={frameworksJSON} />
                                 </td>
                             </tr>
                             <tr className={styles.tableRow}>
@@ -75,7 +82,7 @@ export default function AboutMeClient() {
                                     Developer Platforms & Tools
                                 </td>
                                 <td>
-                                    <DevTools />
+                                    <Icons icons={devToolsJSON} />
                                 </td>
                             </tr>
                         </tbody>

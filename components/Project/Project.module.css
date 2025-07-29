@@ -18,6 +18,7 @@
   margin-left: 0.5vw;
   align-items: center;
   width: 20vw;
+  max-width: 15rem;
   word-wrap: break-word;
 }
 
@@ -43,6 +44,8 @@
   .projectsBacker {
     width: 27vw;
     height: 36vw;
+    max-width: 27rem;
+    max-height: 36rem;
   }
 
   .projectsImage {
@@ -52,6 +55,8 @@
     top: 1.5vw;
     width: 24vw;
     height: 24vw;
+    max-width: 24rem;
+    max-height: 24rem;
   }
 }
 

@@ -3,6 +3,9 @@
   min-height: 4.5rem;
   width: 4.5vw;
   height: 4.5vw;
+  max-width: 6rem;
+  max-height: 6rem;
+  aspect-ratio: 1/1;
 }
 
 .logoButtonBadge {
