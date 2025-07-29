@@ -3,7 +3,7 @@ body {
   background-color: var(--background);
   padding: 0;
   margin: 0;
-  font-family: "Pixelify_Sans";
+  font-family: "Pixelify_Sans", "GBA_FE";
   transition: all 0.2ms;
   flex-direction: column;
   justify-content: center;
@@ -21,8 +21,6 @@ main {
   border: none !important;
   transition: background-color 0.3s ease, color 0.3s ease;
   opacity: 1;
-  /* transform: translateY(1000px);
-  animation: slideUp 0.6s ease forwards; */
   overflow-x: hidden;
 }
 
@@ -79,6 +77,12 @@ circle:nth-child(1) {
   src: local("Pixelify_Sans"),
     url("../../public/Pixelify_Sans/static/PixelifySans-Regular.ttf")
       format("truetype");
+}
+
+@font-face {
+  font-family: "GBA_FE";
+  src: local("GBA_FE"),
+    url("../../public/gba-fe-dialogue/gba-fe-dialogue.otf") format("truetype");
 }
 
 /* a:link {

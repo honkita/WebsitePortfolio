@@ -56,7 +56,7 @@ export default function RootLayout({ children }: LayoutProps) {
                             className={utilStyles.headingCopyright}
                             role="contentinfo"
                         >
-                            Copyrights © {new Date().getFullYear()} Elite Lu
+                            © 2023 - {new Date().getFullYear()} Elite Lu
                         </section>
                     </div>
                 </ThemeProvider>
