@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Computer Science",
+    "type": "Major",
+    "url": "./images/Badges/Computer_Science.svg"
+  },
+  { "name": "Math", "type": "Minor", "url": "./images/Badges/Math.svg" }
+]

@@ -15,7 +15,7 @@ import { returnURL } from "@hooks/MainButtons";
 
 // Props Interface
 export interface TitleProps {
-    colour: "red" | "yellow";
+    colour: "blue" | "red" | "yellow";
     buttons: string[];
     name: string;
 }
@@ -23,6 +23,8 @@ export interface TitleProps {
 // Helper: Map colour to background image URL
 const getBackgroundUrl = (colour: string): string => {
     switch (colour) {
+        case "blue":
+            return "/images/NamePlate/Blue/Normal.png";
         case "red":
             return "/images/NamePlate/Red/Normal.png";
         case "yellow":
@@ -71,8 +73,18 @@ export default function Title({ colour, buttons, name }: TitleProps) {
         }
     }, [colour, mounted]);
 
-    const backgroundClass =
-        colour === "red" ? TitleCSS.redName : TitleCSS.yellowName;
+    function backgroundClass() {
+        switch (colour) {
+            case "blue":
+                return TitleCSS.blueName;
+            case "red":
+                return TitleCSS.redName;
+            case "yellow":
+                return TitleCSS.yellowName;
+            default:
+                break;
+        }
+    }
 
     const visibilityClass = bgIsVisible
         ? TitleCSS.loadedAndVisible
@@ -82,7 +94,11 @@ export default function Title({ colour, buttons, name }: TitleProps) {
 
     return (
         <section
-            className={`${TitleCSS.namePlate} ${backgroundClass} ${visibilityClass} ${divstyling.imageRendering}`}
+            className={`${
+                TitleCSS.namePlate
+            } ${backgroundClass()} ${visibilityClass} ${
+                divstyling.imageRendering
+            }`}
         >
             <div className={TitleCSS.titleCenter}>
                 <h1 className={TitleCSS.title}>{name}</h1>

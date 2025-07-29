@@ -8,7 +8,7 @@ import PixelButton from "@components/PixelButton/PixelButton";
 
 // CSS
 import divstyling from "@styles/divstyling.module.css";
-import ProjectsCSS from "./Projects.module.css";
+import ProjectCSS from "./Project.module.css";
 
 /**
  * Props Interface
@@ -19,7 +19,7 @@ interface ProjectsProps {
     url: boolean;
 }
 
-export default function Projects(props: ProjectsProps) {
+export default function Project(props: ProjectsProps) {
     const [mounted, setMounted] = useState(false);
 
     // useEffect only runs on the client, so now we can safely show the UI
@@ -41,17 +41,17 @@ export default function Projects(props: ProjectsProps) {
     return (
         <div>
             <div
-                className={`${divstyling.imageRendering} ${ProjectsCSS.projectsBacker} ${divstyling.border} `}
+                className={`${divstyling.imageRendering} ${ProjectCSS.projectsBacker} ${divstyling.border} `}
             >
-                <section className={ProjectsCSS.projectTitle}>
+                <section className={ProjectCSS.projectTitle}>
                     <p>{props.name}</p>
                 </section>
                 <img
-                    className={`${ProjectsCSS.projectsImage} ${divstyling.border}`}
+                    className={`${ProjectCSS.projectsImage} ${divstyling.border}`}
                     fetchPriority={"high"}
                     src={getImage()}
                 />
-                <div className={ProjectsCSS.buttonPlacement}>
+                <div className={ProjectCSS.buttonPlacement}>
                     <PixelButton name="GitHub" url={props.url} />
                 </div>
             </div>

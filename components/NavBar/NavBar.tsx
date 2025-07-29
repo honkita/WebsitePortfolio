@@ -26,7 +26,8 @@ export default function NavBar() {
 
     const pages = [
         { name: "Home", link: "/", file: "Home" },
-        { name: "About Me", link: "/aboutme", file: "AboutMe" }
+        { name: "About Me", link: "/aboutme", file: "AboutMe" },
+        { name: "Projects", link: "/projects", file: "Projects" }
     ];
 
     function getButton(name: string, light: boolean) {
@@ -44,36 +45,35 @@ export default function NavBar() {
                     : NavBarCSS.navBarHidden
             }`}
         >
-            <ul className={NavBarCSS.noBullets}>
-                {pages.map((page, index) => (
-                    <Link href={page.link} key={index}>
-                        <button
-                            className={`${NavBarCSS.buttonRendering} ${NavBarCSS.button}`}
+            {pages.map((page, index) => (
+                <Link href={page.link} key={index}>
+                    <button
+                        className={`${NavBarCSS.buttonRendering} ${NavBarCSS.button}`}
+                        title={page.name}
+                        aria-label={"Go to " + page.name}
+                        type="button"
+                        tabIndex={-1}
+                    >
+                        <Image
+                            id="Icon"
+                            key={page.name}
+                            src={
+                                actualResolvedTheme === "light"
+                                    ? getButton(page.file, true)
+                                    : getButton(page.file, false)
+                            }
                             title={page.name}
-                            aria-label={"Go to " + page.name}
-                            type="button"
+                            alt={page.name + " image"}
+                            aria-hidden={true}
                             tabIndex={-1}
-                        >
-                            <Image
-                                id="Icon"
-                                key={page.name}
-                                src={
-                                    actualResolvedTheme === "light"
-                                        ? getButton(page.file, true)
-                                        : getButton(page.file, false)
-                                }
-                                title={page.name}
-                                alt={page.name + " image"}
-                                aria-hidden={true}
-                                tabIndex={-1}
-                                fill
-                                priority={true}
-                                sizes="100vw"
-                            />
-                        </button>
-                    </Link>
-                ))}
-            </ul>
+                            fill
+                            priority={true}
+                            sizes="100vw"
+                        />
+                    </button>
+                </Link>
+            ))}
+
             <PixelSwitch />
         </nav>
     );

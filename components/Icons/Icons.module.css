@@ -5,6 +5,11 @@
   height: 4.5vw;
 }
 
+.logoButtonBadge {
+  width: min(4.5vw, 4rem);
+  height: min(4.5vw, 4rem);
+}
+
 .logoButton > img {
   width: 100%;
   image-rendering: pixelated;
@@ -13,6 +18,18 @@
   top: 0;
   opacity: 1;
   transition: opacity 200ms;
+}
+
+.badgeWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* space between icon and text */
+}
+
+.badgeText {
+  font-size: 1rem;
+  color: var(--primary); /* adjust to your theme */
+  text-align: center;
 }
 
 .buttonRendering {
