@@ -16,8 +16,8 @@ interface AnimatedLine {
     keyframeName?: string;
 }
 
-const LONGEST_SPEED = 8; // characters/sec
-const PAUSE_DURATION = 2; // seconds
+const LONGEST_SPEED = 10; // characters/sec
+const PAUSE_DURATION = 2; // seconds pause at start/end
 
 const LastFM: React.FC = () => {
     const [track, setTrack] = useState<LastFmTrack | null>(null);
@@ -45,6 +45,22 @@ const LastFM: React.FC = () => {
         }
     };
 
+    // Reset all animations and states
+    const resetAnimation = () => {
+        if (!styleRef.current) return;
+
+        // Clear existing CSS keyframes
+        styleRef.current.innerHTML = "";
+
+        // Remove animation from all lines
+        [titleRef, artistRef, albumRef].forEach((ref) => {
+            if (ref.current) {
+                ref.current.style.animation = "none";
+                ref.current.style.transform = "translateX(0)";
+            }
+        });
+    };
+
     // Setup synchronized scroll
     const setupScroll = () => {
         if (!styleRef.current || !track) return;
@@ -55,11 +71,11 @@ const LastFM: React.FC = () => {
             { text: track.album["#text"], ref: albumRef }
         ];
 
-        // Find longest string in characters
+        // Longest string length in characters
         const longestLength = Math.max(...lines.map((l) => l.text.length));
         const longestDuration = longestLength / LONGEST_SPEED;
 
-        // Compute pixel distances for each line
+        // Pixel distances for each line
         const distances = lines.map(({ ref }) => {
             if (!ref.current) return 0;
             const containerWidth = ref.current.parentElement!.offsetWidth;
@@ -73,6 +89,7 @@ const LastFM: React.FC = () => {
 
         lines.forEach((line, i) => {
             if (!line.ref.current) return;
+
             const distance = distances[i];
 
             if (distance === 0) {
@@ -110,20 +127,23 @@ const LastFM: React.FC = () => {
         }
       `;
 
-            line.ref.current.style.animation = `${keyframeName} ${totalDuration}s linear infinite`;
+            line.ref.current.style.animation = `${keyframeName} ${totalDuration}s ease-in-out infinite`;
         });
 
         styleRef.current.innerHTML = css;
     };
 
+    // Fetch track initially and on interval
     useEffect(() => {
         fetchLastTrack();
         const interval = setInterval(fetchLastTrack, refreshMs);
         return () => clearInterval(interval);
     }, []);
 
+    // Reset and setup scroll when track changes
     useEffect(() => {
         if (!track) return;
+        resetAnimation();
         const timer = setTimeout(() => setupScroll(), 50);
         return () => clearTimeout(timer);
     }, [track]);

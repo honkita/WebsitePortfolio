@@ -13,8 +13,8 @@
 }
 
 .cover {
-  width: 5vw;
-  height: 5vw;
+  width: 6vw;
+  height: 6vw;
   border-radius: 0.75rem;
   object-fit: cover;
   flex-shrink: 0;
