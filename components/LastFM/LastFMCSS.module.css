@@ -24,36 +24,24 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  overflow: hidden;
 }
 
 .scrollWrapper {
   width: 100%;
   overflow: hidden;
-  white-space: nowrap;
   position: relative;
   margin-top: 0.25rem;
 }
 
 .scrollContent {
-  display: inline-block;
-  white-space: nowrap;
-  animation-name: scrollLoop;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  display: flex;
+  will-change: transform;
 }
 
 .scrollContent span {
-  display: inline-block;
-  padding-right: 2rem; /* spacing between duplicates */
-}
-
-@keyframes scrollLoop {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .placeholder {

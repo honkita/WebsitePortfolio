@@ -214,34 +214,13 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                             suffix={"YRS"}
                         /> */}
                     </div>
-                    <LastFM />
-                    {/* <div className={TitleCSS.statsWrapperLargeScreen}>
-                        <div className={TitleCSS.badgeBox}>
-                            {badgesJSON.map(
-                                (
-                                    badge: {
-                                        name: string;
-                                        type: string;
-                                        url: string;
-                                    },
-                                    index: number
-                                ) => (
-                                    <Badges
-                                        key={badge.name + index}
-                                        type={badge.type}
-                                        name={badge.name}
-                                        url={badge.url}
-                                    />
-                                )
-                            )}
-                        </div>
-                    </div> */}
                     <div className={TitleCSS.infoBox}>
                         <div className={TitleCSS.infoText}>
                             Elite is a software developer from McMaster. He is
                             currently in his fourth year of study.
                         </div>
                     </div>
+                    <LastFM />
                 </div>
             </div>
         </section>

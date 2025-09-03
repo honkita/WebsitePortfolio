@@ -8,23 +8,26 @@ interface LastFmTrack {
     name: string;
     album: { "#text": string };
     image: { size: string; "#text": string }[];
-    url: string;
 }
+
+interface AnimatedLine {
+    text: string;
+    ref: React.RefObject<HTMLDivElement | null>;
+    keyframeName?: string;
+}
+
+const SCROLL_SPEED = 10; // px/sec
+const PAUSE_DURATION = 1; // seconds pause at start/end
 
 const LastFM: React.FC = () => {
     const [track, setTrack] = useState<LastFmTrack | null>(null);
-    const [scrollConfigs, setScrollConfigs] = useState({
-        title: { distance: 0, duration: 0 },
-        artist: { distance: 0, duration: 0 },
-        album: { distance: 0, duration: 0 },
-        pauseFraction: 0.2 // 20% pause at the end
-    });
 
-    const titleRef = useRef<HTMLDivElement>(null);
-    const artistRef = useRef<HTMLDivElement>(null);
-    const albumRef = useRef<HTMLDivElement>(null);
+    const titleRef = useRef<HTMLDivElement | null>(null);
+    const artistRef = useRef<HTMLDivElement | null>(null);
+    const albumRef = useRef<HTMLDivElement | null>(null);
+    const styleRef = useRef<HTMLStyleElement | null>(null);
 
-    const apiKey = process.env.NEXT_PUBLIC_LASTFM_KEY!;
+    const apiKey = process.env.NEXT_PUBLIC_LASTFM_KEY2!;
     const username = process.env.NEXT_PUBLIC_LASTFM_USER!;
     const refreshMs = 30000;
 
@@ -36,53 +39,85 @@ const LastFM: React.FC = () => {
             const data = await res.json();
             const recentTrack = data.recenttracks.track?.[0];
             setTrack(recentTrack || null);
-        } catch (error) {
-            console.error("Error fetching Last.fm data:", error);
+        } catch (err) {
+            console.error("Error fetching Last.fm data:", err);
         }
+    };
+
+    const setupScroll = () => {
+        if (!styleRef.current || !track) return;
+
+        const lines: AnimatedLine[] = [
+            { text: track.name, ref: titleRef },
+            { text: track.artist["#text"], ref: artistRef },
+            { text: track.album["#text"], ref: albumRef }
+        ];
+
+        const distances = lines.map(({ ref }) => {
+            if (!ref.current) return 0;
+            const containerWidth = ref.current.parentElement!.offsetWidth;
+            const textWidth = ref.current.scrollWidth;
+            return Math.max(0, textWidth - containerWidth);
+        });
+
+        const maxDistance = Math.max(...distances);
+        if (maxDistance === 0) return;
+
+        const scrollDuration = maxDistance / SCROLL_SPEED; // seconds to scroll full distance
+        const totalDuration = scrollDuration * 2 + 3 * PAUSE_DURATION; // pause start + end + start again
+
+        let css = "";
+
+        lines.forEach((line, i) => {
+            const distance = distances[i];
+            if (!line.ref.current) return;
+
+            if (distance === 0) {
+                line.ref.current.style.animation = "none";
+                line.ref.current.style.transform = "translateX(0)";
+                return;
+            }
+
+            const keyframeName = `scrollLine${i}`;
+            line.keyframeName = keyframeName;
+
+            // Calculate percentages
+            const pauseStartPercent = (PAUSE_DURATION / totalDuration) * 100;
+            const moveRightPercent =
+                ((PAUSE_DURATION + scrollDuration) / totalDuration) * 100;
+            const pauseEndPercent =
+                ((2 * PAUSE_DURATION + scrollDuration) / totalDuration) * 100;
+            const moveLeftPercent =
+                ((2 * PAUSE_DURATION + 2 * scrollDuration) / totalDuration) *
+                100;
+            const endPercent = 100;
+
+            css += `
+      @keyframes ${keyframeName} {
+        0%, ${pauseStartPercent}% { transform: translateX(0); }
+        ${pauseStartPercent}%, ${moveRightPercent}% { transform: translateX(-${distance}px); }
+        ${moveRightPercent}%, ${pauseEndPercent}% { transform: translateX(-${distance}px); }
+        ${pauseEndPercent}%, ${moveLeftPercent}% { transform: translateX(0); }
+        ${moveLeftPercent}%, ${endPercent}% { transform: translateX(0); }
+      }
+    `;
+
+            line.ref.current.style.animation = `${keyframeName} ${totalDuration}s linear infinite`;
+        });
+
+        styleRef.current.innerHTML = css;
     };
 
     useEffect(() => {
         fetchLastTrack();
         const interval = setInterval(fetchLastTrack, refreshMs);
         return () => clearInterval(interval);
-    }, [apiKey, username, refreshMs]);
+    }, []);
 
-    // Calculate scroll distance and duration dynamically
     useEffect(() => {
         if (!track) return;
-
-        const refs = [
-            { ref: titleRef, key: "title" },
-            { ref: artistRef, key: "artist" },
-            { ref: albumRef, key: "album" }
-        ];
-
-        let maxDistance = 0;
-        const distances: Record<string, number> = {};
-
-        refs.forEach(({ ref, key }) => {
-            if (!ref.current) return;
-            const containerWidth = ref.current.offsetWidth;
-            const textWidth = ref.current.scrollWidth;
-            const distance =
-                textWidth > containerWidth ? textWidth - containerWidth : 0;
-            distances[key] = distance;
-            if (distance > maxDistance) maxDistance = distance;
-        });
-
-        const baseSpeed = 80; // pixels per second for faster scroll
-        const totalDuration = maxDistance > 0 ? maxDistance / baseSpeed : 0;
-
-        const configs: any = {};
-        Object.keys(distances).forEach((key) => {
-            const distance = distances[key];
-            configs[key] =
-                distance === 0
-                    ? { distance: 0, duration: 0 }
-                    : { distance, duration: totalDuration };
-        });
-
-        setScrollConfigs({ ...configs, pauseFraction: 0.2 });
+        const timer = setTimeout(() => setupScroll(), 50);
+        return () => clearTimeout(timer);
     }, [track]);
 
     if (!track)
@@ -94,32 +129,20 @@ const LastFM: React.FC = () => {
         "#text"
     ];
 
-    const renderScrollingText = (
+    const renderText = (
         text: string,
-        ref: React.RefObject<HTMLDivElement>,
-        config: { distance: number; duration: number }
-    ) => {
-        if (config.duration === 0) return <div ref={ref}>{text}</div>;
-
-        return (
-            <div
-                className={LastFMCSS.scrollContent}
-                ref={ref}
-                style={
-                    {
-                        "--scroll-distance": `${config.distance}px`,
-                        "--scroll-duration": `${config.duration}s`,
-                        "--pause-fraction": scrollConfigs.pauseFraction
-                    } as React.CSSProperties
-                }
-            >
+        ref: React.RefObject<HTMLDivElement | null>
+    ) => (
+        <div className={LastFMCSS.scrollWrapper}>
+            <div className={LastFMCSS.scrollContent} ref={ref}>
                 <span>{text}</span>
             </div>
-        );
-    };
+        </div>
+    );
 
     return (
         <div className={LastFMCSS.card}>
+            <style ref={styleRef}></style>
             {imageUrl && (
                 <img
                     src={imageUrl}
@@ -128,27 +151,9 @@ const LastFM: React.FC = () => {
                 />
             )}
             <div className={LastFMCSS.details}>
-                <div className={LastFMCSS.scrollWrapper}>
-                    {renderScrollingText(
-                        track.name,
-                        titleRef,
-                        scrollConfigs.title
-                    )}
-                </div>
-                <div className={LastFMCSS.scrollWrapper}>
-                    {renderScrollingText(
-                        track.artist["#text"],
-                        artistRef,
-                        scrollConfigs.artist
-                    )}
-                </div>
-                <div className={LastFMCSS.scrollWrapper}>
-                    {renderScrollingText(
-                        track.album["#text"],
-                        albumRef,
-                        scrollConfigs.album
-                    )}
-                </div>
+                {renderText(track.name, titleRef)}
+                {renderText(track.artist["#text"], artistRef)}
+                {renderText(track.album["#text"], albumRef)}
             </div>
         </div>
     );

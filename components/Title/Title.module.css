@@ -331,7 +331,7 @@
     border: 2px solid var(--primary);
     border-radius: 0.75rem;
     font-size: 0.85rem;
-    height: auto;
+    height: 100%;
     width: 100%;
     min-width: 0;
     max-width: 100vw;
