@@ -16,8 +16,8 @@ interface AnimatedLine {
     keyframeName?: string;
 }
 
-const SCROLL_SPEED = 10; // px/sec
-const PAUSE_DURATION = 1; // seconds pause at start/end
+const LONGEST_SPEED = 8; // characters/sec
+const PAUSE_DURATION = 2; // seconds
 
 const LastFM: React.FC = () => {
     const [track, setTrack] = useState<LastFmTrack | null>(null);
@@ -31,6 +31,7 @@ const LastFM: React.FC = () => {
     const username = process.env.NEXT_PUBLIC_LASTFM_USER!;
     const refreshMs = 30000;
 
+    // Fetch last track
     const fetchLastTrack = async () => {
         try {
             const res = await fetch(
@@ -44,6 +45,7 @@ const LastFM: React.FC = () => {
         }
     };
 
+    // Setup synchronized scroll
     const setupScroll = () => {
         if (!styleRef.current || !track) return;
 
@@ -53,6 +55,11 @@ const LastFM: React.FC = () => {
             { text: track.album["#text"], ref: albumRef }
         ];
 
+        // Find longest string in characters
+        const longestLength = Math.max(...lines.map((l) => l.text.length));
+        const longestDuration = longestLength / LONGEST_SPEED;
+
+        // Compute pixel distances for each line
         const distances = lines.map(({ ref }) => {
             if (!ref.current) return 0;
             const containerWidth = ref.current.parentElement!.offsetWidth;
@@ -60,17 +67,13 @@ const LastFM: React.FC = () => {
             return Math.max(0, textWidth - containerWidth);
         });
 
-        const maxDistance = Math.max(...distances);
-        if (maxDistance === 0) return;
-
-        const scrollDuration = maxDistance / SCROLL_SPEED; // seconds to scroll full distance
-        const totalDuration = scrollDuration * 2 + 3 * PAUSE_DURATION; // pause start + end + start again
+        const totalDuration = longestDuration * 2 + PAUSE_DURATION * 2;
 
         let css = "";
 
         lines.forEach((line, i) => {
-            const distance = distances[i];
             if (!line.ref.current) return;
+            const distance = distances[i];
 
             if (distance === 0) {
                 line.ref.current.style.animation = "none";
@@ -81,26 +84,31 @@ const LastFM: React.FC = () => {
             const keyframeName = `scrollLine${i}`;
             line.keyframeName = keyframeName;
 
-            // Calculate percentages
-            const pauseStartPercent = (PAUSE_DURATION / totalDuration) * 100;
-            const moveRightPercent =
-                ((PAUSE_DURATION + scrollDuration) / totalDuration) * 100;
-            const pauseEndPercent =
-                ((2 * PAUSE_DURATION + scrollDuration) / totalDuration) * 100;
-            const moveLeftPercent =
-                ((2 * PAUSE_DURATION + 2 * scrollDuration) / totalDuration) *
+            // Keyframe percentages based on absolute times
+            const pauseStartPct = (PAUSE_DURATION / totalDuration) * 100;
+            const moveLeftPct =
+                ((PAUSE_DURATION + longestDuration) / totalDuration) * 100;
+            const pauseEndPct =
+                ((PAUSE_DURATION + longestDuration + PAUSE_DURATION) /
+                    totalDuration) *
                 100;
-            const endPercent = 100;
+            const moveRightPct =
+                ((PAUSE_DURATION +
+                    longestDuration +
+                    PAUSE_DURATION +
+                    longestDuration) /
+                    totalDuration) *
+                100;
 
             css += `
-      @keyframes ${keyframeName} {
-        0%, ${pauseStartPercent}% { transform: translateX(0); }
-        ${pauseStartPercent}%, ${moveRightPercent}% { transform: translateX(-${distance}px); }
-        ${moveRightPercent}%, ${pauseEndPercent}% { transform: translateX(-${distance}px); }
-        ${pauseEndPercent}%, ${moveLeftPercent}% { transform: translateX(0); }
-        ${moveLeftPercent}%, ${endPercent}% { transform: translateX(0); }
-      }
-    `;
+        @keyframes ${keyframeName} {
+          0%, ${pauseStartPct}% { transform: translateX(0); }
+          ${pauseStartPct}%, ${moveLeftPct}% { transform: translateX(-${distance}px); }
+          ${moveLeftPct}%, ${pauseEndPct}% { transform: translateX(-${distance}px); }
+          ${pauseEndPct}%, ${moveRightPct}% { transform: translateX(0); }
+          ${moveRightPct}%, 100% { transform: translateX(0); }
+        }
+      `;
 
             line.ref.current.style.animation = `${keyframeName} ${totalDuration}s linear infinite`;
         });
