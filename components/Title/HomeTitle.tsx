@@ -6,6 +6,7 @@ import NextImage from "next/image";
 
 // Components
 import Badges from "@components/Icons/Badges";
+import LastFM from "@components/LastFM/LastFM";
 import ProgressBarGenerator from "@components/ProgressBar/ProgressBar";
 
 // CSS
@@ -158,7 +159,7 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                             <h1 className={TitleCSS.levelText}>
                                 LV: {year - 2003}
                             </h1>
-                            <div className={TitleCSS.statsWrapperSmallScreen}>
+                            {/* <div className={TitleCSS.statsWrapperSmallScreen}>
                                 <div className={TitleCSS.badgeBox}>
                                     {badgesJSON.map(
                                         (
@@ -178,7 +179,7 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                                         )
                                     )}
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -191,7 +192,7 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                             denominator={12}
                             colour={"red"}
                         />
-                        <ProgressBarGenerator
+                        {/* <ProgressBarGenerator
                             label={"CODE"}
                             numerator={year - 2017}
                             denominator={age}
@@ -211,9 +212,10 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                             denominator={age}
                             colour={"red"}
                             suffix={"YRS"}
-                        />
+                        /> */}
                     </div>
-                    <div className={TitleCSS.statsWrapperLargeScreen}>
+                    <LastFM />
+                    {/* <div className={TitleCSS.statsWrapperLargeScreen}>
                         <div className={TitleCSS.badgeBox}>
                             {badgesJSON.map(
                                 (
@@ -233,7 +235,7 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                                 )
                             )}
                         </div>
-                    </div>
+                    </div> */}
                     <div className={TitleCSS.infoBox}>
                         <div className={TitleCSS.infoText}>
                             Elite is a software developer from McMaster. He is
