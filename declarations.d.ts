@@ -11,6 +11,7 @@ declare module "@components/Icons/Badges";
 declare module "@components/Icons/Icons";
 declare module "@components/Icons/LanguageDexMobile";
 declare module "@components/ImageCarousel/ImageCarousel";
+declare module "@components/LastFM/LastFM";
 declare module "@components/NavBar/NavBar";
 declare module "@components/ProgressBar/ProgressBar";
 declare module "@components/PixelButton/PixelButton";

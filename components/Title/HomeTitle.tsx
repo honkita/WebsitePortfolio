@@ -6,6 +6,7 @@ import NextImage from "next/image";
 
 // Components
 import Badges from "@components/Icons/Badges";
+import LastFM from "@components/LastFM/LastFM";
 import ProgressBarGenerator from "@components/ProgressBar/ProgressBar";
 
 // CSS
@@ -111,7 +112,7 @@ export default function HomeTitle({ colour, name }: TitleProps) {
     return (
         <section
             className={`${
-                TitleCSS.namePlate
+                TitleCSS.namePlateHome
             } ${backgroundClass()} ${visibilityClass} ${
                 divstyling.imageRendering
             }`}
@@ -158,7 +159,7 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                             <h1 className={TitleCSS.levelText}>
                                 LV: {year - 2003}
                             </h1>
-                            <div className={TitleCSS.statsWrapperSmallScreen}>
+                            {/* <div className={TitleCSS.statsWrapperSmallScreen}>
                                 <div className={TitleCSS.badgeBox}>
                                     {badgesJSON.map(
                                         (
@@ -178,68 +179,27 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                                         )
                                     )}
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
 
                 <div className={TitleCSS.statsWrapperWithExtras}>
-                    <div className={TitleCSS.statsWrapper}>
-                        <ProgressBarGenerator
-                            label={"GPA"}
-                            numerator={10.8}
-                            denominator={12}
-                            colour={"red"}
-                        />
-                        <ProgressBarGenerator
-                            label={"CODE"}
-                            numerator={year - 2017}
-                            denominator={age}
-                            colour={"red"}
-                            suffix={"YRS"}
-                        />
-                        <ProgressBarGenerator
-                            label={"ART"}
-                            numerator={year - 2014}
-                            denominator={age}
-                            colour={"red"}
-                            suffix={"YRS"}
-                        />
-                        <ProgressBarGenerator
-                            label={"SEW"}
-                            numerator={year - 2019}
-                            denominator={age}
-                            colour={"red"}
-                            suffix={"YRS"}
-                        />
-                    </div>
-                    <div className={TitleCSS.statsWrapperLargeScreen}>
-                        <div className={TitleCSS.badgeBox}>
-                            {badgesJSON.map(
-                                (
-                                    badge: {
-                                        name: string;
-                                        type: string;
-                                        url: string;
-                                    },
-                                    index: number
-                                ) => (
-                                    <Badges
-                                        key={badge.name + index}
-                                        type={badge.type}
-                                        name={badge.name}
-                                        url={badge.url}
-                                    />
-                                )
-                            )}
-                        </div>
-                    </div>
                     <div className={TitleCSS.infoBox}>
                         <div className={TitleCSS.infoText}>
-                            Elite is a software developer from McMaster. He is
-                            currently in his fourth year of study.
+                            <p>
+                                Elite is a software developer from McMaster
+                                University. He is currently in his fourth year
+                                studying computer science with a minor in
+                                mathematics.
+                            </p>
+                            <p>
+                                Beyond this, Elite can be seen either drawing
+                                with fancy Japanese alcohol markers or sewing
+                            </p>
                         </div>
                     </div>
+                    <LastFM />
                 </div>
             </div>
         </section>
