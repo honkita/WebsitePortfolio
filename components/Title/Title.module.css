@@ -12,6 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .imageWrapperWithExtras,
@@ -191,6 +192,7 @@
     height: 48vw;
     max-height: 43.5rem;
     margin: auto auto;
+    overflow: hidden;
   }
 }
 
@@ -215,6 +217,7 @@
     height: 100%;
     max-height: unset;
     padding: min(1vw, 1rem);
+    overflow: hidden;
   }
 
   .title {
@@ -234,13 +237,13 @@
     border: 2px solid var(--primary);
     border-radius: 0.5rem;
     gap: min(1vw, 1rem);
-    width: 60vw;
-    min-width: 20rem;
+    width: auto;
+    min-width: unset;
     max-width: 36rem;
-    height: fit-content;
-    padding: 1rem;
+    padding: 0.5rem;
     max-height: unset;
     min-height: unset;
+    overflow: hidden;
   }
 
   .mainImage {
@@ -302,106 +305,6 @@
     box-sizing: border-box;
     word-wrap: break-word;
   }
-  /* 
-
-  .imageWrapperWithExtras {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    gap: min(1vw, 1rem);
-    width: auto;
-  }
-  .statsWrapperWithExtras {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    gap: min(1vw, 1rem);
-  }
-
-  .nameRow {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 100vw;
-  }
-
-  .statsWrapper {
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    padding-top: 1rem;
-    background-color: var(--background-secondary);
-    border: 2px solid var(--primary);
-    border-radius: 0.75rem;
-    box-sizing: border-box;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 2vw;
-    min-width: 0;
-    max-width: 100vw;
-  }
-
-  .statsWrapperLargeScreen {
-    display: none;
-  }
-
-  .badgeBox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3vw;
-    width: auto;
-    height: fit-content;
-    z-index: 1;
-    pointer-events: auto;
-    text-align: center;
-    min-width: 0;
-    max-width: 100vw;
-  }
-
-  .nameBox {
-    border: 2px solid var(--primary);
-    border-radius: 0.25rem;
-    padding: 0.25rem 0.75rem;
-    text-align: left;
-    width: 30vw;
-  }
-
-  .infoBox {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: min(1vw, 1rem);
-    padding: 0.5rem;
-    background-color: var(--background-secondary);
-    border: 2px solid var(--primary);
-    border-radius: 0.75rem;
-    font-size: 0.85rem;
-    height: 100%;
-    width: 100%;
-    min-width: 0;
-    max-width: 100vw;
-    z-index: 1;
-    pointer-events: auto;
-    text-align: center;
-    margin: auto;
-    box-sizing: border-box;
-  }
-
-  .infoText {
-    font-size: min(calc(3vw), 1rem);
-    font-weight: 600;
-    color: var(--primary);
-    margin: 0;
-    text-align: left;
-    width: auto;
-    box-sizing: border-box;
-    word-wrap: break-word;
-  } */
 }
 
 .titleCenter {

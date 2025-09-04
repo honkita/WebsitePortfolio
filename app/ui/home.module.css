@@ -149,10 +149,11 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
+  overflow: none;
 }
 
 .centeredContent {
-  max-width: 1200px; /* or your preferred max width */
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   padding: 0 1rem;

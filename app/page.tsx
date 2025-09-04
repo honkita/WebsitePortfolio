@@ -15,9 +15,9 @@ export const metadata: Metadata = {
 
 export default function Home() {
     return (
-        <div>
+        <div className={styles.contentWrapper}>
             <HomeTitle name="Elite Lu" colour="red" />
-            <div className={styles.contentWrapper}>
+            <div>
                 <div
                     className={divstyling.hr}
                     style={{ marginTop: "3rem" }}
