@@ -29,7 +29,7 @@ const LastFM: React.FC = () => {
 
     const apiKey = process.env.NEXT_PUBLIC_LASTFM_KEY2!;
     const username = process.env.NEXT_PUBLIC_LASTFM_USER!;
-    const refreshMs = 30000;
+    const refreshMs = 15000;
 
     // Fetch last track
     const fetchLastTrack = async () => {
@@ -45,14 +45,11 @@ const LastFM: React.FC = () => {
         }
     };
 
-    // Reset all animations and states
+    // Reset all animations
     const resetAnimation = () => {
         if (!styleRef.current) return;
-
-        // Clear existing CSS keyframes
         styleRef.current.innerHTML = "";
 
-        // Remove animation from all lines
         [titleRef, artistRef, albumRef].forEach((ref) => {
             if (ref.current) {
                 ref.current.style.animation = "none";
@@ -71,11 +68,9 @@ const LastFM: React.FC = () => {
             { text: track.album["#text"], ref: albumRef }
         ];
 
-        // Longest string length in characters
         const longestLength = Math.max(...lines.map((l) => l.text.length));
         const longestDuration = longestLength / LONGEST_SPEED;
 
-        // Pixel distances for each line
         const distances = lines.map(({ ref }) => {
             if (!ref.current) return 0;
             const containerWidth = ref.current.parentElement!.offsetWidth;
@@ -91,7 +86,6 @@ const LastFM: React.FC = () => {
             if (!line.ref.current) return;
 
             const distance = distances[i];
-
             if (distance === 0) {
                 line.ref.current.style.animation = "none";
                 line.ref.current.style.transform = "translateX(0)";
@@ -101,7 +95,6 @@ const LastFM: React.FC = () => {
             const keyframeName = `scrollLine${i}`;
             line.keyframeName = keyframeName;
 
-            // Keyframe percentages based on absolute times
             const pauseStartPct = (PAUSE_DURATION / totalDuration) * 100;
             const moveLeftPct =
                 ((PAUSE_DURATION + longestDuration) / totalDuration) * 100;
@@ -133,14 +126,12 @@ const LastFM: React.FC = () => {
         styleRef.current.innerHTML = css;
     };
 
-    // Fetch track initially and on interval
     useEffect(() => {
         fetchLastTrack();
         const interval = setInterval(fetchLastTrack, refreshMs);
         return () => clearInterval(interval);
     }, []);
 
-    // Reset and setup scroll when track changes
     useEffect(() => {
         if (!track) return;
         resetAnimation();
@@ -159,9 +150,10 @@ const LastFM: React.FC = () => {
 
     const renderText = (
         text: string,
-        ref: React.RefObject<HTMLDivElement | null>
+        ref: React.RefObject<HTMLDivElement | null>,
+        className: string
     ) => (
-        <div className={LastFMCSS.scrollWrapper}>
+        <div className={`${LastFMCSS.scrollWrapper} ${className}`}>
             <div className={LastFMCSS.scrollContent} ref={ref}>
                 <span>{text}</span>
             </div>
@@ -179,9 +171,9 @@ const LastFM: React.FC = () => {
                 />
             )}
             <div className={LastFMCSS.details}>
-                {renderText(track.name, titleRef)}
-                {renderText(track.artist["#text"], artistRef)}
-                {renderText(track.album["#text"], albumRef)}
+                {renderText(track.name, titleRef, LastFMCSS.title)}
+                {renderText(track.artist["#text"], artistRef, LastFMCSS.artist)}
+                {renderText(track.album["#text"], albumRef, LastFMCSS.album)}
             </div>
         </div>
     );

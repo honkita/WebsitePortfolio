@@ -112,7 +112,7 @@ export default function HomeTitle({ colour, name }: TitleProps) {
     return (
         <section
             className={`${
-                TitleCSS.namePlate
+                TitleCSS.namePlateHome
             } ${backgroundClass()} ${visibilityClass} ${
                 divstyling.imageRendering
             }`}
@@ -185,39 +185,18 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                 </div>
 
                 <div className={TitleCSS.statsWrapperWithExtras}>
-                    <div className={TitleCSS.statsWrapper}>
-                        <ProgressBarGenerator
-                            label={"GPA"}
-                            numerator={10.8}
-                            denominator={12}
-                            colour={"red"}
-                        />
-                        {/* <ProgressBarGenerator
-                            label={"CODE"}
-                            numerator={year - 2017}
-                            denominator={age}
-                            colour={"red"}
-                            suffix={"YRS"}
-                        />
-                        <ProgressBarGenerator
-                            label={"ART"}
-                            numerator={year - 2014}
-                            denominator={age}
-                            colour={"red"}
-                            suffix={"YRS"}
-                        />
-                        <ProgressBarGenerator
-                            label={"SEW"}
-                            numerator={year - 2019}
-                            denominator={age}
-                            colour={"red"}
-                            suffix={"YRS"}
-                        /> */}
-                    </div>
                     <div className={TitleCSS.infoBox}>
                         <div className={TitleCSS.infoText}>
-                            Elite is a software developer from McMaster. He is
-                            currently in his fourth year of study.
+                            <p>
+                                Elite is a software developer from McMaster
+                                University. He is currently in his fourth year
+                                studying computer science with a minor in
+                                mathematics.
+                            </p>
+                            <p>
+                                Beyond this, Elite can be seen either drawing
+                                with fancy Japanese alcohol markers or sewing
+                            </p>
                         </div>
                     </div>
                     <LastFM />
