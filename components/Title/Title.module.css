@@ -237,8 +237,10 @@
     width: 60vw;
     min-width: 20rem;
     max-width: 36rem;
-    height: 100%;
+    height: fit-content;
+    padding: 1rem;
     max-height: unset;
+    min-height: unset;
   }
 
   .mainImage {
