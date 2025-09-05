@@ -92,7 +92,7 @@
 }
 
 .nameText {
-  font-size: min(calc(0.5rem + 3vw), 3rem);
+  font-size: min(calc(0.1rem + 2.4vw), 3rem);
   font-weight: 600;
   color: var(--primary);
   margin: 0;
@@ -105,7 +105,7 @@
 }
 
 .infoText {
-  font-size: min(calc(3vw), 1rem);
+  font-size: min(calc(5vw), 1rem);
   font-weight: 600;
   color: var(--primary);
   margin: 0;

@@ -19,8 +19,18 @@ interface AnimatedLine {
 const LONGEST_SPEED = 10; // characters/sec
 const PAUSE_DURATION = 2; // seconds pause at start/end
 
+// Debounce helper
+function debounce(fn: () => void, delay: number) {
+    let timer: NodeJS.Timeout;
+    return () => {
+        clearTimeout(timer);
+        timer = setTimeout(fn, delay);
+    };
+}
+
 const LastFM: React.FC = () => {
     const [track, setTrack] = useState<LastFmTrack | null>(null);
+    const lastTrackId = useRef<string | null>(null);
 
     const titleRef = useRef<HTMLDivElement | null>(null);
     const artistRef = useRef<HTMLDivElement | null>(null);
@@ -38,8 +48,17 @@ const LastFM: React.FC = () => {
                 `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1`
             );
             const data = await res.json();
-            const recentTrack = data.recenttracks.track?.[0];
-            setTrack(recentTrack || null);
+            const recentTrack = data.recenttracks.track?.[0] || null;
+
+            if (recentTrack) {
+                const trackId =
+                    recentTrack.name + "|" + recentTrack.artist["#text"];
+
+                if (trackId !== lastTrackId.current) {
+                    lastTrackId.current = trackId;
+                    setTrack(recentTrack);
+                }
+            }
         } catch (err) {
             console.error("Error fetching Last.fm data:", err);
         }
@@ -78,7 +97,7 @@ const LastFM: React.FC = () => {
             return Math.max(0, textWidth - containerWidth);
         });
 
-        const totalDuration = longestDuration * 2 + PAUSE_DURATION * 2;
+        const totalDuration = longestDuration * 3 + PAUSE_DURATION * 2;
 
         let css = "";
 
@@ -95,20 +114,18 @@ const LastFM: React.FC = () => {
             const keyframeName = `scrollLine${i}`;
             line.keyframeName = keyframeName;
 
-            const pauseStartPct = (PAUSE_DURATION / totalDuration) * 100;
-            const moveLeftPct =
-                ((PAUSE_DURATION + longestDuration) / totalDuration) * 100;
-            const pauseEndPct =
-                ((PAUSE_DURATION + longestDuration + PAUSE_DURATION) /
-                    totalDuration) *
-                100;
-            const moveRightPct =
-                ((PAUSE_DURATION +
-                    longestDuration +
-                    PAUSE_DURATION +
-                    longestDuration) /
-                    totalDuration) *
-                100;
+            const pauseStartPct = Math.round(
+                (PAUSE_DURATION / totalDuration) * 100
+            );
+            const moveLeftPct = Math.round(
+                ((PAUSE_DURATION + longestDuration) / totalDuration) * 100
+            );
+            const pauseEndPct = Math.round(
+                ((2 * PAUSE_DURATION + longestDuration) / totalDuration) * 100
+            );
+            const moveRightPct = Math.round(
+                ((2 * (PAUSE_DURATION + longestDuration)) / totalDuration) * 100
+            );
 
             css += `
         @keyframes ${keyframeName} {
@@ -137,6 +154,19 @@ const LastFM: React.FC = () => {
         resetAnimation();
         const timer = setTimeout(() => setupScroll(), 50);
         return () => clearTimeout(timer);
+    }, [track]);
+
+    // ✅ resize handling
+    useEffect(() => {
+        if (!track) return;
+
+        const handleResize = debounce(() => {
+            resetAnimation();
+            setupScroll();
+        }, 200);
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
     }, [track]);
 
     if (!track)
