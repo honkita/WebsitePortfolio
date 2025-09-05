@@ -153,6 +153,7 @@
   margin-top: 0.5rem;
   width: 100%;
   max-width: 30rem;
+  height: fit-content;
 }
 
 .swapButton {
@@ -304,6 +305,13 @@
     width: 100%;
     box-sizing: border-box;
     word-wrap: break-word;
+  }
+
+  .nameText {
+    font-size: min(calc(1rem + 3vw), 4.5rem);
+    font-weight: 600;
+    color: var(--primary);
+    margin: 0;
   }
 }
 

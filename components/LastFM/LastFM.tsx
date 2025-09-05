@@ -143,12 +143,14 @@ const LastFM: React.FC = () => {
         styleRef.current.innerHTML = css;
     };
 
+    // Check new song every few seconds
     useEffect(() => {
         fetchLastTrack();
         const interval = setInterval(fetchLastTrack, refreshMs);
         return () => clearInterval(interval);
     }, []);
 
+    // Reset only for a new song
     useEffect(() => {
         if (!track) return;
         resetAnimation();
@@ -156,7 +158,7 @@ const LastFM: React.FC = () => {
         return () => clearTimeout(timer);
     }, [track]);
 
-    // ✅ resize handling
+    // Handles resize
     useEffect(() => {
         if (!track) return;
 
