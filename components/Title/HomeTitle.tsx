@@ -195,7 +195,7 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                             </p>
                             <p>
                                 Beyond this, Elite can be seen either drawing
-                                with fancy Japanese alcohol markers or sewing
+                                with fancy Japanese alcohol markers or sewing.
                             </p>
                         </div>
                     </div>

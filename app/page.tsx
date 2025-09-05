@@ -22,12 +22,6 @@ export default function Home() {
                     className={divstyling.hr}
                     style={{ marginTop: "3rem" }}
                 ></div>
-                {/* <section className={utilStyles.headingMd}>
-                    <ul>
-                        <li>Software developer</li>
-                        <li>Fourth year Computer Science McMaster Student</li>
-                    </ul>
-                </section> */}
             </div>
         </div>
     );
