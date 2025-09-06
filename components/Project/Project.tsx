@@ -41,18 +41,23 @@ export default function Project(props: ProjectsProps) {
     return (
         <div>
             <div
-                className={`${divstyling.imageRendering} ${ProjectCSS.projectsBacker} ${divstyling.border} `}
+                className={`${divstyling.imageRendering} ${ProjectCSS.projectsBacker} ${divstyling.border}`}
             >
-                <section className={ProjectCSS.projectTitle}>
-                    <p>{props.name}</p>
-                </section>
                 <img
                     className={`${ProjectCSS.projectsImage} ${divstyling.border}`}
-                    fetchPriority={"high"}
+                    fetchPriority="high"
                     src={getImage()}
                 />
-                <div className={ProjectCSS.buttonPlacement}>
-                    <PixelButton name="GitHub" url={props.url} />
+
+                {/* New right-side column */}
+                <div className={ProjectCSS.projectContent}>
+                    <section className={ProjectCSS.projectTitle}>
+                        <p>{props.name}</p>
+                    </section>
+
+                    <div className={ProjectCSS.buttonPlacement}>
+                        <PixelButton name="GitHub" url={props.url} />
+                    </div>
                 </div>
             </div>
         </div>

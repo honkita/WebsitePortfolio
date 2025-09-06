@@ -38,6 +38,8 @@
   display: flex;
   flex-direction: column;
   padding: 2rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (min-width: 64rem) {
@@ -78,37 +80,45 @@
 
 @media (max-width: 48rem) {
   .projectsBacker {
-    width: 80vw;
-    height: 30vw;
-  }
-
-  .buttonPlacement {
-    display: absolute;
-    right: 0%;
-    top: 50%;
-    transform: translate(0%, -50%);
-  }
-
-  .projectTitle {
-    text-align: left;
-    font-size: 1.3rem;
-    line-height: 1;
-    width: 50vw;
-    font-weight: bold;
-    margin-left: 1rem;
-    image-rendering: crisp-edges;
-    justify-content: "center";
-    vertical-align: "center";
-    align-items: "center";
-    left: 0%;
-    top: 50%;
-    transform: translate(0%, -50%);
+    width: 90vw;
+    height: auto; /* let content define height */
+    flex-direction: row;
+    align-items: center; /* vertical centering */
+    justify-content: flex-start;
+    padding: 0.5rem; /* even padding all around */
+    position: relative;
   }
 
   .projectsImage {
-    width: 0;
-    height: 0;
-    border: none !important;
+    width: 30vw; /* keep a responsive square */
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    margin: 0; /* no extra spacing */
+  }
+
+  .projectContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    margin-left: 1rem;
+  }
+
+  .projectTitle {
+    position: static;
+    text-align: left;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0;
+    width: auto;
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+
+  .buttonPlacement {
+    position: static;
+    align-self: flex-end;
+    margin: 0.5rem 0 0 0;
   }
 }
 
