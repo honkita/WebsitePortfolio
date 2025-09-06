@@ -1,9 +1,9 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
+
 // Child Components
-import ResumeJobs from "@components/ResumeJobs/ResumeJobs";
-import School from "@components/School/School";
-import Icons from "@components/Icons/Icons";
+import PaginatedIcons from "@components/PaginatedIcons/PaginatedIcons";
 import Title from "@components/Title/Title";
 
 // CSS
@@ -17,9 +17,24 @@ import frameworks from "@assets/frameworks.json";
 import languages from "@assets/languages.json";
 
 export default function AboutMeClient() {
-    let devToolsJSON = JSON.parse(JSON.stringify(devTools));
-    let frameworksJSON = JSON.parse(JSON.stringify(frameworks));
-    let languagesJSON = JSON.parse(JSON.stringify(languages));
+    const [activeTab, setActiveTab] = useState<
+        "languages" | "frameworks" | "devTools"
+    >("languages");
+
+    const languagesJSON = JSON.parse(JSON.stringify(languages));
+    const frameworksJSON = JSON.parse(JSON.stringify(frameworks));
+    const devToolsJSON = JSON.parse(JSON.stringify(devTools));
+
+    const getActiveIcons = () => {
+        switch (activeTab) {
+            case "languages":
+                return languagesJSON;
+            case "frameworks":
+                return frameworksJSON;
+            case "devTools":
+                return devToolsJSON;
+        }
+    };
 
     return (
         <div className={styles.pageContainer}>
@@ -36,57 +51,61 @@ export default function AboutMeClient() {
                 ></div>
 
                 <div className={styles.centeredContent}>
-                    <section className={utilStyles.headingXl}>
-                        <p>Previous Employment</p>
-                    </section>
-                    <ResumeJobs />
-                </div>
-
-                <div
-                    className={divstyling.hr}
-                    style={{ marginTop: "5rem" }}
-                ></div>
-
-                <div className={styles.centeredContent}>
                     <section
                         className={`${utilStyles.headingXl} ${styles.paddingTopBottom}`}
                     >
                         Technologies
                     </section>
-                    <table className={styles.table}>
-                        <tbody>
-                            <tr className={`${styles.tableRow}`}>
-                                <td
-                                    className={`${utilStyles.headingSm} ${styles.tableTitle}`}
+
+                    <div className={styles.twoPane}>
+                        {/* Left Panel */}
+                        <div className={styles.leftPane}>
+                            <div className={styles.tabButtons}>
+                                <button
+                                    className={
+                                        activeTab === "languages"
+                                            ? styles.activeTab
+                                            : ""
+                                    }
+                                    onClick={() => setActiveTab("languages")}
+                                    style={{ fontFamily: "inherit" }}
                                 >
                                     Languages
-                                </td>
-                                <td className={styles.tableValue}>
-                                    <Icons icons={languagesJSON} />
-                                </td>
-                            </tr>
-                            <tr className={styles.tableRow}>
-                                <td
-                                    className={`${utilStyles.headingTable} ${styles.tableTitle}`}
+                                </button>
+                                <button
+                                    className={
+                                        activeTab === "frameworks"
+                                            ? styles.activeTab
+                                            : ""
+                                    }
+                                    onClick={() => setActiveTab("frameworks")}
+                                    style={{ fontFamily: "inherit" }}
                                 >
-                                    Frameworks & Technologies
-                                </td>
-                                <td>
-                                    <Icons icons={frameworksJSON} />
-                                </td>
-                            </tr>
-                            <tr className={styles.tableRow}>
-                                <td
-                                    className={`${utilStyles.headingTable} ${styles.tableTitle}`}
+                                    Frameworks
+                                </button>
+                                <button
+                                    className={
+                                        activeTab === "devTools"
+                                            ? styles.activeTab
+                                            : ""
+                                    }
+                                    onClick={() => setActiveTab("devTools")}
+                                    style={{ fontFamily: "inherit" }}
                                 >
-                                    Developer Platforms & Tools
-                                </td>
-                                <td>
-                                    <Icons icons={devToolsJSON} />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    Dev Tools
+                                </button>
+                            </div>
+
+                            <PaginatedIcons icons={getActiveIcons()} />
+                        </div>
+
+                        {/* Right Panel */}
+                        <div className={styles.rightPane}>
+                            <p style={{ opacity: 0.6 }}>
+                                [ Placeholder for details ]
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

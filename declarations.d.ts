@@ -10,6 +10,7 @@ declare module "@assets/resumeJobs.json";
 declare module "@components/Icons/Badges";
 declare module "@components/Icons/Icons";
 declare module "@components/Icons/LanguageDexMobile";
+declare module "@components/PaginatedIcons/PaginatedIcons";
 declare module "@components/ImageCarousel/ImageCarousel";
 declare module "@components/LastFM/LastFM";
 declare module "@components/NavBar/NavBar";

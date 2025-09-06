@@ -1,11 +1,33 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(3em, 1fr));
+  gap: 1.5rem; /* more space between icons */
+  justify-content: center; /* center the grid horizontally */
+  padding: 0.5rem; /* padding around the grid */
+  box-sizing: border-box; /* include padding in width/height */
+}
+
+.under {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+  z-index: 1;
+}
+
 .logoButton {
-  min-width: 4.5rem;
-  min-height: 4.5rem;
+  min-width: 4rem;
+  min-height: 4rem;
   width: 4.5vw;
   height: 4.5vw;
   max-width: 6rem;
   max-height: 6rem;
   aspect-ratio: 1/1;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  transition: all 0.2s;
 }
 
 .logoButtonBadge {
@@ -36,32 +58,10 @@
 }
 
 .buttonRendering {
-  border: None;
+  border: none;
   background-color: transparent;
   transition: all 0.2s;
   position: relative;
-}
-
-.under {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.2s;
-  z-index: 1;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(3em, 1fr));
-  grid-template-rows: repeat(1fr auto auto);
-  grid-column-gap: 3rem;
-  grid-row-gap: 2rem;
-  vertical-align: top;
-}
-
-.hide {
-  display: none;
 }
 
 .logoText {
@@ -70,11 +70,14 @@
   line-height: 1.5;
 }
 
+.hide {
+  display: none;
+}
+
 @media (max-width: 48rem) {
   .grid {
     grid-template-columns: repeat(4, minmax(3em, 1fr));
-    grid-column-gap: 10vw;
-    grid-row-gap: 2rem;
+    gap: 1.5rem; /* maintain extra space on small screens */
   }
 }
 
