@@ -22,7 +22,6 @@ interface ProjectsProps {
 export default function Project(props: ProjectsProps) {
     const [mounted, setMounted] = useState(false);
 
-    // useEffect only runs on the client, so now we can safely show the UI
     useEffect(() => {
         setMounted(true);
     }, []);
@@ -48,14 +47,16 @@ export default function Project(props: ProjectsProps) {
                     fetchPriority="high"
                     src={getImage()}
                 />
-
-                {/* New right-side column */}
                 <div className={ProjectCSS.projectContent}>
-                    <section className={ProjectCSS.projectTitle}>
-                        <p>{props.name}</p>
-                    </section>
+                    {/* Title container */}
+                    <div className={`${ProjectCSS.titleContainer}`}>
+                        <section className={ProjectCSS.projectTitle}>
+                            {props.name}
+                        </section>
+                    </div>
 
-                    <div className={ProjectCSS.buttonPlacement}>
+                    {/* Button container */}
+                    <div className={ProjectCSS.buttonContainer}>
                         <PixelButton name="GitHub" url={props.url} />
                     </div>
                 </div>

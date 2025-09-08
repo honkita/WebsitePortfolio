@@ -5,6 +5,15 @@
   margin: 1rem;
 }
 
+/*
+For testing purposes!
+*/
+.border2 {
+  border: 0.5rem solid var(--secondary) !important;
+  background-color: var(--background);
+  border-radius: 0.25rem;
+}
+
 .hr {
   display: flex;
   height: 1px;
