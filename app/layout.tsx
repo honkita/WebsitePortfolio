@@ -2,10 +2,12 @@
 
 import React, { ReactNode, useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-
-import Nav from "@components/NavBar/NavBar";
 import { ThemeProvider } from "next-themes";
 
+// Child Components
+import Nav from "@components/NavBar/NavBar";
+
+// CSS
 import styles from "@app/ui/home.module.css";
 import utilStyles from "@app/ui/theme.util.module.css";
 import "@app/ui/globals.css";
@@ -40,8 +42,9 @@ export default function RootLayout({ children }: LayoutProps) {
         return () => clearTimeout(animationTriggerTimer);
     }, [pathname, isMounted]);
 
+    // suppressHydrationWarning={true}
     return (
-        <html lang="en" suppressHydrationWarning={true}>
+        <html lang="en">
             <body>
                 <ThemeProvider>
                     <Nav />
