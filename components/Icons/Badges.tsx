@@ -6,9 +6,6 @@ import Image from "next/image";
 // CSS
 import IconsCSS from "./Icons.module.css";
 
-// JSONs
-import badges from "@assets/badges.json";
-
 // Props Interface
 export interface BadgesProps {
     name: string;

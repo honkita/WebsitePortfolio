@@ -5,8 +5,10 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 
+// Child Components
 import PixelSwitch from "@components/PixelSwitch/PixelSwitch";
 
+// CSS
 import NavBarCSS from "./NavBar.module.css";
 
 export default function NavBar() {

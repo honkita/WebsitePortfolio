@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 // CSS
 import ProgressBarCSS from "./ProgressBar.module.css";
