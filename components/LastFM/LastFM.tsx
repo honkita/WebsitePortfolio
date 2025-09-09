@@ -39,7 +39,7 @@ const LastFM: React.FC = () => {
 
     const apiKey = process.env.NEXT_PUBLIC_LASTFM_KEY2!;
     const username = process.env.NEXT_PUBLIC_LASTFM_USER!;
-    const refreshMs = 15000;
+    const refreshMs = 10000;
 
     // Fetch last track
     const fetchLastTrack = async () => {
