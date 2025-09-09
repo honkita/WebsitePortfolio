@@ -83,17 +83,25 @@ export default function ResumeJobs() {
                 className={`${ResumeJobsCSS.ResumeBacker} ${divstyling.border}`}
             >
                 <section className={ResumeJobsCSS.jobInfo}>
-                    <h1 className={ResumeJobsCSS.jobTitle}>
-                        {selectedJob.jobName}
-                    </h1>
-                    <h2 className={ResumeJobsCSS.employer}>
-                        {selectedJob.employerName}
-                    </h2>
-                    <h3 className={ResumeJobsCSS.location}>
-                        {selectedJob.location}
-                    </h3>
-
-                    <PixelButton name="LinkedIn" url={selectedJob.linkedin} />
+                    <div className={ResumeJobsCSS.header}>
+                        <div className={ResumeJobsCSS.textHeader}>
+                            <h1 className={ResumeJobsCSS.jobTitle}>
+                                {selectedJob.jobName}
+                            </h1>
+                            <h2 className={ResumeJobsCSS.employer}>
+                                {selectedJob.employerName}
+                            </h2>
+                            <h3 className={ResumeJobsCSS.location}>
+                                {selectedJob.location}
+                            </h3>
+                        </div>
+                        <div className={ResumeJobsCSS.buttonPlacement}>
+                            <PixelButton
+                                name="LinkedIn"
+                                url={selectedJob.linkedin}
+                            />
+                        </div>
+                    </div>
                     <div className={divstyling.hr}></div>
                     {BulletList(selectedJob.info)}
                 </section>

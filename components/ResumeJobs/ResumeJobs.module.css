@@ -9,6 +9,17 @@
   flex-direction: column;
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.textHeader {
+  width: 100%;
+}
+
 .button {
   width: 8vw;
   height: 8vw;
@@ -97,12 +108,7 @@
 }
 
 .buttonPlacement {
-  position: absolute;
-  right: 0;
-  top: 0;
   align-self: right;
-  margin-top: 1rem;
-  margin-right: 1rem;
 }
 
 .buttonRendering {
