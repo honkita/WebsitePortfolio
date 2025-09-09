@@ -13,8 +13,10 @@ import utilStyles from "@app/ui/theme.util.module.css";
 import "@app/ui/globals.css";
 import "@app/ui/variables.css";
 
+// Hooks
 import LoadImages from "@hooks/LoadImages";
 
+// Props Interface
 interface LayoutProps {
     children?: ReactNode;
 }

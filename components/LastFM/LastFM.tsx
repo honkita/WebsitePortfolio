@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
+
+// CSS
 import LastFMCSS from "./LastFMCSS.module.css";
 
+// Props Interface
 interface LastFmTrack {
     artist: { "#text": string };
     name: string;
