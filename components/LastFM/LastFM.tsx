@@ -37,7 +37,7 @@ const LastFM: React.FC = () => {
     const albumRef = useRef<HTMLDivElement | null>(null);
     const styleRef = useRef<HTMLStyleElement | null>(null);
 
-    const apiKey = process.env.NEXT_PUBLIC_LASTFM_KEY2!;
+    const apiKey = process.env.NEXT_PUBLIC_LASTFM_KEY!;
     const username = process.env.NEXT_PUBLIC_LASTFM_USER!;
     const refreshMs = 10000;
 
