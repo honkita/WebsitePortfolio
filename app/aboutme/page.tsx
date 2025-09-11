@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 
+// Client
 import AboutMeClient from "./aboutmeclient";
 
+// Metadata
 export const metadata: Metadata = {
     title: "About Me"
 };

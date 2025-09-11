@@ -61,6 +61,11 @@
 
 @media (max-width: 48rem) {
   .button {
+    min-width: 3rem;
+    min-height: 3rem;
+  }
+
+  .titleButtons {
     min-width: 4rem;
     min-height: 4rem;
   }

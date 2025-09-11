@@ -10,12 +10,12 @@ import Title from "@components/Title/Title";
 // CSS
 import divstyling from "@styles/divstyling.module.css";
 import styles from "@app/ui/home.module.css";
-import utilStyles from "@app/ui/theme.util.module.css";
 
-//JSONs
+// JSONs
 import ImagesForCarousel from "@assets/homeCarousel.json";
 import CodedProjects from "@assets/projects.json";
 
+// Metadata
 export const metadata: Metadata = {
     title: "Elite Lu Portfolio"
 };

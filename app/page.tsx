@@ -7,8 +7,8 @@ import HomeTitle from "@components/Title/HomeTitle";
 // CSS
 import divstyling from "@styles/divstyling.module.css";
 import styles from "@app/ui/home.module.css";
-import utilStyles from "@app/ui/theme.util.module.css";
 
+// Metadata
 export const metadata: Metadata = {
     title: "Elite Lu Portfolio"
 };

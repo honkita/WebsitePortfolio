@@ -11,14 +11,15 @@ interface LastFmTrack {
     image: { size: string; "#text": string }[];
 }
 
+// String Interface
 interface AnimatedLine {
     text: string;
     ref: React.RefObject<HTMLDivElement | null>;
     keyframeName?: string;
 }
 
-const LONGEST_SPEED = 10; // characters/sec
-const PAUSE_DURATION = 2; // seconds pause at start/end
+const LONGEST_SPEED = 25; // characters/sec
+const PAUSE_DURATION = 1; // seconds pause at start/end
 
 // Debounce helper
 function debounce(fn: () => void, delay: number) {
@@ -89,7 +90,10 @@ const LastFM: React.FC = () => {
         ];
 
         const longestLength = Math.max(...lines.map((l) => l.text.length));
+        console.log(longestLength);
         const longestDuration = longestLength / LONGEST_SPEED;
+
+        console.log("longest:" + longestDuration);
 
         const distances = lines.map(({ ref }) => {
             if (!ref.current) return 0;
@@ -98,7 +102,9 @@ const LastFM: React.FC = () => {
             return Math.max(0, textWidth - containerWidth);
         });
 
-        const totalDuration = longestDuration * 3 + PAUSE_DURATION * 2;
+        const totalDuration = longestDuration * 2 + PAUSE_DURATION * 2;
+
+        console.log("totalduration:" + totalDuration);
 
         let css = "";
 
@@ -128,17 +134,20 @@ const LastFM: React.FC = () => {
                 ((2 * (PAUSE_DURATION + longestDuration)) / totalDuration) * 100
             );
 
+            console.log(pauseStartPct, moveLeftPct, pauseEndPct, moveRightPct);
+
             css += `
         @keyframes ${keyframeName} {
           0%, ${pauseStartPct}% { transform: translateX(0); }
           ${pauseStartPct}%, ${moveLeftPct}% { transform: translateX(-${distance}px); }
           ${moveLeftPct}%, ${pauseEndPct}% { transform: translateX(-${distance}px); }
           ${pauseEndPct}%, ${moveRightPct}% { transform: translateX(0); }
-          ${moveRightPct}%, 100% { transform: translateX(0); }
         }
       `;
 
-            line.ref.current.style.animation = `${keyframeName} ${totalDuration}s ease-in-out infinite`;
+            line.ref.current.style.animation = `${keyframeName} ${
+                (totalDuration * 1000) / 200
+            }s ease-in-out infinite`;
         });
 
         styleRef.current.innerHTML = css;

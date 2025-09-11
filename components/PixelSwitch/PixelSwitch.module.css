@@ -1,6 +1,6 @@
 .toggle {
   image-rendering: pixelated;
-  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+  -ms-interpolation-mode: nearest-neighbor;
   width: 6rem;
   height: 4rem;
   min-width: 6vw;

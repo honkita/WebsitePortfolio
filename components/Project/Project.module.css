@@ -189,7 +189,7 @@
 
   .projectTitle {
     text-align: left;
-    font-size: max(1vw, 1.5rem);
+    font-size: max(1vw, 1rem);
     font-weight: bold;
     margin-top: 1rem;
     width: auto;
