@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 // CSS
 import LastFMCSS from "./LastFMCSS.module.css";
@@ -9,6 +11,7 @@ interface LastFmTrack {
     name: string;
     album: { "#text": string };
     image: { size: string; "#text": string }[];
+    url: string;
 }
 
 // String Interface
@@ -206,12 +209,20 @@ const LastFM: React.FC = () => {
         <div className={LastFMCSS.card}>
             <style ref={styleRef}></style>
             {imageUrl && (
-                <img
-                    src={imageUrl}
-                    alt={track.name}
-                    className={LastFMCSS.cover}
-                />
+                <Link
+                    href={track.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={LastFMCSS.coverLink}
+                >
+                    <img
+                        src={imageUrl}
+                        alt={track.name}
+                        className={LastFMCSS.cover}
+                    />
+                </Link>
             )}
+
             <div className={LastFMCSS.details}>
                 {renderText(track.name, titleRef, LastFMCSS.title)}
                 {renderText(track.artist["#text"], artistRef, LastFMCSS.artist)}
