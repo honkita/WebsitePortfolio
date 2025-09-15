@@ -12,8 +12,8 @@
 }
 
 .coverLink {
-  display: inline-block; /* behaves like old <a> around image */
-  line-height: 0; /* removes extra inline spacing */
+  display: inline-block;
+  line-height: 0;
   margin-right: 0;
 }
 
