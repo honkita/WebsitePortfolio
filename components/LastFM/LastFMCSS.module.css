@@ -121,7 +121,7 @@
 
 @media not (hover: none) {
   .cover:hover {
-    cursor: pointer;
+    cursor: url(".../../../../public/images/Cursor/Pointer.png"), pointer;
     filter: brightness(75%);
     z-index: 100;
   }

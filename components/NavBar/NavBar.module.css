@@ -64,5 +64,6 @@
 @media not (hover: none) {
   .button:hover {
     filter: brightness(75%);
+    cursor: url(".../../../../public/images/Cursor/Pointer.png"), pointer;
   }
 }

@@ -42,10 +42,6 @@
   border: 0.25rem solid var(--secondary) !important;
 }
 
-.sliderButtons:hover {
-  filter: brightness(75%);
-}
-
 .indicators {
   position: absolute;
   bottom: 10px;
@@ -70,4 +66,15 @@
 
 .activeDot {
   background-color: var(--foreground);
+}
+
+@media not (hover: none) {
+  .dot:hover {
+    cursor: url(".../../../../public/images/Cursor/Pointer.png"), pointer;
+  }
+
+  .sliderButtons:hover {
+    filter: brightness(75%);
+    cursor: url(".../../../../public/images/Cursor/Pointer.png"), pointer;
+  }
 }

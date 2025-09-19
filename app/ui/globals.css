@@ -9,6 +9,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-right: calc (-1 * (100vw - 100%));
+  cursor: url(".../../../../public/images/Cursor/Cursor.png"), auto;
 }
 
 * {
