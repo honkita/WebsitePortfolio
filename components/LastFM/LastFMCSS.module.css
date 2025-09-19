@@ -54,19 +54,19 @@
 
 .title span {
   font-size: min(calc(0.3rem + 1.2vw), 1.5rem);
-  font-weight: 600;
+  font-weight: 100;
   color: var(--primary);
 }
 
 .artist span {
   font-size: min(calc(0.2rem + 1.2vw), 0.9rem);
-  font-weight: 500;
+  font-weight: 100;
   color: var(--primary-dim);
 }
 
 .album span {
   font-size: min(calc(0.2rem + 1.2vw), 0.9rem);
-  font-weight: 400;
+  font-weight: 100;
   color: var(--secondary);
 }
 
@@ -102,19 +102,19 @@
 
   .title span {
     font-size: min(calc(3vw), 1rem);
-    font-weight: 600;
+    font-weight: 100;
     color: var(--primary);
   }
 
   .artist span {
     font-size: min(calc(2.5vw), 0.8rem);
-    font-weight: 500;
+    font-weight: 100;
     color: var(--primary-dim);
   }
 
   .album span {
     font-size: min(calc(2vw), 0.8rem);
-    font-weight: 400;
+    font-weight: 100;
     color: var(--secondary);
   }
 }

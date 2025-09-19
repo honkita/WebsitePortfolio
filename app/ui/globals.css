@@ -3,7 +3,7 @@ body {
   background-color: var(--background);
   padding: 0;
   margin: 0;
-  font-family: "Pixelify_Sans", "LANAPIXEL", "OLYMPUS";
+  font-family: "Pixelify_Sans", "UNIFONTEX", "OLYMPUS";
   transition: all 0.2ms;
   flex-direction: column;
   justify-content: center;
@@ -90,6 +90,12 @@ circle:nth-child(1) {
   font-family: "LANAPIXEL";
   src: local("LANAPIXEL"),
     url("../../public/lanapixel_everything/LanaPixel.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "UNIFONTEX";
+  src: local("UNIFONTEX"),
+    url("../../public/Unifontex/Unifontex.ttf") format("truetype");
 }
 
 @font-face {
