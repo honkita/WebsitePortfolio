@@ -1,6 +1,5 @@
 module.exports = {
-  // ... other config
-  // experimental: {
-  //   appDir: true,
-  // },
+  images: {
+    domains: ["lastfm.freetls.fastly.net"],
+  },
 };

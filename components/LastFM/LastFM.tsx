@@ -1,11 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+"use client";
 
-// CSS
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import LastFMCSS from "./LastFMCSS.module.css";
 
-// Props Interface
 interface LastFmTrack {
     artist: { "#text": string };
     name: string;
@@ -14,66 +12,49 @@ interface LastFmTrack {
     url: string;
 }
 
-// String Interface
-interface AnimatedLine {
-    text: string;
-    ref: React.RefObject<HTMLDivElement | null>;
-    keyframeName?: string;
+interface ServerTrack {
+    track: LastFmTrack;
+    epoch: number;
 }
 
-const LONGEST_SPEED = 25; // characters/sec
-const PAUSE_DURATION = 1; // seconds pause at start/end
+const LONGEST_SPEED = 25; // chars/sec
+const PAUSE_DURATION = 1; // seconds
 
-// Debounce helper
-function debounce(fn: () => void, delay: number) {
-    let timer: NodeJS.Timeout;
-    return () => {
-        clearTimeout(timer);
-        timer = setTimeout(fn, delay);
-    };
-}
-
-const LastFM: React.FC = () => {
-    const [track, setTrack] = useState<LastFmTrack | null>(null);
+export default function LastFM() {
+    const [serverTrack, setServerTrack] = useState<ServerTrack | null>(null);
     const lastTrackId = useRef<string | null>(null);
-
     const titleRef = useRef<HTMLDivElement | null>(null);
     const artistRef = useRef<HTMLDivElement | null>(null);
     const albumRef = useRef<HTMLDivElement | null>(null);
     const styleRef = useRef<HTMLStyleElement | null>(null);
 
-    const apiKey = process.env.NEXT_PUBLIC_LASTFM_KEY!;
-    const username = process.env.NEXT_PUBLIC_LASTFM_USER!;
-    const refreshMs = 10000;
+    // SSE connection
+    useEffect(() => {
+        const evtSource = new EventSource("/api/LastFM");
 
-    // Fetch last track
-    const fetchLastTrack = async () => {
-        try {
-            const res = await fetch(
-                `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1`
-            );
-            const data = await res.json();
-            const recentTrack = data.recenttracks.track?.[0] || null;
-
-            if (recentTrack) {
-                const trackId =
-                    recentTrack.name + "|" + recentTrack.artist["#text"];
-
+        evtSource.onmessage = (e) => {
+            try {
+                const data: ServerTrack = JSON.parse(e.data);
+                const trackId = `${data.track.name}|${data.track.artist["#text"]}`;
                 if (trackId !== lastTrackId.current) {
                     lastTrackId.current = trackId;
-                    setTrack(recentTrack);
+                    setServerTrack(data);
                 }
+            } catch (err) {
+                console.error("Bad SSE data:", e.data, err);
             }
-        } catch (err) {
-            console.error("Error fetching Last.fm data:", err);
-        }
-    };
+        };
 
-    // Reset all animations
+        evtSource.onerror = (err) =>
+            console.error("SSE connection error:", err);
+
+        return () => evtSource.close();
+    }, []);
+
+    // Reset animation
     const resetAnimation = () => {
         if (!styleRef.current) return;
         styleRef.current.innerHTML = "";
-
         [titleRef, artistRef, albumRef].forEach((ref) => {
             if (ref.current) {
                 ref.current.style.animation = "none";
@@ -82,113 +63,66 @@ const LastFM: React.FC = () => {
         });
     };
 
-    // Setup synchronized scroll
+    // Scroll setup
     const setupScroll = () => {
-        if (!styleRef.current || !track) return;
+        if (!serverTrack || !styleRef.current) return;
+        const { track, epoch } = serverTrack;
 
-        const lines: AnimatedLine[] = [
+        const lines = [
             { text: track.name, ref: titleRef },
             { text: track.artist["#text"], ref: artistRef },
             { text: track.album["#text"], ref: albumRef }
         ];
 
         const longestLength = Math.max(...lines.map((l) => l.text.length));
-        console.log(longestLength);
         const longestDuration = longestLength / LONGEST_SPEED;
-
-        console.log("longest:" + longestDuration);
-
-        const distances = lines.map(({ ref }) => {
-            if (!ref.current) return 0;
-            const containerWidth = ref.current.parentElement!.offsetWidth;
-            const textWidth = ref.current.scrollWidth;
-            return Math.max(0, textWidth - containerWidth);
-        });
-
         const totalDuration = longestDuration * 2 + PAUSE_DURATION * 2;
 
-        console.log("totalduration:" + totalDuration);
+        const now = Date.now();
+        const offset = ((now - epoch) / 1000) % totalDuration;
 
         let css = "";
 
         lines.forEach((line, i) => {
             if (!line.ref.current) return;
 
-            const distance = distances[i];
-            if (distance === 0) {
+            const distance =
+                line.ref.current.scrollWidth -
+                line.ref.current.parentElement!.offsetWidth;
+
+            if (distance <= 0) {
                 line.ref.current.style.animation = "none";
                 line.ref.current.style.transform = "translateX(0)";
                 return;
             }
 
             const keyframeName = `scrollLine${i}`;
-            line.keyframeName = keyframeName;
-
-            const pauseStartPct = Math.round(
-                (PAUSE_DURATION / totalDuration) * 100
-            );
-            const moveLeftPct = Math.round(
-                ((PAUSE_DURATION + longestDuration) / totalDuration) * 100
-            );
-            const pauseEndPct = Math.round(
-                ((2 * PAUSE_DURATION + longestDuration) / totalDuration) * 100
-            );
-            const moveRightPct = Math.round(
-                ((2 * (PAUSE_DURATION + longestDuration)) / totalDuration) * 100
-            );
-
-            console.log(pauseStartPct, moveLeftPct, pauseEndPct, moveRightPct);
+            line.ref.current.style.animation = `${keyframeName} ${totalDuration}s linear infinite`;
+            line.ref.current.style.animationDelay = `-${offset}s`;
 
             css += `
         @keyframes ${keyframeName} {
-          0%, ${pauseStartPct}% { transform: translateX(0); }
-          ${pauseStartPct}%, ${moveLeftPct}% { transform: translateX(-${distance}px); }
-          ${moveLeftPct}%, ${pauseEndPct}% { transform: translateX(-${distance}px); }
-          ${pauseEndPct}%, ${moveRightPct}% { transform: translateX(0); }
+          0%, 20% { transform: translateX(0); }
+          40%, 60% { transform: translateX(-${distance}px); }
+          80%, 100% { transform: translateX(0); }
         }
       `;
-
-            line.ref.current.style.animation = `${keyframeName} ${
-                (totalDuration * 1000) / 200
-            }s ease-in-out infinite`;
         });
 
         styleRef.current.innerHTML = css;
     };
 
-    // Check new song every few seconds
     useEffect(() => {
-        fetchLastTrack();
-        const interval = setInterval(fetchLastTrack, refreshMs);
-        return () => clearInterval(interval);
-    }, []);
-
-    // Reset only for a new song
-    useEffect(() => {
-        if (!track) return;
+        if (!serverTrack) return;
         resetAnimation();
         const timer = setTimeout(() => setupScroll(), 50);
         return () => clearTimeout(timer);
-    }, [track]);
+    }, [serverTrack]);
 
-    // Handles resize
-    useEffect(() => {
-        if (!track) return;
+    if (!serverTrack)
+        return <div className={LastFMCSS.placeholder}>No recent track</div>;
 
-        const handleResize = debounce(() => {
-            resetAnimation();
-            setupScroll();
-        }, 200);
-
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, [track]);
-
-    if (!track)
-        return (
-            <div className={LastFMCSS.placeholder}>No recent track found.</div>
-        );
-
+    const track = serverTrack.track;
     const imageUrl = track.image.find((img) => img.size === "extralarge")?.[
         "#text"
     ];
@@ -222,7 +156,6 @@ const LastFM: React.FC = () => {
                     />
                 </Link>
             )}
-
             <div className={LastFMCSS.details}>
                 {renderText(track.name, titleRef, LastFMCSS.title)}
                 {renderText(track.artist["#text"], artistRef, LastFMCSS.artist)}
@@ -230,6 +163,4 @@ const LastFM: React.FC = () => {
             </div>
         </div>
     );
-};
-
-export default LastFM;
+}
