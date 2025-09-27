@@ -104,14 +104,6 @@ circle:nth-child(1) {
     url("../../public/olympus/olympus.otf") format("truetype");
 }
 
-/* a:link {
-  color: rgb(197, 69, 69);
-}
-
-a:visited {
-  color: rgb(138, 207, 202);
-} */
-
 nav {
   outline: none !important;
   box-shadow: none !important;
@@ -180,5 +172,11 @@ h1 {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media not (hover: none) {
+  a:hover {
+    cursor: url(".../../../../public/images/Cursor/Pointer.png"), pointer;
   }
 }

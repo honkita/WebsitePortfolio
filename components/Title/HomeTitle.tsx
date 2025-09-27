@@ -151,7 +151,16 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                             </p>
                             <p>
                                 Beyond this, Elite can be seen either drawing
-                                with fancy Japanese alcohol markers or sewing.
+                                with{" "}
+                                <a
+                                    href="https://copic.jp/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={TitleCSS.link}
+                                >
+                                    fancy Japanese alcohol markers
+                                </a>{" "}
+                                or sewing.
                             </p>
                         </div>
                     </div>
