@@ -1,11 +1,12 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 // CSS
 import LastFMCSS from "./LastFMCSS.module.css";
 
-// Props Interface
+// Interface for a Last.fm track
 interface LastFmTrack {
     artist: { "#text": string };
     name: string;
@@ -14,17 +15,17 @@ interface LastFmTrack {
     url: string;
 }
 
-// String Interface
+// Interface for animated line
 interface AnimatedLine {
     text: string;
     ref: React.RefObject<HTMLDivElement | null>;
     keyframeName?: string;
 }
 
-const LONGEST_SPEED = 25; // characters/sec
-const PAUSE_DURATION = 1; // seconds pause at start/end
+// Animation constants
+const LONGEST_SPEED = 25;
+const PAUSE_DURATION = 1;
 
-// Debounce helper
 function debounce(fn: () => void, delay: number) {
     let timer: NodeJS.Timeout;
     return () => {
@@ -42,34 +43,28 @@ const LastFM: React.FC = () => {
     const albumRef = useRef<HTMLDivElement | null>(null);
     const styleRef = useRef<HTMLStyleElement | null>(null);
 
-    const apiKey = process.env.NEXT_PUBLIC_LASTFM_KEY!;
-    const username = process.env.NEXT_PUBLIC_LASTFM_USER!;
     const refreshMs = 10000;
 
-    // Fetch last track
+    // Fetch last track from serverless API
     const fetchLastTrack = async () => {
         try {
-            const res = await fetch(
-                `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1`
-            );
-            const data = await res.json();
-            const recentTrack = data.recenttracks.track?.[0] || null;
+            const res = await fetch("/api/LastFM");
+            const recentTrack = await res.json();
 
             if (recentTrack) {
                 const trackId =
                     recentTrack.name + "|" + recentTrack.artist["#text"];
-
                 if (trackId !== lastTrackId.current) {
                     lastTrackId.current = trackId;
                     setTrack(recentTrack);
                 }
             }
         } catch (err) {
-            console.error("Error fetching Last.fm data:", err);
+            console.error("Error fetching cached Last.fm data:", err);
         }
     };
 
-    // Reset all animations
+    // Reset animation by removing existing styles and setting animation to none when the track changes
     const resetAnimation = () => {
         if (!styleRef.current) return;
         styleRef.current.innerHTML = "";
@@ -82,7 +77,7 @@ const LastFM: React.FC = () => {
         });
     };
 
-    // Setup synchronized scroll
+    // Setup scrolling animation
     const setupScroll = () => {
         if (!styleRef.current || !track) return;
 
@@ -93,10 +88,7 @@ const LastFM: React.FC = () => {
         ];
 
         const longestLength = Math.max(...lines.map((l) => l.text.length));
-        console.log(longestLength);
         const longestDuration = longestLength / LONGEST_SPEED;
-
-        console.log("longest:" + longestDuration);
 
         const distances = lines.map(({ ref }) => {
             if (!ref.current) return 0;
@@ -106,8 +98,6 @@ const LastFM: React.FC = () => {
         });
 
         const totalDuration = longestDuration * 2 + PAUSE_DURATION * 2;
-
-        console.log("totalduration:" + totalDuration);
 
         let css = "";
 
@@ -137,8 +127,6 @@ const LastFM: React.FC = () => {
                 ((2 * (PAUSE_DURATION + longestDuration)) / totalDuration) * 100
             );
 
-            console.log(pauseStartPct, moveLeftPct, pauseEndPct, moveRightPct);
-
             css += `
         @keyframes ${keyframeName} {
           0%, ${pauseStartPct}% { transform: translateX(0); }
@@ -156,14 +144,14 @@ const LastFM: React.FC = () => {
         styleRef.current.innerHTML = css;
     };
 
-    // Check new song every few seconds
+    // Poll serverless API
     useEffect(() => {
         fetchLastTrack();
         const interval = setInterval(fetchLastTrack, refreshMs);
         return () => clearInterval(interval);
     }, []);
 
-    // Reset only for a new song
+    // Reset animation on track change
     useEffect(() => {
         if (!track) return;
         resetAnimation();
@@ -171,10 +159,9 @@ const LastFM: React.FC = () => {
         return () => clearTimeout(timer);
     }, [track]);
 
-    // Handles resize
+    // Handle resize
     useEffect(() => {
         if (!track) return;
-
         const handleResize = debounce(() => {
             resetAnimation();
             setupScroll();

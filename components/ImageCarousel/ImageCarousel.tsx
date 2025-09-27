@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 // CSS
 import ImageCarouselCSS from "./ImageCarousel.module.css";
 
+// Interface for ImageCarousel Props
 interface ImageCarouselProps {
     images: string;
 }

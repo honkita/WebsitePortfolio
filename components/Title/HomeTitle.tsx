@@ -11,13 +11,14 @@ import LastFM from "@components/LastFM/LastFM";
 import divstyling from "@styles/divstyling.module.css";
 import TitleCSS from "./Title.module.css";
 
+// Interface for Title Props
 export interface TitleProps {
     colour: "blue" | "red" | "yellow";
     name: string;
 }
 
-// CSS backgrounds
-function backgroundClass(colour: string) {
+// Helper: Map colour to CSS class
+const backgroundClass = (colour: string) => {
     switch (colour) {
         case "blue":
             return TitleCSS.blueName;
@@ -28,10 +29,10 @@ function backgroundClass(colour: string) {
         default:
             return "";
     }
-}
+};
 
-// Preloading backgrounds
-function backgroundUrl(colour: string) {
+// Helper: Map colour to image URL
+const backgroundUrl = (colour: string) => {
     switch (colour) {
         case "blue":
             return "/images/NamePlate/Blue/Normal.png";
@@ -42,15 +43,23 @@ function backgroundUrl(colour: string) {
         default:
             return "";
     }
-}
+};
 
 export default function HomeTitle({ colour, name }: TitleProps) {
     const [bgIsVisible, setBgIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
+    const [imageIndex, setImageIndex] = useState(0);
+
     const { resolvedTheme } = useTheme();
     const year = new Date().getFullYear();
     const age = year - 2003;
 
+    const images = [
+        "/images/HomeScreen/GBA_PFP.png",
+        "/images/HomeScreen/IRL_PFP.png"
+    ];
+
+    // Preload background on mount
     useEffect(() => {
         setMounted(true);
     }, []);
@@ -70,19 +79,9 @@ export default function HomeTitle({ colour, name }: TitleProps) {
         img.onerror = () => setBgIsVisible(true);
     }, [colour, mounted]);
 
-    const [imageIndex, setImageIndex] = useState(0);
-    const images = [
-        "/images/HomeScreen/GBA_PFP.png",
-        "/images/HomeScreen/IRL_PFP.png"
-    ];
-
-    function getImage() {
-        return images[imageIndex % images.length];
-    }
-
-    function handleSwapImage() {
-        setImageIndex((prev) => prev + 1);
-    }
+    const handleSwapImage = () => {
+        setImageIndex((prev) => (prev + 1) % images.length);
+    };
 
     const visibilityClass = bgIsVisible
         ? TitleCSS.loadedAndVisible
@@ -95,12 +94,13 @@ export default function HomeTitle({ colour, name }: TitleProps) {
             )} ${visibilityClass} ${divstyling.imageRendering}`}
         >
             <div className={TitleCSS.outerContainer}>
+                {/* Left / profile section */}
                 <div className={TitleCSS.imageWrapperWithExtras}>
                     <div className={TitleCSS.imageNameWrapper}>
                         <img
                             className={TitleCSS.mainImage}
                             fetchPriority="high"
-                            src={getImage()}
+                            src={images[imageIndex]}
                             alt="Profile"
                         />
                         <div>
@@ -118,7 +118,7 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                                     {mounted && (
                                         <NextImage
                                             id="Icon"
-                                            key={name}
+                                            key={name + resolvedTheme}
                                             fetchPriority="high"
                                             src={
                                                 resolvedTheme === "light"
@@ -140,7 +140,6 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                         </div>
                     </div>
                 </div>
-
                 <div className={TitleCSS.statsWrapperWithExtras}>
                     <div className={TitleCSS.infoBox}>
                         <div className={TitleCSS.infoText}>
@@ -156,6 +155,7 @@ export default function HomeTitle({ colour, name }: TitleProps) {
                             </p>
                         </div>
                     </div>
+
                     <LastFM />
                 </div>
             </div>
