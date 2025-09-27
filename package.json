@@ -1,24 +1,32 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "next",
-        "build": "next build",
-        "start": "next start"
-    },
-    "dependencies": {
-        "next": "^15.3.1",
-        "next-themes": "^0.2.1",
-        "node-html-parser": "^6.1.12",
-        "react": "^19.1.0",
-        "react-circular-progressbar": "^2.1.0",
-        "react-dom": "^19.1.0",
-        "react-router-dom": "^6.22.3",
-        "vercel": "^32.0.1"
-    },
-    "devDependencies": {
-        "@types/node": "^22.14.1",
-        "@types/react": "^19.1.2",
-        "javascript-obfuscator": "^4.1.0",
-        "typescript": "^5.8.3"
-    }
+  "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^15.3.1",
+    "next-themes": "^0.2.1",
+    "node-html-parser": "^6.1.12",
+    "react": "^19.1.0",
+    "react-circular-progressbar": "^2.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^6.22.3",
+    "semver": "^7.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "@types/react": "^19.1.2",
+    "javascript-obfuscator": "^4.1.0",
+    "typescript": "^5.8.3"
+  },
+  "overrides": {
+    "semver": "^7.7.2",
+    "debug": "^4.3.1",
+    "tar": "^6.2.2",
+    "undici": "^5.29.0",
+    "path-to-regexp": "^6.2.3",
+    "esbuild": "^0.18.18"
+  }
 }
