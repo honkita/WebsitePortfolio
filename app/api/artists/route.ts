@@ -1,6 +1,5 @@
-import { prisma } from "../../../lib/prisma";
+import { prisma } from "@lib/prisma";
 import { NextResponse } from "next/server";
-import * as OpenCC from "opencc-js";
 import { canonicalizeName } from "@utils/canonicalizeName";
 
 const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
