@@ -179,4 +179,8 @@ h1 {
   a:hover {
     cursor: url(".../../../../public/images/Cursor/Pointer.png"), pointer;
   }
+
+  button:hover {
+    cursor: url(".../../../../public/images/Cursor/Pointer.png"), pointer;
+  }
 }

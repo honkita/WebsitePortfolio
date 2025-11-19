@@ -24,21 +24,6 @@
   padding-bottom: 1rem;
 }
 
-/* .transformer {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.containerLanguageDexBottom {
-  position: absolute;
-  min-width: 2rem;
-  left: 21rem;
-  bottom: 8.75rem;
-  align-items: "center";
-  justify-content: center;
-  vertical-align: bottom;
-} */
-
 .title a {
   color: var(--secondary);
   text-decoration: none;

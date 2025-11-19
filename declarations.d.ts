@@ -25,3 +25,5 @@ declare module "@components/Title/HomeTitle";
 declare module "@hooks/LoadImages";
 declare module "@hooks/MainButtons";
 declare module "@hooks/ScreenSize";
+
+declare module "@utils/canonicalizeName";
