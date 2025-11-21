@@ -124,6 +124,17 @@
   max-width: 90rem;
 }
 
+.artistGrid {
+  vertical-align: top;
+  align-items: center;
+  grid-template-columns: repeat(4, minmax(0rem, 1fr));
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  max-width: 90rem;
+  place-items: center;
+}
+
 .pageContainer {
   display: flex;
   flex-direction: column;
@@ -146,6 +157,14 @@
 
 @media (min-width: 64rem) {
   .jobGrid {
+    display: grid;
+    /* grid-template-columns: repeat(3, minmax(0.25rem, 1fr)); */
+    padding: 1rem;
+    vertical-align: top;
+    align-items: center;
+  }
+
+  .artistGrid {
     display: grid;
     /* grid-template-columns: repeat(3, minmax(0.25rem, 1fr)); */
     padding: 1rem;
@@ -202,6 +221,13 @@
     align-items: center;
   }
 
+  .artistGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    vertical-align: top;
+    align-items: center;
+  }
+
   .tableTitle {
     padding-right: 5vw;
     width: 20vw;
@@ -236,6 +262,13 @@
   }
 
   .jobGrid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    vertical-align: top;
+    align-items: center;
+  }
+
+  .artistGrid {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     vertical-align: top;

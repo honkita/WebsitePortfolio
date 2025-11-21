@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 // Child Components
 import LastFMTitle from "@components/Title/LastFMTitle";
+import MusicArtist from "@components/MusicArtist/MusicArtist";
 
 // CSS
 import styles from "@app/ui/home.module.css";
@@ -102,27 +103,19 @@ export default function MusicClient() {
             <div className={styles.contentWrapper}>
                 <div className={styles.centeredContent}>
                     <div className={styles.container}>
-                        <div className={styles.jobGrid}>
-                            {sortedArtists.map(({ name, playcount, image }) => (
-                                <div
-                                    key={name}
-                                    className="flex justify-between items-center rounded-xl border border-zinc-200 dark:border-zinc-700 p-4 shadow-sm hover:shadow-md transition-all"
-                                >
-                                    <div>
-                                        <span className="text-lg font-medium text-zinc-900 dark:text-zinc-100">
-                                            {name} 🎧{" "}
-                                            {playcount.toLocaleString()}
-                                            <img
-                                                src={image}
-                                                alt={`${name} image`}
-                                            />
-                                        </span>
-                                    </div>
-                                </div>
-                            ))}
+                        <div className={styles.artistGrid}>
+                            {sortedArtists.map(
+                                ({ name, playcount, image }, index) => (
+                                    <MusicArtist
+                                        name={name}
+                                        image={image}
+                                        scrobbles={playcount}
+                                        rank={index + 1}
+                                    />
+                                )
+                            )}
                         </div>
                     </div>
-                    <div className="flex flex-col gap-4 w-full"></div>
                 </div>
             </div>
         </div>

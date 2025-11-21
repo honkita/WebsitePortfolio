@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 
 // CSS
 import MusicArtistCSS from "./MusicArtist.module.css";
@@ -21,8 +21,17 @@ export default function MusicArtist({
 }: MusicArtistProps) {
     return (
         <div className={MusicArtistCSS.card}>
-            {name} 🎧 {scrobbles.toLocaleString()}
-            <img src={image} alt={`${name} image`} />
+            <img
+                className={MusicArtistCSS.albumImage}
+                src={image}
+                alt={`${name} image`}
+            />
+            <div className={MusicArtistCSS.info}>
+                <div className={MusicArtistCSS.name}>{name}</div>
+                <div className={MusicArtistCSS.scrobbles}>
+                    🎧 {scrobbles.toLocaleString()}
+                </div>
+            </div>
         </div>
     );
 }

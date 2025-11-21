@@ -4,9 +4,37 @@
   border-radius: 1rem;
   background-color: var(--background-secondary);
   border: 2px solid var(--primary);
-  width: 20vw;
+  width: 16vw;
   min-width: 20rem;
   max-width: 40rem;
   padding: 0.5rem;
   height: fit-content;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.albumImage {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.75rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+
+.artistName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 80%;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.scrobbles {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
 }
