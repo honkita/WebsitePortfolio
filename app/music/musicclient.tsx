@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 // Child Components
-import LastFMTitle from "@components/Title/LastFMTitle";
+import MusicTitle from "@components/Title/MusicTitle";
 import MusicArtist from "@components/MusicArtist/MusicArtist";
 
 // CSS
@@ -55,7 +55,7 @@ export default function MusicClient() {
 
     function title(artists: number, scrobbles: number) {
         return (
-            <LastFMTitle
+            <MusicTitle
                 name="Music"
                 colour="green"
                 artists={artists}

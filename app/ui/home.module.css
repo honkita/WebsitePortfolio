@@ -127,12 +127,13 @@
 .artistGrid {
   vertical-align: top;
   align-items: center;
-  grid-template-columns: repeat(4, minmax(0rem, 1fr));
   justify-content: center;
   align-items: center;
   width: 90vw;
   max-width: 90rem;
   place-items: center;
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
 }
 
 .pageContainer {
@@ -164,14 +165,6 @@
     align-items: center;
   }
 
-  .artistGrid {
-    display: grid;
-    /* grid-template-columns: repeat(3, minmax(0.25rem, 1fr)); */
-    padding: 1rem;
-    vertical-align: top;
-    align-items: center;
-  }
-
   .table {
     table-layout: auto;
     margin-left: 2vw;
@@ -196,6 +189,26 @@
   .tableRow {
     width: 100%;
     max-width: 90vw;
+  }
+}
+
+@media (min-width: 70rem) {
+  .artistGrid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0rem, 1fr));
+    padding: 1rem;
+    vertical-align: top;
+    align-items: center;
+  }
+}
+
+@media (max-width: 70rem) and (min-width: 56rem) {
+  .artistGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0rem, 1fr));
+    padding: 1rem;
+    vertical-align: top;
+    align-items: center;
   }
 }
 

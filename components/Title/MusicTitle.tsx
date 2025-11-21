@@ -9,7 +9,7 @@ import utilStyles from "@app/ui/theme.util.module.css";
 import TitleCSS from "./Title.module.css";
 
 // Props Interface
-export interface LastFMTitleProps {
+export interface MusicTitleProps {
     colour: "blue" | "red" | "yellow" | "green";
     name: string;
     scrobbles?: number;
@@ -42,12 +42,12 @@ const preloadImage = (url: string): Promise<void> => {
     });
 };
 
-export default function LastFMTitle({
+export default function MusicTitle({
     colour,
     name,
     scrobbles,
     artists
-}: LastFMTitleProps) {
+}: MusicTitleProps) {
     const [bgIsVisible, setBgIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();
