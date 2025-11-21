@@ -28,7 +28,7 @@ export default function NavBar() {
 
     const pages = [
         { name: "Home", link: "/", file: "Home" },
-        { name: "Music", link: "/music", file: "AboutMe" },
+        { name: "Music", link: "/music", file: "Music" },
         { name: "About Me", link: "/aboutme", file: "AboutMe" },
         { name: "Projects", link: "/projects", file: "Projects" }
     ];

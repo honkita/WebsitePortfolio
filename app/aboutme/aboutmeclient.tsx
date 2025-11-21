@@ -37,7 +37,7 @@ export default function AboutMeClient() {
 
                 <div className={styles.centeredContent}>
                     <section className={utilStyles.headingXl}>
-                        <p>Previous Employment</p>
+                        Previous Employment
                     </section>
                     <ResumeJobs />
                 </div>

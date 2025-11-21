@@ -83,6 +83,10 @@
   background-image: url("/images/NamePlate/Yellow/Normal.png");
 }
 
+.greenName {
+  background-image: url("/images/NamePlate/Green/Normal.png");
+}
+
 .nameBox {
   border: 2px solid var(--primary);
   border-radius: 0.25rem;
@@ -106,6 +110,11 @@
   font-weight: 600;
   color: var(--primary);
   margin: 0;
+}
+
+.titleSmall {
+  font-size: min(20vw, 6rem);
+  text-align: center;
 }
 
 .levelText {
@@ -218,6 +227,10 @@
 
   .yellowName {
     background-image: url("/images/NamePlate/Yellow/Small.png");
+  }
+
+  .greenName {
+    background-image: url("/images/NamePlate/Green/Small.png");
   }
 
   .namePlate {
