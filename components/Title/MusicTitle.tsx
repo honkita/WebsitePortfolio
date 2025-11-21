@@ -108,7 +108,7 @@ export default function MusicTitle({
             <div className={TitleCSS.titleCenter}>
                 <h1 className={TitleCSS.title}>{name}</h1>
                 <section className={TitleCSS.titleSmall}>
-                    👤 {artists} 🎵 {scrobbles}
+                    {artists} 👤 | 🎵 {scrobbles}
                 </section>
             </div>
         </section>

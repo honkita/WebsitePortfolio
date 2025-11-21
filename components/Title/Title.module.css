@@ -115,6 +115,7 @@
 .titleSmall {
   font-size: min(20vw, 6rem);
   text-align: center;
+  color: #f5f5f5;
 }
 
 .levelText {
