@@ -1,0 +1,99 @@
+// components/MusicCacheProvider.tsx
+"use client";
+
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { Artist } from "../../types/Artist";
+import {
+    fetchFresh,
+    getCache,
+    subscribe,
+    startAutoRefresh,
+    isStale
+} from "@lib/musicCache";
+
+type ContextValue = {
+    artists: Artist[];
+    scrobbles: number | null;
+    loading: boolean;
+    refresh: () => Promise<void>;
+    lastUpdated: number | null;
+};
+
+const MusicCacheContext = createContext<ContextValue | undefined>(undefined);
+
+export function MusicCacheProvider({
+    children
+}: {
+    children: React.ReactNode;
+}) {
+    const initial = getCache();
+    const [artists, setArtists] = useState<Artist[]>(initial?.artists ?? []);
+    const [scrobbles, setScrobbles] = useState<number | null>(
+        initial?.scrobbles ?? null
+    );
+    const [loading, setLoading] = useState<boolean>(() => !initial);
+    const [lastUpdated, setLastUpdated] = useState<number | null>(
+        initial?.timestamp ?? null
+    );
+
+    useEffect(() => {
+        // subscribe to global cache updates
+        const unsub = subscribe((p) => {
+            setArtists(p.artists);
+            setScrobbles(p.scrobbles);
+            setLastUpdated(p.timestamp);
+            setLoading(false);
+        });
+
+        // If we have initial cache but stale, trigger a background refresh
+        if (initial) {
+            setLoading(false);
+            if (isStale()) {
+                // fire and forget; provider will update when fetchFresh resolves
+                fetchFresh().catch((e) => console.error(e));
+            }
+        } else {
+            // no initial -> fetch
+            (async () => {
+                setLoading(true);
+                try {
+                    await fetchFresh();
+                } catch (e) {
+                    console.error(e);
+                } finally {
+                    setLoading(false);
+                }
+            })();
+        }
+
+        // start site-wide auto refresh (idempotent)
+        startAutoRefresh();
+
+        return () => unsub();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const refresh = async () => {
+        setLoading(true);
+        try {
+            await fetchFresh();
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <MusicCacheContext.Provider
+            value={{ artists, scrobbles, loading, refresh, lastUpdated }}
+        >
+            {children}
+        </MusicCacheContext.Provider>
+    );
+}
+
+export function useMusicCache() {
+    const ctx = useContext(MusicCacheContext);
+    if (!ctx)
+        throw new Error("useMusicCache must be used within MusicCacheProvider");
+    return ctx;
+}

@@ -1,14 +1,21 @@
 import { prisma } from "@lib/prisma";
 import { NextResponse } from "next/server";
+
+// Utils
 import { canonicalizeName } from "@utils/canonicalizeName";
 
+// Environment Variables
 const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
 const USERNAME = process.env.NEXT_PUBLIC_LASTFM_USERNAME!;
 const API_URL = "https://ws.audioscrobbler.com/2.0/";
 
-// -----------------------------
-// Fetch paginated Last.fm data
-// -----------------------------
+/**
+ *
+ * @param method
+ * @param username
+ * @param apiKey
+ * @returns
+ */
 async function fetchAllLastFm<T>(
   method: string,
   username: string,
@@ -39,9 +46,11 @@ async function fetchAllLastFm<T>(
   return all;
 }
 
-// -----------------------------
-// Build album lookup by artist name
-// -----------------------------
+/**
+ *
+ * @param albums
+ * @returns
+ */
 function buildAlbumLookup(albums: any[]) {
   const lookup: Record<string, any[]> = {};
   albums.forEach((album) => {
@@ -53,9 +62,12 @@ function buildAlbumLookup(albums: any[]) {
   return lookup;
 }
 
-// -----------------------------
-// Pick top album image from a list of artist names
-// -----------------------------
+/**
+ *
+ * @param albumLookup
+ * @param names
+ * @returns
+ */
 function getTopAlbumImageFromNames(
   albumLookup: Record<string, any[]>,
   names: string[]
@@ -194,9 +206,10 @@ function buildResult(
     .sort((a, b) => b.playcount - a.playcount);
 }
 
-// -----------------------------
-// API handler
-// -----------------------------
+/**
+ *
+ * @returns
+ */
 export async function GET() {
   try {
     const [lastFmArtists, lastFmAlbums, dbArtists] = await Promise.all([
