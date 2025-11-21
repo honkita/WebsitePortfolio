@@ -7,6 +7,7 @@ import LastFMTitle from "@components/Title/LastFMTitle";
 
 // CSS
 import styles from "@app/ui/home.module.css";
+import utilStyles from "@app/ui/theme.util.module.css";
 import divstyling from "@styles/divstyling.module.css";
 
 // Types
@@ -66,9 +67,13 @@ export default function MusicClient() {
         return (
             <div className={styles.pageContainer}>
                 {title(0, 0)}
-                <p className="text-zinc-700 dark:text-zinc-300">
-                    Loading your artists…
-                </p>
+                <div
+                    className={divstyling.hr}
+                    style={{ marginTop: "3rem" }}
+                ></div>
+                <div className={styles.centeredContent}>
+                    <section className={utilStyles.headingXl}>Loading</section>
+                </div>
             </div>
         );
 
@@ -76,15 +81,19 @@ export default function MusicClient() {
         return (
             <div className={styles.pageContainer}>
                 {title(0, 0)}
-                <p className="text-red-600 dark:text-red-400">⚠️ {error}</p>
+                <div
+                    className={divstyling.hr}
+                    style={{ marginTop: "3rem" }}
+                ></div>
+                <div className={styles.centeredContent}>
+                    <section className={utilStyles.headingXl}>
+                        Error with loading
+                    </section>
+                </div>
             </div>
         );
 
     const sortedArtists = artists.sort((a, b) => b.playcount - a.playcount);
-    for (const artist of sortedArtists) {
-        console.log("FUCK");
-        console.log(artist.image);
-    }
 
     return (
         <div className={styles.pageContainer}>
@@ -92,9 +101,9 @@ export default function MusicClient() {
             <div className={divstyling.hr} style={{ marginTop: "3rem" }}></div>
             <div className={styles.contentWrapper}>
                 <div className={styles.centeredContent}>
-                    <div className="flex flex-col gap-4 w-full">
-                        {sortedArtists.map(
-                            ({ name, playcount, aliases, image }) => (
+                    <div className={styles.container}>
+                        <div className={styles.jobGrid}>
+                            {sortedArtists.map(({ name, playcount, image }) => (
                                 <div
                                     key={name}
                                     className="flex justify-between items-center rounded-xl border border-zinc-200 dark:border-zinc-700 p-4 shadow-sm hover:shadow-md transition-all"
@@ -110,9 +119,10 @@ export default function MusicClient() {
                                         </span>
                                     </div>
                                 </div>
-                            )
-                        )}
+                            ))}
+                        </div>
                     </div>
+                    <div className="flex flex-col gap-4 w-full"></div>
                 </div>
             </div>
         </div>
