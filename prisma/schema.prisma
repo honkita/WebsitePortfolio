@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Artist {
+  id             Int             @id @default(autoincrement())
+  name           String          @unique
+  aliases        Json?
+  IgnoreGrouping IgnoreGrouping?
+}
+
+model IgnoreCanonicalization {
+  id   Int    @id @unique @default(autoincrement())
+  name String @unique(map: "IgnoreCanonicalization_artistName_key")
+}
+
+model IgnoreGrouping {
+  id       Int     @id @default(autoincrement())
+  name     String  @unique
+  artistId Int?    @unique
+  artist   Artist? @relation(fields: [artistId], references: [id])
+}

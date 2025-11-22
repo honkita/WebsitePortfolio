@@ -13,7 +13,7 @@ export interface BadgesProps {
     type: string;
 }
 
-export default function Badges(props: BadgesProps) {
+export default function Badges({ name, url, type }: BadgesProps) {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -24,17 +24,17 @@ export default function Badges(props: BadgesProps) {
 
     return (
         <div className={IconsCSS.badgeWrapper}>
-            <span className={IconsCSS.badgeText}>{props.type}</span>
+            <span className={IconsCSS.badgeText}>{type}</span>
             <button
                 className={`${IconsCSS.logoButtonBadge} ${IconsCSS.buttonRendering}`}
-                title={props.name}
+                title={name}
                 tabIndex={-1}
                 aria-hidden="true"
             >
                 <Image
-                    id={props.name}
-                    src={props.url}
-                    alt={props.name + " image "}
+                    id={name}
+                    src={url}
+                    alt={name + " image "}
                     fill
                     priority={true}
                     sizes="100vw"

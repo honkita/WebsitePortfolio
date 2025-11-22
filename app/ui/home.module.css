@@ -24,21 +24,6 @@
   padding-bottom: 1rem;
 }
 
-/* .transformer {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.containerLanguageDexBottom {
-  position: absolute;
-  min-width: 2rem;
-  left: 21rem;
-  bottom: 8.75rem;
-  align-items: "center";
-  justify-content: center;
-  vertical-align: bottom;
-} */
-
 .title a {
   color: var(--secondary);
   text-decoration: none;
@@ -139,6 +124,18 @@
   max-width: 90rem;
 }
 
+.artistGrid {
+  vertical-align: top;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  max-width: 90rem;
+  place-items: center;
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
+}
+
 .pageContainer {
   display: flex;
   flex-direction: column;
@@ -195,6 +192,26 @@
   }
 }
 
+@media (min-width: 70rem) {
+  .artistGrid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0rem, 1fr));
+    padding: 1rem;
+    vertical-align: top;
+    align-items: center;
+  }
+}
+
+@media (max-width: 70rem) and (min-width: 56rem) {
+  .artistGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0rem, 1fr));
+    padding: 1rem;
+    vertical-align: top;
+    align-items: center;
+  }
+}
+
 @media (max-width: 64rem) and (min-width: 48rem) {
   .locationGrid {
     display: grid;
@@ -211,6 +228,13 @@
   }
 
   .jobGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    vertical-align: top;
+    align-items: center;
+  }
+
+  .artistGrid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     vertical-align: top;
@@ -251,6 +275,13 @@
   }
 
   .jobGrid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    vertical-align: top;
+    align-items: center;
+  }
+
+  .artistGrid {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     vertical-align: top;

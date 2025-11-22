@@ -3,21 +3,17 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
-// Components
-import PixelButton from "@components/PixelButton/PixelButton";
-
 // CSS
 import divstyling from "@styles/divstyling.module.css";
+import utilStyles from "@app/ui/theme.util.module.css";
 import TitleCSS from "./Title.module.css";
 
-// Hooks
-import { returnURL } from "@hooks/MainButtons";
-
 // Props Interface
-export interface TitleProps {
+export interface MusicTitleProps {
     colour: "blue" | "red" | "yellow" | "green";
-    buttons: string[];
     name: string;
+    scrobbles?: number;
+    artists?: number;
 }
 
 // Helper: Map colour to background image URL
@@ -46,7 +42,12 @@ const preloadImage = (url: string): Promise<void> => {
     });
 };
 
-export default function Title({ colour, buttons, name }: TitleProps) {
+export default function MusicTitle({
+    colour,
+    name,
+    scrobbles,
+    artists
+}: MusicTitleProps) {
     const [bgIsVisible, setBgIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();
@@ -106,15 +107,12 @@ export default function Title({ colour, buttons, name }: TitleProps) {
         >
             <div className={TitleCSS.titleCenter}>
                 <h1 className={TitleCSS.title}>{name}</h1>
-                <section className={TitleCSS.containerButtons}>
-                    {buttons.map((item, index) => (
-                        <PixelButton
-                            key={index}
-                            name={item}
-                            url={returnURL(item, actualResolvedTheme)}
-                            extra={true}
-                        />
-                    ))}
+                <section className={TitleCSS.titleSmall}>
+                    <section className={TitleCSS.artist}>{artists} 👤</section>{" "}
+                    |
+                    <section className={TitleCSS.scrobbles}>
+                        🎵 {scrobbles}
+                    </section>
                 </section>
             </div>
         </section>

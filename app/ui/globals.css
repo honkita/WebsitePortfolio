@@ -33,10 +33,6 @@ footer {
   align-items: center;
 }
 
-/* footer img {
-  margin-left: 0.5rem;
-} */
-
 footer a {
   display: flex;
   justify-content: center;
@@ -177,6 +173,10 @@ h1 {
 
 @media not (hover: none) {
   a:hover {
+    cursor: url(".../../../../public/images/Cursor/Pointer.png"), pointer;
+  }
+
+  button:hover {
     cursor: url(".../../../../public/images/Cursor/Pointer.png"), pointer;
   }
 }
