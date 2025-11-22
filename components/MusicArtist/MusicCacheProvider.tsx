@@ -38,19 +38,29 @@ export function MusicCacheProvider({
 
     useEffect(() => {
         // subscribe to global cache updates
-        const unsub = subscribe((p) => {
-            setArtists(p.artists);
-            setScrobbles(p.scrobbles);
-            setLastUpdated(p.timestamp);
-            setLoading(false);
-        });
+        const unsub = subscribe(
+            ({
+                artists,
+                scrobbles,
+                timestamp
+            }: {
+                artists: Artist[];
+                scrobbles: number | null;
+                timestamp: number;
+            }) => {
+                setArtists(artists);
+                setScrobbles(scrobbles);
+                setLastUpdated(timestamp);
+                setLoading(false);
+            }
+        );
 
-        // If we have initial cache but stale, trigger a background refresh
+        // Initial cache is stale, trigger a background refresh
         if (initial) {
             setLoading(false);
             if (isStale()) {
                 // fire and forget; provider will update when fetchFresh resolves
-                fetchFresh().catch((e) => console.error(e));
+                fetchFresh().catch((e: unknown) => console.error(e));
             }
         } else {
             // no initial -> fetch
