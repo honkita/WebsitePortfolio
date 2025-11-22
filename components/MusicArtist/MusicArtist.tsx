@@ -23,7 +23,7 @@ export default function MusicArtist({
         <div className={MusicArtistCSS.card}>
             <img
                 className={MusicArtistCSS.albumImage}
-                src={image}
+                src={image || "/images/TestImages/honoka.jpg"}
                 alt={`${name} image`}
             />
             <div className={MusicArtistCSS.info}>

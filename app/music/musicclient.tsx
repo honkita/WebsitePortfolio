@@ -12,7 +12,7 @@ import utilStyles from "@app/ui/theme.util.module.css";
 import divstyling from "@styles/divstyling.module.css";
 
 // Types
-import { Artist } from "../../types/Artist";
+import { Artist } from "../../types/Music";
 
 // ---------------------------
 // GLOBAL IN-MEMORY CACHE

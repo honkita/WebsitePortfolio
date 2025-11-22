@@ -2,7 +2,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Artist } from "../../types/Artist";
+import { Artist } from "../../types/Music";
 import {
     fetchFresh,
     getCache,
