@@ -1,8 +1,6 @@
 .button {
-  min-width: 4rem;
-  min-height: 4rem;
-  width: 4vw;
-  height: 4vw;
+  width: min(4rem, 14vw);
+  height: min(4rem, 14vw);
   background-color: transparent;
   transition: all 0.2s;
   position: relative;

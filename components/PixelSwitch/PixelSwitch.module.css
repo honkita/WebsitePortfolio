@@ -1,10 +1,8 @@
 .toggle {
   image-rendering: pixelated;
   -ms-interpolation-mode: nearest-neighbor;
-  width: 6rem;
-  height: 4rem;
-  min-width: 6vw;
-  min-height: 4vw;
+  width: min(6rem, 21vw);
+  height: min(4rem, 14vw);
   border: None;
   background-image: url("/images/Switch/SwitchBack.png");
   background-color: transparent;
@@ -12,16 +10,13 @@
   background-size: cover;
   transition: all 0.2s;
   position: relative;
-  margin-left: 0.25rem;
   align-items: center;
 }
 
 .toggle::after {
   background-image: url("/images/Switch/Switch.png");
-  width: 4rem;
-  height: 4rem;
-  min-width: 4vw;
-  min-height: 4vw;
+  width: min(4rem, 14vw);
+  height: min(4rem, 14vw);
   background-repeat: no-repeat;
   background-size: cover;
   display: inline-flex;

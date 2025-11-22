@@ -49,34 +49,53 @@ interface ResultRow {
 type AlbumLookup = Record<string, LastFmAlbum[]>;
 
 // ----------------------
-// API fetcher
+// API fetcher (parallelized)
 // ----------------------
 async function fetchAllLastFm<T>(
   method: string,
   username: string,
   apiKey: string
 ) {
+  // Fetch first page to determine totalPages
+  const firstRes = await fetch(
+    `${API_URL}?method=${method}&user=${username}&api_key=${apiKey}&format=json&page=1&limit=1000`
+  );
+  if (!firstRes.ok) throw new Error(`Failed to fetch Last.fm ${method} page 1`);
+  const firstData = await firstRes.json();
+
   let all: T[] = [];
-  let page = 1;
   let totalPages = 1;
 
-  while (page <= totalPages) {
-    const res = await fetch(
-      `${API_URL}?method=${method}&user=${username}&api_key=${apiKey}&format=json&page=${page}&limit=1000`
+  if (method === "user.gettopartists") {
+    all.push(...(firstData.topartists.artist as T[]));
+    totalPages = parseInt(firstData.topartists["@attr"].totalPages, 10);
+  } else if (method === "user.gettopalbums") {
+    all.push(...(firstData.topalbums.album as T[]));
+    totalPages = parseInt(firstData.topalbums["@attr"].totalPages, 10);
+  }
+
+  if (totalPages > 1) {
+    const remainingPages = Array.from(
+      { length: totalPages - 1 },
+      (_, i) => i + 2
     );
-    if (!res.ok) throw new Error(`Failed to fetch Last.fm ${method}`);
 
-    const data = await res.json();
+    const pagePromises = remainingPages.map(async (page) => {
+      const res = await fetch(
+        `${API_URL}?method=${method}&user=${username}&api_key=${apiKey}&format=json&page=${page}&limit=1000`
+      );
+      if (!res.ok)
+        throw new Error(`Failed to fetch Last.fm ${method} page ${page}`);
+      const data = await res.json();
 
-    if (method === "user.gettopartists") {
-      all.push(...(data.topartists.artist as T[]));
-      totalPages = parseInt(data.topartists["@attr"].totalPages, 10);
-    } else if (method === "user.gettopalbums") {
-      all.push(...(data.topalbums.album as T[]));
-      totalPages = parseInt(data.topalbums["@attr"].totalPages, 10);
-    }
+      if (method === "user.gettopartists") return data.topartists.artist as T[];
+      else if (method === "user.gettopalbums")
+        return data.topalbums.album as T[];
+      return [];
+    });
 
-    page++;
+    const pagesResults = await Promise.all(pagePromises);
+    pagesResults.forEach((pageData) => all.push(...pageData));
   }
 
   return all;
@@ -180,7 +199,7 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
     let matchedBySubstring = false;
 
     if (!mainName) {
-      // Find all potential substring matches
+      // Find potential substring matches
       const candidates = Object.keys(aliasMap).filter(
         (dbCanon) => dbCanon.includes(canonName) || canonName.includes(dbCanon)
       );
@@ -189,7 +208,6 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
         mainName = aliasMap[candidates[0]];
         matchedBySubstring = true;
       } else if (candidates.length > 1) {
-        // Pick the one with highest length similarity
         candidates.sort(
           (a, b) =>
             lengthSimilarity(a, canonName) - lengthSimilarity(b, canonName)
@@ -202,11 +220,7 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
     mainName = mainName || artist.name;
 
     if (!merged[mainName])
-      merged[mainName] = {
-        playcount: 0,
-        candidates: [],
-        aliasNames: [],
-      };
+      merged[mainName] = { playcount: 0, candidates: [], aliasNames: [] };
 
     merged[mainName].playcount += parseInt(artist.playcount, 10);
     merged[mainName].candidates.push(artist);
