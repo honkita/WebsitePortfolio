@@ -1,7 +1,17 @@
 import { NextResponse } from "next/server";
 
+// Types
+interface LastFmTrack {
+  artist?: { "#text": string };
+  name?: string;
+  album?: { "#text": string };
+  image?: { "#text": string; size: string }[];
+  date?: { uts: string; "#text": string };
+  [key: string]: any;
+}
+
 // In-memory cache
-let cache: any = null;
+let cache: LastFmTrack | null = null;
 let lastFetch = 0;
 const CACHE_TTL = 15 * 1000; // 15 seconds
 
@@ -18,7 +28,8 @@ export async function GET() {
     );
 
     const data = await res.json();
-    const recentTrack = data.recenttracks.track?.[0] || null;
+    const recentTrack: LastFmTrack | null =
+      data.recenttracks.track?.[0] || null;
 
     cache = recentTrack;
     lastFetch = now;

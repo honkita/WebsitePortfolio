@@ -5,7 +5,6 @@ import { canonicalizeName } from "@utils/canonicalizeName";
 // Types
 import { Artist as DBArtist } from "../../../types/Music";
 
-// Environment Variables
 const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
 const USERNAME = process.env.NEXT_PUBLIC_LASTFM_USERNAME!;
 const API_URL = "https://ws.audioscrobbler.com/2.0/";
@@ -145,6 +144,15 @@ function getTopAlbumImageFromNames(
 }
 
 // ----------------------
+// String similarity based on length percentage
+// ----------------------
+function lengthSimilarity(a: string, b: string) {
+  const lenA = a.length;
+  const lenB = b.length;
+  return Math.min(lenA, lenB) / Math.max(lenA, lenB);
+}
+
+// ----------------------
 // Merge artists
 // ----------------------
 function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
@@ -168,15 +176,25 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
   lastFmArtists.forEach((artist) => {
     const canonName = canonicalizeName(artist.name);
 
-    let mainName = aliasMap[canonName];
+    let mainName: string | undefined = aliasMap[canonName];
     let matchedBySubstring = false;
 
     if (!mainName) {
-      const dbCanonMatch = Object.keys(aliasMap).find(
+      // Find all potential substring matches
+      const candidates = Object.keys(aliasMap).filter(
         (dbCanon) => dbCanon.includes(canonName) || canonName.includes(dbCanon)
       );
-      if (dbCanonMatch) {
-        mainName = aliasMap[dbCanonMatch];
+
+      if (candidates.length === 1) {
+        mainName = aliasMap[candidates[0]];
+        matchedBySubstring = true;
+      } else if (candidates.length > 1) {
+        // Pick the one with highest length similarity
+        candidates.sort(
+          (a, b) =>
+            lengthSimilarity(a, canonName) - lengthSimilarity(b, canonName)
+        );
+        mainName = aliasMap[candidates[candidates.length - 1]];
         matchedBySubstring = true;
       }
     }
