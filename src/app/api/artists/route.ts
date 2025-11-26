@@ -160,13 +160,14 @@ function lengthSimilarity(a: string, b: string) {
   return Math.min(lenA, lenB) / Math.max(lenA, lenB);
 }
 
-// ----------------------
-// Merge artists safely
-// ----------------------
 function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
   const aliasMap: Record<string, string> = {};
 
-  // Build canonicalized alias map
+  // Helper: lowercase only ASCII letters
+  const asciiLower = (str: string) =>
+    str.replace(/[A-Za-z]/g, (c) => c.toLowerCase());
+
+  // Build canonicalized alias map from DB
   dbArtists.forEach((artist) => {
     const dbCanon = canonicalizeName(artist.name);
     aliasMap[dbCanon] = artist.name;
@@ -194,7 +195,7 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
     });
   });
 
-  // Sort database canonical names by length descending
+  // Sort database canonical names by length descending (longest first)
   const sortedDbCanonNames = Object.keys(aliasMap).sort(
     (a, b) => b.length - a.length
   );
@@ -203,34 +204,40 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
 
   lastFmArtists.forEach((artist) => {
     const canonName = canonicalizeName(artist.name);
-
     let mainName: string | undefined;
 
-    // Try exact match first
+    // Try exact alias match first
     mainName = aliasMap[canonName];
 
-    // Try substring match using longest DB names first
+    // Try substring match using longest DB names first, ASCII-only lowercase
     if (!mainName) {
+      const canonAscii = asciiLower(canonName);
       for (const dbCanon of sortedDbCanonNames) {
-        if (canonName.includes(dbCanon) || dbCanon.includes(canonName)) {
+        const dbAscii = asciiLower(dbCanon);
+        if (canonAscii.includes(dbAscii) || dbAscii.includes(canonAscii)) {
           mainName = aliasMap[dbCanon];
           break;
         }
       }
     }
 
+    // Fallback to artist name itself if no match
     mainName = mainName || artist.name;
 
-    if (!merged[mainName])
+    // Initialize merged entry if it doesn't exist
+    if (!merged[mainName]) {
       merged[mainName] = {
         playcount: 0,
         candidates: [],
         aliasNames: [],
       };
+    }
 
+    // Aggregate playcount
     merged[mainName].playcount += parseInt(artist.playcount, 10);
     merged[mainName].candidates.push(artist);
 
+    // Track alias names
     if (
       mainName !== artist.name &&
       !merged[mainName].aliasNames.includes(artist.name)
