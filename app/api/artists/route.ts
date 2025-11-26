@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { canonicalizeName } from "@utils/canonicalizeName";
 
 // Types
-import { Artist as DBArtist } from "../../../types/Music";
+import type { Artist, LastFmImage, LastFmAlbum } from "../../../types/Music";
 
 const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
 const USERNAME = process.env.NEXT_PUBLIC_LASTFM_USERNAME!;
@@ -12,21 +12,10 @@ const API_URL = "https://ws.audioscrobbler.com/2.0/";
 // ----------------------
 // Last.fm API TYPES
 // ----------------------
-export interface LastFmImage {
-  "#text": string;
-  size: "small" | "medium" | "large" | "extralarge" | "mega" | string;
-}
 
 export interface LastFmArtist {
   name: string;
   playcount: string;
-  image: LastFmImage[];
-}
-
-export interface LastFmAlbum {
-  name: string;
-  playcount: string;
-  artist: { name: string };
   image: LastFmImage[];
 }
 
@@ -127,7 +116,6 @@ function getTopAlbumImageFromNames(
   }
 
   if (!topAlbum) return "";
-
   const sizes = ["mega", "extralarge", "large", "medium", "small"];
   for (const size of sizes) {
     const img = topAlbum.image.find((i) => i.size === size);
@@ -155,7 +143,7 @@ function lengthSimilarity(a: string, b: string) {
 // ----------------------
 // Merge artists
 // ----------------------
-function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
+function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: Artist[]) {
   const aliasMap: Record<string, string> = {};
 
   // Build canonicalized alias map
@@ -224,7 +212,7 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
 // ----------------------
 function buildResult(
   merged: Record<string, MergedEntry>,
-  dbArtists: DBArtist[],
+  dbArtists: Artist[],
   albums: LastFmAlbum[]
 ): ResultRow[] {
   const albumLookup = buildAlbumLookup(albums);
@@ -248,9 +236,10 @@ function buildResult(
     .sort((a, b) => b.playcount - a.playcount);
 }
 
-// ----------------------
-// GET handler
-// ----------------------
+/**
+ * GET Handler
+ * @returns
+ */
 export async function GET() {
   try {
     const [lastFmArtists, lastFmAlbums, dbArtists] = await Promise.all([

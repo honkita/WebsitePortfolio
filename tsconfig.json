@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
       "@app/*": ["/app/*"],
       "@assets/*": ["/public/Assets/*"],
@@ -29,6 +30,12 @@
       }
     ]
   },
-  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "types/**/*.ts"
+  ],
   "exclude": ["node_modules", "*.module.css"]
 }
