@@ -195,9 +195,8 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
     });
   });
 
-  // Sort database canonical names by length descending (longest first)
   const sortedDbCanonNames = Object.keys(aliasMap).sort(
-    (a, b) => b.length - a.length
+    (a, b) => a.length - b.length
   );
 
   const merged: Record<string, MergedEntry> = {};
