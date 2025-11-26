@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 import { canonicalizeName } from "@/utils/canonicalizeName";
 
 // Types
-import type { Artist, LastFmImage, LastFmAlbum } from "../../../types/Music";
+import { Artist } from "@/types/Music";
+import { JsonValue } from "@prisma/client/runtime/library";
 
 const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
 const USERNAME = process.env.NEXT_PUBLIC_LASTFM_USERNAME!;
@@ -12,10 +13,28 @@ const API_URL = "https://ws.audioscrobbler.com/2.0/";
 // ----------------------
 // Last.fm API TYPES
 // ----------------------
+export interface LastFmImage {
+  "#text": string;
+  size: "small" | "medium" | "large" | "extralarge" | "mega" | string;
+}
+
+export interface DBArtist {
+  name: string;
+  id: number;
+  aliases: JsonValue | null;
+}
+[];
 
 export interface LastFmArtist {
   name: string;
   playcount: string;
+  image: LastFmImage[];
+}
+
+export interface LastFmAlbum {
+  name: string;
+  playcount: string;
+  artist: { name: string };
   image: LastFmImage[];
 }
 
@@ -116,6 +135,7 @@ function getTopAlbumImageFromNames(
   }
 
   if (!topAlbum) return "";
+
   const sizes = ["mega", "extralarge", "large", "medium", "small"];
   for (const size of sizes) {
     const img = topAlbum.image.find((i) => i.size === size);
@@ -141,9 +161,9 @@ function lengthSimilarity(a: string, b: string) {
 }
 
 // ----------------------
-// Merge artists
+// Merge artists safely
 // ----------------------
-function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: Artist[]) {
+function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
   const aliasMap: Record<string, string> = {};
 
   // Build canonicalized alias map
@@ -151,9 +171,23 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: Artist[]) {
     const dbCanon = canonicalizeName(artist.name);
     aliasMap[dbCanon] = artist.name;
 
-    const aliases: string[] = Array.isArray(artist.aliases)
-      ? artist.aliases
-      : JSON.parse(artist.aliases || "[]");
+    // Safely parse aliases from JsonValue
+    let aliases: string[] = [];
+
+    if (Array.isArray(artist.aliases)) {
+      aliases = artist.aliases.filter(
+        (a): a is string => typeof a === "string"
+      );
+    } else if (typeof artist.aliases === "string") {
+      try {
+        const parsed = JSON.parse(artist.aliases);
+        if (Array.isArray(parsed)) {
+          aliases = parsed.filter((a): a is string => typeof a === "string");
+        }
+      } catch {
+        aliases = [];
+      }
+    }
 
     aliases.forEach((alias) => {
       aliasMap[canonicalizeName(alias)] = artist.name;
@@ -197,10 +231,11 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: Artist[]) {
     merged[mainName].playcount += parseInt(artist.playcount, 10);
     merged[mainName].candidates.push(artist);
 
-    if (mainName !== artist.name) {
-      if (!merged[mainName].aliasNames.includes(artist.name)) {
-        merged[mainName].aliasNames.push(artist.name);
-      }
+    if (
+      mainName !== artist.name &&
+      !merged[mainName].aliasNames.includes(artist.name)
+    ) {
+      merged[mainName].aliasNames.push(artist.name);
     }
   });
 
@@ -208,11 +243,11 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: Artist[]) {
 }
 
 // ----------------------
-// Build final output
+// Build final output safely
 // ----------------------
 function buildResult(
   merged: Record<string, MergedEntry>,
-  dbArtists: Artist[],
+  dbArtists: DBArtist[],
   albums: LastFmAlbum[]
 ): ResultRow[] {
   const albumLookup = buildAlbumLookup(albums);
@@ -220,11 +255,27 @@ function buildResult(
   return Object.entries(merged)
     .map(([name, { playcount, aliasNames }]) => {
       const dbEntry = dbArtists.find((a) => a.name === name);
-      const explicitAliases: string[] = dbEntry?.aliases
-        ? Array.isArray(dbEntry.aliases)
-          ? dbEntry.aliases
-          : JSON.parse(dbEntry.aliases)
-        : [];
+
+      // Safely parse aliases from JsonValue
+      let explicitAliases: string[] = [];
+      if (dbEntry?.aliases) {
+        if (Array.isArray(dbEntry.aliases)) {
+          explicitAliases = dbEntry.aliases.filter(
+            (a): a is string => typeof a === "string"
+          );
+        } else if (typeof dbEntry.aliases === "string") {
+          try {
+            const parsed = JSON.parse(dbEntry.aliases);
+            if (Array.isArray(parsed)) {
+              explicitAliases = parsed.filter(
+                (a): a is string => typeof a === "string"
+              );
+            }
+          } catch {
+            explicitAliases = [];
+          }
+        }
+      }
 
       const allAliases = [...explicitAliases, ...aliasNames];
       const namesToCheck = [name, ...allAliases];
@@ -236,10 +287,9 @@ function buildResult(
     .sort((a, b) => b.playcount - a.playcount);
 }
 
-/**
- * GET Handler
- * @returns
- */
+// ----------------------
+// GET handler
+// ----------------------
 export async function GET() {
   try {
     const [lastFmArtists, lastFmAlbums, dbArtists] = await Promise.all([

@@ -99,6 +99,7 @@ export default function ResumeJobs() {
                             <PixelButton
                                 name="LinkedIn"
                                 url={selectedJob.linkedin}
+                                extra={false}
                             />
                         </div>
                     </div>
