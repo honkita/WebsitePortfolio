@@ -1,0 +1,48 @@
+.border {
+  border: 0.5rem solid var(--secondary) !important;
+  background-color: var(--background);
+  border-radius: 0.25rem;
+  margin: 1rem;
+}
+
+/*
+For testing purposes!
+*/
+.border2 {
+  border: 0.5rem solid var(--secondary) !important;
+  background-color: var(--background);
+  border-radius: 0.25rem;
+}
+
+.hr {
+  display: flex;
+  height: 1px;
+  border: 0;
+  border-top: 2px dashed var(--primary);
+  margin: 1rem 1rem;
+  padding: 0;
+}
+
+.imageRendering {
+  padding: 0;
+  border: None;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  word-wrap: break-word;
+  background-size: cover;
+  transition: all 0.2s;
+  position: relative;
+  image-rendering: pixelated;
+}
+
+.pixelated {
+  shape-rendering: crispEdges;
+  image-rendering: pixelated; /* CSS4 Proposed  */
+  image-rendering: optimizeSpeed; /* Legal fallback */
+  image-rendering: -moz-crisp-edges; /* Firefox        */
+  image-rendering: -o-crisp-edges; /* Opera          */
+  image-rendering: -webkit-optimize-contrast; /* Safari         */
+  image-rendering: optimize-contrast; /* CSS3 Proposed  */
+  image-rendering: crisp-edges; /* CSS4 Proposed  */
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+           */
+}

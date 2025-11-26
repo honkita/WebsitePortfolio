@@ -1,0 +1,88 @@
+.button {
+  width: calc(1rem + 4vw);
+  height: calc(1rem + 4vw);
+  max-width: 5rem;
+  max-height: 5rem;
+  aspect-ratio: 1/1;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.button > img {
+  width: 100%;
+  image-rendering: pixelated;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+}
+
+.titleButtons {
+  width: calc(2rem + 4vw);
+  height: calc(2rem + 4vw);
+  max-width: 8rem;
+  max-height: 8rem;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.titleButtons > img {
+  width: 100%;
+  image-rendering: pixelated;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.buttonRendering {
+  border: None;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
+}
+
+@media (max-width: 64rem) and (min-width: 40rem) {
+  .button {
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    min-height: 3rem;
+    padding: 0;
+    border: None;
+    background-color: transparent;
+    transition: all 0.2s;
+    position: relative;
+  }
+}
+
+@media (max-width: 48rem) {
+  .button {
+    min-width: 3rem;
+    min-height: 3rem;
+  }
+
+  .titleButtons {
+    min-width: 4rem;
+    min-height: 4rem;
+  }
+}
+
+@media not (hover: none) {
+  .button:hover {
+    transform: scale(1.1);
+    cursor: url(".../../../../public/images/Cursor/Pointer.png"), pointer;
+    filter: brightness(75%);
+    z-index: 100;
+  }
+
+  .titleButtons:hover {
+    transform: scale(1.1);
+    cursor: url(".../../../../public/images/Cursor/Pointer.png"), pointer;
+    filter: brightness(75%);
+    z-index: 100;
+  }
+}

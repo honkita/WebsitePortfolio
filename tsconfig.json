@@ -2,14 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@app/*": ["/app/*"],
-      "@assets/*": ["/public/Assets/*"],
-      "@components/*": ["/components/*"],
-      "@hooks/*": ["/hooks/*"],
-      "@lib/*": ["/lib/*"],
-      "@utils/*": ["/utils/*"],
-      "@styles/*": ["/styles/*"],
-      "@types/*": ["/types/*"]
+      "@/*": ["src/*"]
     },
     "jsx": "preserve",
     "incremental": true,
