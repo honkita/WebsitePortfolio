@@ -39,11 +39,11 @@
 @media not (hover: none) {
   .toggle:hover {
     filter: brightness(75%);
-    cursor: url(".../../../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
   }
 
   .toggledark:hover {
     filter: brightness(75%);
-    cursor: url(".../../../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
   }
 }

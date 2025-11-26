@@ -74,14 +74,14 @@
 @media not (hover: none) {
   .button:hover {
     transform: scale(1.1);
-    cursor: url(".../../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
     filter: brightness(75%);
     z-index: 100;
   }
 
   .titleButtons:hover {
     transform: scale(1.1);
-    cursor: url(".../../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
     filter: brightness(75%);
     z-index: 100;
   }

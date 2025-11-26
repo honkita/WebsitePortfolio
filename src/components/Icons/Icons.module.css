@@ -80,7 +80,7 @@
 
 @media not (hover: none) {
   .logoButton:hover {
-    cursor: url(".../../../../public/images/Cursor/Cursor.png"), auto;
+    cursor: url("../../../public/images/Cursor/Cursor.png"), auto;
   }
 
   .under:hover {

@@ -70,11 +70,11 @@
 
 @media not (hover: none) {
   .dot:hover {
-    cursor: url("../../../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
   }
 
   .sliderButtons:hover {
     filter: brightness(75%);
-    cursor: url("../../../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
   }
 }

@@ -1,9 +1,2 @@
-declare module "*.json";
-declare module "@/app/*";
-declare module "@/assets/*";
-declare module "@/components/*";
-declare module "@/hooks/*";
-declare module "@/lib/*";
-declare module "@/utils/*";
-declare module "@/styles/*";
-declare module "@/types/*";
+declare module "/*.json";
+declare module "@/*";

@@ -9,7 +9,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-right: calc (-1 * (100vw - 100%));
-  cursor: url(".../../../../../public/images/Cursor/Cursor.png"), auto;
+  cursor: url("../../../public/images/Cursor/Cursor.png"), auto;
 }
 
 * {
@@ -174,10 +174,10 @@ h1 {
 
 @media not (hover: none) {
   a:hover {
-    cursor: url(".../../../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
   }
 
   button:hover {
-    cursor: url(".../../../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
   }
 }
