@@ -2,8 +2,8 @@ export interface Artist {
   id: number;
   name: string;
   aliases: string | string[];
-  playcount?: number;
-  image?: string;
+  playcount: number | 0;
+  image: string | "";
 }
 
 export interface DBArtist {
