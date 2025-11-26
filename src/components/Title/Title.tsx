@@ -111,7 +111,10 @@ export default function Title({ colour, buttons, name }: TitleProps) {
                         <PixelButton
                             key={index}
                             name={item}
-                            url={returnURL(item, actualResolvedTheme)}
+                            url={returnURL(
+                                item,
+                                actualResolvedTheme || "light"
+                            )}
                             extra={true}
                         />
                     ))}
