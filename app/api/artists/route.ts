@@ -158,6 +158,7 @@ function lengthSimilarity(a: string, b: string) {
 function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
   const aliasMap: Record<string, string> = {};
 
+  // Build canonicalized alias map
   dbArtists.forEach((artist) => {
     const dbCanon = canonicalizeName(artist.name);
     aliasMap[dbCanon] = artist.name;
@@ -171,31 +172,28 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
     });
   });
 
+  // Sort database canonical names by length descending
+  const sortedDbCanonNames = Object.keys(aliasMap).sort(
+    (a, b) => b.length - a.length
+  );
+
   const merged: Record<string, MergedEntry> = {};
 
   lastFmArtists.forEach((artist) => {
     const canonName = canonicalizeName(artist.name);
 
-    let mainName: string | undefined = aliasMap[canonName];
-    let matchedBySubstring = false;
+    let mainName: string | undefined;
 
+    // Try exact match first
+    mainName = aliasMap[canonName];
+
+    // Try substring match using longest DB names first
     if (!mainName) {
-      // Find all potential substring matches
-      const candidates = Object.keys(aliasMap).filter(
-        (dbCanon) => dbCanon.includes(canonName) || canonName.includes(dbCanon)
-      );
-
-      if (candidates.length === 1) {
-        mainName = aliasMap[candidates[0]];
-        matchedBySubstring = true;
-      } else if (candidates.length > 1) {
-        // Pick the one with highest length similarity
-        candidates.sort(
-          (a, b) =>
-            lengthSimilarity(a, canonName) - lengthSimilarity(b, canonName)
-        );
-        mainName = aliasMap[candidates[candidates.length - 1]];
-        matchedBySubstring = true;
+      for (const dbCanon of sortedDbCanonNames) {
+        if (canonName.includes(dbCanon) || dbCanon.includes(canonName)) {
+          mainName = aliasMap[dbCanon];
+          break;
+        }
       }
     }
 
@@ -211,7 +209,7 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
     merged[mainName].playcount += parseInt(artist.playcount, 10);
     merged[mainName].candidates.push(artist);
 
-    if (matchedBySubstring || mainName !== artist.name) {
+    if (mainName !== artist.name) {
       if (!merged[mainName].aliasNames.includes(artist.name)) {
         merged[mainName].aliasNames.push(artist.name);
       }

@@ -3,10 +3,7 @@ import * as OpenCC from "opencc-js";
 // ---------------------------
 // Manual mapping for exceptions / romanizations
 // ---------------------------
-const manualMap: Record<string, string> = {
-  林忆莲: "林憶蓮",
-  優里: "優里",
-};
+const manualMap: Record<string, string> = {};
 
 // ---------------------------
 // Unicode ranges for CJK
@@ -55,8 +52,7 @@ export function canonicalizeName(name: string): string {
 
   // Step 2 — convert Chinese to traditional
   if (isChinese(normalized)) {
-    // Correct conversion: simplified → traditional
-    const converter = OpenCC.Converter({ from: "cn", to: "t" });
+    const converter = OpenCC.Converter({ from: "t", to: "cn" });
     normalized = converter(normalized);
   }
 

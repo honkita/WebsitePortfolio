@@ -17,51 +17,62 @@ import { Artist } from "../../types/Music";
 export default function MusicClient() {
     const [artists, setArtists] = useState<Artist[]>([]);
     const [scrobbles, setScrobbles] = useState<number | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+
+    const [loadingArtists, setLoadingArtists] = useState(true);
+    const [loadingScrobbles, setLoadingScrobbles] = useState(true);
+
+    const [errorArtists, setErrorArtists] = useState<string | null>(null);
+    const [errorScrobbles, setErrorScrobbles] = useState<string | null>(null);
 
     useEffect(() => {
-        const loadData = async () => {
+        // Fetch artists
+        const fetchArtists = async () => {
             try {
-                setLoading(true);
-
-                const [artistsRes, scrobblesRes] = await Promise.all([
-                    fetch("/api/artists"),
-                    fetch("/api/scrobbles")
-                ]);
-
-                if (!artistsRes.ok) throw new Error("Failed to fetch artists");
-                if (!scrobblesRes.ok)
-                    throw new Error("Failed to fetch scrobbles");
-
-                const artists = (await artistsRes.json()) as Artist[];
-                const scrobblesData = await scrobblesRes.json();
-
-                setArtists(artists);
-                setScrobbles(scrobblesData.totalScrobbles);
+                setLoadingArtists(true);
+                const res = await fetch("/api/artists");
+                if (!res.ok) throw new Error("Failed to fetch artists");
+                const data = (await res.json()) as Artist[];
+                setArtists(data);
             } catch (err: any) {
-                setError(err.message);
+                setErrorArtists(err.message);
             } finally {
-                setLoading(false);
+                setLoadingArtists(false);
             }
         };
 
-        loadData();
+        // Fetch scrobbles
+        const fetchScrobbles = async () => {
+            try {
+                setLoadingScrobbles(true);
+                const res = await fetch("/api/scrobbles");
+                if (!res.ok) throw new Error("Failed to fetch scrobbles");
+                const data = await res.json();
+                setScrobbles(data.totalScrobbles);
+            } catch (err: any) {
+                setErrorScrobbles(err.message);
+            } finally {
+                setLoadingScrobbles(false);
+            }
+        };
+
+        fetchArtists();
+        fetchScrobbles();
     }, []);
 
     // ---------------------------
     // RENDERING
     // ---------------------------
-    const title = (artists: number, scrobbles: number) => (
+    const title = (artistCount: number, scrobbleCount: number) => (
         <MusicTitle
             name="Music"
             colour="green"
-            artists={artists}
-            scrobbles={scrobbles}
+            artists={artistCount}
+            scrobbles={scrobbleCount}
         />
     );
 
-    if (loading)
+    // Show loading text if **both** are loading
+    if (loadingArtists && loadingScrobbles)
         return (
             <div className={styles.pageContainer}>
                 {title(0, 0)}
@@ -72,7 +83,8 @@ export default function MusicClient() {
             </div>
         );
 
-    if (error)
+    // Show error if both failed
+    if (errorArtists && errorScrobbles)
         return (
             <div className={styles.pageContainer}>
                 {title(0, 0)}
