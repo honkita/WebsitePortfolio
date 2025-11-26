@@ -1,3 +1,5 @@
+// FULLY REFACTORED VERSION
+
 import { prisma } from "@lib/prisma";
 import { NextResponse } from "next/server";
 import { canonicalizeName } from "@utils/canonicalizeName";
@@ -14,7 +16,7 @@ const API_URL = "https://ws.audioscrobbler.com/2.0/";
 // ----------------------
 export interface LastFmImage {
   "#text": string;
-  size: "small" | "medium" | "large" | "extralarge" | "mega" | string;
+  size: string;
 }
 
 export interface LastFmArtist {
@@ -30,14 +32,12 @@ export interface LastFmAlbum {
   image: LastFmImage[];
 }
 
-// Merge structure
 interface MergedEntry {
   playcount: number;
   candidates: LastFmArtist[];
   aliasNames: string[];
 }
 
-// Output result
 interface ResultRow {
   name: string;
   playcount: number;
@@ -45,22 +45,22 @@ interface ResultRow {
   image: string;
 }
 
-// Album lookup table
+// Album lookup
 type AlbumLookup = Record<string, LastFmAlbum[]>;
 
 // ----------------------
-// API fetcher (parallelized)
+// Generic Last.fm fetcher
 // ----------------------
 async function fetchAllLastFm<T>(
   method: string,
   username: string,
   apiKey: string
 ) {
-  // Fetch first page to determine totalPages
   const firstRes = await fetch(
     `${API_URL}?method=${method}&user=${username}&api_key=${apiKey}&format=json&page=1&limit=1000`
   );
   if (!firstRes.ok) throw new Error(`Failed to fetch Last.fm ${method} page 1`);
+
   const firstData = await firstRes.json();
 
   let all: T[] = [];
@@ -84,14 +84,14 @@ async function fetchAllLastFm<T>(
       const res = await fetch(
         `${API_URL}?method=${method}&user=${username}&api_key=${apiKey}&format=json&page=${page}&limit=1000`
       );
-      if (!res.ok)
-        throw new Error(`Failed to fetch Last.fm ${method} page ${page}`);
+      if (!res.ok) throw new Error(`Failed Last.fm fetch page ${page}`);
+
       const data = await res.json();
 
       if (method === "user.gettopartists") return data.topartists.artist as T[];
-      else if (method === "user.gettopalbums")
-        return data.topalbums.album as T[];
-      return [];
+      if (method === "user.gettopalbums") return data.topalbums.album as T[];
+
+      return [] as T[];
     });
 
     const pagesResults = await Promise.all(pagePromises);
@@ -102,7 +102,7 @@ async function fetchAllLastFm<T>(
 }
 
 // ----------------------
-// Build album lookup
+// Album lookup builder
 // ----------------------
 function buildAlbumLookup(albums: LastFmAlbum[]): AlbumLookup {
   const lookup: AlbumLookup = {};
@@ -119,23 +119,21 @@ function buildAlbumLookup(albums: LastFmAlbum[]): AlbumLookup {
 }
 
 // ----------------------
-// Pick top album image
+// Pick best album image
 // ----------------------
 function getTopAlbumImageFromNames(
-  albumLookup: AlbumLookup,
+  lookup: AlbumLookup,
   names: string[]
 ): string {
   let topAlbum: LastFmAlbum | null = null;
 
   for (const name of names) {
-    const artistAlbums = albumLookup[name];
-    if (!artistAlbums?.length) continue;
+    const albums = lookup[name];
+    if (!albums?.length) continue;
 
-    const candidate = artistAlbums.reduce<LastFmAlbum | null>(
-      (max, a) =>
-        !max || parseInt(a.playcount) > parseInt(max.playcount) ? a : max,
-      null
-    );
+    const candidate = albums.reduce<LastFmAlbum | null>((max, a) => {
+      return !max || parseInt(a.playcount) > parseInt(max.playcount) ? a : max;
+    }, null);
 
     if (
       !topAlbum ||
@@ -147,8 +145,9 @@ function getTopAlbumImageFromNames(
 
   if (!topAlbum) return "";
 
-  const sizes = ["mega", "extralarge", "large", "medium", "small"];
-  for (const size of sizes) {
+  const priority = ["mega", "extralarge", "large", "medium", "small"];
+
+  for (const size of priority) {
     const img = topAlbum.image.find((i) => i.size === size);
     if (
       img?.["#text"] &&
@@ -163,7 +162,7 @@ function getTopAlbumImageFromNames(
 }
 
 // ----------------------
-// String similarity based on length percentage
+// Similarity helper
 // ----------------------
 function lengthSimilarity(a: string, b: string) {
   const lenA = a.length;
@@ -172,14 +171,15 @@ function lengthSimilarity(a: string, b: string) {
 }
 
 // ----------------------
-// Merge artists
+// TWO-PHASE MERGE (FIX)
 // ----------------------
 function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
   const aliasMap: Record<string, string> = {};
 
+  // Build canonical → main name alias map
   dbArtists.forEach((artist) => {
-    const dbCanon = canonicalizeName(artist.name);
-    aliasMap[dbCanon] = artist.name;
+    const canonMain = canonicalizeName(artist.name);
+    aliasMap[canonMain] = artist.name;
 
     const aliases: string[] = Array.isArray(artist.aliases)
       ? artist.aliases
@@ -191,44 +191,67 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
   });
 
   const merged: Record<string, MergedEntry> = {};
+  const unmerged: LastFmArtist[] = [];
 
+  // ------------------
+  // PHASE 1: alias-only
+  // ------------------
   lastFmArtists.forEach((artist) => {
-    const canonName = canonicalizeName(artist.name);
+    const canon = canonicalizeName(artist.name);
+    const directMatch = aliasMap[canon];
 
-    let mainName: string | undefined = aliasMap[canonName];
-    let matchedBySubstring = false;
-
-    if (!mainName) {
-      // Find potential substring matches
-      const candidates = Object.keys(aliasMap).filter(
-        (dbCanon) => dbCanon.includes(canonName) || canonName.includes(dbCanon)
-      );
-
-      if (candidates.length === 1) {
-        mainName = aliasMap[candidates[0]];
-        matchedBySubstring = true;
-      } else if (candidates.length > 1) {
-        candidates.sort(
-          (a, b) =>
-            lengthSimilarity(a, canonName) - lengthSimilarity(b, canonName)
-        );
-        mainName = aliasMap[candidates[candidates.length - 1]];
-        matchedBySubstring = true;
+    if (directMatch) {
+      if (!merged[directMatch]) {
+        merged[directMatch] = { playcount: 0, candidates: [], aliasNames: [] };
       }
+
+      merged[directMatch].playcount += parseInt(artist.playcount, 10);
+      merged[directMatch].candidates.push(artist);
+
+      if (directMatch !== artist.name) {
+        merged[directMatch].aliasNames.push(artist.name);
+      }
+
+      return;
+    }
+
+    unmerged.push(artist);
+  });
+
+  // ----------------------
+  // PHASE 2: substring merge
+  // ----------------------
+  const dbCanonNames = Object.keys(aliasMap);
+
+  unmerged.forEach((artist) => {
+    const canon = canonicalizeName(artist.name);
+
+    const candidates = dbCanonNames.filter(
+      canon // ONE-WAY SUBSTRING ONLY: lastfm → db => canon.includes(dbCanon)
+    );
+
+    let mainName: string | undefined = undefined;
+
+    if (candidates.length === 1) {
+      mainName = aliasMap[candidates[0]];
+    } else if (candidates.length > 1) {
+      candidates.sort(
+        (a, b) => lengthSimilarity(a, canon) - lengthSimilarity(b, canon)
+      );
+      mainName = aliasMap[candidates[candidates.length - 1]];
     }
 
     mainName = mainName || artist.name;
 
-    if (!merged[mainName])
+    if (!merged[mainName]) {
       merged[mainName] = { playcount: 0, candidates: [], aliasNames: [] };
+    }
 
     merged[mainName].playcount += parseInt(artist.playcount, 10);
     merged[mainName].candidates.push(artist);
 
-    if (matchedBySubstring || mainName !== artist.name) {
-      if (!merged[mainName].aliasNames.includes(artist.name)) {
-        merged[mainName].aliasNames.push(artist.name);
-      }
+    if (mainName !== artist.name) {
+      merged[mainName].aliasNames.push(artist.name);
     }
   });
 
@@ -236,18 +259,19 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
 }
 
 // ----------------------
-// Build final output
+// Build final formatted result
 // ----------------------
 function buildResult(
   merged: Record<string, MergedEntry>,
   dbArtists: DBArtist[],
   albums: LastFmAlbum[]
 ): ResultRow[] {
-  const albumLookup = buildAlbumLookup(albums);
+  const lookup = buildAlbumLookup(albums);
 
   return Object.entries(merged)
     .map(([name, { playcount, aliasNames }]) => {
       const dbEntry = dbArtists.find((a) => a.name === name);
+
       const explicitAliases: string[] = dbEntry?.aliases
         ? Array.isArray(dbEntry.aliases)
           ? dbEntry.aliases
@@ -257,7 +281,7 @@ function buildResult(
       const allAliases = [...explicitAliases, ...aliasNames];
       const namesToCheck = [name, ...allAliases];
 
-      const image = getTopAlbumImageFromNames(albumLookup, namesToCheck);
+      const image = getTopAlbumImageFromNames(lookup, namesToCheck);
 
       return { name, playcount, aliases: allAliases, image };
     })
@@ -265,25 +289,34 @@ function buildResult(
 }
 
 // ----------------------
-// GET handler
+// GET handler with retry + dynamic refresh
 // ----------------------
-export async function GET() {
-  try {
-    const [lastFmArtists, lastFmAlbums, dbArtists] = await Promise.all([
-      fetchAllLastFm<LastFmArtist>("user.gettopartists", USERNAME, API_KEY),
-      fetchAllLastFm<LastFmAlbum>("user.gettopalbums", USERNAME, API_KEY),
-      prisma.artist.findMany(),
-    ]);
+export async function GET(request: Request) {
+  const MAX_RETRIES = 3;
 
-    const merged = mergeArtists(lastFmArtists, dbArtists);
-    const result = buildResult(merged, dbArtists, lastFmAlbums);
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const [artists, albums, dbArtists] = await Promise.all([
+        fetchAllLastFm<LastFmArtist>("user.gettopartists", USERNAME, API_KEY),
+        fetchAllLastFm<LastFmAlbum>("user.gettopalbums", USERNAME, API_KEY),
+        prisma.artist.findMany(),
+      ]);
 
-    return NextResponse.json(result);
-  } catch (err) {
-    console.error("Fetch + merge error:", err);
-    return NextResponse.json(
-      { error: "Failed to fetch and merge artists" },
-      { status: 500 }
-    );
+      const merged = mergeArtists(artists, dbArtists);
+      const result = buildResult(merged, dbArtists, albums);
+
+      return NextResponse.json(result);
+    } catch (err) {
+      console.error(`Attempt ${attempt} failed:`, err);
+
+      if (attempt === MAX_RETRIES) {
+        console.log("Max retries reached. Refreshing route...");
+        // Redirect to the same route dynamically
+        return NextResponse.redirect(request.url);
+      }
+
+      // Small delay before retrying
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
   }
 }
