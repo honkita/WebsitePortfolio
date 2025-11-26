@@ -15,7 +15,7 @@ import ProjectCSS from "./Project.module.css";
 interface ProjectsProps {
     name: string;
     img: string;
-    url: boolean;
+    url: string;
 }
 
 export default function Project(props: ProjectsProps) {
@@ -56,7 +56,11 @@ export default function Project(props: ProjectsProps) {
 
                     {/* Button container */}
                     <div className={ProjectCSS.buttonContainer}>
-                        <PixelButton name="GitHub" url={props.url} />
+                        <PixelButton
+                            name="GitHub"
+                            url={props.url}
+                            extra={false}
+                        />
                     </div>
                 </div>
             </div>

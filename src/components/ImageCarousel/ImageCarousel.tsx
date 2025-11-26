@@ -7,7 +7,13 @@ import ImageCarouselCSS from "./ImageCarousel.module.css";
 
 // Interface for ImageCarousel Props
 interface ImageCarouselProps {
-    images: string;
+    images:
+        | {
+              name: string;
+              description: string;
+              image: string;
+          }[]
+        | string; // Can be passed as JSON string
 }
 
 export default function ImageCarousel(props: ImageCarouselProps) {
