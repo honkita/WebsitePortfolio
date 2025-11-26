@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { ThemeProvider } from "next-themes";
 
 // Child Components
-import { MusicCacheProvider } from "@components/MusicArtist/MusicCacheProvider";
 import Nav from "@components/NavBar/NavBar";
 
 // CSS
@@ -57,7 +56,7 @@ export default function RootLayout({ children }: LayoutProps) {
                             styles.initialHide
                         } ${shouldAnimate ? styles.animateUp : ""}`}
                     >
-                        <MusicCacheProvider>{children}</MusicCacheProvider>
+                        {children}
                         <section
                             className={utilStyles.headingCopyright}
                             role="contentinfo"
