@@ -163,16 +163,14 @@ function lengthSimilarity(a: string, b: string) {
 function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
   const aliasMap: Record<string, string> = {};
 
-  // Helper: lowercase only ASCII letters
   const asciiLower = (str: string) =>
     str.replace(/[A-Za-z]/g, (c) => c.toLowerCase());
 
-  // Build canonicalized alias map from DB
+  // Build alias map
   dbArtists.forEach((artist) => {
     const dbCanon = canonicalizeName(artist.name);
     aliasMap[dbCanon] = artist.name;
 
-    // Safely parse aliases from JsonValue
     let aliases: string[] = [];
 
     if (Array.isArray(artist.aliases)) {
@@ -185,9 +183,7 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
         if (Array.isArray(parsed)) {
           aliases = parsed.filter((a): a is string => typeof a === "string");
         }
-      } catch {
-        aliases = [];
-      }
+      } catch {}
     }
 
     aliases.forEach((alias) => {
@@ -195,36 +191,47 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
     });
   });
 
-  // Sort database canonical names by length ascending (shortest first)
-  const sortedDbCanonNames = Object.keys(aliasMap).sort(
-    (a, b) => a.length - b.length
-  );
-
   const merged: Record<string, MergedEntry> = {};
 
   lastFmArtists.forEach((artist) => {
     const canonName = canonicalizeName(artist.name);
+    const canonAscii = asciiLower(canonName);
+
     let mainName: string | undefined;
 
-    // Try exact alias match first
-    mainName = aliasMap[canonName];
+    // -----------------------------
+    // 1. EXACT alias match ONLY
+    // -----------------------------
+    for (const [dbCanon, primaryName] of Object.entries(aliasMap)) {
+      const dbAscii = asciiLower(dbCanon);
 
-    // Try substring match using longest DB names first, ASCII-only lowercase
+      if (dbAscii === canonAscii) {
+        mainName = primaryName;
+        break;
+      }
+    }
+
+    // ---------------------------------------------------------
+    // 2. SUBSTRING match ONLY if:
+    //    LASTFM_canonAscii is substring of DB_PRIMARY_canonAscii
+    // ---------------------------------------------------------
     if (!mainName) {
-      const canonAscii = asciiLower(canonName);
-      for (const dbCanon of sortedDbCanonNames) {
+      for (const dbArtist of dbArtists) {
+        const dbCanon = canonicalizeName(dbArtist.name);
         const dbAscii = asciiLower(dbCanon);
+
+        // ***ONE WAY ONLY***
+        // LASTFM → DB primary
         if (dbAscii.includes(canonAscii)) {
-          mainName = aliasMap[dbCanon];
+          mainName = dbArtist.name;
           break;
         }
       }
     }
 
-    // Fallback to artist name itself if no match
+    // 3. fallback
     mainName = mainName || artist.name;
 
-    // Initialize merged entry if it doesn't exist
     if (!merged[mainName]) {
       merged[mainName] = {
         playcount: 0,
@@ -233,15 +240,10 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
       };
     }
 
-    // Aggregate playcount
     merged[mainName].playcount += parseInt(artist.playcount, 10);
     merged[mainName].candidates.push(artist);
 
-    // Track alias names
-    if (
-      mainName !== artist.name &&
-      !merged[mainName].aliasNames.includes(artist.name)
-    ) {
+    if (mainName !== artist.name) {
       merged[mainName].aliasNames.push(artist.name);
     }
   });
