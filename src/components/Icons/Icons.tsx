@@ -15,7 +15,7 @@ export interface IconsProps {
  *
  * @returns
  */
-export default function Icons(props: IconsProps) {
+export default function Icons({ icons }: IconsProps) {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -28,31 +28,27 @@ export default function Icons(props: IconsProps) {
 
     return (
         <div className={IconsCSS.grid}>
-            {props.icons.map(
-                (icon: { name: string; url: string }, index: number) => (
-                    <div className={IconsCSS.under} key={index}>
-                        <button
-                            className={`${IconsCSS.logoButton} ${IconsCSS.buttonRendering}`}
-                            title={icon.name}
-                            tabIndex={-1}
-                        >
-                            <Image
-                                id={icon.name}
-                                src={icon.url}
-                                alt={icon.name + " image"}
-                                fill
-                                priority={true}
-                                sizes="100vw"
-                            />
-                        </button>
-                        <div
-                            className={`${IconsCSS.hide} ${IconsCSS.logoText}`}
-                        >
-                            {icon.name}
-                        </div>
+            {icons.map((icon: { name: string; url: string }, index: number) => (
+                <div className={IconsCSS.under} key={index}>
+                    <button
+                        className={`${IconsCSS.logoButton} ${IconsCSS.buttonRendering}`}
+                        title={icon.name}
+                        tabIndex={-1}
+                    >
+                        <Image
+                            id={icon.name}
+                            src={icon.url}
+                            alt={icon.name + " image"}
+                            fill
+                            priority={true}
+                            sizes="100vw"
+                        />
+                    </button>
+                    <div className={`${IconsCSS.hide} ${IconsCSS.logoText}`}>
+                        {icon.name}
                     </div>
-                )
-            )}
+                </div>
+            ))}
         </div>
     );
 }

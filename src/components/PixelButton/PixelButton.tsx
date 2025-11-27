@@ -20,10 +20,9 @@ interface PixelButtonProps {
     extra: boolean;
 }
 
-export default function PixelButton(props: PixelButtonProps) {
+export default function PixelButton({ name, url, extra }: PixelButtonProps) {
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();
-    const name = props.name;
     var PixelButtonsJSON = JSON.parse(JSON.stringify(PixelButtons));
 
     // useEffect only runs on the client, so now we can safely show the UI
@@ -36,18 +35,17 @@ export default function PixelButton(props: PixelButtonProps) {
     }
 
     function getValue() {
-        if (PixelButtonsJSON[props.name] != null)
-            return PixelButtonsJSON[props.name];
+        if (PixelButtonsJSON[name] != null) return PixelButtonsJSON[name];
         return null;
     }
 
     let src;
 
     return (
-        <Link href={props.url} target={getValue().target}>
+        <Link href={url} target={getValue().target}>
             <button
                 className={`${PixelButtonCSS.buttonRendering} ${
-                    props.extra != true
+                    extra != true
                         ? PixelButtonCSS.button
                         : PixelButtonCSS.titleButtons
                 }`}

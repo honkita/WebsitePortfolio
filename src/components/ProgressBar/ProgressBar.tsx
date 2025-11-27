@@ -15,22 +15,26 @@ interface ProgressBarProps {
 }
 
 // Component
-export default function ProgressBar(props: ProgressBarProps) {
+export default function ProgressBar({
+    numerator,
+    denominator,
+    colour,
+    label,
+    suffix
+}: ProgressBarProps) {
     return (
         <div className={ProgressBarCSS.progressBarRow}>
-            <div className={ProgressBarCSS.progressBarLabel}>{props.label}</div>
+            <div className={ProgressBarCSS.progressBarLabel}>{label}</div>
             <div className={ProgressBarCSS.progressBarContainer}>
                 <div className={ProgressBarCSS.progressBarTextTop}>
-                    {props.numerator} / {props.denominator} {props.suffix}
+                    {numerator} / {denominator} {suffix}
                 </div>
                 <div className={ProgressBarCSS.progressBarBorder}>
                     <div className={ProgressBarCSS.progressBarTrack}>
                         <div
                             className={ProgressBarCSS.progressBarFill}
                             style={{
-                                width: `${
-                                    (props.numerator / props.denominator) * 100
-                                }%`
+                                width: `${(numerator / denominator) * 100}%`
                             }}
                         ></div>
                     </div>

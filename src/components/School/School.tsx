@@ -17,7 +17,11 @@ interface SchoolProps {
     schoolName: string;
 }
 
-export default function School(props: SchoolProps) {
+export default function School({
+    GPA,
+    schoolLocation,
+    schoolName
+}: SchoolProps) {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -31,20 +35,19 @@ export default function School(props: SchoolProps) {
     const r = 50;
     const cx = r * 4;
     const cy = r * 4;
-    const GPA = props.GPA / 4.0;
     const circumference = 2 * r * 3.14;
-    const p = GPA * circumference;
-    const angle = GPA * 360;
+    const p = (GPA / 4.0) * circumference;
+    const angle = (GPA / 4.0) * 360;
 
     return (
         <div
             className={`${SchoolCSS.EducationBacker} ${divstyling.imageRendering} ${divstyling.border}`}
         >
             <h1 className={SchoolCSS.schoolName}>
-                <p>{props.schoolName}</p>
+                <p>{schoolName}</p>
             </h1>
             <section className={SchoolCSS.schoolLocation}>
-                <p>{props.schoolLocation}</p>
+                <p>{schoolLocation}</p>
             </section>
             <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -33,8 +33,7 @@ function debounce(fn: () => void, delay: number) {
         timer = setTimeout(fn, delay);
     };
 }
-
-const LastFM: React.FC = () => {
+export default function LastFM() {
     const [track, setTrack] = useState<LastFmTrack | null>(null);
     const lastTrackId = useRef<string | null>(null);
 
@@ -217,6 +216,4 @@ const LastFM: React.FC = () => {
             </div>
         </div>
     );
-};
-
-export default LastFM;
+}

@@ -16,10 +16,8 @@ interface ImageCarouselProps {
         | string; // Can be passed as JSON string
 }
 
-export default function ImageCarousel(props: ImageCarouselProps) {
-    const rawImages = Array.isArray(props.images)
-        ? props.images
-        : JSON.parse(props.images);
+export default function ImageCarousel({ images }: ImageCarouselProps) {
+    const rawImages = Array.isArray(images) ? images : JSON.parse(images);
 
     // Clone last and first images for seamless looping
     const imagesJSON = [

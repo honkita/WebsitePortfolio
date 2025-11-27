@@ -18,7 +18,7 @@ interface ProjectsProps {
     url: string;
 }
 
-export default function Project(props: ProjectsProps) {
+export default function Project({ name, img, url }: ProjectsProps) {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -30,8 +30,8 @@ export default function Project(props: ProjectsProps) {
     }
 
     function getImage() {
-        if (props.img != "") {
-            return "/images/Projects/" + props.img;
+        if (img != "") {
+            return "/images/Projects/" + img;
         }
         return "/images/TestImages/honoka.jpg";
     }
@@ -50,17 +50,13 @@ export default function Project(props: ProjectsProps) {
                     {/* Title container */}
                     <div className={`${ProjectCSS.titleContainer}`}>
                         <section className={ProjectCSS.projectTitle}>
-                            {props.name}
+                            {name}
                         </section>
                     </div>
 
                     {/* Button container */}
                     <div className={ProjectCSS.buttonContainer}>
-                        <PixelButton
-                            name="GitHub"
-                            url={props.url}
-                            extra={false}
-                        />
+                        <PixelButton name="GitHub" url={url} extra={false} />
                     </div>
                 </div>
             </div>
