@@ -1,3 +1,5 @@
+import { JsonValue } from "@prisma/client/runtime/library";
+
 export interface Artist {
   id: number;
   name: string;
@@ -8,10 +10,10 @@ export interface Artist {
 
 export interface DBArtist {
   name: string;
-  aliases: string[] | string; // Can be stored as JSON string in DB
   id: number;
+  aliases: JsonValue | null;
 }
-
+[];
 export interface LastFmImage {
   "#text": string;
   size: "small" | "medium" | "large" | "extralarge" | "mega" | string;

@@ -3,9 +3,9 @@ import { NextResponse } from "next/server";
 import { canonicalizeName } from "@/utils/canonicalizeName";
 
 // Types
-import { Artist } from "@/types/Music";
-import { JsonValue } from "@prisma/client/runtime/library";
+import { DBArtist, LastFmImage, LastFmAlbum } from "@/types/Music";
 
+// Environment Variables
 const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
 const USERNAME = process.env.NEXT_PUBLIC_LASTFM_USERNAME!;
 const API_URL = "https://ws.audioscrobbler.com/2.0/";
@@ -13,28 +13,10 @@ const API_URL = "https://ws.audioscrobbler.com/2.0/";
 // ----------------------
 // Last.fm API TYPES
 // ----------------------
-export interface LastFmImage {
-  "#text": string;
-  size: "small" | "medium" | "large" | "extralarge" | "mega" | string;
-}
-
-export interface DBArtist {
-  name: string;
-  id: number;
-  aliases: JsonValue | null;
-}
-[];
 
 export interface LastFmArtist {
   name: string;
   playcount: string;
-  image: LastFmImage[];
-}
-
-export interface LastFmAlbum {
-  name: string;
-  playcount: string;
-  artist: { name: string };
   image: LastFmImage[];
 }
 
