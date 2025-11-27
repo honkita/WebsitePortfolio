@@ -89,10 +89,10 @@ export default function ResumeJobs() {
                                 {selectedJob.jobName}
                             </h1>
                             <h2 className={ResumeJobsCSS.employer}>
-                                {selectedJob.employerName}
+                                💼 {selectedJob.employerName}
                             </h2>
                             <h3 className={ResumeJobsCSS.location}>
-                                {selectedJob.location}
+                                📍 {selectedJob.location}
                             </h3>
                         </div>
                         <div className={ResumeJobsCSS.buttonPlacement}>

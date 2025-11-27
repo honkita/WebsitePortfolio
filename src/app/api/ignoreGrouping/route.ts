@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 
 /**
- *
+ * GET Handler
  * @returns
  */
 export async function GET() {

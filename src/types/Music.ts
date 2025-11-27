@@ -14,6 +14,13 @@ export interface DBArtist {
   aliases: JsonValue | null;
 }
 [];
+
+export interface LastFmArtist {
+  name: string;
+  playcount: string;
+  image: LastFmImage[];
+}
+
 export interface LastFmImage {
   "#text": string;
   size: "small" | "medium" | "large" | "extralarge" | "mega" | string;

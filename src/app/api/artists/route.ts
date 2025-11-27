@@ -1,24 +1,18 @@
-import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+
+// Lib
+import { prisma } from "@/lib/prisma";
+
+// Utils
 import { canonicalizeName } from "@/utils/canonicalizeName";
 
 // Types
-import { DBArtist, LastFmImage, LastFmAlbum } from "@/types/Music";
+import { DBArtist, LastFmArtist, LastFmAlbum } from "@/types/Music";
 
 // Environment Variables
 const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
 const USERNAME = process.env.NEXT_PUBLIC_LASTFM_USERNAME!;
 const API_URL = "https://ws.audioscrobbler.com/2.0/";
-
-// ----------------------
-// Last.fm API TYPES
-// ----------------------
-
-export interface LastFmArtist {
-  name: string;
-  playcount: string;
-  image: LastFmImage[];
-}
 
 // Merge structure
 interface MergedEntry {
@@ -38,9 +32,13 @@ interface ResultRow {
 // Album lookup table
 type AlbumLookup = Record<string, LastFmAlbum[]>;
 
-// ----------------------
-// API fetcher
-// ----------------------
+/**
+ * Fetches all the Last.fm data
+ * @param method
+ * @param username
+ * @param apiKey
+ * @returns
+ */
 async function fetchAllLastFm<T>(
   method: string,
   username: string,
@@ -89,9 +87,12 @@ function buildAlbumLookup(albums: LastFmAlbum[]): AlbumLookup {
   return lookup;
 }
 
-// ----------------------
-// Pick top album image
-// ----------------------
+/**
+ * Picks the top album image from a list of artist names using the album lookup
+ * @param albumLookup
+ * @param names
+ * @returns
+ */
 function getTopAlbumImageFromNames(
   albumLookup: AlbumLookup,
   names: string[]
@@ -231,9 +232,13 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
   return merged;
 }
 
-// ----------------------
-// Build final output safely
-// ----------------------
+/**
+ * Builds the final results table
+ * @param merged
+ * @param dbArtists
+ * @param albums
+ * @returns
+ */
 function buildResult(
   merged: Record<string, MergedEntry>,
   dbArtists: DBArtist[],
@@ -276,9 +281,10 @@ function buildResult(
     .sort((a, b) => b.playcount - a.playcount);
 }
 
-// ----------------------
-// GET handler
-// ----------------------
+/**
+ * GET Handler
+ * @returns
+ */
 export async function GET() {
   try {
     const [lastFmArtists, lastFmAlbums, dbArtists] = await Promise.all([

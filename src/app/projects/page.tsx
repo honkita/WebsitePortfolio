@@ -2,7 +2,6 @@ import React from "react";
 import type { Metadata } from "next";
 
 // Child Components
-import ProgressBarGenerator from "@/components/ProgressBar/ProgressBar";
 import Project from "@/components/Project/Project";
 import ImageCarousel from "@/components/ImageCarousel/ImageCarousel";
 import Title from "@/components/Title/Title";

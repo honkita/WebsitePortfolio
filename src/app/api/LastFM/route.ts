@@ -10,6 +10,10 @@ interface LastFmTrack {
   [key: string]: any;
 }
 
+/**
+ * GET Handler
+ * @returns
+ */
 export async function GET() {
   try {
     const res = await fetch(

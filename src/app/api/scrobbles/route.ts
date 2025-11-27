@@ -4,6 +4,10 @@ const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
 const USERNAME = process.env.NEXT_PUBLIC_LASTFM_USERNAME!;
 const API_URL = "https://ws.audioscrobbler.com/2.0/";
 
+/**
+ * GET Handler
+ * @returns
+ */
 export async function GET() {
   try {
     const res = await fetch(
