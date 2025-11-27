@@ -195,6 +195,7 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
     });
   });
 
+  // Sort database canonical names by length ascending (shortest first)
   const sortedDbCanonNames = Object.keys(aliasMap).sort(
     (a, b) => a.length - b.length
   );
@@ -213,7 +214,7 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
       const canonAscii = asciiLower(canonName);
       for (const dbCanon of sortedDbCanonNames) {
         const dbAscii = asciiLower(dbCanon);
-        if (canonAscii.includes(dbAscii) || dbAscii.includes(canonAscii)) {
+        if (dbAscii.includes(canonAscii)) {
           mainName = aliasMap[dbCanon];
           break;
         }
