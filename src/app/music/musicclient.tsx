@@ -7,12 +7,12 @@ import MusicTitle from "@/components/Title/MusicTitle";
 import MusicArtist from "@/components/MusicArtist/MusicArtist";
 
 // CSS
+import divstyling from "@/styles/divstyling.module.css";
 import styles from "@/app/ui/home.module.css";
 import utilStyles from "@/app/ui/theme.util.module.css";
-import divstyling from "@/styles/divstyling.module.css";
 
 // Types
-import { Artist } from "../../types/Music";
+import { Artist } from "@/types/Music";
 
 export default function MusicClient() {
     const [artists, setArtists] = useState<Artist[]>([]);
@@ -59,9 +59,7 @@ export default function MusicClient() {
         fetchScrobbles();
     }, []);
 
-    // ---------------------------
-    // RENDERING
-    // ---------------------------
+    // Title Component
     const title = (artistCount: number, scrobbleCount: number) => (
         <MusicTitle
             name="Music"
@@ -84,10 +82,10 @@ export default function MusicClient() {
         );
 
     // Show error if both failed
-    if (errorArtists && errorScrobbles)
+    if ((errorArtists && errorScrobbles) || errorArtists)
         return (
             <div className={styles.pageContainer}>
-                {title(0, 0)}
+                {title(0, scrobbles ?? 0)}
                 <div className={divstyling.hr} style={{ marginTop: "3rem" }} />
                 <div className={styles.centeredContent}>
                     <section className={utilStyles.headingXl}>
@@ -97,6 +95,7 @@ export default function MusicClient() {
             </div>
         );
 
+    // Sorts the artists in descending order of playcount
     const sortedArtists = [...artists].sort(
         (a, b) => b.playcount - a.playcount
     );

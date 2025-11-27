@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.14.1",
+    "@types/opencc-js": "^1.0.3",
     "@types/react": "^19.1.2",
     "javascript-obfuscator": "^4.1.0",
     "prisma": "^6.19.0",
