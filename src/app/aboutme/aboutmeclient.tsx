@@ -47,7 +47,7 @@ export default function AboutMeClient() {
                     style={{ marginTop: "5rem" }}
                 ></div>
 
-                <div className={styles.centeredContent}>
+                <div className={styles.container}>
                     <section
                         className={`${utilStyles.headingXl} ${styles.paddingTopBottom}`}
                     >

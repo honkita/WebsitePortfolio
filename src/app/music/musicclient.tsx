@@ -105,21 +105,19 @@ export default function MusicClient() {
             {title(sortedArtists.length, scrobbles ?? 0)}
             <div className={divstyling.hr} style={{ marginTop: "3rem" }} />
             <div className={styles.contentWrapper}>
-                <div className={styles.centeredContent}>
-                    <div className={styles.container}>
-                        <div className={styles.artistGrid}>
-                            {sortedArtists.map(
-                                ({ name, playcount, image }, index) => (
-                                    <MusicArtist
-                                        key={name}
-                                        name={name}
-                                        image={image}
-                                        scrobbles={playcount}
-                                        rank={index + 1}
-                                    />
-                                )
-                            )}
-                        </div>
+                <div className={styles.container}>
+                    <div className={styles.artistGrid}>
+                        {sortedArtists.map(
+                            ({ name, playcount, image }, index) => (
+                                <MusicArtist
+                                    key={name}
+                                    name={name}
+                                    image={image}
+                                    scrobbles={playcount}
+                                    rank={index + 1}
+                                />
+                            )
+                        )}
                     </div>
                 </div>
             </div>

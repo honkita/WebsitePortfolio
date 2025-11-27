@@ -30,7 +30,7 @@ export default function Projects() {
                 colour="blue"
                 buttons={["LinkedIn", "GitHub", "Email"]}
             />
-            <div className={styles.contentWrapper}>
+            <div className={`${styles.contentWrapper}`}>
                 <div
                     className={divstyling.hr}
                     style={{ marginTop: "3rem" }}
