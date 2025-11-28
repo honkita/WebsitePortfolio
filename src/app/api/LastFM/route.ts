@@ -12,7 +12,7 @@ interface LastFmTrack {
 
 /**
  * GET Handler
- * @returns
+ * @returns Response with recent track from Last.fm
  */
 export async function GET() {
   try {

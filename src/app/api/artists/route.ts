@@ -142,19 +142,6 @@ function getTopAlbumImageFromNames(
 }
 
 /**
- * String length similarity
- * Might use (?)
- * @param a
- * @param b
- * @returns
- */
-function lengthSimilarity(a: string, b: string) {
-  const lenA = a.length;
-  const lenB = b.length;
-  return Math.min(lenA, lenB) / Math.max(lenA, lenB);
-}
-
-/**
  * Function to merge artists
  * @param lastFmArtists
  * @param dbArtists
@@ -312,7 +299,7 @@ function buildResult(
 
 /**
  * GET Handler
- * @returns
+ * @returns Response with merged artists data
  */
 export async function GET() {
   try {

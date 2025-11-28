@@ -23,6 +23,10 @@ interface JobData {
     info: string[];
 }
 
+/**
+ * ResumeJobs Component
+ * @returns JSX.Element
+ */
 export default function ResumeJobs() {
     const [mounted, setMounted] = useState(false);
     const [selectedJobIndex, setSelectedJobIndex] = useState(0);

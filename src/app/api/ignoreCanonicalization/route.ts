@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 /**
  * GET Handler
- * @returns
+ * @returns Response with ignored canonicalization names
  */
 export async function GET() {
   try {

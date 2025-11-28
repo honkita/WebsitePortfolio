@@ -19,6 +19,10 @@ export const metadata: Metadata = {
     title: "Elite Lu Portfolio"
 };
 
+/**
+ * Serverside Projects Page
+ * @returns JSX.Element
+ */
 export default function Projects() {
     var projectsJSON = JSON.parse(JSON.stringify(CodedProjects));
 

@@ -1,5 +1,8 @@
 import { JsonValue } from "@prisma/client/runtime/library";
 
+/**
+ * Artist Interface
+ */
 export interface Artist {
   id: number;
   name: string;
@@ -8,6 +11,9 @@ export interface Artist {
   image: string | "";
 }
 
+/**
+ * Database Artist Interface
+ */
 export interface DBArtist {
   name: string;
   id: number;
@@ -15,17 +21,26 @@ export interface DBArtist {
 }
 [];
 
+/**
+ * Last.fm Artist Interface
+ */
 export interface LastFmArtist {
   name: string;
   playcount: string;
   image: LastFmImage[];
 }
 
+/**
+ * Last.fm Album Interface
+ */
 export interface LastFmImage {
   "#text": string;
   size: "small" | "medium" | "large" | "extralarge" | "mega" | string;
 }
 
+/**
+ * Last.fm Album Interface
+ */
 export interface LastFmAlbum {
   name: string;
   playcount: string;

@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 
 /**
  * GET Handler
- * @returns
+ * @returns Response with ignore grouping names
  */
 export async function GET() {
   try {
