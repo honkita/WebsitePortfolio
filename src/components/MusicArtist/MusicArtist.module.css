@@ -19,9 +19,9 @@
 
 .info {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   font-size: min(1.3rem, 3vw);
   color: var(--text-secondary);
@@ -29,6 +29,7 @@
 }
 
 .name {
+  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -36,8 +37,8 @@
 }
 
 .scrobbles {
-  width: 35%;
-  text-align: right;
+  width: 100%;
+  text-align: left;
   padding-left: 0;
 }
 

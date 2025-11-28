@@ -27,9 +27,9 @@ export default function MusicArtist({
                 alt={`${name} image`}
             />
             <div className={MusicArtistCSS.info}>
-                <div className={MusicArtistCSS.name}>{name}</div> |
+                <div className={MusicArtistCSS.name}>{name}</div>
                 <div className={MusicArtistCSS.scrobbles}>
-                    {scrobbles.toLocaleString()} 🎧
+                    🎧 {scrobbles.toLocaleString()}
                 </div>
             </div>
         </div>
