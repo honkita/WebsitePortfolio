@@ -5,6 +5,11 @@ import { prisma } from "@/lib/prisma";
 
 // Utils
 import { canonicalizeName } from "@/utils/canonicalizeName";
+import {
+  normalizeCommas,
+  normalizeCV,
+  normalizeSpaces,
+} from "@/utils/normalizeName";
 
 // Types
 import { DBArtist, LastFmArtist, LastFmAlbum } from "@/types/Music";
@@ -70,9 +75,11 @@ async function fetchAllLastFm<T>(
   return all;
 }
 
-// ----------------------
-// Build album lookup
-// ----------------------
+/**
+ * Builds album lookup table
+ * @param albums
+ * @returns
+ */
 function buildAlbumLookup(albums: LastFmAlbum[]): AlbumLookup {
   const lookup: AlbumLookup = {};
 
@@ -134,15 +141,25 @@ function getTopAlbumImageFromNames(
   return fallback?.["#text"] || "";
 }
 
-// ----------------------
-// String similarity based on length percentage
-// ----------------------
+/**
+ * String length similarity
+ * Might use (?)
+ * @param a
+ * @param b
+ * @returns
+ */
 function lengthSimilarity(a: string, b: string) {
   const lenA = a.length;
   const lenB = b.length;
   return Math.min(lenA, lenB) / Math.max(lenA, lenB);
 }
 
+/**
+ * Function to merge artists
+ * @param lastFmArtists
+ * @param dbArtists
+ * @returns
+ */
 function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
   const aliasMap: Record<string, string> = {};
 
@@ -152,7 +169,9 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
 
   // Build canonicalized alias map from DB
   dbArtists.forEach((artist) => {
-    const dbCanon = canonicalizeName(artist.name);
+    const dbCanon = canonicalizeName(
+      normalizeSpaces(normalizeCommas(normalizeCV(artist.name)))
+    );
     aliasMap[dbCanon] = artist.name;
 
     // Safely parse aliases from JsonValue
@@ -174,7 +193,8 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
     }
 
     aliases.forEach((alias) => {
-      aliasMap[canonicalizeName(alias)] = artist.name;
+      aliasMap[normalizeSpaces(canonicalizeName(normalizeCommas(alias)))] =
+        artist.name;
     });
   });
 
@@ -186,7 +206,7 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
   const merged: Record<string, MergedEntry> = {};
 
   lastFmArtists.forEach((artist) => {
-    const canonName = canonicalizeName(artist.name);
+    const canonName = canonicalizeName(normalizeCommas(artist.name));
     let mainName: string | undefined;
 
     // Try exact alias match first
@@ -250,7 +270,7 @@ function buildResult(
     .map(([name, { playcount, aliasNames }]) => {
       const dbEntry = dbArtists.find((a) => a.name === name);
 
-      // Safely parse aliases from JsonValue
+      // Parse DB aliases safely
       let explicitAliases: string[] = [];
       if (dbEntry?.aliases) {
         if (Array.isArray(dbEntry.aliases)) {
@@ -276,7 +296,16 @@ function buildResult(
 
       const image = getTopAlbumImageFromNames(albumLookup, namesToCheck);
 
-      return { name, playcount, aliases: allAliases, image };
+      // Final normalization stage (safe because merging is already completed)
+      const normalizeFinal = (s: string) =>
+        normalizeSpaces(normalizeCommas(normalizeCV(s)));
+
+      return {
+        name: normalizeFinal(name),
+        playcount,
+        aliases: allAliases.map(normalizeFinal),
+        image,
+      };
     })
     .sort((a, b) => b.playcount - a.playcount);
 }

@@ -5,9 +5,7 @@ import * as OpenCC from "opencc-js";
 // ---------------------------
 const manualMap: Record<string, string> = {};
 
-// ---------------------------
 // Unicode ranges for CJK
-// ---------------------------
 // Includes: Han, Hiragana, Katakana, CJK extensions, compatibility
 const CJK_REGEX =
   /[\u4E00-\u9FFF\u3040-\u30FF\u31F0-\u31FF\u3400-\u4DBF\uF900-\uFAFF]/;
