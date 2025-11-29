@@ -156,9 +156,7 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
 
   // Build canonicalized alias map from DB
   dbArtists.forEach((artist) => {
-    const dbCanon = canonicalizeName(
-      normalizeSpaces(normalizeCommas(normalizeCV(artist.name)))
-    );
+    const dbCanon = canonicalizeName(artist.name);
     aliasMap[dbCanon] = artist.name;
 
     // Safely parse aliases from JsonValue
