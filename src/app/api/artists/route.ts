@@ -321,23 +321,9 @@ async function buildResult(
  */
 export async function GET() {
   try {
-    // Fetch only the necessary fields, including ignoreChineseCanonization
-    const dbArtists = await prisma.artist.findMany({
-      select: {
-        id: true,
-        name: true,
-        aliases: true,
-        ignoreChineseCanonization: true,
-      },
-    });
-
+    const dbArtists = await prisma.artist.findMany();
     const dbArtistMap: Record<string, DBArtist> = {};
-    dbArtists.forEach((a) => {
-      dbArtistMap[a.name] = {
-        ...a,
-        ignoreChineseCanonization: a.ignoreChineseCanonization ?? false, // default if missing
-      };
-    });
+    dbArtists.forEach((a) => (dbArtistMap[a.name] = a));
 
     const [lastFmArtists, lastFmAlbums] = await Promise.all([
       fetchAllLastFm<LastFmArtist>("user.gettopartists", USERNAME, API_KEY),
