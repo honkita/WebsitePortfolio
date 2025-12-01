@@ -38,11 +38,17 @@ interface ResultRow {
 type AlbumLookup = Record<string, LastFmAlbum[]>;
 
 /**
+ * --- FULL NORMALIZATION PIPELINE ---
+ */
+function normalizeFull(name: string): string {
+  return canonicalizeName(normalizeSpaces(normalizeCommas(normalizeCV(name))));
+}
+
+/**
  * Fetches all the Last.fm data
  * @param method
  * @param username
  * @param apiKey
- * @returns
  */
 async function fetchAllLastFm<T>(
   method: string,
@@ -76,16 +82,16 @@ async function fetchAllLastFm<T>(
 }
 
 /**
- * Builds album lookup table
- * @param albums
- * @returns
+ * Builds album lookup table (NORMALIZED ARTIST KEYS)
  */
 function buildAlbumLookup(albums: LastFmAlbum[]): AlbumLookup {
   const lookup: AlbumLookup = {};
 
   albums.forEach((album) => {
-    const artistName = album.artist?.name;
-    if (!artistName) return;
+    const rawName = album.artist?.name;
+    if (!rawName) return;
+
+    const artistName = normalizeFull(rawName);
 
     if (!lookup[artistName]) lookup[artistName] = [];
     lookup[artistName].push(album);
@@ -95,10 +101,7 @@ function buildAlbumLookup(albums: LastFmAlbum[]): AlbumLookup {
 }
 
 /**
- * Picks the top album image from a list of artist names using the album lookup
- * @param albumLookup
- * @param names
- * @returns
+ * Picks the top album image from normalized names
  */
 function getTopAlbumImageFromNames(
   albumLookup: AlbumLookup,
@@ -142,24 +145,20 @@ function getTopAlbumImageFromNames(
 }
 
 /**
- * Function to merge artists
- * @param lastFmArtists
- * @param dbArtists
- * @returns
+ * Merge artists with FULL normalization
  */
 function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
   const aliasMap: Record<string, string> = {};
 
-  // Helper: lowercase only ASCII letters
   const asciiLower = (str: string) =>
     str.replace(/[A-Za-z]/g, (c) => c.toLowerCase());
 
-  // Build canonicalized alias map from DB
-  dbArtists.forEach((artist) => {
-    const dbCanon = canonicalizeName(artist.name);
-    aliasMap[dbCanon] = artist.name;
+  //--------------------------------------------------------------------
+  // NORMALIZE DB ARTISTS + ALIASES FIRST
+  //--------------------------------------------------------------------
+  const normalizedDb = dbArtists.map((artist) => {
+    const nameNorm = normalizeFull(artist.name);
 
-    // Safely parse aliases from JsonValue
     let aliases: string[] = [];
 
     if (Array.isArray(artist.aliases)) {
@@ -172,47 +171,54 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
         if (Array.isArray(parsed)) {
           aliases = parsed.filter((a): a is string => typeof a === "string");
         }
-      } catch {
-        aliases = [];
-      }
+      } catch {}
     }
 
-    aliases.forEach((alias) => {
-      aliasMap[normalizeSpaces(canonicalizeName(normalizeCommas(alias)))] =
-        artist.name;
+    const aliasNorm = aliases.map((a) => normalizeFull(a));
+
+    return {
+      original: artist,
+      nameNorm,
+      aliasNorm,
+    };
+  });
+
+  //--------------------------------------------------------------------
+  // BUILD ALIAS MAP
+  //--------------------------------------------------------------------
+  normalizedDb.forEach(({ original, nameNorm, aliasNorm }) => {
+    aliasMap[nameNorm] = original.name;
+    aliasNorm.forEach((a) => {
+      aliasMap[a] = original.name;
     });
   });
 
-  // Sort database canonical names by length ascending (shortest first)
   const sortedDbCanonNames = Object.keys(aliasMap).sort(
     (a, b) => a.length - b.length
   );
 
+  //--------------------------------------------------------------------
+  // MERGE LAST.FM ARTISTS (NORMALIZED)
+  //--------------------------------------------------------------------
   const merged: Record<string, MergedEntry> = {};
 
   lastFmArtists.forEach((artist) => {
-    const canonName = canonicalizeName(normalizeCommas(artist.name));
-    let mainName: string | undefined;
+    const canonName = normalizeFull(artist.name);
+    let mainName: string | undefined = aliasMap[canonName];
 
-    // Try exact alias match first
-    mainName = aliasMap[canonName];
-
-    // Try substring match using longest DB names first, ASCII-only lowercase
     if (!mainName) {
       const canonAscii = asciiLower(canonName);
+
       for (const dbCanon of sortedDbCanonNames) {
-        const dbAscii = asciiLower(dbCanon);
-        if (dbAscii.includes(canonAscii)) {
+        if (asciiLower(dbCanon).includes(canonAscii)) {
           mainName = aliasMap[dbCanon];
           break;
         }
       }
     }
 
-    // Fallback to artist name itself if no match
     mainName = mainName || artist.name;
 
-    // Initialize merged entry if it doesn't exist
     if (!merged[mainName]) {
       merged[mainName] = {
         playcount: 0,
@@ -221,11 +227,9 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
       };
     }
 
-    // Aggregate playcount
     merged[mainName].playcount += parseInt(artist.playcount, 10);
     merged[mainName].candidates.push(artist);
 
-    // Track alias names
     if (
       mainName !== artist.name &&
       !merged[mainName].aliasNames.includes(artist.name)
@@ -239,10 +243,6 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
 
 /**
  * Builds the final results table
- * @param merged
- * @param dbArtists
- * @param albums
- * @returns
  */
 function buildResult(
   merged: Record<string, MergedEntry>,
@@ -252,11 +252,12 @@ function buildResult(
   const albumLookup = buildAlbumLookup(albums);
 
   return Object.entries(merged)
-    .map(([name, { playcount, aliasNames }]) => {
+    .map(([name, entry]) => {
       const dbEntry = dbArtists.find((a) => a.name === name);
 
-      // Parse DB aliases safely
+      // Parse DB aliases again for final output
       let explicitAliases: string[] = [];
+
       if (dbEntry?.aliases) {
         if (Array.isArray(dbEntry.aliases)) {
           explicitAliases = dbEntry.aliases.filter(
@@ -270,25 +271,19 @@ function buildResult(
                 (a): a is string => typeof a === "string"
               );
             }
-          } catch {
-            explicitAliases = [];
-          }
+          } catch {}
         }
       }
 
-      const allAliases = [...explicitAliases, ...aliasNames];
-      const namesToCheck = [name, ...allAliases];
+      const allAliases = [...explicitAliases, ...entry.aliasNames];
 
+      const namesToCheck = [name, ...allAliases].map(normalizeFull);
       const image = getTopAlbumImageFromNames(albumLookup, namesToCheck);
 
-      // Final normalization stage (safe because merging is already completed)
-      const normalizeFinal = (s: string) =>
-        normalizeSpaces(normalizeCommas(normalizeCV(s)));
-
       return {
-        name: normalizeFinal(name),
-        playcount,
-        aliases: allAliases.map(normalizeFinal),
+        name: normalizeFull(name),
+        playcount: entry.playcount,
+        aliases: allAliases.map(normalizeFull),
         image,
       };
     })
@@ -297,7 +292,6 @@ function buildResult(
 
 /**
  * GET Handler
- * @returns Response with merged artists data
  */
 export async function GET() {
   try {
