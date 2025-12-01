@@ -53,22 +53,51 @@ export function normalizeSpaces(str: string): string {
  * @param str
  * @returns
  */
+/**
+ * Normalizes seiyuu CV patterns to (CV.NAME)
+ * Handles ASCII and full-width punctuation like Japanese/Chinese colons.
+ */
+/**
+ * Normalizes seiyuu CV patterns to (CV.NAME)
+ * Supports full-width brackets & punctuation.
+ */
+/**
+ * Normalizes seiyuu CV patterns:
+ * - Converts any CJK brackets to standard ( )
+ * - Normalizes CV patterns to (CV.NAME)
+ * - Ensures EXACTLY ONE space before "(" when there is preceding text
+ */
 export function normalizeCV(str: string): string {
   if (!str) return str;
+
+  // Normalize CJK brackets to ASCII () so regex is simpler
+  const normalized = str
+    .replace(/[（【「『《]/g, "(")
+    .replace(/[）】」』》]/g, ")");
+
+  // Match any (...) containing CV
   const cvRegex = /\(([^)]*CV[^)]*)\)/gi;
 
-  return str.replace(cvRegex, (full, inner) => {
-    const match = inner.match(/^CV[\s.:]?(.+)$/i);
+  let result = normalized.replace(cvRegex, (full, inner) => {
+    // Matches CV + optional punctuation + name
+    const match = inner.match(/^CV[\s.:：．]*(.*)$/i);
+    if (!match) return full;
 
-    if (!match) return full; // Not a CV group
+    let name = match[1].trim();
 
-    const name = match[1].trim();
+    // (CV) if empty name
+    if (!name) return `(CV)`;
 
-    // Prevent double-normalizing: if already (CV.NAME)
+    // Already like (CV.Name)
     if (/^CV\.[^()]+$/i.test(inner.trim())) {
       return `(${inner.trim()})`;
     }
 
     return `(CV.${name})`;
   });
+
+  // Ensure EXACTLY 1 space before "(" unless it is at line start
+  result = result.replace(/(\S)\s*\(/g, "$1 (");
+
+  return result;
 }
