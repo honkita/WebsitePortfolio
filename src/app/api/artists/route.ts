@@ -327,7 +327,7 @@ export async function GET() {
         id: true,
         name: true,
         aliases: true,
-        ignoreChineseCanonization: true, // make sure this is included
+        ignoreChineseCanonization: true,
       },
     });
 
