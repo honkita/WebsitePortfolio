@@ -1,65 +1,80 @@
+// utils/canonicalizeName.ts
 import * as OpenCC from "opencc-js";
 
-// ---------------------------
-// Manual mapping for exceptions / romanizations
-// ---------------------------
+/**
+ * Manual override map (fill with any manual mappings you want)
+ */
 const manualMap: Record<string, string> = {};
 
-// Unicode ranges for CJK
-// Includes: Han, Hiragana, Katakana, CJK extensions, compatibility
+/**
+ * CJK detection ranges
+ */
 const CJK_REGEX =
   /[\u4E00-\u9FFF\u3040-\u30FF\u31F0-\u31FF\u3400-\u4DBF\uF900-\uFAFF]/;
 
-/**
- * Detect if a string contains Chinese characters
- */
-function isChinese(text: string): boolean {
+export function isChinese(text: string): boolean {
   return /[\u4E00-\u9FFF]/.test(text);
 }
 
-/**
- * Detect if a string contains Japanese characters
- */
-function isJapanese(text: string): boolean {
+export function isJapanese(text: string): boolean {
   return /[\u3040-\u30FF]/.test(text);
 }
 
 /**
  * Remove ONLY spaces between two CJK characters.
- * DO NOT remove if anything non-CJK is involved (e.g., ×, & , -, Latin, emoji).
+ * Keep spaces if either side is non-CJK.
  */
-function removeCJKInnerSpaces(text: string): string {
+export function removeCJKInnerSpaces(text: string): string {
   return text.replace(/(\S)\s+(\S)/g, (match, left, right) => {
     if (CJK_REGEX.test(left) && CJK_REGEX.test(right)) {
-      return left + right; // remove space
+      return left + right;
     }
-    return match; // keep as-is
+    return match;
   });
 }
 
 /**
- * Canonicalize a name:
- * 1. First remove CJK-only spaces (鬼頭 明里 → 鬼頭明里)
- * 2. Convert simplified → traditional Chinese using OpenCC
- * 3. Handle Japanese names via manual map
- * 4. Apply fallback manual overrides
+ * canonicalizeName
+ *
+ * opts.skipChineseConversion — when true, skip OpenCC conversion (Traditional -> Simplified).
+ * This is intended to be used when the DB artist row explicitly requests skipping Chinese canonization.
+ *
+ * NOTE: This function still runs removeCJKInnerSpaces and manualMap logic regardless of skip flag,
+ * per your requirement that only the OpenCC step be skipped.
  */
-export function canonicalizeName(name: string): string {
-  // Step 1 — collapse CJK-only spaces BEFORE doing any conversion
-  let normalized = removeCJKInnerSpaces(name);
+export function canonicalizeName(
+  rawName: string,
+  opts?: { skipChineseConversion?: boolean }
+): string {
+  let normalized = removeCJKInnerSpaces(rawName);
 
-  // Step 2 — convert Chinese to traditional
-  if (isChinese(normalized)) {
-    const converter = OpenCC.Converter({ from: "t", to: "cn" });
-    normalized = converter(normalized);
+  const skipChineseConversion = !!opts?.skipChineseConversion;
+
+  // Only apply OpenCC when:
+  //  - contains Chinese Han characters
+  //  - is not Japanese (we don't want to treat Japanese as Chinese)
+  //  - and skipChineseConversion is false
+  if (
+    isChinese(normalized) &&
+    !isJapanese(normalized) &&
+    !skipChineseConversion
+  ) {
+    try {
+      // Traditional -> Simplified (as you requested)
+      const converter = OpenCC.Converter({ from: "t", to: "cn" });
+      normalized = converter(normalized);
+    } catch (e) {
+      // Fail gracefully and keep the unconverted text
+      console.warn("OpenCC conversion failed:", normalized, e);
+    }
   }
 
-  // Step 3 — Japanese handling (manual only)
+  // Apply Japanese manual map if applicable
   if (isJapanese(normalized)) {
     normalized = manualMap[normalized] || normalized;
   }
 
-  // Step 4 — final override map
+  // Global manual map override
   normalized = manualMap[normalized] || normalized;
 
   return normalized;

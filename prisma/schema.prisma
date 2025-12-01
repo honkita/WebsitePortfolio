@@ -8,20 +8,8 @@ datasource db {
 }
 
 model Artist {
-  id             Int             @id @default(autoincrement())
-  name           String          @unique
-  aliases        Json?
-  IgnoreGrouping IgnoreGrouping?
-}
-
-model IgnoreCanonicalization {
-  id   Int    @id @unique @default(autoincrement())
-  name String @unique(map: "IgnoreCanonicalization_artistName_key")
-}
-
-model IgnoreGrouping {
-  id       Int     @id @default(autoincrement())
-  name     String  @unique
-  artistId Int?    @unique
-  artist   Artist? @relation(fields: [artistId], references: [id])
+  id                        Int      @id @default(autoincrement())
+  name                      String   @unique
+  aliases                   Json?
+  ignoreChineseCanonization Boolean? @default(false) @map("ignoreChineseCanonization")
 }

@@ -38,17 +38,28 @@ interface ResultRow {
 type AlbumLookup = Record<string, LastFmAlbum[]>;
 
 /**
- * --- FULL NORMALIZATION PIPELINE ---
+ * Full Normalization, ignores simplfied translation skip flag from DB row
+ * @param name
+ * @param dbRow
+ * @returns
  */
-function normalizeFull(name: string): string {
-  return canonicalizeName(normalizeSpaces(normalizeCommas(normalizeCV(name))));
+async function normalizeFull(name: string, dbRow?: DBArtist): Promise<string> {
+  const pre = normalizeSpaces(normalizeCommas(normalizeCV(name)));
+  const skipChinese = !!dbRow?.ignoreChineseCanonization;
+  if (skipChinese) {
+    console.log(
+      `Normalizing "${name}" with skipChineseConversion=${skipChinese}`
+    );
+  }
+  return canonicalizeName(pre, { skipChineseConversion: skipChinese });
 }
 
 /**
- * Fetches all the Last.fm data
+ * Fetches all pages of Last.fm data for a given method
  * @param method
  * @param username
  * @param apiKey
+ * @returns
  */
 async function fetchAllLastFm<T>(
   method: string,
@@ -82,26 +93,36 @@ async function fetchAllLastFm<T>(
 }
 
 /**
- * Builds album lookup table (NORMALIZED ARTIST KEYS)
+ *
+ * @param albums
+ * @param dbArtistMap
+ * @returns
  */
-function buildAlbumLookup(albums: LastFmAlbum[]): AlbumLookup {
+async function buildAlbumLookup(
+  albums: LastFmAlbum[],
+  dbArtistMap: Record<string, DBArtist>
+): Promise<AlbumLookup> {
   const lookup: AlbumLookup = {};
 
-  albums.forEach((album) => {
+  for (const album of albums) {
     const rawName = album.artist?.name;
-    if (!rawName) return;
+    if (!rawName) continue;
 
-    const artistName = normalizeFull(rawName);
+    const dbRow = dbArtistMap[rawName];
+    const artistName = await normalizeFull(rawName, dbRow);
 
     if (!lookup[artistName]) lookup[artistName] = [];
     lookup[artistName].push(album);
-  });
+  }
 
   return lookup;
 }
 
 /**
- * Picks the top album image from normalized names
+ *
+ * @param albumLookup
+ * @param names
+ * @returns
  */
 function getTopAlbumImageFromNames(
   albumLookup: AlbumLookup,
@@ -145,70 +166,71 @@ function getTopAlbumImageFromNames(
 }
 
 /**
- * Merge artists with FULL normalization
+ *
+ * @param lastFmArtists
+ * @param dbArtistMap
+ * @returns
  */
-function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
+async function mergeArtists(
+  lastFmArtists: LastFmArtist[],
+  dbArtistMap: Record<string, DBArtist>
+) {
   const aliasMap: Record<string, string> = {};
 
   const asciiLower = (str: string) =>
     str.replace(/[A-Za-z]/g, (c) => c.toLowerCase());
 
-  //--------------------------------------------------------------------
-  // NORMALIZE DB ARTISTS + ALIASES FIRST
-  //--------------------------------------------------------------------
-  const normalizedDb = dbArtists.map((artist) => {
-    const nameNorm = normalizeFull(artist.name);
+  /**
+   * Normalizes all database artist names and aliases
+   */
+  const normalizedDbPromises = Object.values(dbArtistMap).map(
+    async (artist) => {
+      const nameNorm = await normalizeFull(artist.name, artist);
 
-    let aliases: string[] = [];
+      let aliases: string[] = [];
+      if (Array.isArray(artist.aliases)) {
+        aliases = artist.aliases.filter(
+          (a): a is string => typeof a === "string"
+        );
+      } else if (typeof artist.aliases === "string") {
+        try {
+          const parsed = JSON.parse(artist.aliases);
+          if (Array.isArray(parsed))
+            aliases = parsed.filter((a): a is string => typeof a === "string");
+        } catch {}
+      }
 
-    if (Array.isArray(artist.aliases)) {
-      aliases = artist.aliases.filter(
-        (a): a is string => typeof a === "string"
+      const aliasNorm = await Promise.all(
+        aliases.map((a) => normalizeFull(a, artist))
       );
-    } else if (typeof artist.aliases === "string") {
-      try {
-        const parsed = JSON.parse(artist.aliases);
-        if (Array.isArray(parsed)) {
-          aliases = parsed.filter((a): a is string => typeof a === "string");
-        }
-      } catch {}
+
+      return { original: artist, nameNorm, aliasNorm };
     }
+  );
 
-    const aliasNorm = aliases.map((a) => normalizeFull(a));
+  const normalizedDb = await Promise.all(normalizedDbPromises);
 
-    return {
-      original: artist,
-      nameNorm,
-      aliasNorm,
-    };
-  });
-
-  //--------------------------------------------------------------------
-  // BUILD ALIAS MAP
-  //--------------------------------------------------------------------
+  // Builds the alias map from normalized DB names and aliases
   normalizedDb.forEach(({ original, nameNorm, aliasNorm }) => {
     aliasMap[nameNorm] = original.name;
-    aliasNorm.forEach((a) => {
-      aliasMap[a] = original.name;
-    });
+    aliasNorm.forEach((a) => (aliasMap[a] = original.name));
   });
 
   const sortedDbCanonNames = Object.keys(aliasMap).sort(
     (a, b) => a.length - b.length
   );
 
-  //--------------------------------------------------------------------
-  // MERGE LAST.FM ARTISTS (NORMALIZED)
-  //--------------------------------------------------------------------
+  // Merging Last.fm artists into the merged structure
   const merged: Record<string, MergedEntry> = {};
 
-  lastFmArtists.forEach((artist) => {
-    const canonName = normalizeFull(artist.name);
+  for (const artist of lastFmArtists) {
+    const dbRow = dbArtistMap[artist.name]; // may be undefined
+    const canonName = await normalizeFull(artist.name, dbRow);
+
     let mainName: string | undefined = aliasMap[canonName];
 
     if (!mainName) {
       const canonAscii = asciiLower(canonName);
-
       for (const dbCanon of sortedDbCanonNames) {
         if (asciiLower(dbCanon).includes(canonAscii)) {
           mainName = aliasMap[dbCanon];
@@ -219,13 +241,8 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
 
     mainName = mainName || artist.name;
 
-    if (!merged[mainName]) {
-      merged[mainName] = {
-        playcount: 0,
-        candidates: [],
-        aliasNames: [],
-      };
-    }
+    if (!merged[mainName])
+      merged[mainName] = { playcount: 0, candidates: [], aliasNames: [] };
 
     merged[mainName].playcount += parseInt(artist.playcount, 10);
     merged[mainName].candidates.push(artist);
@@ -236,73 +253,83 @@ function mergeArtists(lastFmArtists: LastFmArtist[], dbArtists: DBArtist[]) {
     ) {
       merged[mainName].aliasNames.push(artist.name);
     }
-  });
+  }
 
   return merged;
 }
 
 /**
- * Builds the final results table
+ * Builds the final result set
+ * @param merged
+ * @param dbArtistMap
+ * @param albums
+ * @returns
  */
-function buildResult(
+async function buildResult(
   merged: Record<string, MergedEntry>,
-  dbArtists: DBArtist[],
+  dbArtistMap: Record<string, DBArtist>,
   albums: LastFmAlbum[]
-): ResultRow[] {
-  const albumLookup = buildAlbumLookup(albums);
+): Promise<ResultRow[]> {
+  const albumLookup = await buildAlbumLookup(albums, dbArtistMap);
+  const rows: ResultRow[] = [];
 
-  return Object.entries(merged)
-    .map(([name, entry]) => {
-      const dbEntry = dbArtists.find((a) => a.name === name);
+  for (const [name, entry] of Object.entries(merged)) {
+    const dbRow = dbArtistMap[name];
 
-      // Parse DB aliases again for final output
-      let explicitAliases: string[] = [];
-
-      if (dbEntry?.aliases) {
-        if (Array.isArray(dbEntry.aliases)) {
-          explicitAliases = dbEntry.aliases.filter(
-            (a): a is string => typeof a === "string"
-          );
-        } else if (typeof dbEntry.aliases === "string") {
-          try {
-            const parsed = JSON.parse(dbEntry.aliases);
-            if (Array.isArray(parsed)) {
-              explicitAliases = parsed.filter(
-                (a): a is string => typeof a === "string"
-              );
-            }
-          } catch {}
-        }
+    let explicitAliases: string[] = [];
+    if (dbRow?.aliases) {
+      if (Array.isArray(dbRow.aliases)) {
+        explicitAliases = dbRow.aliases.filter(
+          (a): a is string => typeof a === "string"
+        );
+      } else if (typeof dbRow.aliases === "string") {
+        try {
+          const parsed = JSON.parse(dbRow.aliases);
+          if (Array.isArray(parsed))
+            explicitAliases = parsed.filter(
+              (a): a is string => typeof a === "string"
+            );
+        } catch {}
       }
+    }
 
-      const allAliases = [...explicitAliases, ...entry.aliasNames];
+    const allAliases = [...explicitAliases, ...entry.aliasNames];
 
-      const namesToCheck = [name, ...allAliases].map(normalizeFull);
-      const image = getTopAlbumImageFromNames(albumLookup, namesToCheck);
+    const namesToCheck = await Promise.all(
+      [name, ...allAliases].map((n) => normalizeFull(n, dbRow))
+    );
+    const image = getTopAlbumImageFromNames(albumLookup, namesToCheck);
 
-      return {
-        name: normalizeFull(name),
-        playcount: entry.playcount,
-        aliases: allAliases.map(normalizeFull),
-        image,
-      };
-    })
-    .sort((a, b) => b.playcount - a.playcount);
+    rows.push({
+      name: await normalizeFull(name, dbRow),
+      playcount: entry.playcount,
+      aliases: await Promise.all(
+        allAliases.map((a) => normalizeFull(a, dbRow))
+      ),
+      image,
+    });
+  }
+
+  return rows.sort((a, b) => b.playcount - a.playcount);
 }
 
 /**
  * GET Handler
+ * @returns Response with merged artists
  */
 export async function GET() {
   try {
-    const [lastFmArtists, lastFmAlbums, dbArtists] = await Promise.all([
+    const dbArtists = await prisma.artist.findMany();
+    const dbArtistMap: Record<string, DBArtist> = {};
+    dbArtists.forEach((a) => (dbArtistMap[a.name] = a));
+
+    const [lastFmArtists, lastFmAlbums] = await Promise.all([
       fetchAllLastFm<LastFmArtist>("user.gettopartists", USERNAME, API_KEY),
       fetchAllLastFm<LastFmAlbum>("user.gettopalbums", USERNAME, API_KEY),
-      prisma.artist.findMany(),
     ]);
 
-    const merged = mergeArtists(lastFmArtists, dbArtists);
-    const result = buildResult(merged, dbArtists, lastFmAlbums);
+    const merged = await mergeArtists(lastFmArtists, dbArtistMap);
+    const result = await buildResult(merged, dbArtistMap, lastFmAlbums);
 
     return NextResponse.json(result);
   } catch (err) {
