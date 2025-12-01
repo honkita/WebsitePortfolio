@@ -335,7 +335,7 @@ export async function GET() {
     dbArtists.forEach((a) => {
       dbArtistMap[a.name] = {
         ...a,
-        ignoreChineseCanonization: a.ignoreChineseCanonization ?? null, // default if missing
+        ignoreChineseCanonization: a.ignoreChineseCanonization ?? false, // default if missing
       };
     });
 
