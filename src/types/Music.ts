@@ -18,7 +18,7 @@ export interface DBArtist {
   name: string;
   id: number;
   aliases: JsonValue | null;
-  ignoreChineseCanonization?: boolean | null;
+  ignoreChineseCanonization: boolean;
 }
 [];
 

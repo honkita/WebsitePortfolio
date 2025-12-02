@@ -8,8 +8,8 @@ datasource db {
 }
 
 model Artist {
-  id                        Int      @id @default(autoincrement())
-  name                      String   @unique
+  id                        Int     @id @default(autoincrement())
+  name                      String  @unique
   aliases                   Json?
-  ignoreChineseCanonization Boolean? @default(false) @map("ignoreChineseCanonization")
+  ignoreChineseCanonization Boolean @default(false) @map("ignoreChineseCanonization")
 }
