@@ -12,17 +12,6 @@ export interface Artist {
 }
 
 /**
- * Database Artist Interface
- */
-export interface DBArtist {
-  name: string;
-  id: number;
-  aliases: JsonValue | null;
-  ignoreChineseCanonization: boolean;
-}
-[];
-
-/**
  * Last.fm Artist Interface
  */
 export interface LastFmArtist {

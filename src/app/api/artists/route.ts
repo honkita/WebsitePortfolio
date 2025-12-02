@@ -12,7 +12,8 @@ import {
 } from "@/utils/normalizeName";
 
 // Types
-import { DBArtist, LastFmArtist, LastFmAlbum } from "@/types/Music";
+import type { Artist as DBArtist } from "@prisma/client";
+import { LastFmArtist, LastFmAlbum } from "@/types/Music";
 
 // Environment Variables
 const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
