@@ -217,9 +217,16 @@ async function mergeArtists(
     aliasNorm.forEach((a) => (aliasMap[a] = original.name));
   });
 
-  const sortedDbCanonNames = Object.keys(aliasMap).sort(
-    (a, b) => a.length - b.length
-  );
+  // Penalty function to prioritize certain names
+  function penalty(name: string) {
+    return /[&,，,＋+]/.test(name) ? 2 : 1;
+  }
+
+  const sortedDbCanonNames = Object.keys(aliasMap).sort((a, b) => {
+    const pa = penalty(a);
+    const pb = penalty(b);
+    return a.length * pa - b.length * pb;
+  });
 
   // Merging Last.fm artists into the merged structure
   const merged: Record<string, MergedEntry> = {};
