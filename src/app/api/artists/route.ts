@@ -219,7 +219,7 @@ async function mergeArtists(
 
   // Penalty function to prioritize certain names
   function penalty(name: string) {
-    return /[&,，,＋+]/.test(name) ? 2 : 1;
+    return /[&,，,＋+×]/.test(name) ? 2 : 1;
   }
 
   const sortedDbCanonNames = Object.keys(aliasMap).sort((a, b) => {
