@@ -47,11 +47,11 @@ type AlbumLookup = Record<string, LastFmAlbum[]>;
 async function normalizeFull(name: string, dbRow?: DBArtist): Promise<string> {
   const pre = normalizeSpaces(normalizeCommas(normalizeCV(name)));
   const skipChinese = !!dbRow?.ignoreChineseCanonization;
-  if (skipChinese) {
-    console.log(
-      `Normalizing "${name}" with skipChineseConversion=${skipChinese}`
-    );
-  }
+  // if (skipChinese) {
+  //   console.log(
+  //     `Normalizing "${name}" with skipChineseConversion=${skipChinese}`
+  //   );
+  // }
   return canonicalizeName(pre, { skipChineseConversion: skipChinese });
 }
 

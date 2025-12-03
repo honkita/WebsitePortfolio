@@ -14,9 +14,9 @@ export async function GET() {
       `${API_URL}?method=user.getinfo&user=${USERNAME}&api_key=${API_KEY}&format=json`
     );
 
-    console.log(
-      `${API_URL}?method=user.getinfo&user=${USERNAME}&api_key=${API_KEY}&format=json`
-    );
+    // console.log(
+    //   `${API_URL}?method=user.getinfo&user=${USERNAME}&api_key=${API_KEY}&format=json`
+    // );
 
     if (!res.ok) throw new Error("Failed to fetch user info");
 
