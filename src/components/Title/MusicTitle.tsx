@@ -3,9 +3,11 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
+// Child Components
+import PixelLoader from "@/components/PixelLoader/PixelLoader";
+
 // CSS
 import divstyling from "@/styles/divstyling.module.css";
-import utilStyles from "@/app/ui/theme.util.module.css";
 import TitleCSS from "./Title.module.css";
 
 // Props Interface
@@ -95,8 +97,6 @@ export default function MusicTitle({
         ? TitleCSS.loadedAndVisible
         : TitleCSS.notYetVisible;
 
-    const actualResolvedTheme = mounted ? resolvedTheme : "light";
-
     return (
         <section
             className={`${
@@ -108,10 +108,12 @@ export default function MusicTitle({
             <div className={TitleCSS.titleCenter}>
                 <h1 className={TitleCSS.title}>{name}</h1>
                 <section className={TitleCSS.titleSmall}>
-                    <section className={TitleCSS.artist}>{artists} 👤</section>{" "}
+                    <section className={TitleCSS.artist}>
+                        {artists === 0 ? <PixelLoader /> : artists}👤
+                    </section>{" "}
                     |
                     <section className={TitleCSS.scrobbles}>
-                        🎵 {scrobbles}
+                        🎵 {scrobbles === 0 ? <PixelLoader /> : scrobbles}
                     </section>
                 </section>
             </div>

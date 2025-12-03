@@ -12,6 +12,7 @@
   --background-secondary: #fafafa66;
   --foreground: #d57e04;
   --foreground-transparent: #d57e0466;
+  --loader-background: #b9b9b9;
 }
 
 /*
@@ -28,4 +29,5 @@
   --background-secondary: #28282866;
   --foreground: #2d45e6;
   --foreground-transparent: #2d45e666;
+  --loader-background: #646464;
 }

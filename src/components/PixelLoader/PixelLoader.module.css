@@ -1,0 +1,64 @@
+.pixelLoader {
+  --size: 2rem; /* total size */
+  --border: 0.5rem; /* donut thickness */
+  --pixel: 0.5rem; /* size of moving pixel */
+
+  width: var(--size);
+  height: var(--size);
+  position: relative;
+  image-rendering: pixelated;
+}
+
+/* Outer donut border */
+.pixelLoader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  border: var(--border) solid var(--background-secondary);
+  box-sizing: border-box;
+}
+
+/* Pixel moving ON the border */
+.pixelLoader::after {
+  content: "";
+  position: absolute;
+  width: var(--pixel);
+  height: var(--pixel);
+  background: var(--foreground);
+  animation: orbitBorder 4s steps(calc(var(--size) / var(--pixel) * 2 - 1))
+    infinite;
+}
+
+/* Perfect 4-step cycle with equal time distribution */
+@keyframes orbitBorder {
+  /* Start: top-left corner */
+  0% {
+    top: 0;
+    left: 0;
+  }
+
+  /* Top-right corner */
+  25% {
+    top: 0;
+    left: calc(var(--size) - var(--pixel));
+  }
+
+  /* Bottom-right corner */
+  50% {
+    top: calc(var(--size) - var(--pixel));
+    left: calc(var(--size) - var(--pixel));
+  }
+
+  /* Bottom-left corner */
+  75% {
+    top: calc(var(--size) - var(--pixel));
+    left: 0;
+  }
+
+  /* Back to top-left */
+  100% {
+    top: 0;
+    left: 0;
+  }
+}

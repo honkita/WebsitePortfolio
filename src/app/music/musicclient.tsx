@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 // Child Components
 import MusicTitle from "@/components/Title/MusicTitle";
 import MusicArtist from "@/components/MusicArtist/MusicArtist";
-
 // CSS
 import divstyling from "@/styles/divstyling.module.css";
 import styles from "@/app/ui/home.module.css";

@@ -98,11 +98,19 @@
 .artist {
   text-align: right;
   width: min(40vw, 30rem);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .scrobbles {
   text-align: left;
   width: min(40vw, 30rem);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .link {
