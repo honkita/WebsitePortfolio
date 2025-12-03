@@ -1,7 +1,7 @@
 .pixelLoader {
-  --size: 2rem; /* total size */
-  --border: 0.5rem; /* donut thickness */
-  --pixel: 0.5rem; /* size of moving pixel */
+  --size: calc(min(20vw, 4rem) / 2); /* total size */
+  --border: calc(var(--size) / 4); /* donut thickness */
+  --pixel: calc(var(--size) / 4); /* size of moving pixel */
 
   width: var(--size);
   height: var(--size);
