@@ -39,7 +39,7 @@ interface ResultRow {
 type AlbumLookup = Record<string, LastFmAlbum[]>;
 
 /**
- * Full Normalization, ignores simplfied translation skip flag from DB row
+ * Full normalization function
  * @param name
  * @param dbRow
  * @returns
@@ -56,7 +56,22 @@ async function normalizeFull(name: string, dbRow?: DBArtist): Promise<string> {
 }
 
 /**
- * Fetches all pages of Last.fm data for a given method
+ * Fetches all pages concurrently
+ * @param url
+ * @param totalPages
+ * @returns
+ */
+async function fetchAllPages(url: string, totalPages: number) {
+  const promises = [];
+  for (let p = 2; p <= totalPages; p++) {
+    promises.push(fetch(url + `&page=${p}`).then((r) => r.json()));
+  }
+  const results = await Promise.all(promises);
+  return results;
+}
+
+/**
+ * Fetches all items from Last.fm
  * @param method
  * @param username
  * @param apiKey
@@ -67,34 +82,34 @@ async function fetchAllLastFm<T>(
   username: string,
   apiKey: string
 ) {
-  let all: T[] = [];
-  let page = 1;
-  let totalPages = 1;
+  const baseURL = `${API_URL}?method=${method}&user=${username}&api_key=${apiKey}&format=json&limit=1000`;
 
-  while (page <= totalPages) {
-    const res = await fetch(
-      `${API_URL}?method=${method}&user=${username}&api_key=${apiKey}&format=json&page=${page}&limit=1000`
-    );
-    if (!res.ok) throw new Error(`Failed to fetch Last.fm ${method}`);
+  const first = await fetch(baseURL + "&page=1").then((r) => r.json());
 
-    const data = await res.json();
+  let items: any[] = [];
+  let extract: (d: any) => any[];
+  let totalPages: number;
 
-    if (method === "user.gettopartists") {
-      all.push(...(data.topartists.artist as T[]));
-      totalPages = parseInt(data.topartists["@attr"].totalPages, 10);
-    } else if (method === "user.gettopalbums") {
-      all.push(...(data.topalbums.album as T[]));
-      totalPages = parseInt(data.topalbums["@attr"].totalPages, 10);
-    }
-
-    page++;
+  if (method === "user.gettopartists") {
+    extract = (d) => d.topartists.artist;
+    totalPages = +first.topartists["@attr"].totalPages;
+  } else {
+    extract = (d) => d.topalbums.album;
+    totalPages = +first.topalbums["@attr"].totalPages;
   }
 
-  return all;
+  items.push(...extract(first));
+
+  if (totalPages > 1) {
+    const rest = await fetchAllPages(baseURL, totalPages);
+    for (const r of rest) items.push(...extract(r));
+  }
+
+  return items as T[];
 }
 
 /**
- *
+ * Builds the albums lookup table
  * @param albums
  * @param dbArtistMap
  * @returns
@@ -120,7 +135,7 @@ async function buildAlbumLookup(
 }
 
 /**
- *
+ * Gets the top album image
  * @param albumLookup
  * @param names
  * @returns
@@ -167,7 +182,7 @@ function getTopAlbumImageFromNames(
 }
 
 /**
- *
+ * Merges the artists
  * @param lastFmArtists
  * @param dbArtistMap
  * @returns
@@ -181,9 +196,6 @@ async function mergeArtists(
   const asciiLower = (str: string) =>
     str.replace(/[A-Za-z]/g, (c) => c.toLowerCase());
 
-  /**
-   * Normalizes all database artist names and aliases
-   */
   const normalizedDbPromises = Object.values(dbArtistMap).map(
     async (artist) => {
       const nameNorm = await normalizeFull(artist.name, artist);
@@ -211,13 +223,16 @@ async function mergeArtists(
 
   const normalizedDb = await Promise.all(normalizedDbPromises);
 
-  // Builds the alias map from normalized DB names and aliases
   normalizedDb.forEach(({ original, nameNorm, aliasNorm }) => {
     aliasMap[nameNorm] = original.name;
     aliasNorm.forEach((a) => (aliasMap[a] = original.name));
   });
 
-  // Penalty function to prioritize certain names
+  /**
+   * Penalty function for sorting
+   * @param name
+   * @returns
+   */
   function penalty(name: string) {
     return /[&,，,＋+×]/.test(name) ? 2 : 1;
   }
@@ -228,11 +243,10 @@ async function mergeArtists(
     return a.length * pa - b.length * pb;
   });
 
-  // Merging Last.fm artists into the merged structure
   const merged: Record<string, MergedEntry> = {};
 
   for (const artist of lastFmArtists) {
-    const dbRow = dbArtistMap[artist.name]; // may be undefined
+    const dbRow = dbArtistMap[artist.name];
     const canonName = await normalizeFull(artist.name, dbRow);
 
     let mainName: string | undefined = aliasMap[canonName];
@@ -267,7 +281,7 @@ async function mergeArtists(
 }
 
 /**
- * Builds the final result set
+ * Builds the final result function
  * @param merged
  * @param dbArtistMap
  * @param albums
