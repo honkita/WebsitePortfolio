@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
 
 // Child Components
 import PixelLoader from "@/components/PixelLoader/PixelLoader";
@@ -52,7 +51,6 @@ export default function MusicTitle({
 }: MusicTitleProps) {
     const [bgIsVisible, setBgIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
-    const { resolvedTheme } = useTheme();
 
     useEffect(() => {
         setMounted(true);

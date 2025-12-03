@@ -17,8 +17,8 @@ export default function MusicClient() {
     const [artists, setArtists] = useState<Artist[]>([]);
     const [scrobbles, setScrobbles] = useState<number | null>(null);
 
-    const [loadingArtists, setLoadingArtists] = useState(true);
-    const [loadingScrobbles, setLoadingScrobbles] = useState(true);
+    const [artistCount, setArtistCount] = useState(0);
+    const [scrobbleCount, setScrobbleCount] = useState(0);
 
     const [errorArtists, setErrorArtists] = useState<string | null>(null);
     const [errorScrobbles, setErrorScrobbles] = useState<string | null>(null);
@@ -27,36 +27,37 @@ export default function MusicClient() {
         // Fetch artists
         const fetchArtists = async () => {
             try {
-                setLoadingArtists(true);
                 const res = await fetch("/api/artists");
                 if (!res.ok) throw new Error("Failed to fetch artists");
                 const data = (await res.json()) as Artist[];
                 setArtists(data);
+                setErrorArtists(null);
             } catch (err: any) {
-                setErrorArtists(err.message);
-            } finally {
-                setLoadingArtists(false);
+                // setErrorArtists(err.message);
+                // Retry after 1 second
+                setTimeout(() => setArtistCount((c) => c + 1), 1000);
             }
         };
+        fetchArtists();
+    }, [artistCount]);
 
+    useEffect(() => {
         // Fetch scrobbles
         const fetchScrobbles = async () => {
             try {
-                setLoadingScrobbles(true);
                 const res = await fetch("/api/scrobbles");
                 if (!res.ok) throw new Error("Failed to fetch scrobbles");
                 const data = await res.json();
                 setScrobbles(data.totalScrobbles);
+                setErrorScrobbles(null);
             } catch (err: any) {
-                setErrorScrobbles(err.message);
-            } finally {
-                setLoadingScrobbles(false);
+                // setErrorScrobbles(err.message);
+                // Retry after 1 second
+                setTimeout(() => setScrobbleCount((c) => c + 1), 1000);
             }
         };
-
-        fetchArtists();
         fetchScrobbles();
-    }, []);
+    }, [scrobbleCount]);
 
     // Title Component
     const title = (artistCount: number, scrobbleCount: number) => (
