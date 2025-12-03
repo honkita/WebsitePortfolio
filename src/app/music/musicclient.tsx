@@ -68,18 +68,6 @@ export default function MusicClient() {
         />
     );
 
-    // Show loading text if **both** are loading
-    if (loadingArtists && loadingScrobbles)
-        return (
-            <div className={styles.pageContainer}>
-                {title(0, 0)}
-                <div className={divstyling.hr} style={{ marginTop: "3rem" }} />
-                <div className={styles.centeredContent}>
-                    <section className={utilStyles.headingXl}>Loading</section>
-                </div>
-            </div>
-        );
-
     // Show error if both failed
     if ((errorArtists && errorScrobbles) || errorArtists)
         return (
@@ -87,7 +75,7 @@ export default function MusicClient() {
                 {title(0, scrobbles ?? 0)}
                 <div className={divstyling.hr} style={{ marginTop: "3rem" }} />
                 <div className={styles.centeredContent}>
-                    <section className={utilStyles.headingXl}>
+                    <section className={utilStyles.headingMd}>
                         Error loading data
                     </section>
                 </div>
