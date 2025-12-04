@@ -76,13 +76,11 @@
   border-radius: 1rem;
   background-color: var(--background-secondary);
   border: 2px solid var(--primary);
+  height: calc(max(min(7rem, 6vw), 5rem) + 3rem);
   width: 20vw;
   min-width: 20rem;
   max-width: 40rem;
   padding: 0.5rem;
-  width: inherit;
-  height: fit-content;
-  word-break: break-word;
 }
 
 @media (max-width: 48rem) {
