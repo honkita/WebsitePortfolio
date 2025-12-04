@@ -73,15 +73,16 @@
 .placeholder {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
   border-radius: 1rem;
   background-color: var(--background-secondary);
   border: 2px solid var(--primary);
   width: 20vw;
   min-width: 20rem;
   max-width: 40rem;
-  height: 10vw;
+  padding: 0.5rem;
+  width: inherit;
+  height: fit-content;
+  word-break: break-word;
 }
 
 @media (max-width: 48rem) {
@@ -97,7 +98,6 @@
     height: 100%;
     min-width: 16rem;
     max-width: 30rem;
-    height: 100%;
   }
 
   .title span {
@@ -116,6 +116,20 @@
     font-size: min(calc(2vw), 0.8rem);
     font-weight: 100;
     color: var(--secondary);
+  }
+
+  .placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    background-color: var(--background-secondary);
+    border: 2px solid var(--primary);
+    width: 50vw;
+    height: calc(max(min(7rem, 6vw), 5rem) + 1rem);
+    min-width: 16rem;
+    max-width: 30rem;
   }
 }
 

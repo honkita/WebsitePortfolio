@@ -172,7 +172,9 @@ export default function LastFM() {
 
     if (!track)
         return (
-            <div className={LastFMCSS.placeholder}>No recent track found.</div>
+            <div className={`${LastFMCSS.placeholder}`}>
+                No recent track found.
+            </div>
         );
 
     const imageUrl = track.image.find((img) => img.size === "extralarge")?.[
