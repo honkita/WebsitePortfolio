@@ -8,7 +8,7 @@
   min-width: 20rem;
   max-width: 40rem;
   padding: 0.5rem;
-  height: fit-content;
+  height: clamp(7rem, 6vw + 2rem, 9rem);
 }
 
 .coverLink {
@@ -18,8 +18,8 @@
 }
 
 .cover {
-  width: max(min(7rem, 6vw), 5rem);
-  height: max(min(7rem, 6vw), 5rem);
+  height: clamp(5rem, 6vw + 1rem, 8rem);
+  aspect-ratio: 1/1;
   border-radius: 0.75rem;
   object-fit: cover;
   flex-shrink: 0;
@@ -76,7 +76,7 @@
   border-radius: 1rem;
   background-color: var(--background-secondary);
   border: 2px solid var(--primary);
-  height: calc(max(min(7rem, 6vw), 5rem) + 3rem);
+  height: clamp(7rem, 6vw + 2rem, 9rem);
   width: 20vw;
   min-width: 20rem;
   max-width: 40rem;
@@ -93,25 +93,25 @@
     background-color: var(--background-secondary);
     border: 2px solid var(--primary);
     width: 50vw;
-    height: 100%;
+    height: clamp(6rem, 6vw + 1rem, 8rem);
     min-width: 16rem;
     max-width: 30rem;
   }
 
   .title span {
-    font-size: min(calc(3vw), 1rem);
+    font-size: min(calc(4vw), 1rem);
     font-weight: 100;
     color: var(--primary);
   }
 
   .artist span {
-    font-size: min(calc(2.5vw), 0.8rem);
+    font-size: min(calc(3vw), 0.8rem);
     font-weight: 100;
     color: var(--primary-dim);
   }
 
   .album span {
-    font-size: min(calc(2vw), 0.8rem);
+    font-size: min(calc(2.5vw), 0.8rem);
     font-weight: 100;
     color: var(--secondary);
   }
@@ -125,7 +125,7 @@
     background-color: var(--background-secondary);
     border: 2px solid var(--primary);
     width: 50vw;
-    height: calc(max(min(7rem, 6vw), 5rem) + 1rem);
+    height: clamp(6rem, 6vw + 1rem, 8rem);
     min-width: 16rem;
     max-width: 30rem;
   }
