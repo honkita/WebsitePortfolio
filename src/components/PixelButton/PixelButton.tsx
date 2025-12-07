@@ -25,7 +25,6 @@ export default function PixelButton({ name, url, extra }: PixelButtonProps) {
     const { resolvedTheme } = useTheme();
     var PixelButtonsJSON = JSON.parse(JSON.stringify(PixelButtons));
 
-    // useEffect only runs on the client, so now we can safely show the UI
     useEffect(() => {
         setMounted(true);
     }, []);

@@ -42,6 +42,27 @@
   padding-left: 0;
 }
 
+.imagePlaceholder {
+  all: unset;
+  border-radius: 1rem;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.75rem;
+  margin: none;
+  position: relative;
+}
+
+.placeholder {
+  float: left;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.75rem;
+  opacity: 50%;
+}
+
 @media not (hover: none) {
   .card:hover {
     transform: scale(1.1);
