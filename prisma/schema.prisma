@@ -8,8 +8,25 @@ datasource db {
 }
 
 model Artist {
-  id                        Int     @id @default(autoincrement())
-  name                      String  @unique
+  id                        Int         @id @default(autoincrement())
+  name                      String      @unique
   aliases                   Json?
-  ignoreChineseCanonization Boolean @default(false) @map("ignoreChineseCanonization")
+  ignoreChineseCanonization Boolean     @default(false) @map("ignoreChineseCanonization")
+  SameNames                 SameNames[]
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model Albums {
+  id      Int    @id @default(autoincrement())
+  name    String
+  aliases Json?  @db.Json
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model SameNames {
+  id       Int    @id @default(autoincrement())
+  groupID  Int
+  name     String
+  albumIDs Json   @default("[]") @db.Json
+  Artist   Artist @relation(fields: [groupID], references: [id], onDelete: NoAction)
 }
