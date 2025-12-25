@@ -13,6 +13,10 @@ export const metadata: Metadata = {
     title: "Elite Lu Portfolio"
 };
 
+/**
+ * Serverside Home Page
+ * @returns JSX.Element
+ */
 export default function Home() {
     return (
         <div className={styles.contentWrapper}>

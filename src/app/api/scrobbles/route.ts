@@ -6,7 +6,7 @@ const API_URL = "https://ws.audioscrobbler.com/2.0/";
 
 /**
  * GET Handler
- * @returns Response with total scrobbles
+ * @returns NextResponse
  */
 export async function GET() {
   try {

@@ -337,7 +337,7 @@ async function buildResult(
 
 /**
  * GET Handler
- * @returns Response with merged artists
+ * @returns NextResponse
  */
 export async function GET() {
   try {

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 // Child Components
 import MusicTitle from "@/components/Title/MusicTitle";
 import MusicArtist from "@/components/MusicArtist/MusicArtist";
+
 // CSS
 import divstyling from "@/styles/divstyling.module.css";
 import styles from "@/app/ui/home.module.css";
@@ -13,7 +14,12 @@ import utilStyles from "@/app/ui/theme.util.module.css";
 // Types
 import { Artist } from "@/types/Music";
 
+/**
+ * Clientside Music Page
+ * @returns JSX.Element
+ */
 export default function MusicClient() {
+    // State variables
     const [artists, setArtists] = useState<Artist[]>([]);
     const [scrobbles, setScrobbles] = useState<number | null>(null);
 
@@ -33,7 +39,6 @@ export default function MusicClient() {
                 setArtists(data);
                 setErrorArtists(null);
             } catch (err: any) {
-                // setErrorArtists(err.message);
                 // Retry after 1 second
                 setTimeout(() => setArtistCount((c) => c + 1), 1000);
             }
@@ -51,7 +56,6 @@ export default function MusicClient() {
                 setScrobbles(data.totalScrobbles);
                 setErrorScrobbles(null);
             } catch (err: any) {
-                // setErrorScrobbles(err.message);
                 // Retry after 1 second
                 setTimeout(() => setScrobbleCount((c) => c + 1), 1000);
             }
