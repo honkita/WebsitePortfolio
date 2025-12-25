@@ -1,28 +1,39 @@
-// utils/canonicalizeName.ts
 import * as OpenCC from "opencc-js";
 
 /**
- * Manual override map (fill with any manual mappings you want)
+ * Manual override map
  */
 const manualMap: Record<string, string> = {};
 
 /**
- * CJK detection ranges
+ * CJK detection ranges (Chinese, Japanese, Korean) with Unicode
  */
 const CJK_REGEX =
   /[\u4E00-\u9FFF\u3040-\u30FF\u31F0-\u31FF\u3400-\u4DBF\uF900-\uFAFF]/;
 
+/**
+ * Returns true if the text contains any Chinese characters.
+ * @param text
+ * @returns
+ */
 export function isChinese(text: string): boolean {
   return /[\u4E00-\u9FFF]/.test(text);
 }
 
+/**
+ * Returns true if the text contains any Japanese characters.
+ * Supercedes isChinese in terms of priority.
+ * @param text
+ * @returns
+ */
 export function isJapanese(text: string): boolean {
   return /[\u3040-\u30FF]/.test(text);
 }
 
 /**
- * Remove ONLY spaces between two CJK characters.
- * Keep spaces if either side is non-CJK.
+ * Removes the spaces between CJK characters since not needed!
+ * @param text
+ * @returns
  */
 export function removeCJKInnerSpaces(text: string): string {
   return text.replace(/(\S)\s+(\S)/g, (match, left, right) => {
@@ -34,13 +45,10 @@ export function removeCJKInnerSpaces(text: string): string {
 }
 
 /**
- * canonicalizeName
- *
- * opts.skipChineseConversion — when true, skip OpenCC conversion (Traditional -> Simplified).
- * This is intended to be used when the DB artist row explicitly requests skipping Chinese canonization.
- *
- * NOTE: This function still runs removeCJKInnerSpaces and manualMap logic regardless of skip flag,
- * per your requirement that only the OpenCC step be skipped.
+ * Canonicalize a name by normalizing spaces, converting Traditional Chinese to Simplified by default, unless the skipChineseConversion option is set.
+ * @param rawName
+ * @param opts
+ * @returns
  */
 export function canonicalizeName(
   rawName: string,
@@ -50,21 +58,18 @@ export function canonicalizeName(
 
   const skipChineseConversion = !!opts?.skipChineseConversion;
 
-  // Only apply OpenCC when:
-  //  - contains Chinese Han characters
-  //  - is not Japanese (we don't want to treat Japanese as Chinese)
-  //  - and skipChineseConversion is false
+  // Only apply OpenCC when the string only contains Chinese characters and does not have the canonize field set to skip.
   if (
     isChinese(normalized) &&
     !isJapanese(normalized) &&
     !skipChineseConversion
   ) {
     try {
-      // Traditional -> Simplified (as you requested)
+      // Traditional -> Simplified
       const converter = OpenCC.Converter({ from: "t", to: "cn" });
       normalized = converter(normalized);
     } catch (e) {
-      // Fail gracefully and keep the unconverted text
+      // Warn about conversion failure
       console.warn("OpenCC conversion failed:", normalized, e);
     }
   }
