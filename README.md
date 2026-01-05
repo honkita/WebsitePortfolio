@@ -7,7 +7,7 @@
 ## About
 
 This is Elite Lu's official website portfolio.
-I am currently a third year student on coop from McMaster University. As of writing this, I am looking for a software developer position. I enjoy developing applications such as websites (learning Flask) and games alongside art.
+I am currently a fourth (technically fifth because of coop) year student from McMaster University. As of writing this, I am looking for a software developer position. I enjoy developing applications such as websites and games alongside art.
 
 ## Origin
 
