@@ -9,7 +9,7 @@ import MusicArtistCSS from "./MusicArtist.module.css";
 // Lib
 import stringToColour from "@/lib/stringToColour";
 
-// Interface for MusicArtist Props
+// Props Interface
 interface MusicArtistProps {
     name: string;
     image: string;
@@ -17,6 +17,11 @@ interface MusicArtistProps {
     rank: number;
 }
 
+/**
+ * Music Artist Component
+ * @param MusicArtistProps
+ * @returns JSX.Element
+ */
 export default function MusicArtist({
     name,
     image,

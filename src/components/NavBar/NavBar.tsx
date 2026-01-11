@@ -11,6 +11,10 @@ import PixelSwitch from "@/components/PixelSwitch/PixelSwitch";
 // CSS
 import NavBarCSS from "./NavBar.module.css";
 
+/**
+ * Navigation Bar Component
+ * @returns JSX.Element
+ */
 export default function NavBar() {
     const [isNavInitiallyMounted, setIsNavInitiallyMounted] = useState(false);
     const [isThemeMounted, setIsThemeMounted] = useState(false);

@@ -6,14 +6,15 @@ import Image from "next/image";
 // CSS
 import IconsCSS from "./Icons.module.css";
 
-// Props Interface
+// Icons Interface
 export interface IconsProps {
     icons: { name: string; url: string }[];
 }
 
 /**
- *
- * @returns
+ * Icons Component
+ * @param IconsProps
+ * @returns JSX.Element
  */
 export default function Icons({ icons }: IconsProps) {
     const [mounted, setMounted] = useState(false);

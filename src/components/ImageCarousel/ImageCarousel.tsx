@@ -16,6 +16,11 @@ interface ImageCarouselProps {
         | string; // Can be passed as JSON string
 }
 
+/**
+ * Image Carousel Component
+ * @param ImageCarouselProps
+ * @returns JSX.Element
+ */
 export default function ImageCarousel({ images }: ImageCarouselProps) {
     const rawImages = Array.isArray(images) ? images : JSON.parse(images);
 

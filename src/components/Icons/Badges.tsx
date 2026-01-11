@@ -13,6 +13,11 @@ export interface BadgesProps {
     type: string;
 }
 
+/**
+ * Badges Icon Component
+ * @param BadgesProps
+ * @returns JSX.Element
+ */
 export default function Badges({ name, url, type }: BadgesProps) {
     const [mounted, setMounted] = useState(false);
 

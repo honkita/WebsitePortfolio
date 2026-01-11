@@ -33,6 +33,11 @@ function debounce(fn: () => void, delay: number) {
         timer = setTimeout(fn, delay);
     };
 }
+
+/**
+ * LastFM Home PageComponent
+ * @returns JSX.Element
+ */
 export default function LastFM() {
     const [track, setTrack] = useState<LastFmTrack | null>(null);
     const lastTrackId = useRef<string | null>(null);
