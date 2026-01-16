@@ -59,7 +59,7 @@ async function normalizeFull(name: string, dbRow?: DBArtist): Promise<string> {
  * Fetches all pages concurrently
  * @param url
  * @param totalPages
- * @returns
+ * @returns Promise<any[]>
  */
 async function fetchAllPages(url: string, totalPages: number) {
   const promises = [];
@@ -75,12 +75,12 @@ async function fetchAllPages(url: string, totalPages: number) {
  * @param method
  * @param username
  * @param apiKey
- * @returns
+ * @returns Promise<T[]>
  */
 async function fetchAllLastFm<T>(
   method: string,
   username: string,
-  apiKey: string
+  apiKey: string,
 ) {
   const baseURL = `${API_URL}?method=${method}&user=${username}&api_key=${apiKey}&format=json&limit=1000`;
 
@@ -112,11 +112,11 @@ async function fetchAllLastFm<T>(
  * Builds the albums lookup table
  * @param albums
  * @param dbArtistMap
- * @returns
+ * @returns Promise<AlbumLookup>
  */
 async function buildAlbumLookup(
   albums: LastFmAlbum[],
-  dbArtistMap: Record<string, DBArtist>
+  dbArtistMap: Record<string, DBArtist>,
 ): Promise<AlbumLookup> {
   const lookup: AlbumLookup = {};
 
@@ -138,11 +138,11 @@ async function buildAlbumLookup(
  * Gets the top album image
  * @param albumLookup
  * @param names
- * @returns
+ * @returns string
  */
 function getTopAlbumImageFromNames(
   albumLookup: AlbumLookup,
-  names: string[]
+  names: string[],
 ): string {
   let topAlbum: LastFmAlbum | null = null;
 
@@ -153,7 +153,7 @@ function getTopAlbumImageFromNames(
     const candidate = artistAlbums.reduce<LastFmAlbum | null>(
       (max, a) =>
         !max || parseInt(a.playcount) > parseInt(max.playcount) ? a : max,
-      null
+      null,
     );
 
     if (
@@ -189,7 +189,7 @@ function getTopAlbumImageFromNames(
  */
 async function mergeArtists(
   lastFmArtists: LastFmArtist[],
-  dbArtistMap: Record<string, DBArtist>
+  dbArtistMap: Record<string, DBArtist>,
 ) {
   const aliasMap: Record<string, string> = {};
 
@@ -203,7 +203,7 @@ async function mergeArtists(
       let aliases: string[] = [];
       if (Array.isArray(artist.aliases)) {
         aliases = artist.aliases.filter(
-          (a): a is string => typeof a === "string"
+          (a): a is string => typeof a === "string",
         );
       } else if (typeof artist.aliases === "string") {
         try {
@@ -214,11 +214,11 @@ async function mergeArtists(
       }
 
       const aliasNorm = await Promise.all(
-        aliases.map((a) => normalizeFull(a, artist))
+        aliases.map((a) => normalizeFull(a, artist)),
       );
 
       return { original: artist, nameNorm, aliasNorm };
-    }
+    },
   );
 
   const normalizedDb = await Promise.all(normalizedDbPromises);
@@ -290,7 +290,7 @@ async function mergeArtists(
 async function buildResult(
   merged: Record<string, MergedEntry>,
   dbArtistMap: Record<string, DBArtist>,
-  albums: LastFmAlbum[]
+  albums: LastFmAlbum[],
 ): Promise<ResultRow[]> {
   const albumLookup = await buildAlbumLookup(albums, dbArtistMap);
   const rows: ResultRow[] = [];
@@ -302,14 +302,14 @@ async function buildResult(
     if (dbRow?.aliases) {
       if (Array.isArray(dbRow.aliases)) {
         explicitAliases = dbRow.aliases.filter(
-          (a): a is string => typeof a === "string"
+          (a): a is string => typeof a === "string",
         );
       } else if (typeof dbRow.aliases === "string") {
         try {
           const parsed = JSON.parse(dbRow.aliases);
           if (Array.isArray(parsed))
             explicitAliases = parsed.filter(
-              (a): a is string => typeof a === "string"
+              (a): a is string => typeof a === "string",
             );
         } catch {}
       }
@@ -318,7 +318,7 @@ async function buildResult(
     const allAliases = [...explicitAliases, ...entry.aliasNames];
 
     const namesToCheck = await Promise.all(
-      [name, ...allAliases].map((n) => normalizeFull(n, dbRow))
+      [name, ...allAliases].map((n) => normalizeFull(n, dbRow)),
     );
     const image = getTopAlbumImageFromNames(albumLookup, namesToCheck);
 
@@ -326,7 +326,7 @@ async function buildResult(
       name: await normalizeFull(name, dbRow),
       playcount: entry.playcount,
       aliases: await Promise.all(
-        allAliases.map((a) => normalizeFull(a, dbRow))
+        allAliases.map((a) => normalizeFull(a, dbRow)),
       ),
       image,
     });
@@ -358,7 +358,7 @@ export async function GET() {
     console.error("Fetch + merge error:", err);
     return NextResponse.json(
       { error: "Failed to fetch and merge artists" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

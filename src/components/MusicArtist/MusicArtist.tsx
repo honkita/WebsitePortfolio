@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
 // CSS
@@ -9,7 +9,7 @@ import MusicArtistCSS from "./MusicArtist.module.css";
 // Lib
 import stringToColour from "@/lib/stringToColour";
 
-// Props Interface
+// Props
 interface MusicArtistProps {
     name: string;
     image: string;
@@ -17,9 +17,29 @@ interface MusicArtistProps {
     rank: number;
 }
 
+const LASTFM_PLACEHOLDER_HASH = "2a96cbd8b46e442fc41c2b86b821562f.png";
+const REFRESH_INTERVAL_MS = 5000;
+
+function isValidImageUrl(url: string): Promise<boolean> {
+    return new Promise((resolve) => {
+        if (!url || url.includes(LASTFM_PLACEHOLDER_HASH)) {
+            resolve(false);
+            return;
+        }
+
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
+    });
+}
+
 /**
- * Music Artist Component
- * @param MusicArtistProps
+ * Displays a music artist card
+ * @param name
+ * @param image
+ * @param scrobbles
+ * @param rank
  * @returns JSX.Element
  */
 export default function MusicArtist({
@@ -29,48 +49,68 @@ export default function MusicArtist({
     rank
 }: MusicArtistProps) {
     const { resolvedTheme } = useTheme();
+    const [resolvedImage, setResolvedImage] = useState<string>("");
 
-    if (!image) console.log(name, stringToColour(name));
+    // Initial check + retry loop
+    useEffect(() => {
+        let cancelled = false;
+        let interval: NodeJS.Timeout;
 
-    const styleSheet = document.createElement("style");
-
-    if (!image) {
-        styleSheet.innerHTML = `
-            .albumImage::before {
-                background: ${stringToColour(name)};
+        async function checkImage() {
+            if (await isValidImageUrl(image)) {
+                if (!cancelled) {
+                    setResolvedImage(image);
+                    clearInterval(interval);
+                }
             }
-        `;
-        document.head.appendChild(styleSheet);
-    }
+        }
+
+        // First attempt immediately
+        checkImage();
+
+        // Retry every 5 seconds if not resolved
+        interval = setInterval(() => {
+            if (!resolvedImage) {
+                checkImage();
+            }
+        }, REFRESH_INTERVAL_MS);
+
+        return () => {
+            cancelled = true;
+            clearInterval(interval);
+        };
+    }, [image, resolvedImage]);
+
+    const hasImage = Boolean(resolvedImage);
 
     return (
         <div className={MusicArtistCSS.card}>
-            {/* <div className={MusicArtistCSS.rank}>{rank}</div> */}
-            {image !== "" ? (
+            {hasImage ? (
                 <img
                     className={MusicArtistCSS.albumImage}
-                    src={image}
+                    src={resolvedImage}
                     alt={`${name} image`}
+                    loading="lazy"
                 />
             ) : (
                 <div className={MusicArtistCSS.imagePlaceholder}>
                     <img
-                        className={`${MusicArtistCSS.albumImage}`}
+                        className={MusicArtistCSS.albumImage}
                         src={
                             resolvedTheme === "light"
-                                ? "images/Artists/PixelArtist.svg"
-                                : "images/Artists/PixelArtistDark.svg"
+                                ? "/images/Artists/PixelArtist.svg"
+                                : "/images/Artists/PixelArtistDark.svg"
                         }
-                        alt={`${name} image`}
+                        alt={`${name} placeholder`}
+                        loading="lazy"
                     />
                     <div
-                        style={{
-                            background: `${stringToColour(name)}`
-                        }}
                         className={MusicArtistCSS.placeholder}
-                    ></div>
+                        style={{ backgroundColor: stringToColour(name) }}
+                    />
                 </div>
             )}
+
             <div className={MusicArtistCSS.info}>
                 <div className={MusicArtistCSS.name}>{name}</div>
                 <div className={MusicArtistCSS.scrobbles}>
