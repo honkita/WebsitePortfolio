@@ -24,9 +24,13 @@ model Albums {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model SameNames {
-  id       Int    @id @default(autoincrement())
-  groupID  Int
-  name     String
-  albumIDs Json   @default("[]") @db.Json
-  Artist   Artist @relation(fields: [groupID], references: [id], onDelete: NoAction)
+  id        Int     @id @default(autoincrement())
+  groupID   Int
+  name      String
+  albumIDs  Json    @default("[]") @db.Json
+  isDefault Boolean @default(false)
+
+  Artist Artist @relation(fields: [groupID], references: [id], onDelete: NoAction)
+
+  @@index([groupID, name])
 }
