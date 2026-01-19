@@ -29,8 +29,7 @@ model SameNames {
   name      String
   albumIDs  Json    @default("[]") @db.Json
   isDefault Boolean @default(false)
-
-  Artist Artist @relation(fields: [groupID], references: [id], onDelete: NoAction)
+  Artist    Artist  @relation(fields: [groupID], references: [id], onDelete: NoAction)
 
   @@index([groupID, name])
 }
