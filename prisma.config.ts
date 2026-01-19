@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { defineConfig, env } from "prisma/config";
 
 export default defineConfig({
@@ -7,6 +8,6 @@ export default defineConfig({
   },
   engine: "classic",
   datasource: {
-    url: "postgresql://postgres.uecvgjsmtewgadzizqgt:sufxyx-byMbob-0nonvu@aws-1-us-east-2.pooler.supabase.com:5432/postgres",
+    url: env("DATABASE_URL"),
   },
 });
