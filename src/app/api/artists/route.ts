@@ -390,7 +390,7 @@ async function applySameNameDisambiguation(
 ): Promise<ResultRow[]> {
   const output: ResultRow[] = [];
 
-  /* Normalize DB artist lookup */
+  // Normalize DB artist lookup
   const normalizedDbArtist = new Map<string, DBArtist>();
   for (const artist of Object.values(dbArtistMap)) {
     const norm = await normalizeFull(artist.name, artist);
@@ -399,6 +399,7 @@ async function applySameNameDisambiguation(
 
   // Albums from Last.FM
   const albumIndex = await buildArtistAlbumIndex(albums, dbArtistMap);
+  const albumLookup = await buildAlbumLookup(albums, dbArtistMap); // 🔹 needed for images
 
   for (const row of rows) {
     const dbArtist = normalizedDbArtist.get(row.name);
@@ -425,22 +426,19 @@ async function applySameNameDisambiguation(
 
     const buckets = new Map<number, number>();
 
-    /* Allocate album-based scrobbles */
+    // Allocate album-based scrobbles to each SameName
     for (const sn of sameNames) {
-      const albumIDs: number[] = extractAlbumNames(sn.albumIDs); // should be IDs
+      const albumIDs: number[] = extractAlbumNames(sn.albumIDs);
       if (!albumIDs.length) continue;
 
       let sum = 0;
 
       for (const albumID of albumIDs) {
-        // 🔹 Look up album from DB by ID
         const albumRow = await prisma.album.findUnique({
           where: { id: albumID },
         });
-
         if (!albumRow) continue;
 
-        // 🔹 Build a list of all album names to match: canonical name + aliases
         const albumNames = [albumRow.name];
         if (albumRow.aliases) {
           if (Array.isArray(albumRow.aliases))
@@ -453,11 +451,9 @@ async function applySameNameDisambiguation(
           }
         }
 
-        // 🔹 Normalize and check against Last.fm albums
         for (const name of albumNames) {
           const key = normalizeAlbumName(name);
-          const count = artistAlbums.get(key) || 0;
-          sum += count;
+          sum += artistAlbums.get(key) || 0;
         }
       }
 
@@ -467,25 +463,26 @@ async function applySameNameDisambiguation(
       }
     }
 
-    /* Bin leftovers into default */
+    // Bin leftovers into default SameName
     const defaultSN = sameNames.find((s) => s.isDefault) ?? sameNames[0];
-
     buckets.set(
       defaultSN.id,
       (buckets.get(defaultSN.id) || 0) + Math.max(remaining, 0),
     );
 
-    /* Emit split rows — ALWAYS uses SameNames.name */
+    // Emit split rows — each gets its own top album image
     for (const sn of sameNames) {
       const playcount = buckets.get(sn.id) || 0;
-
-      // Emit zero only if it's the default
       if (playcount === 0 && !sn.isDefault) continue;
+
+      // 🔹 Compute top album image for this specific SameName
+      const image = getTopAlbumImageFromNames(albumLookup, [sn.name]);
 
       output.push({
         ...row,
         name: sn.name,
         playcount,
+        image,
       });
     }
   }
