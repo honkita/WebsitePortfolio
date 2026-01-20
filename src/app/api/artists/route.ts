@@ -14,6 +14,7 @@ import {
 // Types
 import type { Artist as DBArtist } from "@prisma/client";
 import { LastFmArtist, LastFmAlbum } from "@/types/Music";
+import { JsonArray } from "@/lib/generated/prisma/internal/prismaNamespace";
 
 // Environment Variables
 const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
@@ -335,6 +336,163 @@ async function buildResult(
   return rows.sort((a, b) => b.playcount - a.playcount);
 }
 
+/* ============================================================
+   Helpers
+   ============================================================ */
+
+function normalizeAlbumName(name: string): string {
+  return name.replace(/\s*-\s*(Single|EP)$/i, "").trim();
+}
+
+function extractAlbumNames(values: JsonArray): number[] {
+  if (!Array.isArray(values)) return [];
+  return values.filter((v): v is number => typeof v === "number");
+}
+
+async function buildArtistAlbumIndex(
+  albums: LastFmAlbum[],
+  dbArtistMap: Record<string, DBArtist>,
+): Promise<Map<string, Map<string, number>>> {
+  const index = new Map<string, Map<string, number>>();
+
+  for (const album of albums) {
+    const rawArtist = album.artist?.name;
+    if (!rawArtist) continue;
+
+    const dbRow = dbArtistMap[rawArtist];
+    const artistKey = await normalizeFull(rawArtist, dbRow);
+
+    const albumKey = normalizeAlbumName(album.name);
+    const playcount = parseInt(album.playcount) || 0;
+
+    if (!index.has(artistKey)) {
+      index.set(artistKey, new Map());
+    }
+
+    const artistAlbums = index.get(artistKey)!;
+    artistAlbums.set(albumKey, (artistAlbums.get(albumKey) || 0) + playcount);
+  }
+
+  return index;
+}
+
+/**
+ *
+ * @param rows
+ * @param dbArtistMap
+ * @param albums
+ * @returns
+ */
+async function applySameNameDisambiguation(
+  rows: ResultRow[],
+  dbArtistMap: Record<string, DBArtist>,
+  albums: LastFmAlbum[],
+): Promise<ResultRow[]> {
+  const output: ResultRow[] = [];
+
+  /* Normalize DB artist lookup */
+  const normalizedDbArtist = new Map<string, DBArtist>();
+  for (const artist of Object.values(dbArtistMap)) {
+    const norm = await normalizeFull(artist.name, artist);
+    normalizedDbArtist.set(norm, artist);
+  }
+
+  // Albums from Last.FM
+  const albumIndex = await buildArtistAlbumIndex(albums, dbArtistMap);
+
+  for (const row of rows) {
+    const dbArtist = normalizedDbArtist.get(row.name);
+
+    // Artist not in DB → passthrough
+    if (!dbArtist) {
+      output.push(row);
+      continue;
+    }
+
+    const sameNames = await prisma.sameNames.findMany({
+      where: { groupID: dbArtist.id },
+      orderBy: { isDefault: "desc" },
+    });
+
+    // No SameNames → passthrough
+    if (!sameNames.length) {
+      output.push(row);
+      continue;
+    }
+
+    const artistAlbums = albumIndex.get(row.name) || new Map();
+    let remaining = row.playcount;
+
+    const buckets = new Map<number, number>();
+
+    /* Allocate album-based scrobbles */
+    for (const sn of sameNames) {
+      const albumIDs: number[] = extractAlbumNames(sn.albumIDs); // should be IDs
+      if (!albumIDs.length) continue;
+
+      let sum = 0;
+
+      for (const albumID of albumIDs) {
+        // 🔹 Look up album from DB by ID
+        const albumRow = await prisma.album.findUnique({
+          where: { id: albumID },
+        });
+
+        if (!albumRow) continue;
+
+        // 🔹 Build a list of all album names to match: canonical name + aliases
+        const albumNames = [albumRow.name];
+        if (albumRow.aliases) {
+          if (Array.isArray(albumRow.aliases))
+            albumNames.push(...albumRow.aliases);
+          else if (typeof albumRow.aliases === "string") {
+            try {
+              const parsed = JSON.parse(albumRow.aliases);
+              if (Array.isArray(parsed)) albumNames.push(...parsed);
+            } catch {}
+          }
+        }
+
+        // 🔹 Normalize and check against Last.fm albums
+        for (const name of albumNames) {
+          const key = normalizeAlbumName(name);
+          const count = artistAlbums.get(key) || 0;
+          sum += count;
+        }
+      }
+
+      if (sum > 0) {
+        buckets.set(sn.id, sum);
+        remaining -= sum;
+      }
+    }
+
+    /* Bin leftovers into default */
+    const defaultSN = sameNames.find((s) => s.isDefault) ?? sameNames[0];
+
+    buckets.set(
+      defaultSN.id,
+      (buckets.get(defaultSN.id) || 0) + Math.max(remaining, 0),
+    );
+
+    /* Emit split rows — ALWAYS uses SameNames.name */
+    for (const sn of sameNames) {
+      const playcount = buckets.get(sn.id) || 0;
+
+      // Emit zero only if it's the default
+      if (playcount === 0 && !sn.isDefault) continue;
+
+      output.push({
+        ...row,
+        name: sn.name,
+        playcount,
+      });
+    }
+  }
+
+  return output.sort((a, b) => b.playcount - a.playcount);
+}
+
 /**
  * GET Handler
  * @returns NextResponse
@@ -351,7 +509,12 @@ export async function GET() {
     ]);
 
     const merged = await mergeArtists(lastFmArtists, dbArtistMap);
-    const result = await buildResult(merged, dbArtistMap, lastFmAlbums);
+    const baseResult = await buildResult(merged, dbArtistMap, lastFmAlbums);
+    const result = await applySameNameDisambiguation(
+      baseResult,
+      dbArtistMap,
+      lastFmAlbums,
+    );
 
     return NextResponse.json(result);
   } catch (err) {

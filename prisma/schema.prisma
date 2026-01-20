@@ -8,18 +8,29 @@ datasource db {
 }
 
 model Artist {
-  id                        Int         @id @default(autoincrement())
-  name                      String      @unique
+  id                        Int           @id @default(autoincrement())
+  name                      String        @unique
   aliases                   Json?
-  ignoreChineseCanonization Boolean     @default(false) @map("ignoreChineseCanonization")
+  ignoreChineseCanonization Boolean       @default(false)
+  ArtistAlbums              ArtistAlbum[]
   SameNames                 SameNames[]
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-model Albums {
-  id      Int    @id @default(autoincrement())
-  name    String
-  aliases Json?  @db.Json
+model Album {
+  id            Int           @id @default(autoincrement())
+  name          String        @unique
+  aliases       Json?
+  AlbumsArtists ArtistAlbum[]
+}
+
+model ArtistAlbum {
+  artistId Int
+  albumId  Int
+  role     Int    @default(0)
+  Albums   Album  @relation(fields: [albumId], references: [id], onDelete: Cascade)
+  Artist   Artist @relation(fields: [artistId], references: [id], onDelete: Cascade)
+
+  @@id([artistId, albumId])
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
