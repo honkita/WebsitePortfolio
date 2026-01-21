@@ -1,3 +1,9 @@
+// Utils
+import { canonicalizeName } from "@/utils/canonicalizeName";
+
+// Types
+import type { Artist as DBArtist } from "@prisma/client";
+
 /**
  * Detects if string is predominantly CJK (Chinese/Japanese/Korean)
  */
@@ -8,7 +14,7 @@ function isCJK(str: string): boolean {
       ?.length ?? 0;
   const non = str.replace(
     /[\u4E00-\u9FFF\u3040-\u30FF\u31F0-\u31FF\uFF66-\uFF9F]/g,
-    ""
+    "",
   ).length;
 
   // Consider "predominantly CJK" if ≥ 40% characters are CJK
@@ -35,6 +41,30 @@ export function normalizeCommas(str: string): string {
 }
 
 /**
+ * Full artist name normalization
+ * @param name
+ * @param dbRow
+ * @returns
+ */
+export async function normalizeArtistFull(
+  name: string,
+  dbRow?: DBArtist,
+): Promise<string> {
+  const pre = normalizeSpaces(normalizeCommas(normalizeCV(name)));
+  const skipChinese = !!dbRow?.ignoreChineseCanonization;
+  return canonicalizeName(pre, { skipChineseConversion: skipChinese });
+}
+
+/**
+ * Full album name normalization
+ * @param name
+ * @returns
+ */
+export function normalizeAlbumFull(name: string): string {
+  return name.replace(/\s*-\s*(Single|EP)$/i, "").trim();
+}
+
+/**
  * Remove any spaces between two Chinese/Japanese characters
  * @param str
  */
@@ -44,7 +74,7 @@ export function normalizeSpaces(str: string): string {
   // Remove spaces between two CJK characters
   return str.replace(
     /([\u4E00-\u9FFF\u3040-\u30FF\u31F0-\u31FF\uFF66-\uFF9F])\s+([\u4E00-\u9FFF\u3040-\u30FF\u31F0-\u31FF\uFF66-\uFF9F])/g,
-    "$1$2"
+    "$1$2",
   );
 }
 

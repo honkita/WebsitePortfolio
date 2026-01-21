@@ -4,12 +4,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 // Utils
-import { canonicalizeName } from "@/utils/canonicalizeName";
-import {
-  normalizeCommas,
-  normalizeCV,
-  normalizeSpaces,
-} from "@/utils/normalizeName";
+import { normalizeArtistFull, normalizeAlbumFull } from "@/utils/normalizeName";
 
 // Types
 import type { Artist as DBArtist } from "@prisma/client";
@@ -38,23 +33,6 @@ interface ResultRow {
 
 // Album lookup table
 type AlbumLookup = Record<string, LastFmAlbum[]>;
-
-/**
- * Full normalization function
- * @param name
- * @param dbRow
- * @returns
- */
-async function normalizeFull(name: string, dbRow?: DBArtist): Promise<string> {
-  const pre = normalizeSpaces(normalizeCommas(normalizeCV(name)));
-  const skipChinese = !!dbRow?.ignoreChineseCanonization;
-  // if (skipChinese) {
-  //   console.log(
-  //     `Normalizing "${name}" with skipChineseConversion=${skipChinese}`
-  //   );
-  // }
-  return canonicalizeName(pre, { skipChineseConversion: skipChinese });
-}
 
 /**
  * Fetches all pages concurrently
@@ -126,7 +104,7 @@ async function buildAlbumLookup(
     if (!rawName) continue;
 
     const dbRow = dbArtistMap[rawName];
-    const artistName = await normalizeFull(rawName, dbRow);
+    const artistName = await normalizeArtistFull(rawName, dbRow);
 
     if (!lookup[artistName]) lookup[artistName] = [];
     lookup[artistName].push(album);
@@ -199,7 +177,7 @@ async function mergeArtists(
 
   const normalizedDbPromises = Object.values(dbArtistMap).map(
     async (artist) => {
-      const nameNorm = await normalizeFull(artist.name, artist);
+      const nameNorm = await normalizeArtistFull(artist.name, artist);
 
       let aliases: string[] = [];
       if (Array.isArray(artist.aliases)) {
@@ -215,7 +193,7 @@ async function mergeArtists(
       }
 
       const aliasNorm = await Promise.all(
-        aliases.map((a) => normalizeFull(a, artist)),
+        aliases.map((a) => normalizeArtistFull(a, artist)),
       );
 
       return { original: artist, nameNorm, aliasNorm };
@@ -248,7 +226,7 @@ async function mergeArtists(
 
   for (const artist of lastFmArtists) {
     const dbRow = dbArtistMap[artist.name];
-    const canonName = await normalizeFull(artist.name, dbRow);
+    const canonName = await normalizeArtistFull(artist.name, dbRow);
 
     let mainName: string | undefined = aliasMap[canonName];
 
@@ -319,29 +297,21 @@ async function buildResult(
     const allAliases = [...explicitAliases, ...entry.aliasNames];
 
     const namesToCheck = await Promise.all(
-      [name, ...allAliases].map((n) => normalizeFull(n, dbRow)),
+      [name, ...allAliases].map((n) => normalizeArtistFull(n, dbRow)),
     );
     const image = getTopAlbumImageFromNames(albumLookup, namesToCheck);
 
     rows.push({
-      name: await normalizeFull(name, dbRow),
+      name: await normalizeArtistFull(name, dbRow),
       playcount: entry.playcount,
       aliases: await Promise.all(
-        allAliases.map((a) => normalizeFull(a, dbRow)),
+        allAliases.map((a) => normalizeArtistFull(a, dbRow)),
       ),
       image,
     });
   }
 
   return rows.sort((a, b) => b.playcount - a.playcount);
-}
-
-/* ============================================================
-   Helpers
-   ============================================================ */
-
-function normalizeAlbumName(name: string): string {
-  return name.replace(/\s*-\s*(Single|EP)$/i, "").trim();
 }
 
 function extractAlbumNames(values: JsonArray): number[] {
@@ -360,9 +330,9 @@ async function buildArtistAlbumIndex(
     if (!rawArtist) continue;
 
     const dbRow = dbArtistMap[rawArtist];
-    const artistKey = await normalizeFull(rawArtist, dbRow);
+    const artistKey = await normalizeArtistFull(rawArtist, dbRow);
 
-    const albumKey = normalizeAlbumName(album.name);
+    const albumKey = normalizeAlbumFull(album.name);
     const playcount = parseInt(album.playcount) || 0;
 
     if (!index.has(artistKey)) {
@@ -393,13 +363,13 @@ async function applySameNameDisambiguation(
   // Normalize DB artist lookup
   const normalizedDbArtist = new Map<string, DBArtist>();
   for (const artist of Object.values(dbArtistMap)) {
-    const norm = await normalizeFull(artist.name, artist);
+    const norm = await normalizeArtistFull(artist.name, artist);
     normalizedDbArtist.set(norm, artist);
   }
 
   // Albums from Last.FM
   const albumIndex = await buildArtistAlbumIndex(albums, dbArtistMap);
-  const albumLookup = await buildAlbumLookup(albums, dbArtistMap); // 🔹 needed for images
+  const albumLookup = await buildAlbumLookup(albums, dbArtistMap);
 
   for (const row of rows) {
     const dbArtist = normalizedDbArtist.get(row.name);
@@ -452,7 +422,7 @@ async function applySameNameDisambiguation(
         }
 
         for (const name of albumNames) {
-          const key = normalizeAlbumName(name);
+          const key = normalizeAlbumFull(name);
           sum += artistAlbums.get(key) || 0;
         }
       }
