@@ -231,9 +231,9 @@ async function buildResult(
   }
   for (const [artistName, lfmAlbum] of Object.entries(lfmAlbumMap)) {
     for (const [albumName, album] of Object.entries(lfmAlbum)) {
-      if (albumName == "I burn") {
-        console.log(lfmAlbum);
-      }
+      // if (albumName == "I burn") {
+      //   console.log(lfmAlbum);
+      // }
       // Remove the - Single or - EP suffixes for better matching
       const cleanedName = String(
         albumName.replace(/\s*-\s*(Single|EP)$/i, "").trim(),
