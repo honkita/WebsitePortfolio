@@ -47,6 +47,14 @@ export interface lfmArtistAlbums {
 }
 
 /**
+ * Database Album Interface (Cleaned)
+ */
+export interface DBAlbumClean {
+  name: string;
+  aliases: string[];
+}
+
+/**
  * Cleaned Albums Interface
  */
 export interface cleanedAlbums {

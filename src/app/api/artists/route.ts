@@ -16,6 +16,7 @@ import {
   artistAlbumContainer,
   cleanedAlbums,
   artistAlbumTopAlbum,
+  DBAlbumClean,
 } from "@/types/Music";
 
 // Environment Variables
@@ -270,10 +271,46 @@ async function buildResult(
 }
 
 async function albumNormalization(
-  lfmArtistsMap: Record<string, number>,
-  lfmAlbumMap: Record<string, Record<string, LastFmAlbumClean>>,
-): Promise<Record<string, lfmArtistAlbums>> {
-  const lfmArtistAlbumMap: Record<string, lfmArtistAlbums> = {};
+  mergedAlbumArtists: Record<string, artistAlbumContainer>,
+  lfmAlbumMap: Record<string, Record<string, string[]>>,
+): Promise<Record<string, artistAlbumContainer>> {
+  const lfmArtistAlbumMap: Record<string, artistAlbumContainer> = {};
+
+  for (const [artistName, albums] of Object.entries(lfmAlbumMap)) {
+    // Construct alias maps
+    const aliasMap: Record<string, string> = {};
+
+    for (const albumName of Object.keys(albums)) {
+      const aliasNorms = albums[albumName];
+      aliasNorms.forEach((a) => {
+        aliasMap[a] = albumName;
+      });
+    }
+
+    // Iterate through mergedAlbumArtists to normalize albums
+    for (const [oldName, normalizedName] of Object.entries(aliasMap)) {
+      // If the old album name exists in the artist's albums
+      if (mergedAlbumArtists[artistName]["albums"][oldName]) {
+        mergedAlbumArtists[artistName]["albums"][normalizedName] = {
+          playcount:
+            Number(
+              mergedAlbumArtists[artistName]["albums"][oldName].playcount,
+            ) +
+            Number(
+              mergedAlbumArtists[artistName]["albums"][normalizedName]
+                ?.playcount ?? 0,
+            ),
+          image:
+            mergedAlbumArtists[artistName]["albums"][normalizedName].image ||
+            mergedAlbumArtists[artistName]["albums"][oldName].image,
+        };
+
+        // Remove the old album entry
+        delete mergedAlbumArtists[artistName]["albums"][oldName];
+      }
+    }
+  }
+
   return lfmArtistAlbumMap;
 }
 
@@ -325,7 +362,7 @@ export async function GET() {
                 name: true,
               },
             },
-            Album: {
+            Albums: {
               select: {
                 id: true,
                 name: true,
@@ -338,13 +375,35 @@ export async function GET() {
         prisma.sameNames.findMany(),
       ]);
 
-    console.log(dbArtistAlbums);
-
     // Hash map for quick artist lookup
     const dbArtistMap: Record<string, DBArtist> = {};
     dbArtists.forEach((a) => (dbArtistMap[a.name] = a));
 
-    const dbAlbumsMap: Record<string, Record<string>> = {};
+    const dbAlbumsMap: Record<string, Record<string, string[]>> = {};
+
+    dbArtistAlbums.forEach((album) => {
+      const artistName = album.Artist.name;
+      const albumName = album.Albums.name;
+
+      dbAlbumsMap[artistName] ??= {};
+
+      let aliases: string[] = [];
+      if (Array.isArray(album.Albums.aliases)) {
+        aliases = album.Albums.aliases.filter(
+          (a): a is string => typeof a === "string",
+        );
+      } else if (typeof album.Albums.aliases === "string") {
+        try {
+          const parsed = JSON.parse(album.Albums.aliases);
+          if (Array.isArray(parsed))
+            aliases = parsed.filter((a): a is string => typeof a === "string");
+        } catch {}
+      }
+
+      dbAlbumsMap[artistName][albumName] = aliases;
+    });
+
+    console.log(dbAlbumsMap);
 
     const [lfmArtists, lfmAlbums] = await Promise.all([
       fetchAllLastFm<LastFmArtist>("user.gettopartists", USERNAME, API_KEY),
@@ -375,13 +434,9 @@ export async function GET() {
 
     const merged = await mergeArtists(baseResult, dbArtistMap);
 
-    // const normalizeAlbums = await albumNormalization(
-    //   merged,
-    //   dbAlbums,
-    //   dbArtistAlbum,
-    // );
-
     // console.log("merged: ", Object.keys(merged).length);
+
+    const mergedNormalized = await albumNormalization(merged, dbAlbumsMap);
 
     const bestAlbum = await getBestAlbum(merged);
 
