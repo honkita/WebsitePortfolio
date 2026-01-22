@@ -113,9 +113,7 @@ export default function MusicArtist({
 
             <div className={MusicArtistCSS.info}>
                 <div className={MusicArtistCSS.name}>{name}</div>
-                <div className={MusicArtistCSS.scrobbles}>
-                    🎧 {scrobbles.toLocaleString()}
-                </div>
+                <div className={MusicArtistCSS.scrobbles}>🎧 {scrobbles}</div>
             </div>
         </div>
     );

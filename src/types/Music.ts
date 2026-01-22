@@ -1,14 +1,10 @@
-import { JsonValue } from "@prisma/client/runtime/library";
-
 /**
- * Artist Interface
+ * Merged Artist Interface
  */
-export interface Artist {
-  id: number;
-  name: string;
-  aliases: string | string[];
-  playcount: number | 0;
-  image: string | "";
+interface Artist {
+  id: number | -1;
+  playcount: number;
+  ignoreChinese: boolean;
 }
 
 /**
@@ -16,8 +12,7 @@ export interface Artist {
  */
 export interface LastFmArtist {
   name: string;
-  playcount: string;
-  image: LastFmImage[];
+  playcount: number;
 }
 
 /**
@@ -29,11 +24,47 @@ export interface LastFmImage {
 }
 
 /**
- * Last.fm Album Interface
+ * Last.fm Album Interface (Direct from the API)
  */
 export interface LastFmAlbum {
   name: string;
-  playcount: string;
+  playcount: number;
   artist: { name: string };
   image: LastFmImage[];
+}
+
+/**
+ * Last.fm Album Interface (Cleaned)
+ */
+export interface LastFmAlbumClean {
+  playcount: number;
+  image: string;
+}
+
+export interface lfmArtistAlbums {
+  playcount: number;
+  albums: Record<string, LastFmAlbumClean>;
+}
+
+/**
+ * Cleaned Albums Interface
+ */
+export interface cleanedAlbums {
+  playcount: number;
+  image: string;
+}
+
+/**
+ * Artist Album Container Interface
+ */
+export interface artistAlbumContainer extends Artist {
+  albums: Record<string, cleanedAlbums>;
+}
+
+/**
+ * Artist Top Album Interface
+ */
+export interface artistAlbumTopAlbum extends Artist {
+  name: string;
+  topAlbumImage: string;
 }

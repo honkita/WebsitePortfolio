@@ -4,56 +4,24 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 // Utils
-import { canonicalizeName } from "@/utils/canonicalizeName";
-import {
-  normalizeCommas,
-  normalizeCV,
-  normalizeSpaces,
-} from "@/utils/normalizeName";
+import { normalizeArtistFull } from "@/utils/normalizeName";
 
 // Types
 import type { Artist as DBArtist } from "@prisma/client";
-import { LastFmArtist, LastFmAlbum } from "@/types/Music";
+import {
+  LastFmArtist,
+  LastFmAlbum,
+  LastFmAlbumClean,
+  lfmArtistAlbums,
+  artistAlbumContainer,
+  cleanedAlbums,
+  artistAlbumTopAlbum,
+} from "@/types/Music";
 
 // Environment Variables
 const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
 const USERNAME = process.env.NEXT_PUBLIC_LASTFM_USERNAME!;
 const API_URL = "https://ws.audioscrobbler.com/2.0/";
-
-// Merge structure
-interface MergedEntry {
-  playcount: number;
-  candidates: LastFmArtist[];
-  aliasNames: string[];
-}
-
-// Output result
-interface ResultRow {
-  name: string;
-  playcount: number;
-  aliases: string[];
-  image: string;
-}
-
-// Album lookup table
-type AlbumLookup = Record<string, LastFmAlbum[]>;
-
-/**
- * Full normalization function
- * @param name
- * @param dbRow
- * @returns
- */
-async function normalizeFull(name: string, dbRow?: DBArtist): Promise<string> {
-  const pre = normalizeSpaces(normalizeCommas(normalizeCV(name)));
-  const skipChinese = !!dbRow?.ignoreChineseCanonization;
-  // if (skipChinese) {
-  //   console.log(
-  //     `Normalizing "${name}" with skipChineseConversion=${skipChinese}`
-  //   );
-  // }
-  return canonicalizeName(pre, { skipChineseConversion: skipChinese });
-}
 
 /**
  * Fetches all pages concurrently
@@ -109,88 +77,16 @@ async function fetchAllLastFm<T>(
 }
 
 /**
- * Builds the albums lookup table
- * @param albums
- * @param dbArtistMap
- * @returns Promise<AlbumLookup>
- */
-async function buildAlbumLookup(
-  albums: LastFmAlbum[],
-  dbArtistMap: Record<string, DBArtist>,
-): Promise<AlbumLookup> {
-  const lookup: AlbumLookup = {};
-
-  for (const album of albums) {
-    const rawName = album.artist?.name;
-    if (!rawName) continue;
-
-    const dbRow = dbArtistMap[rawName];
-    const artistName = await normalizeFull(rawName, dbRow);
-
-    if (!lookup[artistName]) lookup[artistName] = [];
-    lookup[artistName].push(album);
-  }
-
-  return lookup;
-}
-
-/**
- * Gets the top album image
- * @param albumLookup
- * @param names
- * @returns string
- */
-function getTopAlbumImageFromNames(
-  albumLookup: AlbumLookup,
-  names: string[],
-): string {
-  let topAlbum: LastFmAlbum | null = null;
-
-  for (const name of names) {
-    const artistAlbums = albumLookup[name];
-    if (!artistAlbums?.length) continue;
-
-    const candidate = artistAlbums.reduce<LastFmAlbum | null>(
-      (max, a) =>
-        !max || parseInt(a.playcount) > parseInt(max.playcount) ? a : max,
-      null,
-    );
-
-    if (
-      !topAlbum ||
-      parseInt(candidate!.playcount) > parseInt(topAlbum.playcount)
-    ) {
-      topAlbum = candidate!;
-    }
-  }
-
-  if (!topAlbum) return "";
-
-  const sizes = ["mega", "extralarge", "large", "medium", "small"];
-  for (const size of sizes) {
-    const img = topAlbum.image.find((i) => i.size === size);
-    if (
-      img?.["#text"] &&
-      !img["#text"].includes("2a96cbd8b46e442fc41c2b86b821562f.png")
-    ) {
-      return img["#text"];
-    }
-  }
-
-  const fallback = topAlbum.image.find((i) => i["#text"]);
-  return fallback?.["#text"] || "";
-}
-
-/**
  * Merges the artists
- * @param lastFmArtists
+ * @param lfmArtistMap
  * @param dbArtistMap
  * @returns
  */
 async function mergeArtists(
-  lastFmArtists: LastFmArtist[],
+  lfmArtistAlbumMap: Record<string, lfmArtistAlbums>,
   dbArtistMap: Record<string, DBArtist>,
-) {
+): Promise<Record<string, artistAlbumContainer>> {
+  // Maps ALL the aliases
   const aliasMap: Record<string, string> = {};
 
   const asciiLower = (str: string) =>
@@ -198,9 +94,13 @@ async function mergeArtists(
 
   const normalizedDbPromises = Object.values(dbArtistMap).map(
     async (artist) => {
-      const nameNorm = await normalizeFull(artist.name, artist);
+      const nameNorm = await normalizeArtistFull(
+        artist.name,
+        artist.ignoreChineseCanonization,
+      );
 
       let aliases: string[] = [];
+
       if (Array.isArray(artist.aliases)) {
         aliases = artist.aliases.filter(
           (a): a is string => typeof a === "string",
@@ -214,18 +114,26 @@ async function mergeArtists(
       }
 
       const aliasNorm = await Promise.all(
-        aliases.map((a) => normalizeFull(a, artist)),
+        aliases.map((a) =>
+          normalizeArtistFull(a, artist.ignoreChineseCanonization),
+        ),
       );
 
-      return { original: artist, nameNorm, aliasNorm };
+      return {
+        id: artist.id,
+        name: artist.name,
+        ignoreChinese: artist?.ignoreChineseCanonization,
+        nameNorm,
+        aliasNorm,
+      };
     },
   );
 
   const normalizedDb = await Promise.all(normalizedDbPromises);
 
-  normalizedDb.forEach(({ original, nameNorm, aliasNorm }) => {
-    aliasMap[nameNorm] = original.name;
-    aliasNorm.forEach((a) => (aliasMap[a] = original.name));
+  normalizedDb.forEach(({ id, name, ignoreChinese, nameNorm, aliasNorm }) => {
+    aliasMap[nameNorm] = name;
+    aliasNorm.forEach((a) => (aliasMap[a] = name));
   });
 
   /**
@@ -243,11 +151,14 @@ async function mergeArtists(
     return a.length * pa - b.length * pb;
   });
 
-  const merged: Record<string, MergedEntry> = {};
+  const merged: Record<string, artistAlbumContainer> = {};
 
-  for (const artist of lastFmArtists) {
-    const dbRow = dbArtistMap[artist.name];
-    const canonName = await normalizeFull(artist.name, dbRow);
+  for (const [artistName, information] of Object.entries(lfmArtistAlbumMap)) {
+    const dbRow = dbArtistMap[artistName];
+    const canonName = await normalizeArtistFull(
+      artistName,
+      dbRow?.ignoreChineseCanonization ?? false,
+    );
 
     let mainName: string | undefined = aliasMap[canonName];
 
@@ -261,20 +172,37 @@ async function mergeArtists(
       }
     }
 
-    mainName = mainName || artist.name;
+    mainName = mainName || artistName;
 
     if (!merged[mainName])
-      merged[mainName] = { playcount: 0, candidates: [], aliasNames: [] };
+      merged[mainName] = {
+        playcount: 0,
+        albums: {},
+        ignoreChinese: false,
+        id: dbArtistMap[mainName]?.id || -1,
+      };
 
-    merged[mainName].playcount += parseInt(artist.playcount, 10);
-    merged[mainName].candidates.push(artist);
+    merged[mainName].playcount += Number(information.playcount);
 
-    if (
-      mainName !== artist.name &&
-      !merged[mainName].aliasNames.includes(artist.name)
-    ) {
-      merged[mainName].aliasNames.push(artist.name);
+    // Merge albums
+
+    const mergedAlbums = <Record<string, cleanedAlbums>>{};
+    for (const [name, value] of Object.entries(merged[mainName].albums)) {
+      mergedAlbums[name] = {
+        playcount:
+          (mergedAlbums[name]?.playcount ?? 0) + Number(value.playcount),
+        image: value.image,
+      };
     }
+    for (const [name, value] of Object.entries(information.albums)) {
+      mergedAlbums[name] = {
+        playcount:
+          (mergedAlbums[name]?.playcount ?? 0) + Number(value.playcount),
+        image: value.image,
+      };
+    }
+
+    merged[mainName].albums = mergedAlbums;
   }
 
   return merged;
@@ -288,52 +216,201 @@ async function mergeArtists(
  * @returns
  */
 async function buildResult(
-  merged: Record<string, MergedEntry>,
-  dbArtistMap: Record<string, DBArtist>,
-  albums: LastFmAlbum[],
-): Promise<ResultRow[]> {
-  const albumLookup = await buildAlbumLookup(albums, dbArtistMap);
-  const rows: ResultRow[] = [];
+  lfmArtistsMap: Record<string, number>,
+  lfmAlbumMap: Record<string, Record<string, LastFmAlbumClean>>,
+): Promise<Record<string, lfmArtistAlbums>> {
+  const lfmArtistAlbumMap: Record<string, lfmArtistAlbums> = {};
 
-  for (const [name, entry] of Object.entries(merged)) {
-    const dbRow = dbArtistMap[name];
+  for (const [artistName, playcount] of Object.entries(lfmArtistsMap)) {
+    if (playcount > 0) {
+      lfmArtistAlbumMap[artistName] = {
+        playcount: playcount,
+        albums: {},
+      };
+    }
+  }
+  for (const [artistName, lfmAlbum] of Object.entries(lfmAlbumMap)) {
+    for (const [albumName, album] of Object.entries(lfmAlbum)) {
+      // if (albumName == "I burn") {
+      //   console.log(lfmAlbum);
+      // }
+      // Remove the - Single or - EP suffixes for better matching
+      const cleanedName = String(
+        albumName.replace(/\s*-\s*(Single|EP)$/i, "").trim(),
+      );
+      // if (lfmAlbum.artistName === "i-dle" || lfmAlbum.artistName === "(G)I-DLE") {
+      //   console.log(name, ": ", lfmAlbum.playcount);
+      // }
 
-    let explicitAliases: string[] = [];
-    if (dbRow?.aliases) {
-      if (Array.isArray(dbRow.aliases)) {
-        explicitAliases = dbRow.aliases.filter(
-          (a): a is string => typeof a === "string",
-        );
-      } else if (typeof dbRow.aliases === "string") {
-        try {
-          const parsed = JSON.parse(dbRow.aliases);
-          if (Array.isArray(parsed))
-            explicitAliases = parsed.filter(
-              (a): a is string => typeof a === "string",
-            );
-        } catch {}
+      // Check if the name of the artist exists in the lfmArtistsMap
+      if (lfmArtistAlbumMap[artistName] !== undefined) {
+        // Check if the artist already has the album
+        if (
+          lfmArtistAlbumMap[artistName].albums[String(cleanedName)] !==
+          undefined
+        ) {
+          // If it exists, accumulate the playcount
+          lfmArtistAlbumMap[artistName].albums[String(cleanedName)].playcount =
+            Number(
+              lfmArtistAlbumMap[artistName].albums[String(cleanedName)]
+                .playcount,
+            ) + Number(album.playcount);
+
+          // Will need to add the album image checker later, but will leave out for now.....
+        } else {
+          lfmArtistAlbumMap[artistName].albums[String(cleanedName)] = album;
+        }
+      } else {
+        continue;
       }
     }
-
-    const allAliases = [...explicitAliases, ...entry.aliasNames];
-
-    const namesToCheck = await Promise.all(
-      [name, ...allAliases].map((n) => normalizeFull(n, dbRow)),
-    );
-    const image = getTopAlbumImageFromNames(albumLookup, namesToCheck);
-
-    rows.push({
-      name: await normalizeFull(name, dbRow),
-      playcount: entry.playcount,
-      aliases: await Promise.all(
-        allAliases.map((a) => normalizeFull(a, dbRow)),
-      ),
-      image,
-    });
   }
 
-  return rows.sort((a, b) => b.playcount - a.playcount);
+  return lfmArtistAlbumMap;
 }
+
+/**
+ * Gets the best album for each split artist
+ * @param merged
+ * @returns
+ */
+async function getBestAlbum(
+  merged: Record<string, artistAlbumContainer>,
+): Promise<artistAlbumTopAlbum[]> {
+  const result: artistAlbumTopAlbum[] = [];
+
+  for (const [artistName, data] of Object.entries(merged)) {
+    let topAlbumImage = "";
+    let highestPlaycount = -1;
+    for (const album of Object.values(data.albums)) {
+      if (album.playcount > highestPlaycount) {
+        highestPlaycount = album.playcount;
+        topAlbumImage = album.image;
+      }
+    }
+    result.push({
+      name: artistName,
+      id: data.id,
+      playcount: data.playcount,
+      ignoreChinese: data.ignoreChinese,
+      topAlbumImage: topAlbumImage,
+    });
+  }
+  return result;
+}
+
+// /**
+//  *
+//  * @param rows
+//  * @param dbArtistMap
+//  * @param albums
+//  * @returns
+//  */
+// async function applySameNameDisambiguation(
+//   rows: ResultRow[],
+//   dbArtistMap: Record<string, DBArtist>,
+//   albums: LastFmAlbum[],
+// ): Promise<ResultRow[]> {
+//   const output: ResultRow[] = [];
+
+//   // Normalize DB artist lookup
+//   const normalizedDbArtist = new Map<string, DBArtist>();
+//   for (const artist of Object.values(dbArtistMap)) {
+//     const norm = await normalizeArtistFull(artist.name, artist);
+//     normalizedDbArtist.set(norm, artist);
+//   }
+
+//   // Albums from Last.FM
+//   const albumIndex = await buildArtistAlbumIndex(albums, dbArtistMap);
+//   const albumLookup = await buildAlbumLookup(albums, dbArtistMap);
+
+//   for (const row of rows) {
+//     const dbArtist = normalizedDbArtist.get(row.name);
+
+//     // Artist not in DB → passthrough
+//     if (!dbArtist) {
+//       output.push(row);
+//       continue;
+//     }
+
+//     const sameNames = await prisma.sameNames.findMany({
+//       where: { groupID: dbArtist.id },
+//       orderBy: { isDefault: "desc" },
+//     });
+
+//     // No SameNames → passthrough
+//     if (!sameNames.length) {
+//       output.push(row);
+//       continue;
+//     }
+
+//     const artistAlbums = albumIndex.get(row.name) || new Map();
+//     let remaining = row.playcount;
+
+//     const buckets = new Map<number, number>();
+
+//     // Allocate album-based scrobbles to each SameName
+//     for (const sn of sameNames) {
+//       const albumIDs: number[] = extractAlbumNames(sn.albumIDs);
+//       if (!albumIDs.length) continue;
+
+//       let sum = 0;
+
+//       for (const albumID of albumIDs) {
+//         const albumRow = await prisma.album.findUnique({
+//           where: { id: albumID },
+//         });
+//         if (!albumRow) continue;
+
+//         const albumNames = [albumRow.name];
+//         if (albumRow.aliases) {
+//           if (Array.isArray(albumRow.aliases))
+//             albumNames.push(...albumRow.aliases);
+//           else if (typeof albumRow.aliases === "string") {
+//             try {
+//               const parsed = JSON.parse(albumRow.aliases);
+//               if (Array.isArray(parsed)) albumNames.push(...parsed);
+//             } catch {}
+//           }
+//         }
+
+//         for (const name of albumNames) {
+//           const key = normalizeAlbumFull(name);
+//           sum += artistAlbums.get(key) || 0;
+//         }
+//       }
+
+//       if (sum > 0) {
+//         buckets.set(sn.id, sum);
+//         remaining -= sum;
+//       }
+//     }
+
+//     // Bin leftovers into default SameName
+//     const defaultSN = sameNames.find((s) => s.isDefault) ?? sameNames[0];
+//     buckets.set(
+//       defaultSN.id,
+//       (buckets.get(defaultSN.id) || 0) + Math.max(remaining, 0),
+//     );
+
+//     // Emit split rows — each gets its own top album image
+//     for (const sn of sameNames) {
+//       const playcount = buckets.get(sn.id) || 0;
+//       if (playcount === 0 && !sn.isDefault) continue;
+
+//       const image = getTopAlbumImageFromNames(albumLookup, [sn.name]);
+
+//       output.push({
+//         ...row,
+//         name: sn.name,
+//         playcount,
+//         image,
+//       });
+//     }
+//   }
+
+//   return output.sort((a, b) => b.playcount - a.playcount);
+// }
 
 /**
  * GET Handler
@@ -341,19 +418,49 @@ async function buildResult(
  */
 export async function GET() {
   try {
+    // Fetch DB Artists
     const dbArtists = await prisma.artist.findMany();
+
+    // Hash map for quick artist lookup
     const dbArtistMap: Record<string, DBArtist> = {};
     dbArtists.forEach((a) => (dbArtistMap[a.name] = a));
 
-    const [lastFmArtists, lastFmAlbums] = await Promise.all([
+    const [lfmArtists, lfmAlbums] = await Promise.all([
       fetchAllLastFm<LastFmArtist>("user.gettopartists", USERNAME, API_KEY),
       fetchAllLastFm<LastFmAlbum>("user.gettopalbums", USERNAME, API_KEY),
     ]);
 
-    const merged = await mergeArtists(lastFmArtists, dbArtistMap);
-    const result = await buildResult(merged, dbArtistMap, lastFmAlbums);
+    // Organize the fetched artists and albums into desired structure with hashmap
+    const lfmArtistMap: Record<string, number> = {};
+    lfmArtists.forEach(
+      (artist) => (lfmArtistMap[artist.name] = artist.playcount),
+    );
 
-    return NextResponse.json(result);
+    const lfmAlbumMap: Record<string, Record<string, LastFmAlbumClean>> = {};
+    lfmAlbums.forEach((album) => {
+      const artist = album.artist.name;
+      const name = album.name;
+
+      lfmAlbumMap[artist] ??= {};
+
+      lfmAlbumMap[artist][name] = {
+        image: album.image[album.image.length - 1]["#text"],
+        playcount: Number(album.playcount),
+      };
+    });
+    const baseResult = await buildResult(lfmArtistMap, lfmAlbumMap);
+
+    // console.log("base: ", Object.keys(baseResult).length);
+
+    const merged = await mergeArtists(baseResult, dbArtistMap);
+
+    // console.log("merged: ", Object.keys(merged).length);
+
+    const bestAlbum = await getBestAlbum(merged);
+
+    // console.log("best album: ", Object.keys(bestAlbum).length);
+
+    return NextResponse.json(bestAlbum);
   } catch (err) {
     console.error("Fetch + merge error:", err);
     return NextResponse.json(

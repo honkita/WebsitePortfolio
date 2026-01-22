@@ -12,7 +12,7 @@ import styles from "@/app/ui/home.module.css";
 import utilStyles from "@/app/ui/theme.util.module.css";
 
 // Types
-import { Artist } from "@/types/Music";
+import { artistAlbumTopAlbum } from "@/types/Music";
 
 /**
  * Clientside Music Page
@@ -20,7 +20,9 @@ import { Artist } from "@/types/Music";
  */
 export default function MusicClient() {
     // State variables
-    const [artists, setArtists] = useState<Artist[]>([]);
+    const [artists, setArtists] = useState<Record<string, artistAlbumTopAlbum>>(
+        {}
+    );
     const [scrobbles, setScrobbles] = useState<number | null>(null);
 
     const [artistCount, setArtistCount] = useState(0);
@@ -35,7 +37,10 @@ export default function MusicClient() {
             try {
                 const res = await fetch("/api/artists");
                 if (!res.ok) throw new Error("Failed to fetch artists");
-                const data = (await res.json()) as Artist[];
+                const data = (await res.json()) as Record<
+                    string,
+                    artistAlbumTopAlbum
+                >;
                 setArtists(data);
                 setErrorArtists(null);
             } catch (err: any) {
@@ -88,7 +93,7 @@ export default function MusicClient() {
         );
 
     // Sorts the artists in descending order of playcount
-    const sortedArtists = [...artists].sort(
+    const sortedArtists = Object.values(artists).sort(
         (a, b) => b.playcount - a.playcount
     );
 
@@ -100,11 +105,11 @@ export default function MusicClient() {
                 <div className={styles.container}>
                     <div className={styles.artistGrid}>
                         {sortedArtists.map(
-                            ({ name, playcount, image }, index) => (
+                            ({ name, playcount, topAlbumImage }, index) => (
                                 <MusicArtist
                                     key={name}
                                     name={name}
-                                    image={image}
+                                    image={topAlbumImage}
                                     scrobbles={playcount}
                                     rank={index + 1}
                                 />
