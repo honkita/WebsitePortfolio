@@ -271,6 +271,11 @@ async function buildResult(
   return lfmArtistAlbumMap;
 }
 
+/**
+ * Gets the best album for each split artist
+ * @param merged
+ * @returns
+ */
 async function getBestAlbum(
   merged: Record<string, artistAlbumContainer>,
 ): Promise<artistAlbumTopAlbum[]> {

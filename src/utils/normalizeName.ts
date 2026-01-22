@@ -1,9 +1,6 @@
 // Utils
 import { canonicalizeName } from "@/utils/canonicalizeName";
 
-// Types
-import type { Artist as DBArtist } from "@prisma/client";
-
 /**
  * Detects if string is predominantly CJK (Chinese/Japanese/Korean)
  */
