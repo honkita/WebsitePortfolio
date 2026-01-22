@@ -43,15 +43,14 @@ export function normalizeCommas(str: string): string {
 /**
  * Full artist name normalization
  * @param name
- * @param dbRow
+ * @param skipChinese
  * @returns
  */
 export async function normalizeArtistFull(
   name: string,
-  dbRow?: DBArtist,
+  skipChinese: boolean,
 ): Promise<string> {
   const pre = normalizeSpaces(normalizeCommas(normalizeCV(name)));
-  const skipChinese = !!dbRow?.ignoreChineseCanonization;
   return canonicalizeName(pre, { skipChineseConversion: skipChinese });
 }
 
