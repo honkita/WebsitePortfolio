@@ -265,8 +265,6 @@ async function buildResult(
       }
     }
   }
-  console.log(lfmArtistAlbumMap["i-dle"]);
-  // console.log(lfmArtistAlbumMap["(G)I-DLE"]);
 
   return lfmArtistAlbumMap;
 }
