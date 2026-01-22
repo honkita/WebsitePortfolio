@@ -269,6 +269,14 @@ async function buildResult(
   return lfmArtistAlbumMap;
 }
 
+async function albumNormalization(
+  lfmArtistsMap: Record<string, number>,
+  lfmAlbumMap: Record<string, Record<string, LastFmAlbumClean>>,
+): Promise<Record<string, lfmArtistAlbums>> {
+  const lfmArtistAlbumMap: Record<string, lfmArtistAlbums> = {};
+  return lfmArtistAlbumMap;
+}
+
 /**
  * Gets the best album for each split artist
  * @param merged
@@ -299,119 +307,6 @@ async function getBestAlbum(
   return result;
 }
 
-// /**
-//  *
-//  * @param rows
-//  * @param dbArtistMap
-//  * @param albums
-//  * @returns
-//  */
-// async function applySameNameDisambiguation(
-//   rows: ResultRow[],
-//   dbArtistMap: Record<string, DBArtist>,
-//   albums: LastFmAlbum[],
-// ): Promise<ResultRow[]> {
-//   const output: ResultRow[] = [];
-
-//   // Normalize DB artist lookup
-//   const normalizedDbArtist = new Map<string, DBArtist>();
-//   for (const artist of Object.values(dbArtistMap)) {
-//     const norm = await normalizeArtistFull(artist.name, artist);
-//     normalizedDbArtist.set(norm, artist);
-//   }
-
-//   // Albums from Last.FM
-//   const albumIndex = await buildArtistAlbumIndex(albums, dbArtistMap);
-//   const albumLookup = await buildAlbumLookup(albums, dbArtistMap);
-
-//   for (const row of rows) {
-//     const dbArtist = normalizedDbArtist.get(row.name);
-
-//     // Artist not in DB → passthrough
-//     if (!dbArtist) {
-//       output.push(row);
-//       continue;
-//     }
-
-//     const sameNames = await prisma.sameNames.findMany({
-//       where: { groupID: dbArtist.id },
-//       orderBy: { isDefault: "desc" },
-//     });
-
-//     // No SameNames → passthrough
-//     if (!sameNames.length) {
-//       output.push(row);
-//       continue;
-//     }
-
-//     const artistAlbums = albumIndex.get(row.name) || new Map();
-//     let remaining = row.playcount;
-
-//     const buckets = new Map<number, number>();
-
-//     // Allocate album-based scrobbles to each SameName
-//     for (const sn of sameNames) {
-//       const albumIDs: number[] = extractAlbumNames(sn.albumIDs);
-//       if (!albumIDs.length) continue;
-
-//       let sum = 0;
-
-//       for (const albumID of albumIDs) {
-//         const albumRow = await prisma.album.findUnique({
-//           where: { id: albumID },
-//         });
-//         if (!albumRow) continue;
-
-//         const albumNames = [albumRow.name];
-//         if (albumRow.aliases) {
-//           if (Array.isArray(albumRow.aliases))
-//             albumNames.push(...albumRow.aliases);
-//           else if (typeof albumRow.aliases === "string") {
-//             try {
-//               const parsed = JSON.parse(albumRow.aliases);
-//               if (Array.isArray(parsed)) albumNames.push(...parsed);
-//             } catch {}
-//           }
-//         }
-
-//         for (const name of albumNames) {
-//           const key = normalizeAlbumFull(name);
-//           sum += artistAlbums.get(key) || 0;
-//         }
-//       }
-
-//       if (sum > 0) {
-//         buckets.set(sn.id, sum);
-//         remaining -= sum;
-//       }
-//     }
-
-//     // Bin leftovers into default SameName
-//     const defaultSN = sameNames.find((s) => s.isDefault) ?? sameNames[0];
-//     buckets.set(
-//       defaultSN.id,
-//       (buckets.get(defaultSN.id) || 0) + Math.max(remaining, 0),
-//     );
-
-//     // Emit split rows — each gets its own top album image
-//     for (const sn of sameNames) {
-//       const playcount = buckets.get(sn.id) || 0;
-//       if (playcount === 0 && !sn.isDefault) continue;
-
-//       const image = getTopAlbumImageFromNames(albumLookup, [sn.name]);
-
-//       output.push({
-//         ...row,
-//         name: sn.name,
-//         playcount,
-//         image,
-//       });
-//     }
-//   }
-
-//   return output.sort((a, b) => b.playcount - a.playcount);
-// }
-
 /**
  * GET Handler
  * @returns NextResponse
@@ -419,11 +314,37 @@ async function getBestAlbum(
 export async function GET() {
   try {
     // Fetch DB Artists
-    const dbArtists = await prisma.artist.findMany();
+    const [dbArtists, dbAlbums, dbArtistAlbums, dbSameNames] =
+      await Promise.all([
+        prisma.artist.findMany(),
+        prisma.album.findMany(),
+        prisma.artistAlbum.findMany({
+          select: {
+            Artist: {
+              select: {
+                name: true,
+              },
+            },
+            Album: {
+              select: {
+                id: true,
+                name: true,
+                aliases: true,
+              },
+            },
+            role: true,
+          },
+        }),
+        prisma.sameNames.findMany(),
+      ]);
+
+    console.log(dbArtistAlbums);
 
     // Hash map for quick artist lookup
     const dbArtistMap: Record<string, DBArtist> = {};
     dbArtists.forEach((a) => (dbArtistMap[a.name] = a));
+
+    const dbAlbumsMap: Record<string, Record<string>> = {};
 
     const [lfmArtists, lfmAlbums] = await Promise.all([
       fetchAllLastFm<LastFmArtist>("user.gettopartists", USERNAME, API_KEY),
@@ -453,6 +374,12 @@ export async function GET() {
     // console.log("base: ", Object.keys(baseResult).length);
 
     const merged = await mergeArtists(baseResult, dbArtistMap);
+
+    // const normalizeAlbums = await albumNormalization(
+    //   merged,
+    //   dbAlbums,
+    //   dbArtistAlbum,
+    // );
 
     // console.log("merged: ", Object.keys(merged).length);
 
