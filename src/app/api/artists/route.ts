@@ -225,7 +225,11 @@ async function buildResult(
   const lfmArtistAlbumMap: lfmArtistAlbumMapType = {};
 
   for (const [artistName, playcount] of Object.entries(lfmArtistsMap)) {
-    if (playcount > 0) {
+    if (artistName == "Baby Monster" || artistName == "BabyMonster")
+      console.log("Found ", artistName);
+    if (playcount >= 0) {
+      if (artistName == "Baby Monster" || artistName == "BabyMonster")
+        console.log("Found ", artistName);
       lfmArtistAlbumMap[artistName] = {
         playcount: playcount,
         albums: {},
@@ -235,6 +239,8 @@ async function buildResult(
   for (const [artistName, lfmAlbum] of Object.entries(lfmAlbumMap)) {
     for (const [albumName, album] of Object.entries(lfmAlbum)) {
       // Remove the - Single or - EP suffixes for better matching
+      if (artistName == "Baby Monster" || artistName == "BabyMonster")
+        console.log("Found ", artistName, " ", albumName);
       const cleanedName = String(
         albumName
           .replace(/\s*-\s*(Single|EP)$/i, "")
@@ -264,6 +270,8 @@ async function buildResult(
         continue;
       }
     }
+    if (artistName === "Baby Monster")
+      console.log(lfmArtistAlbumMap["Baby Monster"]);
   }
 
   return lfmArtistAlbumMap;
@@ -546,7 +554,6 @@ export async function GET() {
       fetchAllLastFm<lfmArtist>("user.gettopartists", USERNAME, API_KEY),
       fetchAllLastFm<lfmAlbum>("user.gettopalbums", USERNAME, API_KEY),
     ]);
-
     // Organize the fetched artists and albums into desired structure with hashmap
     const lfmArtistMap: Record<string, number> = {};
     lfmArtists.forEach(
@@ -580,14 +587,17 @@ export async function GET() {
     );
 
     // USE THIS FOR DEBUGGING ARTISTS AND FOR DATABASE FIXING
-    console.log(
-      Object.keys(splitArtistList["Mrs. GREEN APPLE"]["albums"]).sort(),
-    );
+    // console.log(
+    //   Object.keys(splitArtistList["Mrs. GREEN APPLE"]["albums"]).sort(),
+    // );
 
     // Determine the most listened to album for each artist
     const bestAlbum = await getBestAlbum(splitArtistList);
 
-    return NextResponse.json(bestAlbum);
+    return NextResponse.json({
+      "Best Albums": bestAlbum,
+      "All Data": splitArtistList,
+    });
   } catch (err) {
     console.error("Fetch + merge error:", err);
     return NextResponse.json(

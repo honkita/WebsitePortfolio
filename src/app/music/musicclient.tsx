@@ -12,7 +12,10 @@ import styles from "@/app/ui/home.module.css";
 import utilStyles from "@/app/ui/theme.util.module.css";
 
 // Types
-import { artistAlbumTopAlbum } from "@/types/Music";
+import {
+    artistAlbumTopAlbum,
+    artistAlbumContainerMapType
+} from "@/types/Music";
 
 /**
  * Clientside Music Page
@@ -23,6 +26,11 @@ export default function MusicClient() {
     const [artists, setArtists] = useState<Record<string, artistAlbumTopAlbum>>(
         {}
     );
+
+    const [artistAlbums, setArtistAlbums] = useState<
+        Record<string, artistAlbumContainerMapType>
+    >({});
+
     const [scrobbles, setScrobbles] = useState<number | null>(null);
 
     const [artistCount, setArtistCount] = useState(0);
@@ -37,7 +45,13 @@ export default function MusicClient() {
             try {
                 const res = await fetch("/api/artists");
                 if (!res.ok) throw new Error("Failed to fetch artists");
-                const data = (await res.json()) as Record<
+                const call = await res.json();
+                const artistAlbums = call["All Data"] as Record<
+                    string,
+                    artistAlbumContainerMapType
+                >;
+                setArtistAlbums(artistAlbums);
+                const data = call["Best Albums"] as Record<
                     string,
                     artistAlbumTopAlbum
                 >;
@@ -111,6 +125,7 @@ export default function MusicClient() {
                                     name={name}
                                     image={topAlbumImage}
                                     scrobbles={playcount}
+                                    albums={artistAlbums[name].albums}
                                     rank={index + 1}
                                 />
                             )

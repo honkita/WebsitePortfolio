@@ -28,7 +28,7 @@ interface cleanedAlbums {
 /**
  * Artist Album Container Interface
  */
-interface artistAlbumContainer extends Artist {
+export interface artistAlbumContainer extends Artist {
   albums: Record<string, cleanedAlbums>;
 }
 

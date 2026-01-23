@@ -16,6 +16,7 @@
     "react": "^19.1.0",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^19.1.0",
+    "react-modal": "^3.16.3",
     "react-router-dom": "^6.22.3",
     "semver": "^7.7.2"
   },
@@ -23,6 +24,7 @@
     "@types/node": "^22.14.1",
     "@types/opencc-js": "^1.0.3",
     "@types/react": "^19.1.2",
+    "@types/react-modal": "^3.16.3",
     "javascript-obfuscator": "^4.1.0",
     "prisma": "^6.19.0",
     "typescript": "^5.8.3"

@@ -3,17 +3,22 @@
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
+// Child Components
+import MusicArtistPopup from "@/components/MusicArtist/MusicArtistPopup/MusicArtistPopup";
+
 // CSS
 import MusicArtistCSS from "./MusicArtist.module.css";
 
 // Lib
 import stringToColour from "@/lib/stringToColour";
+import { artistAlbumContainer } from "@/types/Music";
 
 // Props
 interface MusicArtistProps {
     name: string;
     image: string;
     scrobbles: number;
+    albums: artistAlbumContainer;
     rank: number;
 }
 
@@ -39,6 +44,7 @@ function isValidImageUrl(url: string): Promise<boolean> {
  * @param name
  * @param image
  * @param scrobbles
+ * @param albums
  * @param rank
  * @returns JSX.Element
  */
@@ -46,6 +52,7 @@ export default function MusicArtist({
     name,
     image,
     scrobbles,
+    albums,
     rank
 }: MusicArtistProps) {
     const { resolvedTheme } = useTheme();
@@ -113,7 +120,10 @@ export default function MusicArtist({
 
             <div className={MusicArtistCSS.info}>
                 <div className={MusicArtistCSS.name}>{name}</div>
-                <div className={MusicArtistCSS.scrobbles}>🎧 {scrobbles}</div>
+                <div className={MusicArtistCSS.scrobbles}>
+                    🎧{scrobbles} | 💿{Object.keys(albums).length}
+                </div>
+                {/* ADD THIS WHEN MODAL IS READY!!! <MusicArtistPopup name={name} /> */}
             </div>
         </div>
     );
