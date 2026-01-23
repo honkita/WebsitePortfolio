@@ -11,12 +11,8 @@ const API_URL = "https://ws.audioscrobbler.com/2.0/";
 export async function GET() {
   try {
     const res = await fetch(
-      `${API_URL}?method=user.getinfo&user=${USERNAME}&api_key=${API_KEY}&format=json`
+      `${API_URL}?method=user.getinfo&user=${USERNAME}&api_key=${API_KEY}&format=json`,
     );
-
-    // console.log(
-    //   `${API_URL}?method=user.getinfo&user=${USERNAME}&api_key=${API_KEY}&format=json`
-    // );
 
     if (!res.ok) throw new Error("Failed to fetch user info");
 
@@ -28,7 +24,7 @@ export async function GET() {
     console.error(err);
     return NextResponse.json(
       { error: "Failed to fetch total scrobbles" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

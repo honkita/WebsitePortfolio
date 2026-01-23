@@ -299,9 +299,6 @@ async function albumNormalization(
     for (const [oldName, normalizedName] of Object.entries(aliasMap)) {
       // If the old album name exists in the artist's albums
       if (mergedAlbumArtists[artistName]["albums"][oldName]) {
-        console.log(
-          `Normalizing album "${oldName}" to "${normalizedName}" for artist "${artistName}"`,
-        );
         mergedAlbumArtists[artistName]["albums"][normalizedName] = {
           playcount:
             Number(
@@ -327,7 +324,6 @@ async function albumNormalization(
             str.replace(/[A-Za-z]/g, (c) => c.toLowerCase());
           const canonAscii = asciiLower(oldName);
           for (const dbCanon of Object.keys(albums)) {
-            console.log(dbCanon, canonAscii);
             if (asciiLower(dbCanon).includes(canonAscii)) {
               mainName = aliasMap[dbCanon];
               break;
@@ -401,12 +397,8 @@ async function splitArtists(
     result[defaultName]["playcount"] =
       result[defaultName]["playcount"] + defaultPlaycount;
 
-    // console.log(result);
-    // Remove the original artist entry and add the new entries to the merge normalized
-
-    delete mergedNormalized[originalName];
+    // Remove the original artist entry and add the new entries to the merge normalized    delete mergedNormalized[originalName];
     mergedNormalized = { ...result, ...mergedNormalized };
-    // console.log(originalName, ":\n", baseData);
   }
 
   return mergedNormalized;
@@ -587,8 +579,9 @@ export async function GET() {
       sameNameMap,
     );
 
+    // USE THIS FOR DEBUGGING ARTISTS AND FOR DATABASE FIXING
     console.log(
-      Object.keys(splitArtistList["Dreamcatcher (드림캐쳐)"]["albums"]).sort(),
+      Object.keys(splitArtistList["Mrs. GREEN APPLE"]["albums"]).sort(),
     );
 
     // Determine the most listened to album for each artist
