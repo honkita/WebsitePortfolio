@@ -291,6 +291,9 @@ async function albumNormalization(
     for (const [oldName, normalizedName] of Object.entries(aliasMap)) {
       // If the old album name exists in the artist's albums
       if (mergedAlbumArtists[artistName]["albums"][oldName]) {
+        console.log(
+          `Normalizing album "${oldName}" to "${normalizedName}" for artist "${artistName}"`,
+        );
         mergedAlbumArtists[artistName]["albums"][normalizedName] = {
           playcount:
             Number(
@@ -307,6 +310,21 @@ async function albumNormalization(
 
         // Remove the old album entry
         delete mergedAlbumArtists[artistName]["albums"][oldName];
+      } else {
+        let mainName: string | undefined = aliasMap[oldName];
+
+        if (!mainName) {
+          const asciiLower = (str: string) =>
+            str.replace(/[A-Za-z]/g, (c) => c.toLowerCase());
+          const canonAscii = asciiLower(oldName);
+          for (const dbCanon of Object.keys(albums)) {
+            console.log(dbCanon, canonAscii);
+            if (asciiLower(dbCanon).includes(canonAscii)) {
+              mainName = aliasMap[dbCanon];
+              break;
+            }
+          }
+        }
       }
     }
   }
@@ -345,7 +363,6 @@ async function splitArtists(
         albumToSplitMap[album] = splitName;
       });
     }
-    console.log(albumToSplitMap);
     let defaultPlaycount = Number(mergedNormalized[originalName]["playcount"]);
 
     const baseData = mergedNormalized[originalName];
@@ -355,7 +372,6 @@ async function splitArtists(
       // If the album belongs to a split artist, add the album to the list AND accumulate the playcount
       if (albumToSplitMap[albumName]) {
         const splitName = albumToSplitMap[albumName];
-        console.log(splitName);
         const currentAlbums = result[splitName]?.albums || {};
         currentAlbums[albumName] = albumData;
 
@@ -363,8 +379,6 @@ async function splitArtists(
           result[splitName]["playcount"] + albumData.playcount;
         result[splitName]["albums"] = currentAlbums;
       } else {
-        console.log(defaultName);
-
         const currentAlbums = result[defaultName]?.albums || {};
         currentAlbums[albumName] = albumData;
 
@@ -378,7 +392,7 @@ async function splitArtists(
     result[defaultName]["playcount"] =
       result[defaultName]["playcount"] + defaultPlaycount;
 
-    console.log(result);
+    // console.log(result);
     // Remove the original artist entry and add the new entries to the merge normalized
 
     delete mergedNormalized[originalName];
@@ -492,8 +506,6 @@ export async function GET() {
         } catch {}
       }
 
-      console.log(aliases);
-
       const aliaseNames = aliases
         .map((id) => albumMap[Number(id)])
         .filter((a) => a);
@@ -564,6 +576,10 @@ export async function GET() {
       ),
       defaultArtist,
       sameNameMap,
+    );
+
+    console.log(
+      Object.keys(splitArtistList["Dreamcatcher (드림캐쳐)"]["albums"]),
     );
 
     // Determine the most listened to album for each artist
