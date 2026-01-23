@@ -8,17 +8,18 @@ import { normalizeArtistFull } from "@/utils/normalizeName";
 
 // Types
 import type { Artist as DBArtist } from "@prisma/client";
-import {
-  LastFmArtist,
-  LastFmAlbum,
-  LastFmAlbumClean,
-  lfmArtistAlbums,
-  artistAlbumContainer,
-  cleanedAlbums,
+import type {
+  dbArtistMapType,
+  artistAlbumContainerMapType,
+  artistCleanAlbumsMapType,
   artistAlbumTopAlbum,
-  sameArtist,
-  sameArtistValues,
 } from "@/types/Music";
+import type {
+  lfmArtist,
+  lfmAlbum,
+  lfmArtistAlbumMapType,
+  lfmAlbumMapType,
+} from "@/types/LastFM";
 
 // Environment Variables
 const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
@@ -85,9 +86,9 @@ async function fetchAllLastFm<T>(
  * @returns
  */
 async function mergeArtists(
-  lfmArtistAlbumMap: Record<string, lfmArtistAlbums>,
-  dbArtistMap: Record<string, DBArtist>,
-): Promise<Record<string, artistAlbumContainer>> {
+  lfmArtistAlbumMap: lfmArtistAlbumMapType,
+  dbArtistMap: dbArtistMapType,
+): Promise<artistAlbumContainerMapType> {
   // Maps ALL the aliases
   const aliasMap: Record<string, string> = {};
 
@@ -133,7 +134,7 @@ async function mergeArtists(
 
   const normalizedDb = await Promise.all(normalizedDbPromises);
 
-  normalizedDb.forEach(({ id, name, ignoreChinese, nameNorm, aliasNorm }) => {
+  normalizedDb.forEach(({ name, nameNorm, aliasNorm }) => {
     aliasMap[nameNorm] = name;
     aliasNorm.forEach((a) => (aliasMap[a] = name));
   });
@@ -141,7 +142,7 @@ async function mergeArtists(
   /**
    * Penalty function for sorting
    * @param name
-   * @returns
+   * @returns 2 if it is a composition of multiple artists, else 1
    */
   function penalty(name: string) {
     return /[&,，,＋+×]/.test(name) ? 2 : 1;
@@ -153,7 +154,7 @@ async function mergeArtists(
     return a.length * pa - b.length * pb;
   });
 
-  const merged: Record<string, artistAlbumContainer> = {};
+  const merged: artistAlbumContainerMapType = {};
 
   for (const [artistName, information] of Object.entries(lfmArtistAlbumMap)) {
     const dbRow = dbArtistMap[artistName];
@@ -188,7 +189,7 @@ async function mergeArtists(
 
     // Merge albums
 
-    const mergedAlbums = <Record<string, cleanedAlbums>>{};
+    const mergedAlbums = <artistCleanAlbumsMapType>{};
     for (const [name, value] of Object.entries(merged[mainName].albums)) {
       mergedAlbums[name] = {
         playcount:
@@ -219,9 +220,9 @@ async function mergeArtists(
  */
 async function buildResult(
   lfmArtistsMap: Record<string, number>,
-  lfmAlbumMap: Record<string, Record<string, LastFmAlbumClean>>,
-): Promise<Record<string, lfmArtistAlbums>> {
-  const lfmArtistAlbumMap: Record<string, lfmArtistAlbums> = {};
+  lfmAlbumMap: lfmAlbumMapType,
+): Promise<lfmArtistAlbumMapType> {
+  const lfmArtistAlbumMap: lfmArtistAlbumMapType = {};
 
   for (const [artistName, playcount] of Object.entries(lfmArtistsMap)) {
     if (playcount > 0) {
@@ -233,16 +234,10 @@ async function buildResult(
   }
   for (const [artistName, lfmAlbum] of Object.entries(lfmAlbumMap)) {
     for (const [albumName, album] of Object.entries(lfmAlbum)) {
-      // if (albumName == "I burn") {
-      //   console.log(lfmAlbum);
-      // }
       // Remove the - Single or - EP suffixes for better matching
       const cleanedName = String(
         albumName.replace(/\s*-\s*(Single|EP)$/i, "").trim(),
       );
-      // if (lfmAlbum.artistName === "i-dle" || lfmAlbum.artistName === "(G)I-DLE") {
-      //   console.log(name, ": ", lfmAlbum.playcount);
-      // }
 
       // Check if the name of the artist exists in the lfmArtistsMap
       if (lfmArtistAlbumMap[artistName] !== undefined) {
@@ -271,10 +266,16 @@ async function buildResult(
   return lfmArtistAlbumMap;
 }
 
+/**
+ * Normalizes albums and groups based on aliases
+ * @param mergedAlbumArtists
+ * @param lfmAlbumMap
+ * @returns
+ */
 async function albumNormalization(
-  mergedAlbumArtists: Record<string, artistAlbumContainer>,
+  mergedAlbumArtists: artistAlbumContainerMapType,
   lfmAlbumMap: Record<string, Record<string, string[]>>,
-): Promise<Record<string, artistAlbumContainer>> {
+): Promise<artistAlbumContainerMapType> {
   for (const [artistName, albums] of Object.entries(lfmAlbumMap)) {
     // Construct alias maps
     const aliasMap: Record<string, string> = {};
@@ -313,13 +314,20 @@ async function albumNormalization(
   return mergedAlbumArtists;
 }
 
+/**
+ * Splits artists based on same name mappings
+ * @param mergedNormalized
+ * @param defaultArtist
+ * @param sameNameMap
+ * @returns
+ */
 async function splitArtists(
-  mergedNormalized: Record<string, artistAlbumContainer>,
+  mergedNormalized: artistAlbumContainerMapType,
   defaultArtist: Record<string, string> = {},
   sameNameMap: Record<string, Record<string, string[]>>,
-): Promise<Record<string, artistAlbumContainer>> {
+): Promise<artistAlbumContainerMapType> {
   for (const [originalName, data] of Object.entries(sameNameMap)) {
-    const result: Record<string, artistAlbumContainer> = {};
+    const result: artistAlbumContainerMapType = {};
 
     // Initialization
     for (const splitName of Object.keys(data)) {
@@ -370,8 +378,6 @@ async function splitArtists(
     result[defaultName]["playcount"] =
       result[defaultName]["playcount"] + defaultPlaycount;
 
-    // Populate the default artist entry
-
     console.log(result);
     // Remove the original artist entry and add the new entries to the merge normalized
 
@@ -389,7 +395,7 @@ async function splitArtists(
  * @returns
  */
 async function getBestAlbum(
-  merged: Record<string, artistAlbumContainer>,
+  merged: artistAlbumContainerMapType,
 ): Promise<artistAlbumTopAlbum[]> {
   const result: artistAlbumTopAlbum[] = [];
 
@@ -450,18 +456,21 @@ export async function GET() {
           },
         }),
       ]);
-    // console.log(dbAlbums[0]);
-    // console.log(dbSameNames);
 
     // Hash map for same artist names (Lisa, Bibi, etc.)
 
     const albumMap: Record<number, string> = {};
     dbAlbums.forEach((album) => (albumMap[Number(album.id)] = album.name));
 
-    console.log(albumMap[105]);
-
+    // Hash map for default artist names
     const defaultArtist: Record<string, string> = {};
+
+    // Hash map for same artist names
     const sameNameMap: Record<string, Record<string, string[]>> = {};
+
+    // Hash map for quick artist lookup
+    const dbArtistMap: Record<string, DBArtist> = {};
+    dbArtists.forEach((a) => (dbArtistMap[a.name] = a));
 
     dbSameNames.forEach((dbSameName) => {
       const displayName = dbSameName.name;
@@ -496,10 +505,6 @@ export async function GET() {
       }
     });
 
-    // Hash map for quick artist lookup
-    const dbArtistMap: Record<string, DBArtist> = {};
-    dbArtists.forEach((a) => (dbArtistMap[a.name] = a));
-
     const dbAlbumsMap: Record<string, Record<string, string[]>> = {};
 
     dbArtistAlbums.forEach((album) => {
@@ -525,8 +530,8 @@ export async function GET() {
     });
 
     const [lfmArtists, lfmAlbums] = await Promise.all([
-      fetchAllLastFm<LastFmArtist>("user.gettopartists", USERNAME, API_KEY),
-      fetchAllLastFm<LastFmAlbum>("user.gettopalbums", USERNAME, API_KEY),
+      fetchAllLastFm<lfmArtist>("user.gettopartists", USERNAME, API_KEY),
+      fetchAllLastFm<lfmAlbum>("user.gettopalbums", USERNAME, API_KEY),
     ]);
 
     // Organize the fetched artists and albums into desired structure with hashmap
@@ -535,7 +540,7 @@ export async function GET() {
       (artist) => (lfmArtistMap[artist.name] = artist.playcount),
     );
 
-    const lfmAlbumMap: Record<string, Record<string, LastFmAlbumClean>> = {};
+    const lfmAlbumMap: lfmAlbumMapType = {};
     lfmAlbums.forEach((album) => {
       const artist = album.artist.name;
       const name = album.name;
@@ -547,25 +552,22 @@ export async function GET() {
         playcount: Number(album.playcount),
       };
     });
-    const baseResult = await buildResult(lfmArtistMap, lfmAlbumMap);
 
-    // console.log("base: ", Object.keys(baseResult).length);
-
-    const merged = await mergeArtists(baseResult, dbArtistMap);
-
-    // console.log("merged: ", Object.keys(merged).length);
-
-    const mergedNormalized = await albumNormalization(merged, dbAlbumsMap);
-
+    // Split artists based on default and same name mappings
     const splitArtistList = await splitArtists(
-      mergedNormalized,
+      await albumNormalization(
+        await mergeArtists(
+          await buildResult(lfmArtistMap, lfmAlbumMap),
+          dbArtistMap,
+        ),
+        dbAlbumsMap,
+      ),
       defaultArtist,
       sameNameMap,
     );
 
+    // Determine the most listened to album for each artist
     const bestAlbum = await getBestAlbum(splitArtistList);
-
-    // console.log("best album: ", Object.keys(bestAlbum).length);
 
     return NextResponse.json(bestAlbum);
   } catch (err) {

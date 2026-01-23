@@ -1,3 +1,5 @@
+import type { Artist as DBArtist } from "@prisma/client";
+
 /**
  * Merged Artist Interface
  */
@@ -5,45 +7,6 @@ interface Artist {
   id: number | -1;
   playcount: number;
   ignoreChinese: boolean;
-}
-
-/**
- * Last.fm Artist Interface
- */
-export interface LastFmArtist {
-  name: string;
-  playcount: number;
-}
-
-/**
- * Last.fm Album Interface
- */
-export interface LastFmImage {
-  "#text": string;
-  size: "small" | "medium" | "large" | "extralarge" | "mega" | string;
-}
-
-/**
- * Last.fm Album Interface (Direct from the API)
- */
-export interface LastFmAlbum {
-  name: string;
-  playcount: number;
-  artist: { name: string };
-  image: LastFmImage[];
-}
-
-/**
- * Last.fm Album Interface (Cleaned)
- */
-export interface LastFmAlbumClean {
-  playcount: number;
-  image: string;
-}
-
-export interface lfmArtistAlbums {
-  playcount: number;
-  albums: Record<string, LastFmAlbumClean>;
 }
 
 /**
@@ -57,7 +20,7 @@ export interface DBAlbumClean {
 /**
  * Cleaned Albums Interface
  */
-export interface cleanedAlbums {
+interface cleanedAlbums {
   playcount: number;
   image: string;
 }
@@ -65,23 +28,43 @@ export interface cleanedAlbums {
 /**
  * Artist Album Container Interface
  */
-export interface artistAlbumContainer extends Artist {
+interface artistAlbumContainer extends Artist {
   albums: Record<string, cleanedAlbums>;
 }
 
 /**
  * Artist Top Album Interface
  */
-export interface artistAlbumTopAlbum extends Artist {
+export type artistAlbumTopAlbum = Artist & {
   name: string;
   topAlbumImage: string;
-}
+};
 
-export interface sameArtist {
-  albumNames: string[];
-}
-
+/**
+ * Same Artist Values Interface
+ */
 export interface sameArtistValues {
   default: string;
-  splits: Record<string, sameArtist>;
+  splits: Record<string, { albumNames: string[] }>;
 }
+
+/**
+ * Database Artist Map Type
+ * @key string - Artist name
+ * @value DBArtist - Artist object from the database
+ */
+export type dbArtistMapType = Record<string, DBArtist>;
+
+/**
+ * Artist Clean Albums Map Type
+ * @key string - Artist name
+ * @value cleanedAlbums - Cleaned albums object
+ */
+export type artistCleanAlbumsMapType = Record<string, cleanedAlbums>;
+
+/**
+ * Artist Album Container Map Type
+ * @key string - Artist name
+ * @value artistAlbumContainer - Merged artist and album information
+ */
+export type artistAlbumContainerMapType = Record<string, artistAlbumContainer>;
