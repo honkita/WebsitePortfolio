@@ -16,7 +16,8 @@ import {
   artistAlbumContainer,
   cleanedAlbums,
   artistAlbumTopAlbum,
-  DBAlbumClean,
+  sameArtist,
+  sameArtistValues,
 } from "@/types/Music";
 
 // Environment Variables
@@ -274,8 +275,6 @@ async function albumNormalization(
   mergedAlbumArtists: Record<string, artistAlbumContainer>,
   lfmAlbumMap: Record<string, Record<string, string[]>>,
 ): Promise<Record<string, artistAlbumContainer>> {
-  const lfmArtistAlbumMap: Record<string, artistAlbumContainer> = {};
-
   for (const [artistName, albums] of Object.entries(lfmAlbumMap)) {
     // Construct alias maps
     const aliasMap: Record<string, string> = {};
@@ -311,7 +310,77 @@ async function albumNormalization(
     }
   }
 
-  return lfmArtistAlbumMap;
+  return mergedAlbumArtists;
+}
+
+async function splitArtists(
+  mergedNormalized: Record<string, artistAlbumContainer>,
+  defaultArtist: Record<string, string> = {},
+  sameNameMap: Record<string, Record<string, string[]>>,
+): Promise<Record<string, artistAlbumContainer>> {
+  for (const [originalName, data] of Object.entries(sameNameMap)) {
+    const result: Record<string, artistAlbumContainer> = {};
+
+    // Initialization
+    for (const splitName of Object.keys(data)) {
+      result[splitName] = {
+        id: mergedNormalized[originalName]?.id || -1,
+        playcount: 0,
+        ignoreChinese: mergedNormalized[originalName]?.ignoreChinese || false,
+        albums: {},
+      };
+    }
+    // Create a map for quick lookup (album name to split name)
+    const albumToSplitMap: Record<string, string> = {};
+    for (const [splitName, albums] of Object.entries(data)) {
+      albums.forEach((album) => {
+        albumToSplitMap[album] = splitName;
+      });
+    }
+    console.log(albumToSplitMap);
+    let defaultPlaycount = Number(mergedNormalized[originalName]["playcount"]);
+
+    const baseData = mergedNormalized[originalName];
+
+    const defaultName = defaultArtist[originalName];
+    for (const [albumName, albumData] of Object.entries(baseData.albums)) {
+      // If the album belongs to a split artist, add the album to the list AND accumulate the playcount
+      if (albumToSplitMap[albumName]) {
+        const splitName = albumToSplitMap[albumName];
+        console.log(splitName);
+        const currentAlbums = result[splitName]?.albums || {};
+        currentAlbums[albumName] = albumData;
+
+        result[splitName]["playcount"] =
+          result[splitName]["playcount"] + albumData.playcount;
+        result[splitName]["albums"] = currentAlbums;
+      } else {
+        console.log(defaultName);
+
+        const currentAlbums = result[defaultName]?.albums || {};
+        currentAlbums[albumName] = albumData;
+
+        result[defaultName]["playcount"] =
+          result[defaultName]["playcount"] + albumData.playcount;
+        result[defaultName]["albums"] = currentAlbums;
+      }
+      defaultPlaycount -= albumData.playcount;
+    }
+
+    result[defaultName]["playcount"] =
+      result[defaultName]["playcount"] + defaultPlaycount;
+
+    // Populate the default artist entry
+
+    console.log(result);
+    // Remove the original artist entry and add the new entries to the merge normalized
+
+    delete mergedNormalized[originalName];
+    mergedNormalized = { ...result, ...mergedNormalized };
+    // console.log(originalName, ":\n", baseData);
+  }
+
+  return mergedNormalized;
 }
 
 /**
@@ -354,7 +423,7 @@ export async function GET() {
     const [dbArtists, dbAlbums, dbArtistAlbums, dbSameNames] =
       await Promise.all([
         prisma.artist.findMany(),
-        prisma.album.findMany(),
+        prisma.album.findMany({ select: { id: true, name: true } }),
         prisma.artistAlbum.findMany({
           select: {
             Artist: {
@@ -372,8 +441,60 @@ export async function GET() {
             role: true,
           },
         }),
-        prisma.sameNames.findMany(),
+        prisma.sameNames.findMany({
+          select: {
+            name: true,
+            Artist: { select: { name: true } },
+            isDefault: true,
+            albumIDs: true,
+          },
+        }),
       ]);
+    // console.log(dbAlbums[0]);
+    // console.log(dbSameNames);
+
+    // Hash map for same artist names (Lisa, Bibi, etc.)
+
+    const albumMap: Record<number, string> = {};
+    dbAlbums.forEach((album) => (albumMap[Number(album.id)] = album.name));
+
+    console.log(albumMap[105]);
+
+    const defaultArtist: Record<string, string> = {};
+    const sameNameMap: Record<string, Record<string, string[]>> = {};
+
+    dbSameNames.forEach((dbSameName) => {
+      const displayName = dbSameName.name;
+      const originalName = dbSameName.Artist.name;
+      const isDefault = dbSameName.isDefault;
+
+      sameNameMap[originalName] ??= {};
+
+      let aliases: number[] = [];
+      if (Array.isArray(dbSameName.albumIDs)) {
+        aliases = dbSameName.albumIDs.filter(
+          (a): a is number => typeof a === "number",
+        );
+      } else if (typeof dbSameName.albumIDs === "string") {
+        try {
+          const parsed = JSON.parse(dbSameName.albumIDs);
+          if (Array.isArray(parsed))
+            aliases = parsed.filter((a): a is number => typeof a === "number");
+        } catch {}
+      }
+
+      console.log(aliases);
+
+      const aliaseNames = aliases
+        .map((id) => albumMap[Number(id)])
+        .filter((a) => a);
+
+      sameNameMap[originalName][displayName] = aliaseNames;
+
+      if (isDefault) {
+        defaultArtist[originalName] = displayName;
+      }
+    });
 
     // Hash map for quick artist lookup
     const dbArtistMap: Record<string, DBArtist> = {};
@@ -402,8 +523,6 @@ export async function GET() {
 
       dbAlbumsMap[artistName][albumName] = aliases;
     });
-
-    console.log(dbAlbumsMap);
 
     const [lfmArtists, lfmAlbums] = await Promise.all([
       fetchAllLastFm<LastFmArtist>("user.gettopartists", USERNAME, API_KEY),
@@ -438,7 +557,13 @@ export async function GET() {
 
     const mergedNormalized = await albumNormalization(merged, dbAlbumsMap);
 
-    const bestAlbum = await getBestAlbum(merged);
+    const splitArtistList = await splitArtists(
+      mergedNormalized,
+      defaultArtist,
+      sameNameMap,
+    );
+
+    const bestAlbum = await getBestAlbum(splitArtistList);
 
     // console.log("best album: ", Object.keys(bestAlbum).length);
 

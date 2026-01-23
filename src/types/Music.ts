@@ -76,3 +76,12 @@ export interface artistAlbumTopAlbum extends Artist {
   name: string;
   topAlbumImage: string;
 }
+
+export interface sameArtist {
+  albumNames: string[];
+}
+
+export interface sameArtistValues {
+  default: string;
+  splits: Record<string, sameArtist>;
+}
