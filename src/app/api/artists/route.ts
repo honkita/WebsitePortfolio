@@ -236,7 +236,10 @@ async function buildResult(
     for (const [albumName, album] of Object.entries(lfmAlbum)) {
       // Remove the - Single or - EP suffixes for better matching
       const cleanedName = String(
-        albumName.replace(/\s*-\s*(Single|EP)$/i, "").trim(),
+        albumName
+          .replace(/\s*-\s*(Single|EP)$/i, "")
+          .trim()
+          .toLowerCase(),
       );
 
       // Check if the name of the artist exists in the lfmArtistsMap
@@ -283,8 +286,13 @@ async function albumNormalization(
     for (const albumName of Object.keys(albums)) {
       const aliasNorms = albums[albumName];
       aliasNorms.forEach((a) => {
-        aliasMap[a] = albumName;
+        aliasMap[a.toLowerCase()] = albumName;
       });
+
+      // Add album name itself to the alias map
+      if (albumName.toLowerCase() != albumName) {
+        aliasMap[albumName.toLowerCase()] = albumName;
+      }
     }
 
     // Iterate through mergedAlbumArtists to normalize albums
@@ -304,8 +312,9 @@ async function albumNormalization(
                 ?.playcount ?? 0,
             ),
           image:
-            mergedAlbumArtists[artistName]["albums"][normalizedName].image ||
-            mergedAlbumArtists[artistName]["albums"][oldName].image,
+            mergedAlbumArtists[artistName]["albums"][normalizedName]?.image ??
+            mergedAlbumArtists[artistName]["albums"][oldName].image ??
+            "",
         };
 
         // Remove the old album entry
@@ -579,7 +588,7 @@ export async function GET() {
     );
 
     console.log(
-      Object.keys(splitArtistList["Dreamcatcher (드림캐쳐)"]["albums"]),
+      Object.keys(splitArtistList["Dreamcatcher (드림캐쳐)"]["albums"]).sort(),
     );
 
     // Determine the most listened to album for each artist
