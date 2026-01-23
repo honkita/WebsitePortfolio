@@ -3,6 +3,7 @@
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  max-width: 100%;
 }
 
 .container {
@@ -84,7 +85,9 @@
   text-decoration: none;
   border: 1px solid var(--primary-dark);
   border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .card h3 {
@@ -339,7 +342,9 @@
 
 .initialHide {
   opacity: 0;
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transition:
+    opacity 1s ease-out,
+    transform 1s ease-out;
 }
 
 .animateUp {
