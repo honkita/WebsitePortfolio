@@ -429,7 +429,7 @@ export async function GET() {
     const [dbArtists, dbAlbums, dbArtistAlbums, dbSameNames] =
       await Promise.all([
         prisma.artist.findMany(),
-        prisma.album.findMany({ select: { id: true, name: true } }),
+        prisma.albums.findMany({ select: { id: true, name: true } }),
         prisma.artistAlbum.findMany({
           select: {
             Artist: {
