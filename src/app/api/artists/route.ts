@@ -225,22 +225,14 @@ async function buildResult(
   const lfmArtistAlbumMap: lfmArtistAlbumMapType = {};
 
   for (const [artistName, playcount] of Object.entries(lfmArtistsMap)) {
-    if (artistName == "Baby Monster" || artistName == "BabyMonster")
-      console.log("Found ", artistName);
-    if (playcount >= 0) {
-      if (artistName == "Baby Monster" || artistName == "BabyMonster")
-        console.log("Found ", artistName);
-      lfmArtistAlbumMap[artistName] = {
-        playcount: playcount,
-        albums: {},
-      };
-    }
+    lfmArtistAlbumMap[artistName] = {
+      playcount: playcount,
+      albums: {},
+    };
   }
   for (const [artistName, lfmAlbum] of Object.entries(lfmAlbumMap)) {
     for (const [albumName, album] of Object.entries(lfmAlbum)) {
       // Remove the - Single or - EP suffixes for better matching
-      if (artistName == "Baby Monster" || artistName == "BabyMonster")
-        console.log("Found ", artistName, " ", albumName);
       const cleanedName = String(
         albumName
           .replace(/\s*-\s*(Single|EP)$/i, "")
@@ -267,11 +259,12 @@ async function buildResult(
           lfmArtistAlbumMap[artistName].albums[String(cleanedName)] = album;
         }
       } else {
-        continue;
+        lfmArtistAlbumMap[artistName] = {
+          playcount: album.playcount,
+          albums: { album },
+        };
       }
     }
-    if (artistName === "Baby Monster")
-      console.log(lfmArtistAlbumMap["Baby Monster"]);
   }
 
   return lfmArtistAlbumMap;
@@ -405,7 +398,8 @@ async function splitArtists(
     result[defaultName]["playcount"] =
       result[defaultName]["playcount"] + defaultPlaycount;
 
-    // Remove the original artist entry and add the new entries to the merge normalized    delete mergedNormalized[originalName];
+    // Remove the original artist entry and add the new entries to the merge normalized
+    delete mergedNormalized[originalName];
     mergedNormalized = { ...result, ...mergedNormalized };
   }
 
@@ -564,7 +558,7 @@ export async function GET() {
     lfmAlbums.forEach((album) => {
       const artist = album.artist.name;
       const name = album.name;
-
+      // console.log(album.name, album.artist.name);
       lfmAlbumMap[artist] ??= {};
 
       lfmAlbumMap[artist][name] = {
@@ -585,6 +579,14 @@ export async function GET() {
       defaultArtist,
       sameNameMap,
     );
+    // let s = 0;
+
+    // for (const [artistName, artistInfo] of Object.entries(splitArtistList)) {
+    //   for (const [albumName, albumInfo] of Object.entries(artistInfo.albums)) {
+    //     s += albumInfo.playcount;
+    //   }
+    // }
+    // console.log(s);
 
     // USE THIS FOR DEBUGGING ARTISTS AND FOR DATABASE FIXING
     // console.log(
