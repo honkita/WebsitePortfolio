@@ -37,9 +37,18 @@
 }
 
 .scrobbles {
-  width: 100%;
+  width: min(10vw, 4rem);
   text-align: left;
   padding-left: 0;
+}
+
+.stats {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: min(1rem, 2.5vw);
+  color: var(--text-secondary);
 }
 
 .imagePlaceholder {
