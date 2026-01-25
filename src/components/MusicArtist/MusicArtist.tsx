@@ -127,7 +127,9 @@ export default function MusicArtist({
                     |
                     <div className={MusicArtistCSS.scrobbles}>
                         💿{" "}
-                        {Object.keys(albums).length.toString().padStart(2, "0")}
+                        {Math.max(Object.keys(albums).length, 1)
+                            .toString()
+                            .padStart(2, "0")}
                     </div>
                 </section>
                 {/* ADD THIS WHEN MODAL IS READY!!! <MusicArtistPopup name={name} /> */}
