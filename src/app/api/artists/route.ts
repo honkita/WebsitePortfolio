@@ -230,12 +230,17 @@ async function buildResult(
       albums: {},
     };
   }
+
   for (const [artistName, lfmAlbum] of Object.entries(lfmAlbumMap)) {
     for (const [albumName, album] of Object.entries(lfmAlbum)) {
       // Remove the - Single or - EP suffixes for better matching
       const cleanedName = String(
         albumName
-          .replace(/\s*-\s*(Single|EP)$/i, "")
+          .replace(
+            /\s*-\s*(Single|EP|single|ep|\(Deluxe\)|\(Deluxe Edition\))$/i,
+            "",
+          )
+          .replace(/\s*\s*(ep)$/i, "")
           .trim()
           .toLowerCase(),
       );
@@ -259,10 +264,10 @@ async function buildResult(
           lfmArtistAlbumMap[artistName].albums[String(cleanedName)] = album;
         }
       } else {
-        lfmArtistAlbumMap[artistName] = {
-          playcount: album.playcount,
-          albums: { album },
-        };
+        // lfmArtistAlbumMap[artistName] = {
+        //   playcount: album.playcount,
+        //   albums: { album },
+        // };
       }
     }
   }
@@ -419,10 +424,12 @@ async function getBestAlbum(
   for (const [artistName, data] of Object.entries(merged)) {
     let topAlbumImage = "";
     let highestPlaycount = -1;
-    for (const album of Object.values(data.albums)) {
+    let topAlbumName = "";
+    for (const [albumName, album] of Object.entries(data.albums)) {
       if (album.playcount > highestPlaycount) {
         highestPlaycount = album.playcount;
         topAlbumImage = album.image;
+        topAlbumName = albumName;
       }
     }
     result.push({
@@ -431,6 +438,7 @@ async function getBestAlbum(
       playcount: data.playcount,
       ignoreChinese: data.ignoreChinese,
       topAlbumImage: topAlbumImage,
+      albumName: topAlbumName,
     });
   }
   return result;
@@ -474,15 +482,14 @@ export async function GET() {
         }),
       ]);
 
-    // Hash map for same artist names (Lisa, Bibi, etc.)
-
+    // Hash map for album names
     const albumMap: Record<number, string> = {};
     dbAlbums.forEach((album) => (albumMap[Number(album.id)] = album.name));
 
     // Hash map for default artist names
     const defaultArtist: Record<string, string> = {};
 
-    // Hash map for same artist names
+    // Hash map for same artist names (Lisa, Bibi, etc.)
     const sameNameMap: Record<string, Record<string, string[]>> = {};
 
     // Hash map for quick artist lookup
@@ -558,7 +565,6 @@ export async function GET() {
     lfmAlbums.forEach((album) => {
       const artist = album.artist.name;
       const name = album.name;
-      // console.log(album.name, album.artist.name);
       lfmAlbumMap[artist] ??= {};
 
       lfmAlbumMap[artist][name] = {
@@ -579,19 +585,20 @@ export async function GET() {
       defaultArtist,
       sameNameMap,
     );
-    // let s = 0;
-
-    // for (const [artistName, artistInfo] of Object.entries(splitArtistList)) {
-    //   for (const [albumName, albumInfo] of Object.entries(artistInfo.albums)) {
-    //     s += albumInfo.playcount;
-    //   }
-    // }
-    // console.log(s);
 
     // USE THIS FOR DEBUGGING ARTISTS AND FOR DATABASE FIXING
     // console.log(
-    //   Object.keys(splitArtistList["Mrs. GREEN APPLE"]["albums"]).sort(),
+    //   Object.keys(splitArtistList["Various Artists"]["albums"]).sort(),
     // );
+
+    let p = 0;
+
+    // Print out the sum of the scrobbles
+
+    Object.values(splitArtistList).forEach((artist) => {
+      p += artist.playcount;
+    });
+    console.log("Total Scrobbles:", p);
 
     // Determine the most listened to album for each artist
     const bestAlbum = await getBestAlbum(splitArtistList);

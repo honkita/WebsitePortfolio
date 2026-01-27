@@ -37,6 +37,7 @@ export interface artistAlbumContainer extends Artist {
  */
 export type artistAlbumTopAlbum = Artist & {
   name: string;
+  albumName: string;
   topAlbumImage: string;
 };
 
