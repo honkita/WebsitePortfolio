@@ -304,38 +304,44 @@ async function albumNormalization(
     // Iterate through mergedAlbumArtists to normalize albums
     for (const [oldName, normalizedName] of Object.entries(aliasMap)) {
       // If the old album name exists in the artist's albums
-      if (mergedAlbumArtists[artistName]["albums"][oldName]) {
-        mergedAlbumArtists[artistName]["albums"][normalizedName] = {
-          playcount:
-            Number(
-              mergedAlbumArtists[artistName]["albums"][oldName].playcount,
-            ) +
-            Number(
-              mergedAlbumArtists[artistName]["albums"][normalizedName]
-                ?.playcount ?? 0,
-            ),
-          image:
-            mergedAlbumArtists[artistName]["albums"][normalizedName]?.image ??
-            mergedAlbumArtists[artistName]["albums"][oldName].image ??
-            "",
-        };
+      try {
+        if (mergedAlbumArtists[artistName]["albums"][oldName]) {
+          mergedAlbumArtists[artistName]["albums"][normalizedName] = {
+            playcount:
+              Number(
+                mergedAlbumArtists[artistName]["albums"][oldName].playcount,
+              ) +
+              Number(
+                mergedAlbumArtists[artistName]["albums"][normalizedName]
+                  ?.playcount ?? 0,
+              ),
+            image:
+              mergedAlbumArtists[artistName]["albums"][normalizedName]?.image ??
+              mergedAlbumArtists[artistName]["albums"][oldName].image ??
+              "",
+          };
 
-        // Remove the old album entry
-        delete mergedAlbumArtists[artistName]["albums"][oldName];
-      } else {
-        let mainName: string | undefined = aliasMap[oldName];
+          // Remove the old album entry
+          delete mergedAlbumArtists[artistName]["albums"][oldName];
+        } else {
+          let mainName: string | undefined = aliasMap[oldName];
 
-        if (!mainName) {
-          const asciiLower = (str: string) =>
-            str.replace(/[A-Za-z]/g, (c) => c.toLowerCase());
-          const canonAscii = asciiLower(oldName);
-          for (const dbCanon of Object.keys(albums)) {
-            if (asciiLower(dbCanon).includes(canonAscii)) {
-              mainName = aliasMap[dbCanon];
-              break;
+          if (!mainName) {
+            const asciiLower = (str: string) =>
+              str.replace(/[A-Za-z]/g, (c) => c.toLowerCase());
+            const canonAscii = asciiLower(oldName);
+            for (const dbCanon of Object.keys(albums)) {
+              if (asciiLower(dbCanon).includes(canonAscii)) {
+                mainName = aliasMap[dbCanon];
+                break;
+              }
             }
           }
         }
+      } catch (e) {
+        // If the album does not exit for this artist, skip for now
+        // Because some artists participate in albums, but I don't listen to the songs
+        console.error(`Error normalizing album for artist ${artistName}:`, e);
       }
     }
   }
@@ -588,17 +594,17 @@ export async function GET() {
 
     // USE THIS FOR DEBUGGING ARTISTS AND FOR DATABASE FIXING
     // console.log(
-    //   Object.keys(splitArtistList["Various Artists"]["albums"]).sort(),
+    //   Object.keys(splitArtistList["Mrs. GREEN APPLE"]["albums"]).sort(),
     // );
 
-    let p = 0;
+    // let p = 0;
 
-    // Print out the sum of the scrobbles
+    // // Print out the sum of the scrobbles
 
-    Object.values(splitArtistList).forEach((artist) => {
-      p += artist.playcount;
-    });
-    console.log("Total Scrobbles:", p);
+    // Object.values(splitArtistList).forEach((artist) => {
+    //   p += artist.playcount;
+    // });
+    // console.log("Total Scrobbles:", p);
 
     // Determine the most listened to album for each artist
     const bestAlbum = await getBestAlbum(splitArtistList);
