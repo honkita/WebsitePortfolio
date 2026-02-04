@@ -354,10 +354,9 @@ async function albumNormalization(
             }
           }
         }
-      } catch (e) {
+      } catch {
         // If the album does not exit for this artist, skip for now
         // Because some artists participate in albums, but I don't listen to the songs
-        console.error(`Error normalizing album for artist ${artistName}:`, e);
       }
     }
   }
