@@ -122,21 +122,27 @@ async function mergeArtists(
         ),
       );
 
+      const aliasNormNoChinese = artist.ignoreChineseCanonization
+        ? await Promise.all(aliases.map((a) => normalizeArtistFull(a, false)))
+        : [];
+
+      const combinedAliasNorm = [...aliasNorm, ...aliasNormNoChinese];
+
       return {
         id: artist.id,
         name: artist.name,
         ignoreChinese: artist?.ignoreChineseCanonization,
         nameNorm,
-        aliasNorm,
+        combinedAliasNorm,
       };
     },
   );
 
   const normalizedDb = await Promise.all(normalizedDbPromises);
 
-  normalizedDb.forEach(({ name, nameNorm, aliasNorm }) => {
+  normalizedDb.forEach(({ name, nameNorm, combinedAliasNorm }) => {
     aliasMap[nameNorm] = name;
-    aliasNorm.forEach((a) => (aliasMap[a] = name));
+    combinedAliasNorm.forEach((a) => (aliasMap[a] = name));
   });
 
   /**
@@ -171,6 +177,16 @@ async function mergeArtists(
         if (asciiLower(dbCanon).includes(canonAscii)) {
           mainName = aliasMap[dbCanon];
           break;
+        }
+      }
+      if (dbRow?.ignoreChineseCanonization) {
+        const canonName2 = await normalizeArtistFull(artistName, false);
+        const canonAscii2 = asciiLower(canonName2);
+        for (const dbCanon of sortedDbCanonNames) {
+          if (asciiLower(dbCanon).includes(canonAscii2)) {
+            mainName = aliasMap[dbCanon];
+            break;
+          }
         }
       }
     }
