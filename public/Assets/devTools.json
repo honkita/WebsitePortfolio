@@ -17,6 +17,7 @@
   { "name": "Netbeans", "url": "./images/DevTools/Netbeans.svg" },
   { "name": "Overleaf", "url": "./images/DevTools/Overleaf.svg" },
   { "name": "Postman", "url": "./images/DevTools/Postman.svg" },
+  { "name": "Supabase", "url": "./images/DevTools/Supabase.svg" },
   { "name": "Swagger", "url": "./images/DevTools/Swagger.svg" },
   { "name": "Visual Studio", "url": "./images/DevTools/VisualStudio.svg" },
   {
