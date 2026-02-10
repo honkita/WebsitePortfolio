@@ -119,15 +119,7 @@ export default function MusicArtist({
             )}
 
             <div className={MusicArtistCSS.info}>
-                <div
-                    className={
-                        name !== "μ's"
-                            ? MusicArtistCSS.name
-                            : MusicArtistCSS.nameSpecial
-                    }
-                >
-                    {name}
-                </div>
+                <div className={MusicArtistCSS.name}>{name}</div>
                 <section className={MusicArtistCSS.stats}>
                     <div className={MusicArtistCSS.scrobbles}>
                         🎧 {scrobbles.toString().padStart(4, "0")}

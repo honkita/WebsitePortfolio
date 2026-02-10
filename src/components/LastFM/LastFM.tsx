@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 
 // CSS
@@ -39,6 +40,7 @@ function debounce(fn: () => void, delay: number) {
  * @returns JSX.Element
  */
 export default function LastFM() {
+    const { resolvedTheme } = useTheme();
     const [track, setTrack] = useState<LastFmTrack | null>(null);
     const lastTrackId = useRef<string | null>(null);
 
@@ -177,7 +179,17 @@ export default function LastFM() {
 
     if (!track)
         return (
-            <div className={`${LastFMCSS.placeholder}`}>
+            <div className={LastFMCSS.card}>
+                <img
+                    className={LastFMCSS.cover}
+                    src={
+                        resolvedTheme === "light"
+                            ? "/images/Artists/PixelArtist.svg"
+                            : "/images/Artists/PixelArtistDark.svg"
+                    }
+                    alt={`placeholder`}
+                    loading="lazy"
+                />
                 No recent track found.
             </div>
         );
