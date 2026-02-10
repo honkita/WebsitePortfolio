@@ -1,18 +1,9 @@
 [
   { "name": "ARM", "type": "Assembly", "url": "./images/Logos/ARM.svg" },
   { "name": "C", "type": "Imperative", "url": "./images/Logos/C.svg" },
-  { "name": "C++", "type": "Object-Oriented", "url": "./images/Logos/C++.svg" },
   { "name": "C#", "type": "Object-Oriented", "url": "./images/Logos/CS.svg" },
-  { "name": "CSS", "type": "Style Sheet", "url": "./images/Logos/CSS.svg" },
+  { "name": "C++", "type": "Object-Oriented", "url": "./images/Logos/C++.svg" },
 
-  { "name": "Elm", "type": "Functional", "url": "./images/Logos/Elm.svg" },
-  {
-    "name": "Haskell",
-    "type": "Functional",
-    "url": "./images/Logos/Haskell.svg"
-  },
-
-  { "name": "HTML", "type": "Markup", "url": "./images/Logos/HTML.svg" },
   {
     "name": "Java",
     "type": "Object-Oriented",
@@ -21,27 +12,38 @@
   {
     "name": "JavaScript",
     "type": "Object-Oriented",
-    "url": "./images/Logos/JS.svg"
+    "url": "./images/Logos/JavaScript.svg"
   },
   {
-    "name": "Latex",
-    "type": "Formatted Text",
-    "url": "./images/Logos/Latex.svg"
-  },
-  {
-    "name": "Prolog",
-    "type": "Logic",
-    "url": "./images/Logos/Prolog.svg"
+    "name": "TypeScript",
+    "type": "Object-Oriented",
+    "url": "./images/Logos/TypeScript.svg"
   },
   {
     "name": "Python",
     "type": "Object-Oriented",
     "url": "./images/Logos/Python.svg"
   },
+
+  { "name": "CSS", "type": "Style Sheet", "url": "./images/Logos/CSS.svg" },
+  { "name": "HTML", "type": "Markup", "url": "./images/Logos/HTML.svg" },
+  { "name": "Elm", "type": "Functional", "url": "./images/Logos/Elm.svg" },
+  {
+    "name": "Haskell",
+    "type": "Functional",
+    "url": "./images/Logos/Haskell.svg"
+  },
+  { "name": "Prolog", "type": "Logic", "url": "./images/Logos/Prolog.svg" },
+
   { "name": "R", "type": "Interpreted", "url": "./images/Logos/R.svg" },
   {
     "name": "SQL",
     "type": "Relational Database",
     "url": "./images/Logos/SQL.svg"
+  },
+  {
+    "name": "Latex",
+    "type": "Formatted Text",
+    "url": "./images/Logos/Latex.svg"
   }
 ]
