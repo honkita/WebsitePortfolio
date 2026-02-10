@@ -119,7 +119,15 @@ export default function MusicArtist({
             )}
 
             <div className={MusicArtistCSS.info}>
-                <div className={MusicArtistCSS.name}>{name}</div>
+                <div
+                    className={
+                        name !== "μ's"
+                            ? MusicArtistCSS.name
+                            : MusicArtistCSS.nameSpecial
+                    }
+                >
+                    {name}
+                </div>
                 <section className={MusicArtistCSS.stats}>
                     <div className={MusicArtistCSS.scrobbles}>
                         🎧 {scrobbles.toString().padStart(4, "0")}
@@ -127,7 +135,9 @@ export default function MusicArtist({
                     |
                     <div className={MusicArtistCSS.scrobbles}>
                         💿{" "}
-                        {Object.keys(albums).length.toString().padStart(2, "0")}
+                        {Math.max(Object.keys(albums).length, 1)
+                            .toString()
+                            .padStart(2, "0")}
                     </div>
                 </section>
                 {/* ADD THIS WHEN MODAL IS READY!!! <MusicArtistPopup name={name} /> */}

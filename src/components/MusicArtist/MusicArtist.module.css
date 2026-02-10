@@ -28,12 +28,17 @@
   gap: 0;
 }
 
-.name {
+.name,
+.nameSpecial {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   flex: 1;
+}
+
+.nameSpecial {
+  font-family: "OLYMPUS", "Pixelify_Sans";
 }
 
 .scrobbles {

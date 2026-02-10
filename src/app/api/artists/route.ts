@@ -122,21 +122,27 @@ async function mergeArtists(
         ),
       );
 
+      const aliasNormNoChinese = artist.ignoreChineseCanonization
+        ? await Promise.all(aliases.map((a) => normalizeArtistFull(a, false)))
+        : [];
+
+      const combinedAliasNorm = [...aliasNorm, ...aliasNormNoChinese];
+
       return {
         id: artist.id,
         name: artist.name,
         ignoreChinese: artist?.ignoreChineseCanonization,
         nameNorm,
-        aliasNorm,
+        combinedAliasNorm,
       };
     },
   );
 
   const normalizedDb = await Promise.all(normalizedDbPromises);
 
-  normalizedDb.forEach(({ name, nameNorm, aliasNorm }) => {
+  normalizedDb.forEach(({ name, nameNorm, combinedAliasNorm }) => {
     aliasMap[nameNorm] = name;
-    aliasNorm.forEach((a) => (aliasMap[a] = name));
+    combinedAliasNorm.forEach((a) => (aliasMap[a] = name));
   });
 
   /**
@@ -171,6 +177,16 @@ async function mergeArtists(
         if (asciiLower(dbCanon).includes(canonAscii)) {
           mainName = aliasMap[dbCanon];
           break;
+        }
+      }
+      if (dbRow?.ignoreChineseCanonization) {
+        const canonName2 = await normalizeArtistFull(artistName, false);
+        const canonAscii2 = asciiLower(canonName2);
+        for (const dbCanon of sortedDbCanonNames) {
+          if (asciiLower(dbCanon).includes(canonAscii2)) {
+            mainName = aliasMap[dbCanon];
+            break;
+          }
         }
       }
     }
@@ -230,12 +246,17 @@ async function buildResult(
       albums: {},
     };
   }
+
   for (const [artistName, lfmAlbum] of Object.entries(lfmAlbumMap)) {
     for (const [albumName, album] of Object.entries(lfmAlbum)) {
       // Remove the - Single or - EP suffixes for better matching
       const cleanedName = String(
         albumName
-          .replace(/\s*-\s*(Single|EP)$/i, "")
+          .replace(
+            /\s*-\s*(Single|EP|single|ep|\(Deluxe\)|\(Deluxe Edition\))$/i,
+            "",
+          )
+          .replace(/\s*\s*(ep)$/i, "")
           .trim()
           .toLowerCase(),
       );
@@ -259,10 +280,10 @@ async function buildResult(
           lfmArtistAlbumMap[artistName].albums[String(cleanedName)] = album;
         }
       } else {
-        lfmArtistAlbumMap[artistName] = {
-          playcount: album.playcount,
-          albums: { album },
-        };
+        // lfmArtistAlbumMap[artistName] = {
+        //   playcount: album.playcount,
+        //   albums: { album },
+        // };
       }
     }
   }
@@ -299,38 +320,43 @@ async function albumNormalization(
     // Iterate through mergedAlbumArtists to normalize albums
     for (const [oldName, normalizedName] of Object.entries(aliasMap)) {
       // If the old album name exists in the artist's albums
-      if (mergedAlbumArtists[artistName]["albums"][oldName]) {
-        mergedAlbumArtists[artistName]["albums"][normalizedName] = {
-          playcount:
-            Number(
-              mergedAlbumArtists[artistName]["albums"][oldName].playcount,
-            ) +
-            Number(
-              mergedAlbumArtists[artistName]["albums"][normalizedName]
-                ?.playcount ?? 0,
-            ),
-          image:
-            mergedAlbumArtists[artistName]["albums"][normalizedName]?.image ??
-            mergedAlbumArtists[artistName]["albums"][oldName].image ??
-            "",
-        };
+      try {
+        if (mergedAlbumArtists[artistName]["albums"][oldName]) {
+          mergedAlbumArtists[artistName]["albums"][normalizedName] = {
+            playcount:
+              Number(
+                mergedAlbumArtists[artistName]["albums"][oldName].playcount,
+              ) +
+              Number(
+                mergedAlbumArtists[artistName]["albums"][normalizedName]
+                  ?.playcount ?? 0,
+              ),
+            image:
+              mergedAlbumArtists[artistName]["albums"][normalizedName]?.image ??
+              mergedAlbumArtists[artistName]["albums"][oldName].image ??
+              "",
+          };
 
-        // Remove the old album entry
-        delete mergedAlbumArtists[artistName]["albums"][oldName];
-      } else {
-        let mainName: string | undefined = aliasMap[oldName];
+          // Remove the old album entry
+          delete mergedAlbumArtists[artistName]["albums"][oldName];
+        } else {
+          let mainName: string | undefined = aliasMap[oldName];
 
-        if (!mainName) {
-          const asciiLower = (str: string) =>
-            str.replace(/[A-Za-z]/g, (c) => c.toLowerCase());
-          const canonAscii = asciiLower(oldName);
-          for (const dbCanon of Object.keys(albums)) {
-            if (asciiLower(dbCanon).includes(canonAscii)) {
-              mainName = aliasMap[dbCanon];
-              break;
+          if (!mainName) {
+            const asciiLower = (str: string) =>
+              str.replace(/[A-Za-z]/g, (c) => c.toLowerCase());
+            const canonAscii = asciiLower(oldName);
+            for (const dbCanon of Object.keys(albums)) {
+              if (asciiLower(dbCanon).includes(canonAscii)) {
+                mainName = aliasMap[dbCanon];
+                break;
+              }
             }
           }
         }
+      } catch {
+        // If the album does not exit for this artist, skip for now
+        // Because some artists participate in albums, but I don't listen to the songs
       }
     }
   }
@@ -419,10 +445,12 @@ async function getBestAlbum(
   for (const [artistName, data] of Object.entries(merged)) {
     let topAlbumImage = "";
     let highestPlaycount = -1;
-    for (const album of Object.values(data.albums)) {
+    let topAlbumName = "";
+    for (const [albumName, album] of Object.entries(data.albums)) {
       if (album.playcount > highestPlaycount) {
         highestPlaycount = album.playcount;
         topAlbumImage = album.image;
+        topAlbumName = albumName;
       }
     }
     result.push({
@@ -431,6 +459,7 @@ async function getBestAlbum(
       playcount: data.playcount,
       ignoreChinese: data.ignoreChinese,
       topAlbumImage: topAlbumImage,
+      albumName: topAlbumName,
     });
   }
   return result;
@@ -474,15 +503,14 @@ export async function GET() {
         }),
       ]);
 
-    // Hash map for same artist names (Lisa, Bibi, etc.)
-
+    // Hash map for album names
     const albumMap: Record<number, string> = {};
     dbAlbums.forEach((album) => (albumMap[Number(album.id)] = album.name));
 
     // Hash map for default artist names
     const defaultArtist: Record<string, string> = {};
 
-    // Hash map for same artist names
+    // Hash map for same artist names (Lisa, Bibi, etc.)
     const sameNameMap: Record<string, Record<string, string[]>> = {};
 
     // Hash map for quick artist lookup
@@ -558,7 +586,6 @@ export async function GET() {
     lfmAlbums.forEach((album) => {
       const artist = album.artist.name;
       const name = album.name;
-      // console.log(album.name, album.artist.name);
       lfmAlbumMap[artist] ??= {};
 
       lfmAlbumMap[artist][name] = {
@@ -579,19 +606,20 @@ export async function GET() {
       defaultArtist,
       sameNameMap,
     );
-    // let s = 0;
-
-    // for (const [artistName, artistInfo] of Object.entries(splitArtistList)) {
-    //   for (const [albumName, albumInfo] of Object.entries(artistInfo.albums)) {
-    //     s += albumInfo.playcount;
-    //   }
-    // }
-    // console.log(s);
 
     // USE THIS FOR DEBUGGING ARTISTS AND FOR DATABASE FIXING
     // console.log(
     //   Object.keys(splitArtistList["Mrs. GREEN APPLE"]["albums"]).sort(),
     // );
+
+    // let p = 0;
+
+    // // Print out the sum of the scrobbles
+
+    // Object.values(splitArtistList).forEach((artist) => {
+    //   p += artist.playcount;
+    // });
+    // console.log("Total Scrobbles:", p);
 
     // Determine the most listened to album for each artist
     const bestAlbum = await getBestAlbum(splitArtistList);
