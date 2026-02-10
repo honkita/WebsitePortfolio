@@ -141,7 +141,7 @@ export default function MusicArtist({
                     </div>
                 </section>
                 {/* ADD THIS WHEN MODAL IS READY!!! <MusicArtistPopup name={name} /> */}
-                <MusicArtistPopup name={name} />
+                {/* <MusicArtistPopup name={name} /> */}
             </div>
         </div>
     );

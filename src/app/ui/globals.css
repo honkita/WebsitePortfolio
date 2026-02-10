@@ -3,7 +3,7 @@ body {
   background-color: var(--background);
   padding: 0;
   margin: 0;
-  font-family: "Pixelify_Sans", "UNIFONTEX", "OLYMPUS";
+  font-family: "Unifont", "UNIFONTEX", "OLYMPUS";
   transition: all 0.2ms;
   flex-direction: column;
   justify-content: center;
@@ -49,7 +49,7 @@ code {
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
-  font-family: "Pixelify_Sans";
+  font-family: "Unifont";
 }
 
 circle {
@@ -80,18 +80,10 @@ circle:nth-child(1) {
 }
 
 @font-face {
-  font-family: "GBA_FE";
+  font-family: "Unifont";
   src:
-    local("GBA_FE"),
-    url("../../../public/gba-fe-dialogue/gba-fe-dialogue.otf")
-      format("truetype");
-}
-
-@font-face {
-  font-family: "LANAPIXEL";
-  src:
-    local("LANAPIXEL"),
-    url("../../../public/lanapixel_everything/LanaPixel.ttf") format("truetype");
+    local("Unifont"),
+    url("../../../public/Unifont/unifont.ttf") format("truetype");
 }
 
 @font-face {
