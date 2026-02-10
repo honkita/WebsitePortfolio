@@ -36,7 +36,7 @@ export default function MusicArtistPopup({ name }: MusicArtistPopupProps) {
 
     return (
         <div>
-            <button onClick={openModal}>Open Modal</button>
+            <button onClick={openModal}>🔗</button>
 
             <Modal
                 isOpen={isOpen}

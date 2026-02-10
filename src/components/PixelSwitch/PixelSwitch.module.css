@@ -23,7 +23,8 @@
   align-items: center;
   content: "";
   transition: all 0.2s;
-  transform: translateX(-30%);
+  /* transform: translateX(-5%); */
+  transform: translateX(-5%);
 }
 
 .toggledark {
@@ -33,7 +34,7 @@
 
 .toggledark::after {
   background-image: url("../../../public/images/Switch/SwitchDark.png");
-  transform: translateX(30%);
+  transform: translateX(55%);
 }
 
 @media not (hover: none) {
