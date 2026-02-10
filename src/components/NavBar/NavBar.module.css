@@ -26,7 +26,7 @@
   padding-bottom: 0.5rem;
   position: sticky;
   top: 0;
-  z-index: 5;
+  z-index: 20;
   gap: min(0.5rem, 2vw);
   width: 100%;
   transition: opacity 0.7s ease-out;
