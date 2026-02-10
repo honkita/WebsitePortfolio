@@ -3,7 +3,7 @@ body {
   background-color: var(--background);
   padding: 0;
   margin: 0;
-  font-family: "Unifont", "UNIFONTEX", "OLYMPUS";
+  font-family: "UNIFONTEX";
   transition: all 0.2ms;
   flex-direction: column;
   justify-content: center;
@@ -49,7 +49,7 @@ code {
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
-  font-family: "Unifont";
+  font-family: "UNIFONTEX";
 }
 
 circle {
@@ -72,32 +72,10 @@ circle:nth-child(1) {
 }
 
 @font-face {
-  font-family: "Pixelify_Sans";
-  src:
-    local("Pixelify_Sans"),
-    url("../../../public/Pixelify_Sans/static/PixelifySans-Regular.ttf")
-      format("truetype");
-}
-
-@font-face {
-  font-family: "Unifont";
-  src:
-    local("Unifont"),
-    url("../../../public/Unifont/unifont.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "UNIFONTEX";
   src:
     local("UNIFONTEX"),
-    url("../../../public/Unifontex/Unifontex.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "OLYMPUS";
-  src:
-    local("OLYMPUS"),
-    url("../../../public/olympus/olympus.otf") format("truetype");
+    url("../../../public/Unifontex/UnifontExMono.ttf") format("truetype");
 }
 
 nav {
