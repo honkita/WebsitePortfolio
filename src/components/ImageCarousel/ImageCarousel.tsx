@@ -112,7 +112,7 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
                 style={{ left: "5%" }}
                 onClick={handlePrev}
             >
-                &lt;
+                {"<"}
             </button>
             <button
                 title="Next"
@@ -120,7 +120,7 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
                 style={{ right: "5%" }}
                 onClick={handleNext}
             >
-                &gt;
+                {">"}
             </button>
 
             <div className={ImageCarouselCSS.indicators}>

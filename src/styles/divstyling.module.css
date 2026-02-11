@@ -1,5 +1,5 @@
 .border {
-  border: 0.5rem solid var(--secondary) !important;
+  border: 2px solid var(--secondary) !important;
   background-color: var(--background);
   border-radius: 0.25rem;
   margin: 1rem;
@@ -9,7 +9,7 @@
 For testing purposes!
 */
 .border2 {
-  border: 0.5rem solid var(--secondary) !important;
+  border: 2px solid var(--secondary) !important;
   background-color: var(--background);
   border-radius: 0.25rem;
 }

@@ -83,7 +83,7 @@
   text-align: left;
   color: inherit;
   text-decoration: none;
-  border: 1px solid var(--primary-dark);
+  border: 2px solid var(--primary-dark);
   border-radius: 10px;
   transition:
     color 0.15s ease,
@@ -174,7 +174,6 @@
 @media (min-width: 64rem) {
   .jobGrid {
     display: grid;
-    /* grid-template-columns: repeat(3, minmax(0.25rem, 1fr)); */
     padding: 1rem;
     vertical-align: top;
     align-items: center;
