@@ -149,6 +149,7 @@ const mergeArtists = async (
 
   /**
    * Penalty function for sorting
+   * If it is a composition of two artists, double the cost.
    * @param name
    * @returns 2 if it is a composition of multiple artists, else 1
    */
@@ -229,7 +230,7 @@ const mergeArtists = async (
 };
 
 /**
- * Builds the final result function
+ * Builds the final result
  * @param merged
  * @param dbArtistMap
  * @param albums
@@ -293,10 +294,10 @@ const buildResult = async (
  * @param lfmAlbumMap
  * @returns
  */
-async function albumNormalization(
+const albumNormalization = async (
   mergedAlbumArtists: artistAlbumContainerMapType,
   lfmAlbumMap: Record<string, Record<string, string[]>>,
-): Promise<artistAlbumContainerMapType> {
+): Promise<artistAlbumContainerMapType> => {
   for (const [artistName, albums] of Object.entries(lfmAlbumMap)) {
     // Construct alias maps
     const aliasMap: Record<string, string> = {};
@@ -356,9 +357,8 @@ async function albumNormalization(
       }
     }
   }
-
   return mergedAlbumArtists;
-}
+};
 
 /**
  * Splits artists based on same name mappings
