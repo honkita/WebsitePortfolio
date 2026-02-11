@@ -238,7 +238,7 @@ const mergeArtists = async (
 const buildResult = async (
   lfmArtistsMap: Record<string, number>,
   lfmAlbumMap: lfmAlbumMapType,
-): Promise<lfmArtistAlbumMapType> {
+): Promise<lfmArtistAlbumMapType> => {
   const lfmArtistAlbumMap: lfmArtistAlbumMapType = {};
 
   for (const [artistName, playcount] of Object.entries(lfmArtistsMap)) {
