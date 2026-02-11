@@ -4,7 +4,7 @@
  * @returns
  */
 
-export default function stringToColour(str: string): string {
+const stringToColour = (str: string): string => {
   let hash = 0;
   str.split("").forEach((char) => {
     hash = char.charCodeAt(0) + ((hash << 5) - hash);
@@ -15,4 +15,6 @@ export default function stringToColour(str: string): string {
     colour += value.toString(16).padStart(2, "0");
   }
   return colour;
-}
+};
+
+export default stringToColour;

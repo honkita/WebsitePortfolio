@@ -43,12 +43,12 @@ const preloadImage = (url: string): Promise<void> => {
     });
 };
 
-export default function MusicTitle({
+const MusicTitle: React.FC<MusicTitleProps> = ({
     colour,
     name,
     scrobbles,
     artists
-}: MusicTitleProps) {
+}: MusicTitleProps) => {
     const [bgIsVisible, setBgIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
 
@@ -97,11 +97,9 @@ export default function MusicTitle({
 
     return (
         <section
-            className={`${
-                TitleCSS.namePlate
-            } ${backgroundClass()} ${visibilityClass} ${
-                divstyling.imageRendering
-            }`}
+            className={`${TitleCSS.namePlate
+                } ${backgroundClass()} ${visibilityClass} ${divstyling.imageRendering
+                }`}
         >
             <div className={TitleCSS.titleCenter}>
                 <h1 className={TitleCSS.title}>{name}</h1>
@@ -118,3 +116,5 @@ export default function MusicTitle({
         </section>
     );
 }
+
+export default MusicTitle;

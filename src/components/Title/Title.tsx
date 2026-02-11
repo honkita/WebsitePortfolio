@@ -46,7 +46,7 @@ const preloadImage = (url: string): Promise<void> => {
     });
 };
 
-export default function Title({ colour, buttons, name }: TitleProps) {
+const Title: React.FC<TitleProps> = ({ colour, buttons, name }) => {
     const [bgIsVisible, setBgIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();
@@ -98,11 +98,9 @@ export default function Title({ colour, buttons, name }: TitleProps) {
 
     return (
         <section
-            className={`${
-                TitleCSS.namePlate
-            } ${backgroundClass()} ${visibilityClass} ${
-                divstyling.imageRendering
-            }`}
+            className={`${TitleCSS.namePlate
+                } ${backgroundClass()} ${visibilityClass} ${divstyling.imageRendering
+                }`}
         >
             <div className={TitleCSS.titleCenter}>
                 <h1 className={TitleCSS.title}>{name}</h1>
@@ -122,4 +120,6 @@ export default function Title({ colour, buttons, name }: TitleProps) {
             </div>
         </section>
     );
-}
+};
+
+export default Title;

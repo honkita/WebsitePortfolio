@@ -16,9 +16,9 @@ const CJK_REGEX =
  * @param text
  * @returns
  */
-export function isChinese(text: string): boolean {
+export const isChinese = (text: string): boolean => {
   return /[\u4E00-\u9FFF]/.test(text);
-}
+};
 
 /**
  * Returns true if the text contains any Japanese characters.
@@ -26,23 +26,23 @@ export function isChinese(text: string): boolean {
  * @param text
  * @returns
  */
-export function isJapanese(text: string): boolean {
+export const isJapanese = (text: string): boolean => {
   return /[\u3040-\u30FF]/.test(text);
-}
+};
 
 /**
  * Removes the spaces between CJK characters since not needed!
  * @param text
  * @returns
  */
-export function removeCJKInnerSpaces(text: string): string {
+export const removeCJKInnerSpaces = (text: string): string => {
   return text.replace(/(\S)\s+(\S)/g, (match, left, right) => {
     if (CJK_REGEX.test(left) && CJK_REGEX.test(right)) {
       return left + right;
     }
     return match;
   });
-}
+};
 
 /**
  * Canonicalize a name by normalizing spaces, converting Traditional Chinese to Simplified by default, unless the skipChineseConversion option is set.
@@ -50,10 +50,10 @@ export function removeCJKInnerSpaces(text: string): string {
  * @param opts
  * @returns
  */
-export function canonicalizeName(
+export const canonicalizeName = (
   rawName: string,
-  opts?: { skipChineseConversion?: boolean }
-): string {
+  opts?: { skipChineseConversion?: boolean },
+): string => {
   let normalized = removeCJKInnerSpaces(rawName);
 
   const skipChineseConversion = !!opts?.skipChineseConversion;
@@ -83,4 +83,4 @@ export function canonicalizeName(
   normalized = manualMap[normalized] || normalized;
 
   return normalized;
-}
+};

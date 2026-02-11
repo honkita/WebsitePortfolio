@@ -5,8 +5,8 @@
  * @param b
  * @returns
  */
-export function lengthSimilarity(a: string, b: string) {
+export const lengthSimilarity = (a: string, b: string) => {
   const lenA = a.length;
   const lenB = b.length;
   return Math.min(lenA, lenB) / Math.max(lenA, lenB);
-}
+};

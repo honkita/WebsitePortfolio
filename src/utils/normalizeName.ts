@@ -4,7 +4,7 @@ import { canonicalizeName } from "@/utils/canonicalizeName";
 /**
  * Detects if string is predominantly CJK (Chinese/Japanese/Korean)
  */
-function isCJK(str: string): boolean {
+const isCJK = (str: string): boolean => {
   // Count CJK characters
   const cjk =
     str.match(/[\u4E00-\u9FFF\u3040-\u30FF\u31F0-\u31FF\uFF66-\uFF9F]/g)
@@ -17,14 +17,14 @@ function isCJK(str: string): boolean {
   // Consider "predominantly CJK" if ≥ 40% characters are CJK
   // (can adjust threshold if needed)
   return cjk > 0 && cjk >= non * 0.4;
-}
+};
 
 /**
  * Normalizes commas based on if the string is Japanese/Chinese or not
  * @param str
  * @returns
  */
-export function normalizeCommas(str: string): string {
+export const normalizeCommas = (str: string): string => {
   if (!str) return str;
 
   const useCjkComma = isCJK(str);
@@ -35,7 +35,7 @@ export function normalizeCommas(str: string): string {
     .replace(/[\uFF0C,]\s*/g, targetComma)
     .replace(/\s*([，,])\s*/g, targetComma)
     .trim();
-}
+};
 
 /**
  * Full artist name normalization
@@ -43,28 +43,28 @@ export function normalizeCommas(str: string): string {
  * @param skipChinese
  * @returns
  */
-export async function normalizeArtistFull(
+export const normalizeArtistFull = async (
   name: string,
   skipChinese: boolean,
-): Promise<string> {
+): Promise<string> => {
   const pre = normalizeSpaces(normalizeCommas(normalizeCV(name)));
   return canonicalizeName(pre, { skipChineseConversion: skipChinese });
-}
+};
 
 /**
  * Full album name normalization
  * @param name
  * @returns
  */
-export function normalizeAlbumFull(name: string): string {
+export const normalizeAlbumFull = (name: string): string => {
   return name.replace(/\s*-\s*(Single|EP)$/i, "").trim();
-}
+};
 
 /**
  * Remove any spaces between two Chinese/Japanese characters
  * @param str
  */
-export function normalizeSpaces(str: string): string {
+export const normalizeSpaces = (str: string): string => {
   if (!str) return str;
 
   // Remove spaces between two CJK characters
@@ -72,7 +72,7 @@ export function normalizeSpaces(str: string): string {
     /([\u4E00-\u9FFF\u3040-\u30FF\u31F0-\u31FF\uFF66-\uFF9F])\s+([\u4E00-\u9FFF\u3040-\u30FF\u31F0-\u31FF\uFF66-\uFF9F])/g,
     "$1$2",
   );
-}
+};
 
 /**
  * Normalizes seiyuu CV patterns to (CV.NAME)
@@ -93,7 +93,7 @@ export function normalizeSpaces(str: string): string {
  * - Normalizes CV patterns to (CV.NAME)
  * - Ensures EXACTLY ONE space before "(" when there is preceding text
  */
-export function normalizeCV(str: string): string {
+export const normalizeCV = (str: string): string => {
   if (!str) return str;
 
   // Normalize CJK brackets to ASCII () so regex is simpler
@@ -126,4 +126,4 @@ export function normalizeCV(str: string): string {
   result = result.replace(/(\S)\s*\(/g, "$1 (");
 
   return result;
-}
+};

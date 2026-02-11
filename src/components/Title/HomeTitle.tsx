@@ -45,7 +45,7 @@ const backgroundUrl = (colour: string) => {
     }
 };
 
-export default function HomeTitle({ colour, name }: TitleProps) {
+const HomeTitle: React.FC<TitleProps> = ({ colour, name }) => {
     const [bgIsVisible, setBgIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
     const [imageIndex, setImageIndex] = useState(0);
@@ -171,3 +171,5 @@ export default function HomeTitle({ colour, name }: TitleProps) {
         </section>
     );
 }
+
+export default HomeTitle;
