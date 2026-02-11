@@ -8,12 +8,12 @@ import ImageCarouselCSS from "./ImageCarousel.module.css";
 // Interface for ImageCarousel Props
 interface ImageCarouselProps {
     images:
-        | {
-              name: string;
-              description: string;
-              image: string;
-          }[]
-        | string; // Can be passed as JSON string
+    | {
+        name: string;
+        description: string;
+        image: string;
+    }[]
+    | string; // Can be passed as JSON string
 }
 
 /**
@@ -63,9 +63,8 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
                 setIndex(imagesJSON.length - 2); // Jump to last real
                 if (trackRef.current) {
                     trackRef.current.style.transition = "none";
-                    trackRef.current.style.transform = `translateX(-${
-                        (imagesJSON.length - 2) * 100
-                    }%)`;
+                    trackRef.current.style.transform = `translateX(-${(imagesJSON.length - 2) * 100
+                        }%)`;
                 }
             } else if (index === imagesJSON.length - 1) {
                 setIndex(1); // Jump to first real
@@ -128,9 +127,8 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
                 {rawImages.map((_: any, i: number) => (
                     <span
                         key={i}
-                        className={`${ImageCarouselCSS.dot} ${
-                            index === i + 1 ? ImageCarouselCSS.activeDot : ""
-                        }`}
+                        className={`${ImageCarouselCSS.dot} ${index === i + 1 ? ImageCarouselCSS.activeDot : ""
+                            }`}
                         onClick={() => handleDotClick(i)}
                     />
                 ))}

@@ -14,10 +14,10 @@ interface LastFmTrack {
  * GET Handler
  * @returns NextResponse
  */
-export async function GET() {
+const GET = async () => {
   try {
     const res = await fetch(
-      `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${process.env.LASTFM_USER}&api_key=${process.env.LASTFM_KEY}&format=json&limit=1`
+      `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${process.env.LASTFM_USER}&api_key=${process.env.LASTFM_KEY}&format=json&limit=1`,
     );
 
     const data = await res.json();
@@ -29,4 +29,6 @@ export async function GET() {
     console.error("Error fetching Last.fm API:", err);
     return NextResponse.json(null);
   }
-}
+};
+
+export { GET };

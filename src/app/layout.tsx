@@ -21,7 +21,7 @@ interface LayoutProps {
     children?: ReactNode;
 }
 
-export default function RootLayout({ children }: LayoutProps) {
+const RootLayout: React.FC<LayoutProps> = ({ children }) => {
     const pathname = usePathname();
     const imagesLoaded = LoadImages();
 
@@ -52,9 +52,8 @@ export default function RootLayout({ children }: LayoutProps) {
                     <Nav />
                     <div
                         key={pathname}
-                        className={`${styles.containerColour} ${
-                            styles.initialHide
-                        } ${shouldAnimate ? styles.animateUp : ""}`}
+                        className={`${styles.containerColour} ${styles.initialHide
+                            } ${shouldAnimate ? styles.animateUp : ""}`}
                     >
                         {children}
                         <section
@@ -69,3 +68,5 @@ export default function RootLayout({ children }: LayoutProps) {
         </html>
     );
 }
+
+export default RootLayout;

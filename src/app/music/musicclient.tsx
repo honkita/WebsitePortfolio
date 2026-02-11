@@ -21,7 +21,7 @@ import {
  * Clientside Music Page
  * @returns JSX.Element
  */
-export default function MusicClient() {
+const MusicClient: React.FC = () => {
     // State variables
     const [artists, setArtists] = useState<Record<string, artistAlbumTopAlbum>>(
         {}
@@ -136,3 +136,5 @@ export default function MusicClient() {
         </div>
     );
 }
+
+export default MusicClient;

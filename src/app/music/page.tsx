@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 // Client
 import MusicClient from "./musicclient";
 
+
 // Metadata
 export const metadata: Metadata = {
     title: "Music"
@@ -12,6 +13,8 @@ export const metadata: Metadata = {
  * Serverside Music Page
  * @returns JSX.Element
  */
-export default function Music() {
+const Music: React.FC = () => {
     return <MusicClient />;
 }
+
+export default Music;

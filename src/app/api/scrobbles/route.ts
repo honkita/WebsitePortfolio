@@ -8,7 +8,7 @@ const API_URL = "https://ws.audioscrobbler.com/2.0/";
  * GET Handler
  * @returns NextResponse
  */
-export async function GET() {
+const GET = async () => {
   try {
     const res = await fetch(
       `${API_URL}?method=user.getinfo&user=${USERNAME}&api_key=${API_KEY}&format=json`,
@@ -27,4 +27,6 @@ export async function GET() {
       { status: 500 },
     );
   }
-}
+};
+
+export { GET };

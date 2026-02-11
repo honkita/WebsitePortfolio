@@ -34,14 +34,14 @@ const API_URL = "https://ws.audioscrobbler.com/2.0/";
  * @param totalPages
  * @returns Promise<any[]>
  */
-async function fetchAllPages(url: string, totalPages: number) {
+const fetchAllPages = async (url: string, totalPages: number) => {
   const promises = [];
   for (let p = 2; p <= totalPages; p++) {
     promises.push(fetch(url + `&page=${p}`).then((r) => r.json()));
   }
   const results = await Promise.all(promises);
   return results;
-}
+};
 
 /**
  * Fetches all items from Last.fm
@@ -152,9 +152,9 @@ async function mergeArtists(
    * @param name
    * @returns 2 if it is a composition of multiple artists, else 1
    */
-  function penalty(name: string) {
+  const penalty: (name: string) => number = (name: string) => {
     return /[&,，,＋+×]/.test(name) ? 2 : 1;
-  }
+  };
 
   const sortedDbCanonNames = Object.keys(aliasMap).sort((a, b) => {
     const pa = penalty(a);

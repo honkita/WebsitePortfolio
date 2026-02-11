@@ -17,7 +17,7 @@ export const metadata: Metadata = {
  * Serverside Home Page
  * @returns JSX.Element
  */
-export default function Home() {
+const Home: React.FC = () => {
     return (
         <div className={styles.contentWrapper}>
             <HomeTitle name="Elite Lu" colour="red" />
@@ -30,3 +30,4 @@ export default function Home() {
         </div>
     );
 }
+export default Home;
