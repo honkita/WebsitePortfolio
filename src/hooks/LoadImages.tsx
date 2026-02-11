@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export default function LoadImages() {
+const LoadImages = () => {
     const [imagesLoaded, setImagesLoaded] = useState(false);
 
     useEffect(() => {
@@ -40,4 +40,6 @@ export default function LoadImages() {
     }, []);
 
     return imagesLoaded;
-}
+};
+
+export default LoadImages;

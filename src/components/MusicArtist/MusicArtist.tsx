@@ -25,7 +25,7 @@ interface MusicArtistProps {
 const LASTFM_PLACEHOLDER_HASH = "2a96cbd8b46e442fc41c2b86b821562f.png";
 const REFRESH_INTERVAL_MS = 5000;
 
-function isValidImageUrl(url: string): Promise<boolean> {
+const isValidImageUrl = (url: string) => {
     return new Promise((resolve) => {
         if (!url || url.includes(LASTFM_PLACEHOLDER_HASH)) {
             resolve(false);
@@ -63,14 +63,14 @@ const MusicArtist = ({
         let cancelled = false;
         let interval: NodeJS.Timeout;
 
-        async function checkImage() {
+        const checkImage = async () => {
             if (await isValidImageUrl(image)) {
                 if (!cancelled) {
                     setResolvedImage(image);
                     clearInterval(interval);
                 }
             }
-        }
+        };
 
         // First attempt immediately
         checkImage();

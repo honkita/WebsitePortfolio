@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 // CSS
 import PixelLoaderCSS from "./PixelLoader.module.css";
 
-export default function PixelLoader() {
+const PixelLoader = () => {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -20,3 +20,5 @@ export default function PixelLoader() {
 
     return <div className={`${PixelLoaderCSS.pixelLoader}`}></div>;
 }
+
+export default PixelLoader;

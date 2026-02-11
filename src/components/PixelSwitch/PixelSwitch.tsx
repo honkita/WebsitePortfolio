@@ -10,7 +10,7 @@ import PixelSwitchCSS from "./PixelSwitch.module.css";
  *
  * @returns
  */
-export default function PixelSwitch() {
+const PixelSwitch = () => {
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme, setTheme } = useTheme();
 
@@ -42,4 +42,6 @@ export default function PixelSwitch() {
             />
         </div>
     );
-}
+};
+
+export default PixelSwitch;

@@ -15,13 +15,13 @@ interface ProgressBarProps {
 }
 
 // Component
-export default function ProgressBar({
+const ProgressBar = ({
     numerator,
     denominator,
     colour,
     label,
     suffix
-}: ProgressBarProps) {
+}: ProgressBarProps) => {
     return (
         <div className={ProgressBarCSS.progressBarRow}>
             <div className={ProgressBarCSS.progressBarLabel}>{label}</div>
@@ -42,4 +42,6 @@ export default function ProgressBar({
             </div>
         </div>
     );
-}
+};
+
+export default ProgressBar;

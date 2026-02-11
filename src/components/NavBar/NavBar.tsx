@@ -37,10 +37,10 @@ const NavBar = () => {
         { name: "Projects", link: "/projects", file: "Projects" }
     ];
 
-    function getButton(name: string, light: boolean) {
+    const getButton = (name: string, light: boolean) => {
         if (light) return path + "Pixel_" + name + ".svg";
         return path + "Pixel_" + name + "_Dark.svg";
-    }
+    };
 
     const actualResolvedTheme = isThemeMounted ? resolvedTheme : "light";
 

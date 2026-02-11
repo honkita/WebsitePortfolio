@@ -1,4 +1,4 @@
-export function returnURL(text: string, resolvedTheme: string) {
+export const returnURL = (text: string, resolvedTheme: string) => {
     const resumeTheme = () =>
         resolvedTheme === "light"
             ? "./Elite_Lu_Resume.pdf"

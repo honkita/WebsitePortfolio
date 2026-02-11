@@ -75,7 +75,7 @@ const Title = ({ colour, buttons, name }: TitleProps) => {
         }
     }, [colour, mounted]);
 
-    function backgroundClass() {
+    const backgroundClass = () => {
         switch (colour) {
             case "blue":
                 return TitleCSS.blueName;
@@ -88,7 +88,7 @@ const Title = ({ colour, buttons, name }: TitleProps) => {
             default:
                 break;
         }
-    }
+    };
 
     const visibilityClass = bgIsVisible
         ? TitleCSS.loadedAndVisible

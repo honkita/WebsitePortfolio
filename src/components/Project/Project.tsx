@@ -18,7 +18,7 @@ interface ProjectsProps {
     url: string;
 }
 
-export default function Project({ name, img, url }: ProjectsProps) {
+const Project = ({ name, img, url }: ProjectsProps) => {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -29,7 +29,7 @@ export default function Project({ name, img, url }: ProjectsProps) {
         return null;
     }
 
-    function getImage() {
+    const getImage = () => {
         if (img != "") {
             return "/images/Projects/" + img;
         }
@@ -63,3 +63,5 @@ export default function Project({ name, img, url }: ProjectsProps) {
         </div>
     );
 }
+
+export default Project;

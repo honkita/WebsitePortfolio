@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-async function main() {
+const main = async () => {
   const data: Record<string, string[]> = {
     "Utada Hikaru": ["宇多田ヒカル", "Hikaru Utada"],
     林憶蓮: ["Sandy Lam", "Lam Yik Lin"],
@@ -30,7 +30,7 @@ async function main() {
       console.error(`Failed to insert ${artist}:`, err);
     }
   }
-}
+};
 
 main()
   .catch((err) => {

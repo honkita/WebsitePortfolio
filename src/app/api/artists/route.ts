@@ -50,11 +50,11 @@ const fetchAllPages = async (url: string, totalPages: number) => {
  * @param apiKey
  * @returns Promise<T[]>
  */
-async function fetchAllLastFm<T>(
+const fetchAllLastFm = async <T>(
   method: string,
   username: string,
   apiKey: string,
-) {
+) => {
   const baseURL = `${API_URL}?method=${method}&user=${username}&api_key=${apiKey}&format=json&limit=1000`;
 
   const first = await fetch(baseURL + "&page=1").then((r) => r.json());
@@ -79,7 +79,7 @@ async function fetchAllLastFm<T>(
   }
 
   return items as T[];
-}
+};
 
 /**
  * Merges the artists
@@ -87,10 +87,10 @@ async function fetchAllLastFm<T>(
  * @param dbArtistMap
  * @returns
  */
-async function mergeArtists(
+const mergeArtists = async (
   lfmArtistAlbumMap: lfmArtistAlbumMapType,
   dbArtistMap: dbArtistMapType,
-): Promise<artistAlbumContainerMapType> {
+): Promise<artistAlbumContainerMapType> => {
   // Maps ALL the aliases
   const aliasMap: Record<string, string> = {};
 
@@ -192,7 +192,6 @@ async function mergeArtists(
         }
       }
     }
-
     mainName = mainName || artistName;
 
     if (!merged[mainName])
@@ -227,7 +226,7 @@ async function mergeArtists(
   }
 
   return merged;
-}
+};
 
 /**
  * Builds the final result function
@@ -236,7 +235,7 @@ async function mergeArtists(
  * @param albums
  * @returns
  */
-async function buildResult(
+const buildResult = async (
   lfmArtistsMap: Record<string, number>,
   lfmAlbumMap: lfmAlbumMapType,
 ): Promise<lfmArtistAlbumMapType> {
@@ -286,7 +285,7 @@ async function buildResult(
   }
 
   return lfmArtistAlbumMap;
-}
+};
 
 /**
  * Normalizes albums and groups based on aliases
@@ -368,11 +367,11 @@ async function albumNormalization(
  * @param sameNameMap
  * @returns
  */
-async function splitArtists(
+const splitArtists = async (
   mergedNormalized: artistAlbumContainerMapType,
   defaultArtist: Record<string, string> = {},
   sameNameMap: Record<string, Record<string, string[]>>,
-): Promise<artistAlbumContainerMapType> {
+): Promise<artistAlbumContainerMapType> => {
   for (const [originalName, data] of Object.entries(sameNameMap)) {
     const result: artistAlbumContainerMapType = {};
 
@@ -427,16 +426,16 @@ async function splitArtists(
   }
 
   return mergedNormalized;
-}
+};
 
 /**
  * Gets the best album for each split artist
  * @param merged
  * @returns
  */
-async function getBestAlbum(
+const getBestAlbum = async (
   merged: artistAlbumContainerMapType,
-): Promise<artistAlbumTopAlbum[]> {
+): Promise<artistAlbumTopAlbum[]> => {
   const result: artistAlbumTopAlbum[] = [];
 
   for (const [artistName, data] of Object.entries(merged)) {
@@ -460,13 +459,13 @@ async function getBestAlbum(
     });
   }
   return result;
-}
+};
 
 /**
  * GET Handler
  * @returns NextResponse
  */
-export async function GET() {
+const GET = async () => {
   try {
     // Fetch DB Artists
     const [dbArtistAlbums, dbSameNames] = await Promise.all([
@@ -627,4 +626,6 @@ export async function GET() {
       { status: 500 },
     );
   }
-}
+};
+
+export { GET };

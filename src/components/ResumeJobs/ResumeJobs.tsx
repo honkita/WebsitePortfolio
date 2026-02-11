@@ -31,7 +31,7 @@ const ResumeJobs = () => {
     const [mounted, setMounted] = useState(false);
     const [selectedJobIndex, setSelectedJobIndex] = useState(0);
 
-    function BulletList(points: string[]) {
+    const BulletList = (points: string[]) => {
         return (
             <ul className={ResumeJobsCSS.list}>
                 {points.map((point: string, index: number) => (
@@ -42,7 +42,7 @@ const ResumeJobs = () => {
                 ))}
             </ul>
         );
-    }
+    };
 
     useEffect(() => {
         setMounted(true);

@@ -20,7 +20,7 @@ interface PixelButtonProps {
     extra: boolean;
 }
 
-export default function PixelButton({ name, url, extra }: PixelButtonProps) {
+const PixelButton = ({ name, url, extra }: PixelButtonProps) => {
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();
     var PixelButtonsJSON = JSON.parse(JSON.stringify(PixelButtons));
@@ -33,21 +33,20 @@ export default function PixelButton({ name, url, extra }: PixelButtonProps) {
         return null;
     }
 
-    function getValue() {
+    const getValue = () => {
         if (PixelButtonsJSON[name] != null) return PixelButtonsJSON[name];
         return null;
-    }
+    };
 
     let src;
 
     return (
         <Link href={url} target={getValue().target}>
             <button
-                className={`${PixelButtonCSS.buttonRendering} ${
-                    extra != true
-                        ? PixelButtonCSS.button
-                        : PixelButtonCSS.titleButtons
-                }`}
+                className={`${PixelButtonCSS.buttonRendering} ${extra != true
+                    ? PixelButtonCSS.button
+                    : PixelButtonCSS.titleButtons
+                    }`}
                 title={name}
                 aria-label={"Go to " + name}
                 type="button"
@@ -73,4 +72,6 @@ export default function PixelButton({ name, url, extra }: PixelButtonProps) {
             </button>
         </Link>
     );
-}
+};
+
+export default PixelButton;
