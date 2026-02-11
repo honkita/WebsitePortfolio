@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 // Utils
+import { getArtists } from "@/utils/databaseArtists";
 import { normalizeArtistFull } from "@/utils/normalizeName";
 
 // Types
@@ -472,36 +473,34 @@ async function getBestAlbum(
 export async function GET() {
   try {
     // Fetch DB Artists
-    const [dbArtists, dbAlbums, dbArtistAlbums, dbSameNames] =
-      await Promise.all([
-        prisma.artist.findMany(),
-        prisma.album.findMany({ select: { id: true, name: true } }),
-        prisma.artistAlbum.findMany({
-          select: {
-            Artist: {
-              select: {
-                name: true,
-              },
+    const [dbAlbums, dbArtistAlbums, dbSameNames] = await Promise.all([
+      prisma.album.findMany({ select: { id: true, name: true } }),
+      prisma.artistAlbum.findMany({
+        select: {
+          Artist: {
+            select: {
+              name: true,
             },
-            Albums: {
-              select: {
-                id: true,
-                name: true,
-                aliases: true,
-              },
+          },
+          Albums: {
+            select: {
+              id: true,
+              name: true,
+              aliases: true,
             },
-            role: true,
           },
-        }),
-        prisma.sameNames.findMany({
-          select: {
-            name: true,
-            Artist: { select: { name: true } },
-            isDefault: true,
-            albumIDs: true,
-          },
-        }),
-      ]);
+          role: true,
+        },
+      }),
+      prisma.sameNames.findMany({
+        select: {
+          name: true,
+          Artist: { select: { name: true } },
+          isDefault: true,
+          albumIDs: true,
+        },
+      }),
+    ]);
 
     // Hash map for album names
     const albumMap: Record<number, string> = {};
@@ -514,8 +513,7 @@ export async function GET() {
     const sameNameMap: Record<string, Record<string, string[]>> = {};
 
     // Hash map for quick artist lookup
-    const dbArtistMap: Record<string, DBArtist> = {};
-    dbArtists.forEach((a) => (dbArtistMap[a.name] = a));
+    const dbArtistMap: Record<string, DBArtist> = await getArtists();
 
     dbSameNames.forEach((dbSameName) => {
       const displayName = dbSameName.name;
