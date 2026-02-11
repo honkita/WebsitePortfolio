@@ -13,9 +13,9 @@ import NavBarCSS from "./NavBar.module.css";
 
 /**
  * Navigation Bar Component
- * @returns JSX.Element
+ * @returns
  */
-export default function NavBar() {
+const NavBar = () => {
     const [isNavInitiallyMounted, setIsNavInitiallyMounted] = useState(false);
     const [isThemeMounted, setIsThemeMounted] = useState(false);
     const { resolvedTheme } = useTheme();
@@ -46,11 +46,10 @@ export default function NavBar() {
 
     return (
         <nav
-            className={`${NavBarCSS.navBar} ${
-                isNavInitiallyMounted
-                    ? NavBarCSS.navBarVisible
-                    : NavBarCSS.navBarHidden
-            }`}
+            className={`${NavBarCSS.navBar} ${isNavInitiallyMounted
+                ? NavBarCSS.navBarVisible
+                : NavBarCSS.navBarHidden
+                }`}
         >
             {pages.map((page, index) => (
                 <Link href={page.link} key={index}>
@@ -84,4 +83,6 @@ export default function NavBar() {
             <PixelSwitch />
         </nav>
     );
-}
+};
+
+export default NavBar;

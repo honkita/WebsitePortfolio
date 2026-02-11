@@ -19,9 +19,9 @@ import React from "react";
 
 /**
  * Clientside About Me Page
- * @returns JSX.Element
+ * @returns
  */
-const AboutMeClient: React.FC = () => {
+const AboutMeClient = () => {
     let devToolsJSON = JSON.parse(JSON.stringify(devTools));
     let frameworksJSON = JSON.parse(JSON.stringify(frameworks));
     let languagesJSON = JSON.parse(JSON.stringify(languages));

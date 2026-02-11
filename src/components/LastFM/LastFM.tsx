@@ -27,19 +27,19 @@ interface AnimatedLine {
 const LONGEST_SPEED = 25;
 const PAUSE_DURATION = 1;
 
-function debounce(fn: () => void, delay: number) {
+const debounce = (fn: () => void, delay: number) => {
     let timer: NodeJS.Timeout;
     return () => {
         clearTimeout(timer);
         timer = setTimeout(fn, delay);
     };
-}
+};
 
 /**
  * LastFM Home PageComponent
- * @returns JSX.Element
+ * @returns
  */
-export default function LastFM() {
+const LastFM = () => {
     const { resolvedTheme } = useTheme();
     const [track, setTrack] = useState<LastFmTrack | null>(null);
     const lastTrackId = useRef<string | null>(null);
@@ -142,9 +142,8 @@ export default function LastFM() {
         }
       `;
 
-            line.ref.current.style.animation = `${keyframeName} ${
-                (totalDuration * 1000) / 200
-            }s ease-in-out infinite`;
+            line.ref.current.style.animation = `${keyframeName} ${(totalDuration * 1000) / 200
+                }s ease-in-out infinite`;
         });
 
         styleRef.current.innerHTML = css;
@@ -235,4 +234,6 @@ export default function LastFM() {
             </div>
         </div>
     );
-}
+};
+
+export default LastFM;

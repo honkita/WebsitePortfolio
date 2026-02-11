@@ -19,9 +19,9 @@ import {
 
 /**
  * Clientside Music Page
- * @returns JSX.Element
+ * @returns
  */
-const MusicClient: React.FC = () => {
+const MusicClient = () => {
     // State variables
     const [artists, setArtists] = useState<Record<string, artistAlbumTopAlbum>>(
         {}

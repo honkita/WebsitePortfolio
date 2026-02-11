@@ -46,7 +46,7 @@ const preloadImage = (url: string): Promise<void> => {
     });
 };
 
-const Title: React.FC<TitleProps> = ({ colour, buttons, name }) => {
+const Title = ({ colour, buttons, name }: TitleProps) => {
     const [bgIsVisible, setBgIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();

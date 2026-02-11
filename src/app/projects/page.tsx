@@ -21,9 +21,9 @@ export const metadata: Metadata = {
 
 /**
  * Serverside Projects Page
- * @returns JSX.Element
+ * @returns
  */
-export default function Projects() {
+const Projects = () => {
     var projectsJSON = JSON.parse(JSON.stringify(CodedProjects));
 
     return (
@@ -63,4 +63,6 @@ export default function Projects() {
             </div>
         </div>
     );
-}
+};
+
+export default Projects;

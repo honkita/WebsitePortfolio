@@ -19,9 +19,9 @@ interface ImageCarouselProps {
 /**
  * Image Carousel Component
  * @param ImageCarouselProps
- * @returns JSX.Element
+ * @returns
  */
-export default function ImageCarousel({ images }: ImageCarouselProps) {
+const ImageCarousel = ({ images }: ImageCarouselProps) => {
     const rawImages = Array.isArray(images) ? images : JSON.parse(images);
 
     // Clone last and first images for seamless looping
@@ -135,4 +135,6 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
             </div>
         </div>
     );
-}
+};
+
+export default ImageCarousel;

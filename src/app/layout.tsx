@@ -21,7 +21,7 @@ interface LayoutProps {
     children?: ReactNode;
 }
 
-const RootLayout: React.FC<LayoutProps> = ({ children }) => {
+const RootLayout = ({ children }) => {
     const pathname = usePathname();
     const imagesLoaded = LoadImages();
 

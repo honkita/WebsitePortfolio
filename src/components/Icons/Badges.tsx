@@ -16,9 +16,9 @@ export interface BadgesProps {
 /**
  * Badges Icon Component
  * @param BadgesProps
- * @returns JSX.Element
+ * @returns
  */
-const Badges: React.FC<BadgesProps> = ({ name, url, type }) => {
+const Badges = ({ name, url, type }: BadgesProps) => {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -47,6 +47,6 @@ const Badges: React.FC<BadgesProps> = ({ name, url, type }) => {
             </button>
         </div>
     );
-}
+};
 
 export default Badges;

@@ -14,9 +14,9 @@ export interface IconsProps {
 /**
  * Icons Component
  * @param IconsProps
- * @returns JSX.Element
+ * @returns
  */
-export default function Icons({ icons }: IconsProps) {
+const Icons = ({ icons }: IconsProps) => {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -52,4 +52,6 @@ export default function Icons({ icons }: IconsProps) {
             ))}
         </div>
     );
-}
+};
+
+export default Icons;

@@ -15,9 +15,9 @@ export const metadata: Metadata = {
 
 /**
  * Serverside Home Page
- * @returns JSX.Element
+ * @returns
  */
-const Home: React.FC = () => {
+const Home = () => {
     return (
         <div className={styles.contentWrapper}>
             <HomeTitle name="Elite Lu" colour="red" />

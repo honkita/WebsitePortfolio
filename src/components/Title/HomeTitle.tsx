@@ -45,7 +45,7 @@ const backgroundUrl = (colour: string) => {
     }
 };
 
-const HomeTitle: React.FC<TitleProps> = ({ colour, name }) => {
+const HomeTitle = ({ colour, name }: TitleProps) => {
     const [bgIsVisible, setBgIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
     const [imageIndex, setImageIndex] = useState(0);

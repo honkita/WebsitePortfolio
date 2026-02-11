@@ -13,9 +13,9 @@ interface MusicArtistPopupProps {
 
 /**
  * Popup modal for music artist details
- * @returns JSX.Element
+ * @returns
  */
-export default function MusicArtistPopup({ name }: MusicArtistPopupProps) {
+const MusicArtistPopup = ({ name }: MusicArtistPopupProps) => {
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
@@ -57,4 +57,6 @@ export default function MusicArtistPopup({ name }: MusicArtistPopupProps) {
             </Modal>
         </div>
     );
-}
+};
+
+export default MusicArtistPopup;

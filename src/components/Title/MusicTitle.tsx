@@ -43,7 +43,7 @@ const preloadImage = (url: string): Promise<void> => {
     });
 };
 
-const MusicTitle: React.FC<MusicTitleProps> = ({
+const MusicTitle = ({
     colour,
     name,
     scrobbles,

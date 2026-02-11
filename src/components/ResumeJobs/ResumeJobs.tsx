@@ -25,9 +25,9 @@ interface JobData {
 
 /**
  * ResumeJobs Component
- * @returns JSX.Element
+ * @returns
  */
-export default function ResumeJobs() {
+const ResumeJobs = () => {
     const [mounted, setMounted] = useState(false);
     const [selectedJobIndex, setSelectedJobIndex] = useState(0);
 
@@ -65,11 +65,10 @@ export default function ResumeJobs() {
                 {resumeJobs.map((job: JobData, index: number) => (
                     <button
                         key={index}
-                        className={`${ResumeJobsCSS.button} ${
-                            index === selectedJobIndex
-                                ? ResumeJobsCSS.activeJobButton
-                                : ""
-                        }`}
+                        className={`${ResumeJobsCSS.button} ${index === selectedJobIndex
+                            ? ResumeJobsCSS.activeJobButton
+                            : ""
+                            }`}
                         onClick={() => handleJobSelect(index)}
                     >
                         <Image
@@ -113,4 +112,6 @@ export default function ResumeJobs() {
             </div>
         </div>
     );
-}
+};
+
+export default ResumeJobs;

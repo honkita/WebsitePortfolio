@@ -46,15 +46,15 @@ function isValidImageUrl(url: string): Promise<boolean> {
  * @param scrobbles
  * @param albums
  * @param rank
- * @returns JSX.Element
+ * @returns
  */
-export default function MusicArtist({
+const MusicArtist = ({
     name,
     image,
     scrobbles,
     albums,
     rank
-}: MusicArtistProps) {
+}: MusicArtistProps) => {
     const { resolvedTheme } = useTheme();
     const [resolvedImage, setResolvedImage] = useState<string>("");
 
@@ -137,4 +137,7 @@ export default function MusicArtist({
             </div>
         </div>
     );
-}
+};
+
+export default MusicArtist;
+

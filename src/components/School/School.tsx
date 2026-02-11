@@ -17,11 +17,11 @@ interface SchoolProps {
     schoolName: string;
 }
 
-export default function School({
+const School = ({
     GPA,
     schoolLocation,
     schoolName
-}: SchoolProps) {
+}: SchoolProps) => {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -68,12 +68,13 @@ export default function School({
                     style={{
                         strokeWidth: `${r / 8}`,
                         strokeDasharray: `${p} ${circumference}`,
-                        transform: `rotate(${angle - 90}deg ${cx / 2} ${
-                            cy / 2
-                        })`
+                        transform: `rotate(${angle - 90}deg ${cx / 2} ${cy / 2
+                            })`
                     }}
                 />
             </svg>
         </div>
     );
-}
+};
+
+export default School;

@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 /**
  * Serverside About Me Page
- * @returns JSX.Element
+ * @returns
  */
-const AboutMe: React.FC = () => {
+const AboutMe = () => {
     return <AboutMeClient />;
 }
 

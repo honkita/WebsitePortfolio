@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 
 /**
  * Serverside Music Page
- * @returns JSX.Element
+ * @returns
  */
-const Music: React.FC = () => {
+const Music = () => {
     return <MusicClient />;
 }
 
