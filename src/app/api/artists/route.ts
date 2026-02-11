@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 // Utils
+import { getAlbums } from "@/utils/databaseAlbums";
 import { getArtists } from "@/utils/databaseArtists";
 import { normalizeArtistFull } from "@/utils/normalizeName";
 
@@ -280,11 +281,6 @@ async function buildResult(
         } else {
           lfmArtistAlbumMap[artistName].albums[String(cleanedName)] = album;
         }
-      } else {
-        // lfmArtistAlbumMap[artistName] = {
-        //   playcount: album.playcount,
-        //   albums: { album },
-        // };
       }
     }
   }
@@ -473,8 +469,7 @@ async function getBestAlbum(
 export async function GET() {
   try {
     // Fetch DB Artists
-    const [dbAlbums, dbArtistAlbums, dbSameNames] = await Promise.all([
-      prisma.album.findMany({ select: { id: true, name: true } }),
+    const [dbArtistAlbums, dbSameNames] = await Promise.all([
       prisma.artistAlbum.findMany({
         select: {
           Artist: {
@@ -502,10 +497,6 @@ export async function GET() {
       }),
     ]);
 
-    // Hash map for album names
-    const albumMap: Record<number, string> = {};
-    dbAlbums.forEach((album) => (albumMap[Number(album.id)] = album.name));
-
     // Hash map for default artist names
     const defaultArtist: Record<string, string> = {};
 
@@ -514,6 +505,9 @@ export async function GET() {
 
     // Hash map for quick artist lookup
     const dbArtistMap: Record<string, DBArtist> = await getArtists();
+
+    // Hash map for album names
+    const albumMap: Record<number, string> = await getAlbums();
 
     dbSameNames.forEach((dbSameName) => {
       const displayName = dbSameName.name;

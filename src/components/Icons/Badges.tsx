@@ -18,7 +18,7 @@ export interface BadgesProps {
  * @param BadgesProps
  * @returns JSX.Element
  */
-export default function Badges({ name, url, type }: BadgesProps) {
+const Badges: React.FC<BadgesProps> = ({ name, url, type }) => {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -48,3 +48,5 @@ export default function Badges({ name, url, type }: BadgesProps) {
         </div>
     );
 }
+
+export default Badges;

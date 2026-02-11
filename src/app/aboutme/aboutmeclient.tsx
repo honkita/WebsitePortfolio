@@ -15,12 +15,13 @@ import divstyling from "@/styles/divstyling.module.css";
 import devTools from "@/assets/devTools.json";
 import frameworks from "@/assets/frameworks.json";
 import languages from "@/assets/languages.json";
+import React from "react";
 
 /**
  * Clientside About Me Page
  * @returns JSX.Element
  */
-export default function AboutMeClient() {
+const AboutMeClient: React.FC = () => {
     let devToolsJSON = JSON.parse(JSON.stringify(devTools));
     let frameworksJSON = JSON.parse(JSON.stringify(frameworks));
     let languagesJSON = JSON.parse(JSON.stringify(languages));
@@ -96,3 +97,5 @@ export default function AboutMeClient() {
         </div>
     );
 }
+
+export default AboutMeClient

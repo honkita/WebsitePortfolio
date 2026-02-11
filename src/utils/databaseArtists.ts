@@ -1,4 +1,4 @@
-import { cache } from "react";
+import "server-only";
 import { prisma } from "@/lib/prisma";
 
 // Types
@@ -6,13 +6,21 @@ import type { Artist } from "@prisma/client";
 
 const dbArtists: Record<string, Artist> = {};
 
-export const getArtists = cache(async (): Promise<Record<string, Artist>> => {
-  if (Object.keys(dbArtists).length === 0) {
-    console.log("Fetching artists from database...");
+const globalForArtists = globalThis as unknown as {
+  artists?: Record<string, Artist>;
+};
+
+/**
+ * Gets the artists from the database and stores them in a global variable for caching.
+ * @returns
+ */
+export const getArtists = async (): Promise<Record<string, Artist>> => {
+  if (!globalForArtists.artists) {
     const artists = await prisma.artist.findMany();
-    for (const a of artists) {
-      dbArtists[a.name] = a;
+    for (const artist of artists) {
+      dbArtists[artist.name] = artist;
     }
+    globalForArtists.artists = dbArtists;
   }
-  return dbArtists;
-});
+  return globalForArtists.artists!;
+};

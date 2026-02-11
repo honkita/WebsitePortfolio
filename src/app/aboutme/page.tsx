@@ -12,6 +12,8 @@ export const metadata: Metadata = {
  * Serverside About Me Page
  * @returns JSX.Element
  */
-export default function AboutMe() {
+const AboutMe: React.FC = () => {
     return <AboutMeClient />;
 }
+
+export default AboutMe;
