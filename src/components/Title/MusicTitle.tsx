@@ -109,7 +109,7 @@ const MusicTitle = ({
                     </section>{" "}
                     |
                     <section className={TitleCSS.scrobbles}>
-                        🎵 {scrobbles === 0 ? <PixelLoader /> : scrobbles}
+                        🎵{scrobbles === 0 ? <PixelLoader /> : scrobbles}
                     </section>
                 </section>
             </div>

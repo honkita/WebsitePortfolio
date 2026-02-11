@@ -157,6 +157,12 @@ const mergeArtists = async (
     return /[&,，,＋+×]/.test(name) ? 2 : 1;
   };
 
+  /**
+   * Sort the DB canon names based on length and penalty, so that when we do the ascii includes matching, we are more likely to match the correct artist first (e.g. Don't want "Queen" to match "Freddie Mercury" before "Queen")
+   * @param a
+   * @param b
+   * @returns
+   */
   const sortedDbCanonNames = Object.keys(aliasMap).sort((a, b) => {
     const pa = penalty(a);
     const pb = penalty(b);
