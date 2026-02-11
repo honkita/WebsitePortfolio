@@ -41,17 +41,17 @@
 }
 
 .indicators {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  margin: 1rem auto 1rem auto; /* centers horizontally */
+  width: fit-content;
+  align-self: center;
+  justify-content: center;
   display: flex;
   gap: 8px;
   z-index: 10;
   background-color: var(--background);
   padding: 0.5rem;
   border: 2px solid var(--primary);
-  margin-bottom: 1rem;
 }
 
 .dot {

@@ -93,36 +93,37 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
     }, [index, isTransitioning]);
 
     return (
-        <div className={ImageCarouselCSS.carouselWrapper}>
-            <div ref={trackRef} className={ImageCarouselCSS.carouselTrack}>
-                {imagesJSON.map((item: any, i: number) => (
-                    <img
-                        key={i}
-                        src={item.image}
-                        fetchPriority={"high"}
-                        className={ImageCarouselCSS.carouselImage}
-                        alt={`carousel-img-${i}`}
-                    />
-                ))}
+        <section>
+            <div className={ImageCarouselCSS.carouselWrapper}>
+                <div ref={trackRef} className={ImageCarouselCSS.carouselTrack}>
+                    {imagesJSON.map((item: any, i: number) => (
+                        <img
+                            key={i}
+                            src={item.image}
+                            fetchPriority={"high"}
+                            className={ImageCarouselCSS.carouselImage}
+                            alt={`carousel-img-${i}`}
+                        />
+                    ))}
+                </div>
+
+                <button
+                    title="Prev"
+                    className={ImageCarouselCSS.sliderButtons}
+                    style={{ left: "5%" }}
+                    onClick={handlePrev}
+                >
+                    {"<"}
+                </button>
+                <button
+                    title="Next"
+                    className={ImageCarouselCSS.sliderButtons}
+                    style={{ right: "5%" }}
+                    onClick={handleNext}
+                >
+                    {">"}
+                </button>
             </div>
-
-            <button
-                title="Prev"
-                className={ImageCarouselCSS.sliderButtons}
-                style={{ left: "5%" }}
-                onClick={handlePrev}
-            >
-                {"<"}
-            </button>
-            <button
-                title="Next"
-                className={ImageCarouselCSS.sliderButtons}
-                style={{ right: "5%" }}
-                onClick={handleNext}
-            >
-                {">"}
-            </button>
-
             <div className={ImageCarouselCSS.indicators}>
                 {rawImages.map((_: any, i: number) => (
                     <span
@@ -133,7 +134,7 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
                     />
                 ))}
             </div>
-        </div>
+        </section>
     );
 };
 
