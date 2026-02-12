@@ -46,14 +46,15 @@ const RootLayout = ({ children }: LayoutProps) => {
 
     // suppressHydrationWarning={true}
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning={true}>
             <body>
                 <ThemeProvider>
                     <Nav />
                     <div
                         key={pathname}
-                        className={`${styles.containerColour} ${styles.initialHide
-                            } ${shouldAnimate ? styles.animateUp : ""}`}
+                        className={`${styles.containerColour} ${
+                            styles.initialHide
+                        } ${shouldAnimate ? styles.animateUp : ""}`}
                     >
                         {children}
                         <section
@@ -67,6 +68,6 @@ const RootLayout = ({ children }: LayoutProps) => {
             </body>
         </html>
     );
-}
+};
 
 export default RootLayout;

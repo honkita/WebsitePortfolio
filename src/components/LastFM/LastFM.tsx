@@ -142,8 +142,9 @@ const LastFM = () => {
         }
       `;
 
-            line.ref.current.style.animation = `${keyframeName} ${(totalDuration * 1000) / 200
-                }s ease-in-out infinite`;
+            line.ref.current.style.animation = `${keyframeName} ${
+                (totalDuration * 1000) / 200
+            }s ease-in-out infinite`;
         });
 
         styleRef.current.innerHTML = css;
