@@ -33,6 +33,7 @@ const API_URL = "https://ws.audioscrobbler.com/2.0/";
 const mapping: Record<string, string> = {
   "Triple S": "tripleS",
   "Baby Monster": "BABYMONSTER",
+  에일리: "Ailee",
 };
 
 /**
@@ -259,12 +260,22 @@ const buildResult = async (
     if (mapping[artistName]) {
       lfmArtistAlbumMap[mapping[artistName]] = {
         playcount: playcount,
-        albums: {},
+        albums: {
+          ...lfmArtistAlbumMap[mapping[artistName]]?.albums,
+          ...lfmArtistAlbumMap[artistName]?.albums,
+        },
+      };
+      lfmAlbumMap[mapping[artistName]] = {
+        ...lfmAlbumMap[mapping[artistName]],
+        ...lfmAlbumMap[artistName],
       };
     } else {
       lfmArtistAlbumMap[artistName] = {
         playcount: playcount,
-        albums: {},
+        albums: lfmArtistAlbumMap[artistName]?.albums ?? {},
+      };
+      lfmAlbumMap[artistName] = {
+        ...lfmAlbumMap[artistName],
       };
     }
   }
@@ -272,10 +283,11 @@ const buildResult = async (
   for (const [artistName, lfmAlbum] of Object.entries(lfmAlbumMap)) {
     for (const [albumName, album] of Object.entries(lfmAlbum)) {
       // Remove the - Single or - EP suffixes for better matching
+
       const cleanedName = String(
         albumName
           .replace(
-            /\s*-\s*(Single|EP|single|ep|\(Deluxe\)|\(Deluxe Edition\))$/i,
+            /\s*(-)\s*(Single|EP|single|ep|\(Deluxe\)|\(Deluxe Edition\))$/i,
             "",
           )
           .replace(
@@ -286,10 +298,6 @@ const buildResult = async (
           .trim()
           .toLowerCase(),
       );
-
-      if (artistName === "tripleS") {
-        console.log("New Album Name:", cleanedName);
-      }
 
       // Check if the name of the artist exists in the lfmArtistsMap
       if (lfmArtistAlbumMap[artistName]) {
@@ -630,7 +638,7 @@ const GET = async () => {
 
     // USE THIS FOR DEBUGGING ARTISTS AND FOR DATABASE FIXING
     // console.log(
-    //   Object.keys(splitArtistList["tripleS (트리플에스)"]["albums"]).sort(),
+    //   Object.keys(splitArtistList["Ailee (에일리)"]["albums"]).sort(),
     // );
 
     // let p = 0;
