@@ -28,6 +28,13 @@ const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
 const USERNAME = process.env.NEXT_PUBLIC_LASTFM_USERNAME!;
 const API_URL = "https://ws.audioscrobbler.com/2.0/";
 
+// TEMPORARY FIX FOR SOME ARTISTS (FUCKING LAST.FM)
+
+const mapping: Record<string, string> = {
+  "Triple S": "tripleS",
+  "Baby Monster": "BABYMONSTER",
+};
+
 /**
  * Fetches all pages concurrently
  * @param url
@@ -249,10 +256,17 @@ const buildResult = async (
   const lfmArtistAlbumMap: lfmArtistAlbumMapType = {};
 
   for (const [artistName, playcount] of Object.entries(lfmArtistsMap)) {
-    lfmArtistAlbumMap[artistName] = {
-      playcount: playcount,
-      albums: {},
-    };
+    if (mapping[artistName]) {
+      lfmArtistAlbumMap[mapping[artistName]] = {
+        playcount: playcount,
+        albums: {},
+      };
+    } else {
+      lfmArtistAlbumMap[artistName] = {
+        playcount: playcount,
+        albums: {},
+      };
+    }
   }
 
   for (const [artistName, lfmAlbum] of Object.entries(lfmAlbumMap)) {
@@ -264,13 +278,21 @@ const buildResult = async (
             /\s*-\s*(Single|EP|single|ep|\(Deluxe\)|\(Deluxe Edition\))$/i,
             "",
           )
+          .replace(
+            /\s*(Single|EP|single|ep|\(Deluxe\)|\(Deluxe Edition\))$/i,
+            "",
+          )
           .replace(/\s*\s*(ep)$/i, "")
           .trim()
           .toLowerCase(),
       );
 
+      if (artistName === "tripleS") {
+        console.log("New Album Name:", cleanedName);
+      }
+
       // Check if the name of the artist exists in the lfmArtistsMap
-      if (lfmArtistAlbumMap[artistName] !== undefined) {
+      if (lfmArtistAlbumMap[artistName]) {
         // Check if the artist already has the album
         if (
           lfmArtistAlbumMap[artistName].albums[String(cleanedName)] !==
@@ -287,6 +309,8 @@ const buildResult = async (
         } else {
           lfmArtistAlbumMap[artistName].albums[String(cleanedName)] = album;
         }
+      } else {
+        // If the artist does not exist, create a new entry
       }
     }
   }
@@ -606,7 +630,7 @@ const GET = async () => {
 
     // USE THIS FOR DEBUGGING ARTISTS AND FOR DATABASE FIXING
     // console.log(
-    //   Object.keys(splitArtistList["Mrs. GREEN APPLE"]["albums"]).sort(),
+    //   Object.keys(splitArtistList["tripleS (트리플에스)"]["albums"]).sort(),
     // );
 
     // let p = 0;
