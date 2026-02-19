@@ -103,9 +103,12 @@
   opacity: 1;
 }
 
+.button:hover {
+  cursor: url("../../../../public/images/Cursor/Pointer.png"), pointer;
+}
+
 @media not (hover: none) {
   .button:hover {
     filter: brightness(75%);
-    cursor: url("../../../../public/images/Cursor/Pointer.png"), pointer;
   }
 }
