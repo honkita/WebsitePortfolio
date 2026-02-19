@@ -7,14 +7,62 @@
   border: 2px solid var(--primary);
   padding: 1.5rem;
   border-radius: 8px;
-  width: 20vw;
+  width: 50vw;
   max-width: 400px;
   min-width: 300px;
   aspect-ratio: 1/1.5;
   z-index: 1000;
 }
 
+.popupContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.artistInfo {
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.artistName {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
 .overlay {
   background-color: rgba(0, 0, 0, 0.75);
   z-index: 999;
+}
+
+.button {
+  width: 3rem;
+  height: 3rem;
+  aspect-ratio: 1 / 1;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
+  cursor: pointer;
+}
+
+.button > img {
+  width: 100%;
+  image-rendering: pixelated;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+}
+
+@media not (hover: none) {
+  .button:hover {
+    filter: brightness(75%);
+    cursor: url("../../../../public/images/Cursor/Pointer.png"), pointer;
+  }
 }

@@ -37,7 +37,7 @@ const isValidImageUrl = (url: string) => {
         img.onerror = () => resolve(false);
         img.src = url;
     });
-}
+};
 
 /**
  * Displays a music artist card
@@ -133,11 +133,15 @@ const MusicArtist = ({
                     </div>
                 </section>
                 {/* ADD THIS WHEN MODAL IS READY!!! <MusicArtistPopup name={name} /> */}
-                {/* <MusicArtistPopup name={name} /> */}
+                <MusicArtistPopup
+                    name={name}
+                    image={image}
+                    scrobbles={scrobbles}
+                    albums={albums}
+                />
             </div>
         </div>
     );
 };
 
 export default MusicArtist;
-

@@ -6,6 +6,7 @@ import { prisma } from "@/lib/prisma";
 // Utils
 import { getAlbums } from "@/utils/databaseAlbums";
 import { getArtists } from "@/utils/databaseArtists";
+import { addAlbumMapping, getAlbumName } from "@/utils/albumMapping";
 import { normalizeArtistFull } from "@/utils/normalizeName";
 
 // Types
@@ -283,6 +284,19 @@ const buildResult = async (
   for (const [artistName, lfmAlbum] of Object.entries(lfmAlbumMap)) {
     for (const [albumName, album] of Object.entries(lfmAlbum)) {
       // Remove the - Single or - EP suffixes for better matching
+      const removed = String(
+        albumName
+          .replace(
+            /\s*(-)\s*(Single|EP|single|ep|\(Deluxe\)|\(Deluxe Edition\))$/i,
+            "",
+          )
+          .replace(
+            /\s*(Single|EP|single|ep|\(Deluxe\)|\(Deluxe Edition\))$/i,
+            "",
+          )
+          .replace(/\s*\s*(ep)$/i, "")
+          .trim(),
+      );
 
       const cleanedName = String(
         albumName
@@ -298,6 +312,8 @@ const buildResult = async (
           .trim()
           .toLowerCase(),
       );
+
+      addAlbumMapping(cleanedName, removed);
 
       // Check if the name of the artist exists in the lfmArtistsMap
       if (lfmArtistAlbumMap[artistName]) {
@@ -395,6 +411,17 @@ const albumNormalization = async (
       }
     }
   }
+
+  // Fix the album titles using the name mapping
+  for (const [artistName, data] of Object.entries(mergedAlbumArtists)) {
+    const updatedAlbums: Record<string, any> = {};
+    for (const [albumName, albumData] of Object.entries(data.albums)) {
+      const mappedName = getAlbumName(albumName) || albumName;
+      updatedAlbums[mappedName] = albumData;
+    }
+    mergedAlbumArtists[artistName].albums = updatedAlbums;
+  }
+
   return mergedAlbumArtists;
 };
 
