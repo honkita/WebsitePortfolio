@@ -158,12 +158,13 @@ const mergeArtists = async (
 
   /**
    * Penalty function for sorting
-   * If it is a composition of two artists, double the cost.
+   * If it is a composition of two artists, increase the cost
    * @param name
-   * @returns 2 if it is a composition of multiple artists, else 1
+   * @returns
    */
   const penalty: (name: string) => number = (name: string) => {
-    return /[&,，,＋+×]/.test(name) ? 2 : 1;
+    const matches = name.match(/[&,，,、＋+×]/g);
+    return matches ? matches.length + 1 : 1;
   };
 
   /**
@@ -301,14 +302,14 @@ const buildResult = async (
       const cleanedName = String(
         albumName
           .replace(
-            /\s*(-)\s*(Single|EP|single|ep|\(Deluxe\)|\(Deluxe Edition\))$/i,
+            /\s+(-)\s+(Single|EP|single|ep|\(Deluxe\)|\(Deluxe Edition\))$/i,
             "",
           )
           .replace(
-            /\s*(Single|EP|single|ep|\(Deluxe\)|\(Deluxe Edition\))$/i,
+            /\s+(Single|EP|single|ep|\(Deluxe\)|\(Deluxe Edition\))$/i,
             "",
           )
-          .replace(/\s*\s*(ep)$/i, "")
+          .replace(/\s+(ep)$/i, "")
           .trim()
           .toLowerCase(),
       );
@@ -664,9 +665,11 @@ const GET = async () => {
     );
 
     // USE THIS FOR DEBUGGING ARTISTS AND FOR DATABASE FIXING
-    // console.log(
-    //   Object.keys(splitArtistList["Ailee (에일리)"]["albums"]).sort(),
-    // );
+    console.log(
+      Object.keys(
+        splitArtistList["MILGRAM ムウ (CV: 香里有佐)"]["albums"],
+      ).sort(),
+    );
 
     // let p = 0;
 
