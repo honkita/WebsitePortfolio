@@ -9,6 +9,9 @@ import { useTheme } from "next-themes";
 import MusicArtistCSS from "../MusicArtist.module.css";
 import MusicArtistPopupCSS from "./MusicArtistPopup.module.css";
 
+// Lib
+import stringToColour from "@/lib/stringToColour";
+
 // Types
 import { artistAlbumContainer } from "@/types/Music";
 
@@ -244,11 +247,31 @@ const MusicArtistPopup = ({
                 </h2> */}
 
                 {renderText(name, nameRef, MusicArtistPopupCSS.artistName)}
-                <img
-                    src={image}
-                    className={MusicArtistCSS.albumImage}
-                    alt={`${name} image`}
-                />
+
+                {image ? (
+                    <img
+                        src={image}
+                        className={MusicArtistCSS.albumImage}
+                        alt={`${name} image`}
+                    />
+                ) : (
+                    <div className={MusicArtistPopupCSS.imagePlaceholder}>
+                        <img
+                            className={MusicArtistCSS.albumImage}
+                            src={
+                                resolvedTheme === "light"
+                                    ? "/images/Artists/PixelArtist.svg"
+                                    : "/images/Artists/PixelArtistDark.svg"
+                            }
+                            alt={`${name} placeholder`}
+                            loading="lazy"
+                        />
+                        <div
+                            className={MusicArtistPopupCSS.placeholder}
+                            style={{ backgroundColor: stringToColour(name) }}
+                        />
+                    </div>
+                )}
 
                 <p>Total Scrobbles: {scrobbles}</p>
                 <p>Top Album: {topAlbum}</p>

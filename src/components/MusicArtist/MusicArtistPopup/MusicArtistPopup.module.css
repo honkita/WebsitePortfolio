@@ -21,6 +21,26 @@
   gap: 1rem;
 }
 
+.imagePlaceholder {
+  border-radius: 1rem;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.75rem;
+  margin: none;
+  position: relative;
+}
+
+.placeholder {
+  float: left;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.75rem;
+  opacity: 50%;
+}
+
 .artistInfo {
   display: flex;
   width: 100%;
