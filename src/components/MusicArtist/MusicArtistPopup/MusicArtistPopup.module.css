@@ -3,7 +3,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: var(--background);
+  background: var(--background-tertiary);
   border: 2px solid var(--primary);
   padding: 1.5rem;
   border-radius: 8px;
@@ -34,6 +34,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   flex: 1;
+}
+
+.infoButton {
+  font-size: 1rem;
 }
 
 .overlay {

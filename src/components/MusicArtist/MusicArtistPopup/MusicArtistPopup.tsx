@@ -86,7 +86,12 @@ const MusicArtistPopup = ({
 
     return (
         <div>
-            <button onClick={openModal}>🔗</button>
+            <button
+                className={MusicArtistPopupCSS.infoButton}
+                onClick={openModal}
+            >
+                ⓘ
+            </button>
 
             <Modal
                 isOpen={isOpen}

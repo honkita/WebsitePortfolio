@@ -10,6 +10,7 @@
   --secondary-bright: #4800ff;
   --background: #fafafa;
   --background-secondary: #fafafa66;
+  --background-tertiary: #fafafad0;
   --foreground: #d57e04;
   --foreground-transparent: #d57e0466;
   --loader-background: #b9b9b9;
@@ -27,6 +28,7 @@
   --secondary-bright: #ffea5f;
   --background: #282828;
   --background-secondary: #28282866;
+  --background-tertiary: #282828d0;
   --foreground: #2d45e6;
   --foreground-transparent: #2d45e666;
   --loader-background: #646464;

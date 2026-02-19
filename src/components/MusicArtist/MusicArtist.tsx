@@ -93,12 +93,22 @@ const MusicArtist = ({
     return (
         <div className={MusicArtistCSS.card}>
             {hasImage ? (
-                <img
-                    className={MusicArtistCSS.albumImage}
-                    src={resolvedImage}
-                    alt={`${name} image`}
-                    loading="lazy"
-                />
+                <div className={MusicArtistCSS.imagePlaceholder}>
+                    <img
+                        className={MusicArtistCSS.albumImage}
+                        src={resolvedImage}
+                        alt={`${name} image`}
+                        loading="lazy"
+                    />
+                    <div className={MusicArtistCSS.buttonPlacement}>
+                        <MusicArtistPopup
+                            name={name}
+                            image={image}
+                            scrobbles={scrobbles}
+                            albums={albums}
+                        />
+                    </div>
+                </div>
             ) : (
                 <div className={MusicArtistCSS.imagePlaceholder}>
                     <img
@@ -115,6 +125,14 @@ const MusicArtist = ({
                         className={MusicArtistCSS.placeholder}
                         style={{ backgroundColor: stringToColour(name) }}
                     />
+                    <div className={MusicArtistCSS.buttonPlacement}>
+                        <MusicArtistPopup
+                            name={name}
+                            image={image}
+                            scrobbles={scrobbles}
+                            albums={albums}
+                        />
+                    </div>
                 </div>
             )}
 
@@ -133,12 +151,6 @@ const MusicArtist = ({
                     </div>
                 </section>
                 {/* ADD THIS WHEN MODAL IS READY!!! <MusicArtistPopup name={name} /> */}
-                <MusicArtistPopup
-                    name={name}
-                    image={image}
-                    scrobbles={scrobbles}
-                    albums={albums}
-                />
             </div>
         </div>
     );

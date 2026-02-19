@@ -11,6 +11,15 @@
   gap: 0.5rem;
 }
 
+.buttonPlacement {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .albumImage {
   width: 100%;
   aspect-ratio: 1 / 1;
