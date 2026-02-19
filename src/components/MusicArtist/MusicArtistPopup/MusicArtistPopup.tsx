@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Modal from "react-modal";
 import Image from "next/image";
 import { useTheme } from "next-themes";
@@ -12,7 +12,6 @@ import MusicArtistPopupCSS from "./MusicArtistPopup.module.css";
 // Types
 import { artistAlbumContainer } from "@/types/Music";
 
-// Global singleton state (simple)
 let modalOpen = false;
 
 interface MusicArtistPopupProps {
@@ -22,10 +21,6 @@ interface MusicArtistPopupProps {
     albums: artistAlbumContainer;
 }
 
-/**
- * Popup modal for music artist details
- * @returns
- */
 const MusicArtistPopup = ({
     name,
     image,
@@ -33,9 +28,11 @@ const MusicArtistPopup = ({
     albums
 }: MusicArtistPopupProps) => {
     const [isOpen, setIsOpen] = useState(false);
-
     const [isThemeMounted, setIsThemeMounted] = useState(false);
     const { resolvedTheme } = useTheme();
+
+    const speed = 3; // characters per second
+    const amplitude = 10; // max distance in characters (10ch each direction)
 
     useEffect(() => {
         Modal.setAppElement("body");
@@ -48,8 +45,7 @@ const MusicArtistPopup = ({
     const path = "./images/Buttons/";
 
     const getButton = (light: boolean) => {
-        if (light) return path + "PixelX.svg";
-        return path + "PixelXDark.svg";
+        return light ? path + "PixelX.svg" : path + "PixelXDark.svg";
     };
 
     const actualResolvedTheme = isThemeMounted ? resolvedTheme : "light";
@@ -60,10 +56,12 @@ const MusicArtistPopup = ({
             setIsOpen(true);
         }
     };
+
     const closeModal = () => {
         modalOpen = false;
         setIsOpen(false);
     };
+
     const [topAlbum, setTopAlbum] = useState<string>("");
     const [topAlbumInfo, setTopAlbumInfo] = useState<artistAlbumContainer>();
 
@@ -84,6 +82,115 @@ const MusicArtistPopup = ({
         setTopAlbumInfo(topAlbumInfo);
     }, [albums]);
 
+    /*
+        PING-PONG ANIMATION
+        Triangle wave function:
+        position = amplitude - |(t mod (2A)) - A|
+
+        This gives perfect ping-pong motion
+        at constant velocity.
+    */
+    // Setup scrolling animation
+    interface AnimatedLine {
+        text: string;
+        ref: React.RefObject<HTMLDivElement | null>;
+        keyframeName?: string;
+    }
+    const styleRef = useRef<HTMLStyleElement | null>(null);
+    const nameRef = useRef<HTMLDivElement>(null);
+
+    const resetAnimation = () => {
+        if (!styleRef.current) return;
+        styleRef.current.innerHTML = "";
+
+        if (nameRef.current) {
+            nameRef.current.style.animation = "none";
+            nameRef.current.style.transform = "translateX(0)";
+        }
+    };
+
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const timer = setTimeout(() => {
+            setupScroll();
+        }, 50);
+
+        return () => clearTimeout(timer);
+    }, [isOpen, name]);
+
+    const setupScroll = () => {
+        if (!styleRef.current || !nameRef.current) return;
+
+        const containerWidth = nameRef.current.parentElement!.offsetWidth;
+        const textWidth = nameRef.current.scrollWidth;
+
+        const distance = Math.max(0, textWidth - containerWidth);
+
+        if (distance === 0) {
+            nameRef.current.style.animation = "none";
+            nameRef.current.style.transform = "translateX(0)";
+            return;
+        }
+
+        let css = "";
+        // Animation constants
+        const LONGEST_SPEED = 25;
+        const longestDuration = name.length / LONGEST_SPEED;
+        const PAUSE_DURATION = 1;
+        const totalDuration = longestDuration * 2 + PAUSE_DURATION * 2;
+
+        if (!nameRef.current) return;
+
+        if (distance === 0) {
+            nameRef.current.style.animation = "none";
+            nameRef.current.style.transform = "translateX(0)";
+            return;
+        }
+
+        const keyframeName = `scrollLine`;
+
+        const pauseStartPct = Math.round(
+            (PAUSE_DURATION / totalDuration) * 100
+        );
+        const moveLeftPct = Math.round(
+            ((PAUSE_DURATION + longestDuration) / totalDuration) * 100
+        );
+        const pauseEndPct = Math.round(
+            ((2 * PAUSE_DURATION + longestDuration) / totalDuration) * 100
+        );
+        const moveRightPct = Math.round(
+            ((2 * (PAUSE_DURATION + longestDuration)) / totalDuration) * 100
+        );
+
+        css += `
+        @keyframes ${keyframeName} {
+          0%, ${pauseStartPct}% { transform: translateX(0); }
+          ${pauseStartPct}%, ${moveLeftPct}% { transform: translateX(-${distance}px); }
+          ${moveLeftPct}%, ${pauseEndPct}% { transform: translateX(-${distance}px); }
+          ${pauseEndPct}%, ${moveRightPct}% { transform: translateX(0); }
+        }
+      `;
+
+        nameRef.current.style.animation = `${keyframeName} ${
+            (totalDuration * 1000) / 200
+        }s ease-in-out infinite`;
+
+        styleRef.current.innerHTML = css;
+    };
+
+    const renderText = (
+        text: string,
+        ref: React.RefObject<HTMLDivElement | null>,
+        className: string
+    ) => (
+        <div className={`${MusicArtistPopupCSS.scrollWrapper} ${className}`}>
+            <div className={MusicArtistPopupCSS.scrollContent} ref={ref}>
+                <span>{text}</span>
+            </div>
+        </div>
+    );
+
     return (
         <div>
             <button
@@ -92,7 +199,7 @@ const MusicArtistPopup = ({
             >
                 ⓘ
             </button>
-
+            <style ref={styleRef} />
             <Modal
                 isOpen={isOpen}
                 onRequestClose={closeModal}
@@ -116,11 +223,11 @@ const MusicArtistPopup = ({
                                     ? getButton(true)
                                     : getButton(false)
                             }
-                            alt={"Close button"}
+                            alt="Close button"
                             aria-hidden={true}
                             tabIndex={-1}
                             fill
-                            priority={true}
+                            priority
                             sizes="100vw"
                         />
                     </button>
@@ -128,12 +235,21 @@ const MusicArtistPopup = ({
 
                 <hr />
 
-                <h2 className={MusicArtistPopupCSS.artistName}>{name}</h2>
+                {/* <h2
+                    ref={nameRef}
+                    className={MusicArtistPopupCSS.artistName}
+                    style={{ willChange: "transform" }}
+                >
+                    
+                </h2> */}
+
+                {renderText(name, nameRef, MusicArtistPopupCSS.artistName)}
                 <img
                     src={image}
                     className={MusicArtistCSS.albumImage}
                     alt={`${name} image`}
                 />
+
                 <p>Total Scrobbles: {scrobbles}</p>
                 <p>Top Album: {topAlbum}</p>
                 <p>Top Album Scrobbles: {topAlbumInfo?.playcount || 0}</p>
