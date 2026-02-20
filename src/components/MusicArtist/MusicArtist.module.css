@@ -86,10 +86,10 @@
   border-radius: 0.75rem;
   opacity: 50%;
 }
-
+/* 
 @media not (hover: none) {
   .card:hover {
     transform: scale(1.1);
     z-index: 10;
   }
-}
+} */
