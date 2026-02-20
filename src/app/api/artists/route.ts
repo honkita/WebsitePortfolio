@@ -665,11 +665,7 @@ const GET = async () => {
     );
 
     // USE THIS FOR DEBUGGING ARTISTS AND FOR DATABASE FIXING
-    console.log(
-      Object.keys(
-        splitArtistList["MILGRAM ムウ (CV: 香里有佐)"]["albums"],
-      ).sort(),
-    );
+    // console.log(Object.keys(splitArtistList["米津玄師"]["albums"]).sort());
 
     // let p = 0;
 

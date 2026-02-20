@@ -10,6 +10,7 @@ import LastFM from "@/components/LastFM/LastFM";
 // CSS
 import divstyling from "@/styles/divstyling.module.css";
 import TitleCSS from "./Title.module.css";
+import { get } from "node:http";
 
 // Interface for Title Props
 export interface TitleProps {
@@ -49,6 +50,7 @@ const HomeTitle = ({ colour, name }: TitleProps) => {
     const [bgIsVisible, setBgIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
     const [imageIndex, setImageIndex] = useState(0);
+    const [nameIndex, setNameIndex] = useState(0);
 
     const { resolvedTheme } = useTheme();
     const year = new Date().getFullYear();
@@ -58,6 +60,14 @@ const HomeTitle = ({ colour, name }: TitleProps) => {
         "/images/HomeScreen/GBA_PFP.png",
         "/images/HomeScreen/IRL_PFP.png"
     ];
+
+    const getButtonName = () => {
+        let buttonType = nameIndex === 0 ? "PixelEnglish" : "PixelChinese";
+        let buttonTheme = resolvedTheme === "light" ? "" : "Dark";
+        return `/images/Buttons/${buttonType}${buttonTheme}.svg`;
+    };
+
+    const names = ["Elite Lu", "卢万旺"];
 
     // Preload background on mount
     useEffect(() => {
@@ -81,6 +91,10 @@ const HomeTitle = ({ colour, name }: TitleProps) => {
 
     const handleSwapImage = () => {
         setImageIndex((prev) => (prev + 1) % images.length);
+    };
+
+    const handleSwapName = () => {
+        setNameIndex((prev) => (prev + 1) % names.length);
     };
 
     const visibilityClass = bgIsVisible
@@ -107,8 +121,29 @@ const HomeTitle = ({ colour, name }: TitleProps) => {
                             <div className={TitleCSS.nameRow}>
                                 <div className={TitleCSS.nameBox}>
                                     <h1 className={TitleCSS.nameText}>
-                                        {name}
+                                        {names[nameIndex]}
                                     </h1>
+                                    <button
+                                        className={TitleCSS.languageButton}
+                                        onClick={handleSwapName}
+                                        aria-label="Swap name"
+                                    >
+                                        {mounted && (
+                                            <NextImage
+                                                id="Icon"
+                                                key={name + resolvedTheme}
+                                                fetchPriority="high"
+                                                src={getButtonName()}
+                                                title={name}
+                                                alt={`${name} image`}
+                                                aria-hidden
+                                                tabIndex={-1}
+                                                fill
+                                                priority
+                                                sizes="100vw"
+                                            />
+                                        )}
+                                    </button>
                                 </div>
                                 <button
                                     className={TitleCSS.swapButton}
@@ -170,6 +205,6 @@ const HomeTitle = ({ colour, name }: TitleProps) => {
             </div>
         </section>
     );
-}
+};
 
 export default HomeTitle;

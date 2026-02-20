@@ -238,14 +238,6 @@ const MusicArtistPopup = ({
 
                 <hr />
 
-                {/* <h2
-                    ref={nameRef}
-                    className={MusicArtistPopupCSS.artistName}
-                    style={{ willChange: "transform" }}
-                >
-                    
-                </h2> */}
-
                 {renderText(name, nameRef, MusicArtistPopupCSS.artistName)}
 
                 {image ? (

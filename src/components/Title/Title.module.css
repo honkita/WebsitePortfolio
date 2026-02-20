@@ -90,9 +90,12 @@
 .nameBox {
   border: 2px solid var(--primary);
   border-radius: 0.25rem;
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.25rem;
   text-align: left;
   width: 100%;
+  height: calc(100% - 0.5rem);
+  display: flex;
+  flex-direction: row;
 }
 
 .artist {
@@ -128,6 +131,9 @@
   font-weight: 600;
   color: var(--primary);
   margin: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .titleSmall {
@@ -189,15 +195,24 @@
 }
 
 .nameRow {
+  all: unset;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: min(1vw, 1rem);
-  margin-top: 0.5rem;
   width: 100%;
   max-width: 30rem;
-  height: fit-content;
+  height: min(calc(2rem + 3vw), 4.5rem);
+}
+
+.languageButton {
+  height: 100%;
+  aspect-ratio: 1/1;
+  border: None;
+  background-color: transparent;
+  transition: all 0.2s;
+  position: relative;
 }
 
 .swapButton {
@@ -360,7 +375,7 @@
   }
 
   .nameText {
-    font-size: min(calc(1rem + 3vw), 4.5rem);
+    font-size: min(calc(1rem + 3vw), 4rem);
     font-weight: 600;
     color: var(--primary);
     margin: 0;
@@ -403,6 +418,12 @@
 
 @media not (hover: none) {
   .swapButton:hover {
+    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
+    filter: brightness(75%);
+    z-index: 100;
+  }
+
+  .languageButton:hover {
     cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
     filter: brightness(75%);
     z-index: 100;
