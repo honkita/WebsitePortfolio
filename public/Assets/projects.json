@@ -1,5 +1,17 @@
 [
   {
+    "name": "Pixel Buttons",
+    "url": "https://github.com/honkita/PixelButtons",
+    "languages": [],
+    "img": "PixelButtons.png"
+  },
+  {
+    "name": "Pixel Icons",
+    "url": "https://github.com/honkita/PixelIcons",
+    "languages": [],
+    "img": "PixelIcons.png"
+  },
+  {
     "name": "Pixel Background Generator",
     "url": "https://github.com/honkita/Pixel-Background-Generator",
     "languages": ["Java", "Gradle"],
@@ -22,12 +34,6 @@
     "url": "https://github.com/honkita/WebsitePortfolio",
     "languages": ["JavaScript", "CSS", "HTML"],
     "img": "Website.png"
-  },
-  {
-    "name": "Pixel Buttons",
-    "url": "https://github.com/honkita/PixelButtons",
-    "languages": [],
-    "img": "PixelButtons.png"
   },
   {
     "name": "LinkHub",
