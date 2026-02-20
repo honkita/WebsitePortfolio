@@ -83,6 +83,11 @@ const LastFM = () => {
         });
     };
 
+    const getPlaceholder = () => {
+        let buttonTheme = resolvedTheme === "light" ? "" : "Dark";
+        return `/images/Artists/PixelArtist${buttonTheme}.svg`;
+    };
+
     // Setup scrolling animation
     const setupScroll = () => {
         if (!styleRef.current || !track) return;
@@ -182,13 +187,8 @@ const LastFM = () => {
             <div className={LastFMCSS.card}>
                 <img
                     className={LastFMCSS.cover}
-                    src={
-                        resolvedTheme === "light"
-                            ? "/images/Artists/PixelArtist.svg"
-                            : "/images/Artists/PixelArtistDark.svg"
-                    }
-                    alt={`${name} placeholder`}
-                    loading="lazy"
+                    src={getPlaceholder()}
+                    alt={`Song placeholder`}
                 />
                 No recent track found.
             </div>
