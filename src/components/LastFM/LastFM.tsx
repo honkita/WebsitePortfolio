@@ -187,7 +187,7 @@ const LastFM = () => {
                             ? "/images/Artists/PixelArtist.svg"
                             : "/images/Artists/PixelArtistDark.svg"
                     }
-                    alt={`placeholder`}
+                    alt={`${name} placeholder`}
                     loading="lazy"
                 />
                 No recent track found.

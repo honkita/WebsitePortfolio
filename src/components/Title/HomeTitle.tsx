@@ -10,7 +10,6 @@ import LastFM from "@/components/LastFM/LastFM";
 // CSS
 import divstyling from "@/styles/divstyling.module.css";
 import TitleCSS from "./Title.module.css";
-import { get } from "node:http";
 
 // Interface for Title Props
 export interface TitleProps {
