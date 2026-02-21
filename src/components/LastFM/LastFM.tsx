@@ -51,6 +51,12 @@ const LastFM = () => {
 
     const refreshMs = 10000;
 
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     // Fetch last track from serverless API
     const fetchLastTrack = async () => {
         try {
@@ -84,7 +90,7 @@ const LastFM = () => {
     };
 
     const getPlaceholder = () => {
-        let buttonTheme = resolvedTheme === "light" ? "" : "Dark";
+        let buttonTheme = !mounted || resolvedTheme === "light" ? "" : "Dark";
         return `/images/Artists/PixelArtist${buttonTheme}.svg`;
     };
 
@@ -182,7 +188,7 @@ const LastFM = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, [track]);
 
-    if (!track)
+    if (!track || !mounted)
         return (
             <div className={LastFMCSS.card}>
                 <img
@@ -213,6 +219,16 @@ const LastFM = () => {
     return (
         <div className={LastFMCSS.card}>
             <style ref={styleRef}></style>
+            {!track && (
+                <>
+                    <img
+                        className={LastFMCSS.cover}
+                        src={getPlaceholder()}
+                        alt="placeholder"
+                    />
+                    No recent track found.
+                </>
+            )}
             {imageUrl && (
                 <Link
                     href={track.url}
