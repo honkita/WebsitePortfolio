@@ -60,6 +60,8 @@
 
 .infoButton {
   font-size: 1.5rem;
+  opacity: 1;
+  transition: opacity 200ms;
 }
 
 .overlay {
@@ -103,12 +105,14 @@
   opacity: 1;
 }
 
-.button:hover {
-  cursor: url("../../../../public/images/Cursor/Pointer.png"), pointer;
-}
-
 @media not (hover: none) {
   .button:hover {
     filter: brightness(75%);
+    cursor: url("../../../../public/images/Cursor/Pointer.png"), pointer;
+  }
+
+  .infoButton:hover {
+    filter: brightness(75%);
+    cursor: url("../../../../public/images/Cursor/Pointer.png"), pointer;
   }
 }
