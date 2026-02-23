@@ -35,6 +35,7 @@ const mapping: Record<string, string> = {
   "Triple S": "tripleS",
   "Baby Monster": "BABYMONSTER",
   에일리: "Ailee",
+  소녀시대: "SNSD",
 };
 
 /**
@@ -43,13 +44,19 @@ const mapping: Record<string, string> = {
  * @param totalPages
  * @returns Promise<any[]>
  */
-const fetchAllPages = async (url: string, totalPages: number) => {
-  const promises = [];
+const fetchAllPages = async <T>(
+  url: string,
+  totalPages: number,
+): Promise<T[]> => {
+  const promises: Promise<T>[] = [];
+
   for (let p = 2; p <= totalPages; p++) {
-    promises.push(fetch(url + `&page=${p}`).then((r) => r.json()));
+    promises.push(
+      fetch(url + `&page=${p}`).then((r) => r.json() as Promise<T>),
+    );
   }
-  const results = await Promise.all(promises);
-  return results;
+
+  return Promise.all(promises);
 };
 
 /**
@@ -63,31 +70,55 @@ const fetchAllLastFm = async <T>(
   method: string,
   username: string,
   apiKey: string,
-) => {
+): Promise<T[]> => {
   const baseURL = `${API_URL}?method=${method}&user=${username}&api_key=${apiKey}&format=json&limit=1000`;
 
   const first = await fetch(baseURL + "&page=1").then((r) => r.json());
 
-  let items: any[] = [];
-  let extract: (d: any) => any[];
-  let totalPages: number;
+  const items: T[] = [];
+  let totalPages = 1;
 
   if (method === "user.gettopartists") {
-    extract = (d) => d.topartists.artist;
-    totalPages = +first.topartists["@attr"].totalPages;
-  } else {
-    extract = (d) => d.topalbums.album;
-    totalPages = +first.topalbums["@attr"].totalPages;
-  }
+    const data = first as {
+      topartists: {
+        artist: T[];
+        "@attr": { totalPages: string };
+      };
+    };
 
-  items.push(...extract(first));
+    items.push(...data.topartists.artist);
+    totalPages = Number(data.topartists["@attr"].totalPages);
+  } else {
+    const data = first as {
+      topalbums: {
+        album: T[];
+        "@attr": { totalPages: string };
+      };
+    };
+
+    items.push(...data.topalbums.album);
+    totalPages = Number(data.topalbums["@attr"].totalPages);
+  }
 
   if (totalPages > 1) {
-    const rest = await fetchAllPages(baseURL, totalPages);
-    for (const r of rest) items.push(...extract(r));
+    const rest = await fetchAllPages<typeof first>(baseURL, totalPages);
+
+    for (const page of rest) {
+      if (method === "user.gettopartists") {
+        const data = page as {
+          topartists: { artist: T[] };
+        };
+        items.push(...data.topartists.artist);
+      } else {
+        const data = page as {
+          topalbums: { album: T[] };
+        };
+        items.push(...data.topalbums.album);
+      }
+    }
   }
 
-  return items as T[];
+  return items;
 };
 
 /**
@@ -284,6 +315,9 @@ const buildResult = async (
 
   for (const [artistName, lfmAlbum] of Object.entries(lfmAlbumMap)) {
     for (const [albumName, album] of Object.entries(lfmAlbum)) {
+      if (artistName === "소녀시대") {
+        console.log(albumName);
+      }
       // Remove the - Single or - EP suffixes for better matching
       const removed = String(
         albumName
@@ -415,7 +449,7 @@ const albumNormalization = async (
 
   // Fix the album titles using the name mapping
   for (const [artistName, data] of Object.entries(mergedAlbumArtists)) {
-    const updatedAlbums: Record<string, any> = {};
+    const updatedAlbums: artistCleanAlbumsMapType = {};
     for (const [albumName, albumData] of Object.entries(data.albums)) {
       const mappedName = getAlbumName(albumName) || albumName;
       updatedAlbums[mappedName] = albumData;
