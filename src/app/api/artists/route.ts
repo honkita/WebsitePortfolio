@@ -316,9 +316,6 @@ const buildResult = async (
 
   for (const [artistName, lfmAlbum] of Object.entries(lfmAlbumMap)) {
     for (const [albumName, album] of Object.entries(lfmAlbum)) {
-      if (artistName === "소녀시대") {
-        console.log(albumName);
-      }
       // Remove the - Single or - EP suffixes for better matching
       const removed = String(
         albumName
