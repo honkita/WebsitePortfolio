@@ -36,6 +36,7 @@ const mapping: Record<string, string> = {
   "Baby Monster": "BABYMONSTER",
   에일리: "Ailee",
   소녀시대: "SNSD",
+  여자친구: "GFRIEND",
 };
 
 /**
