@@ -39,12 +39,21 @@ const MusicClient = () => {
     const [errorArtists, setErrorArtists] = useState<string | null>(null);
     const [errorScrobbles, setErrorScrobbles] = useState<string | null>(null);
 
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
     useEffect(() => {
         // Fetch artists
         const fetchArtists = async () => {
             try {
-                const res = await fetch("/api/artists");
+                setLoading(true);
+                setError(null);
+
+                const res = await fetch(
+                    `/api/artists?user=${encodeURIComponent("honkita")}`
+                );
                 if (!res.ok) throw new Error("Failed to fetch artists");
+
                 const call = await res.json();
                 const artistAlbums = call["All Data"] as Record<
                     string,
@@ -56,12 +65,12 @@ const MusicClient = () => {
                     artistAlbumTopAlbum
                 >;
                 setArtists(data);
-                setErrorArtists(null);
-            } catch (err: any) {
-                // Retry after 1 second
-                setTimeout(() => setArtistCount((c) => c + 1), 1000);
+            } catch (err: unknown) {
+                if (err instanceof Error) setError(err.message);
+                else setError("An unknown error occurred");
             }
         };
+
         fetchArtists();
     }, [artistCount]);
 
@@ -135,6 +144,6 @@ const MusicClient = () => {
             </div>
         </div>
     );
-}
+};
 
 export default MusicClient;
