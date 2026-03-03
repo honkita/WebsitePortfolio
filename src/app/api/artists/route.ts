@@ -23,22 +23,7 @@ const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
 const API_URL = "https://ws.audioscrobbler.com/2.0/";
 
 // Non normalized names
-
 const nonNormalizedAlbumNames: Record<string, string> = {};
-
-// TEMPORARY FIX FOR SOME ARTISTS (FUCKING LAST.FM)
-
-// const mapping: Record<string, string> = {
-//    "Triple S": "tripleS",
-//    "Baby Monster": "BABYMONSTER",
-//    에일리: "Ailee",
-//    소녀시대: "SNSD",
-//    여자친구: "GFRIEND",
-//    "Stay-C": "STAYC",
-//    Ke$ha: "Kesha",
-//    박봄: "Park Bom",
-//    まらしぃ: "marasy",
-// };
 
 interface lfmRecentTrack {
   artist: { "#text": string };
@@ -138,14 +123,6 @@ const mergeArtists = async (
         } catch {}
       }
 
-      // --- NEW: Add split aliases from format "NAME (OTHER NAME)" ---
-      const parenMatch = artist.name.match(/^(.+)\s*\((.+)\)$/);
-      if (parenMatch) {
-        const [, main, other] = parenMatch;
-        aliases.push(main.trim(), other.trim());
-      }
-      // --- END NEW ---
-
       const aliasNorm = await Promise.all(
         aliases.map((a) =>
           normalizeArtistFull(a, artist.ignoreChineseCanonization),
@@ -170,16 +147,9 @@ const mergeArtists = async (
 
   const normalizedDb = await Promise.all(normalizedDbPromises);
 
-  // When building aliasMap
   normalizedDb.forEach(({ name, nameNorm, combinedAliasNorm }) => {
-    // Normalized key → canonical name
     aliasMap[nameNorm] = name;
-
-    // Each normalized alias → canonical name
     combinedAliasNorm.forEach((a) => (aliasMap[a] = name));
-
-    // ALSO map raw aliases (without normalization)
-    combinedAliasNorm.forEach((a) => (aliasMap[a.toLowerCase()] = name));
   });
 
   /**
@@ -208,26 +178,40 @@ const mergeArtists = async (
   const merged: artistAlbumContainerMapType = {};
 
   for (const [artistName, information] of Object.entries(lfmArtistAlbumMap)) {
-    const canonName = (
-      await normalizeArtistFull(artistName, false)
-    ).toLowerCase();
-    const canonNameNoChinese = (
-      await normalizeArtistFull(artistName, true)
-    ).toLowerCase();
-    const dbRow =
-      dbArtistMap[artistName] ||
-      dbArtistMap[canonName] ||
-      dbArtistMap[canonNameNoChinese];
+    const dbRow = dbArtistMap[artistName];
+    const canonName = await normalizeArtistFull(
+      artistName,
+      dbRow?.ignoreChineseCanonization ?? false,
+    );
 
     let mainName: string | undefined = aliasMap[canonName];
 
+    if (!mainName) {
+      const canonAscii = asciiLower(canonName);
+      for (const dbCanon of sortedDbCanonNames) {
+        if (asciiLower(dbCanon).includes(canonAscii)) {
+          mainName = aliasMap[dbCanon];
+          break;
+        }
+      }
+      if (dbRow?.ignoreChineseCanonization) {
+        const canonName2 = await normalizeArtistFull(artistName, false);
+        const canonAscii2 = asciiLower(canonName2);
+        for (const dbCanon of sortedDbCanonNames) {
+          if (asciiLower(dbCanon).includes(canonAscii2)) {
+            mainName = aliasMap[dbCanon];
+            break;
+          }
+        }
+      }
+    }
     mainName = mainName || artistName;
 
     if (!merged[mainName])
       merged[mainName] = {
         playcount: 0,
         albums: {},
-        ignoreChinese: dbRow?.ignoreChineseCanonization ?? false,
+        ignoreChinese: false,
         id: dbArtistMap[mainName]?.id || -1,
       };
 
