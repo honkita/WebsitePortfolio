@@ -149,7 +149,7 @@ const MusicClient = () => {
                             className={styles.loadingBarAccent}
                         />
                     </div>
-                    <div style={{ marginTop: "0.5rem", fontSize: "0.9rem" }}>
+                    <div>
                         Loading data {(progress / totalPagesLoading * 100).toFixed(2)}%
                     </div>
                 </div>
