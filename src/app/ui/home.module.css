@@ -118,23 +118,36 @@
   margin-bottom: 3rem;
 }
 
+.loadingWidth,
+.jobGrid,
+.artistGrid {
+  width: 90vw;
+  max-width: 90rem;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.loadingContainer {
+  height: 8px;
+  background: var(--foreground-transparent);
+  width: 100%;
+}
+
+.loadingBarAccent {
+  height: 100%;
+  transition: width 0.2s ease;
+  background: var(--foreground);
+}
+
 .jobGrid {
   vertical-align: top;
   align-items: center;
   grid-template-columns: repeat(3, minmax(0rem, 1fr));
-  justify-content: center;
-  align-items: center;
-  width: 90vw;
-  max-width: 90rem;
 }
 
 .artistGrid {
   vertical-align: top;
-  align-items: center;
-  justify-content: center;
-  align-items: center;
-  width: 90vw;
-  max-width: 90rem;
   place-items: center;
   column-gap: 0.5rem;
   row-gap: 0.5rem;

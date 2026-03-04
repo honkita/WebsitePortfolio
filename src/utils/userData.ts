@@ -1,12 +1,6 @@
-import { NextResponse } from "next/server";
-
-// Lib
-import { prisma } from "@/lib/prisma";
-
 // Utils
-import { getAlbums } from "@/utils/databaseAlbums";
-import { getArtists } from "@/utils/databaseArtists";
 import { normalizeArtistFull } from "@/utils/normalizeName";
+import { fetchAllPages } from "@/utils/userTracks";
 
 // Types
 import type { Artist as DBArtist } from "@prisma/client";
@@ -18,11 +12,17 @@ import type {
 } from "@/types/Music";
 import type { lfmArtistAlbumMapType } from "@/types/LastFM";
 
-// Environment Variables
-const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
-const API_URL = "https://ws.audioscrobbler.com/2.0/";
+type SameNames = {
+  name: string;
+  Artist: { name: string };
+  albumIDs: number[] | string;
+  isDefault: boolean;
+};
 
 // Non normalized names
+
+const LIMIT = 1000;
+
 const nonNormalizedAlbumNames: Record<string, string> = {};
 
 interface lfmRecentTrack {
@@ -32,59 +32,6 @@ interface lfmRecentTrack {
   image?: { "#text": string }[];
   date?: { uts: string };
 }
-
-/**
- * Fetches all items from Last.fm
- * @param method
- * @param username
- * @param apiKey
- * @returns Promise<T[]>
- */
-const fetchAllRecentTracks = async (
-  username: string,
-): Promise<lfmRecentTrack[]> => {
-  const limit = 1000;
-  const base = `${API_URL}?method=user.getrecenttracks&user=${username}&api_key=${API_KEY}&format=json&limit=${limit}`;
-
-  const first: {
-    recenttracks: {
-      track: lfmRecentTrack[];
-      "@attr": { totalPages: string };
-    };
-  } = await fetchWithTimeout(base + "&page=1");
-
-  const totalPages = Number(first.recenttracks["@attr"].totalPages);
-  const tracks: lfmRecentTrack[] = first.recenttracks.track.filter(
-    (t) => t.date,
-  );
-
-  if (totalPages > 1) {
-    const pages = await Promise.all(
-      Array.from({ length: totalPages - 1 }, (_, i) =>
-        fetchWithTimeout<{ recenttracks: { track: lfmRecentTrack[] } }>(
-          base + `&page=${i + 2}`,
-        ),
-      ),
-    );
-
-    for (const page of pages) {
-      tracks.push(...page.recenttracks.track.filter((t) => t.date));
-    }
-  }
-
-  return tracks;
-};
-
-const fetchWithTimeout = async <T>(url: string, ms = 300000): Promise<T> => {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), ms);
-  try {
-    const res = await fetch(url, { signal: controller.signal });
-    return res.json() as Promise<T>;
-  } finally {
-    clearTimeout(timeout);
-  }
-};
 
 /**
  * Merges the artists
@@ -337,56 +284,65 @@ const splitArtists = async (
   sameNameMap: Record<string, Record<string, string[]>>,
 ): Promise<artistAlbumContainerMapType> => {
   for (const [originalName, data] of Object.entries(sameNameMap)) {
+    const baseData = mergedNormalized[originalName];
+    if (!baseData) {
+      // If no albums exist for the original artist, just remove it and skip
+      delete mergedNormalized[originalName];
+      continue;
+    }
+
     const result: artistAlbumContainerMapType = {};
 
-    // Initialization
-    for (const splitName of Object.keys(data)) {
-      result[splitName] = {
-        id: mergedNormalized[originalName]?.id || -1,
-        playcount: 0,
-        ignoreChinese: mergedNormalized[originalName]?.ignoreChinese || false,
-        albums: {},
-      };
-    }
-    // Create a map for quick lookup (album name to split name)
+    const defaultName = defaultArtist[originalName] || originalName;
+
+    // Create a map of album -> split artist
     const albumToSplitMap: Record<string, string> = {};
     for (const [splitName, albums] of Object.entries(data)) {
-      albums.forEach((album) => {
-        albumToSplitMap[album] = splitName;
-      });
+      if (!Array.isArray(albums)) continue;
+      albums.forEach((album) => (albumToSplitMap[album] = splitName));
     }
-    let defaultPlaycount = Number(mergedNormalized[originalName]["playcount"]);
 
-    const baseData = mergedNormalized[originalName];
+    let defaultPlaycount = baseData.playcount;
 
-    const defaultName = defaultArtist[originalName];
     for (const [albumName, albumData] of Object.entries(baseData.albums)) {
-      // If the album belongs to a split artist, add the album to the list AND accumulate the playcount
-      if (albumToSplitMap[albumName]) {
-        const splitName = albumToSplitMap[albumName];
-        const currentAlbums = result[splitName]?.albums || {};
-        currentAlbums[albumName] = albumData;
+      const targetName = albumToSplitMap[albumName] || defaultName;
 
-        result[splitName]["playcount"] =
-          result[splitName]["playcount"] + albumData.playcount;
-        result[splitName]["albums"] = currentAlbums;
-      } else {
-        const currentAlbums = result[defaultName]?.albums || {};
-        currentAlbums[albumName] = albumData;
-
-        result[defaultName]["playcount"] =
-          result[defaultName]["playcount"] + albumData.playcount;
-        result[defaultName]["albums"] = currentAlbums;
+      // Initialize the split artist only if needed
+      if (!result[targetName]) {
+        result[targetName] = {
+          id: baseData.id,
+          playcount: 0,
+          ignoreChinese: baseData.ignoreChinese,
+          albums: {},
+        };
       }
+
+      result[targetName].albums[albumName] = albumData;
+      result[targetName].playcount += albumData.playcount;
+
       defaultPlaycount -= albumData.playcount;
     }
 
-    result[defaultName]["playcount"] =
-      result[defaultName]["playcount"] + defaultPlaycount;
+    // Add any remaining default playcount to defaultName
+    if (!result[defaultName]) {
+      result[defaultName] = {
+        id: baseData.id,
+        playcount: 0,
+        ignoreChinese: baseData.ignoreChinese,
+        albums: {},
+      };
+    }
+    result[defaultName].playcount += defaultPlaycount;
 
-    // Remove the original artist entry and add the new entries to the merge normalized
+    // Remove the original artist and merge new split artists
     delete mergedNormalized[originalName];
-    mergedNormalized = { ...result, ...mergedNormalized };
+
+    // Only add split artists that have albums or playcount > 0
+    for (const [name, info] of Object.entries(result)) {
+      if (info.playcount > 0 || Object.keys(info.albums).length > 0) {
+        mergedNormalized[name] = info;
+      }
+    }
   }
 
   return mergedNormalized;
@@ -436,6 +392,7 @@ const buildFromTracks = (
       ?.replace(/\s-\s*?(?:EP|Single|\(Deluxe(?: Edition)?\))$/i, "")
       .replace(/\s+?(?:EP|Single|\(Deluxe(?: Edition)?\))$/i, "")
       .replace(" - EP", "")
+      .replace(/\s*\((The Extended Mixes|Unmixed Extended Versions)\)/i, "")
       .trim();
 
     if (!albumRaw) continue;
@@ -455,6 +412,7 @@ const buildFromTracks = (
       .replace(/\s-\s*?(?:EP|Single|\(Deluxe(?: Edition)?\))$/i, "")
       .replace(/\s+?(?:EP|Single|\(Deluxe(?: Edition)?\))$/i, "")
       .replace(" - EP", "")
+      .replace(/\s*\((The Extended Mixes|Unmixed Extended Versions)\)/i, "")
       .trim()
       .toLowerCase();
 
@@ -472,41 +430,28 @@ const buildFromTracks = (
 };
 
 /**
- * GET Handler
- * @returns NextResponse
+ *
+ * @param USERNAME
+ * @returns
  */
-const GET = async (req: Request) => {
-  const { searchParams } = new URL(req.url);
-  const USERNAME = searchParams.get("user") || "";
+export const getUserInfo = async (
+  USERNAME: string,
+  onProgress?: (current: number, total: number) => void,
+) => {
   try {
     // Fetch DB Artists
-    const [dbArtistAlbums, dbSameNames] = await Promise.all([
-      prisma.artistAlbum.findMany({
-        select: {
-          Artist: {
-            select: {
-              name: true,
-            },
-          },
-          Albums: {
-            select: {
-              id: true,
-              name: true,
-              aliases: true,
-            },
-          },
-          role: true,
-        },
-      }),
-      prisma.sameNames.findMany({
-        select: {
-          name: true,
-          Artist: { select: { name: true } },
-          isDefault: true,
-          albumIDs: true,
-        },
-      }),
-    ]);
+
+    const dbAlbums = await fetch("/api/ArtistAlbum");
+    if (!dbAlbums.ok) throw new Error("Failed to fetch artist albums");
+    const dbAlbumsMap: Record<
+      string,
+      Record<string, string[]>
+    > = await dbAlbums.json();
+
+    const dbSameNamesFetch = await fetch("/api/SameName");
+    if (!dbSameNamesFetch.ok)
+      throw new Error("Failed to fetch same name mappings");
+    const dbSameNames: SameNames[] = await dbSameNamesFetch.json();
 
     // Hash map for default artist names
     const defaultArtist: Record<string, string> = {};
@@ -515,10 +460,15 @@ const GET = async (req: Request) => {
     const sameNameMap: Record<string, Record<string, string[]>> = {};
 
     // Hash map for quick artist lookup
-    const dbArtistMap: Record<string, DBArtist> = await getArtists();
+    const dbArtistsResponse = await fetch("/api/Artist");
+    if (!dbArtistsResponse.ok) throw new Error("Failed to fetch artists");
+    const dbArtistMap: Record<string, DBArtist> =
+      await dbArtistsResponse.json();
 
     // Hash map for album names
-    const albumMap: Record<number, string> = await getAlbums();
+    const albumFetch = await fetch("/api/Albums");
+    if (!albumFetch.ok) throw new Error("Failed to fetch albums");
+    const albumMap: Record<number, string> = await albumFetch.json();
 
     dbSameNames.forEach((dbSameName) => {
       const displayName = dbSameName.name;
@@ -551,33 +501,9 @@ const GET = async (req: Request) => {
       }
     });
 
-    const dbAlbumsMap: Record<string, Record<string, string[]>> = {};
+    const userData = await fetchAllPages(USERNAME, LIMIT, onProgress);
 
-    dbArtistAlbums.forEach((album) => {
-      const artistName = album.Artist.name;
-      const albumName = album.Albums.name;
-
-      dbAlbumsMap[artistName] ??= {};
-
-      let aliases: string[] = [];
-      if (Array.isArray(album.Albums.aliases)) {
-        aliases = album.Albums.aliases.filter(
-          (a): a is string => typeof a === "string",
-        );
-      } else if (typeof album.Albums.aliases === "string") {
-        try {
-          const parsed = JSON.parse(album.Albums.aliases);
-          if (Array.isArray(parsed))
-            aliases = parsed.filter((a): a is string => typeof a === "string");
-        } catch {}
-      }
-
-      dbAlbumsMap[artistName][albumName] = aliases;
-    });
-
-    const tracks = await fetchAllRecentTracks(USERNAME);
-
-    const built = await buildFromTracks(tracks);
+    const built = buildFromTracks(userData);
 
     // Split artists based on default and same name mappings
     const splitArtistList = await splitArtists(
@@ -589,32 +515,13 @@ const GET = async (req: Request) => {
       sameNameMap,
     );
 
-    // USE THIS FOR DEBUGGING ARTISTS AND FOR DATABASE FIXING
-    // console.log(Object.keys(splitArtistList["米津玄師"]["albums"]).sort());
-
-    // let p = 0;
-
-    // // Print out the sum of the scrobbles
-
-    // Object.values(splitArtistList).forEach((artist) => {
-    //   p += artist.playcount;
-    // });
-    // console.log("Total Scrobbles:", p);
-
-    // Determine the most listened to album for each artist
     const bestAlbum = await getBestAlbum(splitArtistList);
 
-    return NextResponse.json({
+    return {
       "Best Albums": bestAlbum,
       "All Data": splitArtistList,
-    });
+    };
   } catch (err) {
     console.error("Fetch + merge error:", err);
-    return NextResponse.json(
-      { error: "Failed to fetch and merge artists" },
-      { status: 500 },
-    );
   }
 };
-
-export { GET };

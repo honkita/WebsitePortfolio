@@ -13,7 +13,7 @@ import MusicArtistPopupCSS from "./MusicArtistPopup.module.css";
 import stringToColour from "@/lib/stringToColour";
 
 // Types
-import { artistAlbumContainer } from "@/types/Music";
+import { artistAlbumContainer, cleanedAlbums } from "@/types/Music";
 
 let modalOpen = false;
 
@@ -21,7 +21,7 @@ interface MusicArtistPopupProps {
     name: string;
     image: string;
     scrobbles: number;
-    albums: artistAlbumContainer;
+    albums: Record<string, cleanedAlbums>;
 }
 
 const MusicArtistPopup = ({
@@ -66,12 +66,12 @@ const MusicArtistPopup = ({
     };
 
     const [topAlbum, setTopAlbum] = useState<string>("");
-    const [topAlbumInfo, setTopAlbumInfo] = useState<artistAlbumContainer>();
+    const [topAlbumInfo, setTopAlbumInfo] = useState<cleanedAlbums | undefined>();
 
     useEffect(() => {
         let maxScrobbles = -1;
         let albumName = "None";
-        let topAlbumInfo: artistAlbumContainer | undefined = undefined;
+        let topAlbumInfo: cleanedAlbums | undefined = undefined;
 
         for (const [name, album] of Object.entries(albums)) {
             if (album.playcount > maxScrobbles) {
@@ -175,9 +175,8 @@ const MusicArtistPopup = ({
         }
       `;
 
-        nameRef.current.style.animation = `${keyframeName} ${
-            (totalDuration * 1000) / 200
-        }s ease-in-out infinite`;
+        nameRef.current.style.animation = `${keyframeName} ${(totalDuration * 1000) / 200
+            }s ease-in-out infinite`;
 
         styleRef.current.innerHTML = css;
     };

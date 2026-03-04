@@ -11,14 +11,16 @@ import MusicArtistCSS from "./MusicArtist.module.css";
 
 // Lib
 import stringToColour from "@/lib/stringToColour";
-import { artistAlbumContainer } from "@/types/Music";
+
+// Types
+import type { cleanedAlbums } from "@/types/Music";
 
 // Props
 interface MusicArtistProps {
     name: string;
     image: string;
     scrobbles: number;
-    albums: artistAlbumContainer;
+    albums: Record<string, cleanedAlbums>;
     rank: number;
 }
 

@@ -60,7 +60,7 @@ const LastFM = () => {
     // Fetch last track from serverless API
     const fetchLastTrack = async () => {
         try {
-            const res = await fetch("/api/LastFM");
+            const res = await fetch("/api/CurrentTrack");
             const recentTrack = await res.json();
 
             if (recentTrack) {
@@ -153,9 +153,8 @@ const LastFM = () => {
         }
       `;
 
-            line.ref.current.style.animation = `${keyframeName} ${
-                (totalDuration * 1000) / 200
-            }s ease-in-out infinite`;
+            line.ref.current.style.animation = `${keyframeName} ${(totalDuration * 1000) / 200
+                }s ease-in-out infinite`;
         });
 
         styleRef.current.innerHTML = css;

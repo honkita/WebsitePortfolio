@@ -1,33 +1,83 @@
 import { NextResponse } from "next/server";
 
-// Types
-interface LastFmTrack {
-  artist?: { "#text": string };
-  name?: string;
-  album?: { "#text": string };
-  image?: { "#text": string; size: string }[];
-  date?: { uts: string; "#text": string };
-  [key: string]: any;
-}
+// Environment Variables
+const API_KEY = process.env.NEXT_PUBLIC_LASTFM_API_KEY!;
+const API_URL = "https://ws.audioscrobbler.com/2.0/";
 
-/**
- * GET Handler
- * @returns NextResponse
- */
-const GET = async () => {
+type lfmRecentTrack = {
+  artist: { "#text": string };
+  album: { "#text": string };
+  name: string;
+  image?: { "#text": string }[];
+  date?: { uts: string };
+};
+
+type LastFmResponse = {
+  recenttracks: {
+    track: lfmRecentTrack[];
+    "@attr": {
+      page: string;
+      totalPages: string;
+    };
+  };
+};
+
+const fetchWithTimeout = async <T>(url: string, ms = 30000): Promise<T> => {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), ms);
+
   try {
-    const res = await fetch(
-      `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${process.env.LASTFM_USER}&api_key=${process.env.LASTFM_KEY}&format=json&limit=1`,
+    const res = await fetch(url, { signal: controller.signal });
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}`);
+    }
+    return res.json() as Promise<T>;
+  } finally {
+    clearTimeout(timeout);
+  }
+};
+
+const GET = async (req: Request) => {
+  const { searchParams } = new URL(req.url);
+
+  const username = searchParams.get("user");
+  const page = searchParams.get("page") ?? "1";
+  const limit = searchParams.get("limit") ?? "200";
+
+  if (!username) {
+    return NextResponse.json(
+      { error: "Missing user parameter" },
+      { status: 400 },
+    );
+  }
+
+  const url =
+    `${API_URL}?method=user.getrecenttracks` +
+    `&user=${username}` +
+    `&api_key=${API_KEY}` +
+    `&format=json` +
+    `&limit=${limit}` +
+    `&page=${page}`;
+
+  try {
+    const data = await fetchWithTimeout<LastFmResponse>(url);
+
+    const tracks = data.recenttracks.track.filter(
+      (t) => t.date, // remove now-playing
     );
 
-    const data = await res.json();
-    const recentTrack: LastFmTrack | null =
-      data.recenttracks.track?.[0] || null;
-
-    return NextResponse.json(recentTrack);
+    return NextResponse.json({
+      tracks,
+      page: Number(data.recenttracks["@attr"].page),
+      totalPages: Number(data.recenttracks["@attr"].totalPages),
+    });
   } catch (err) {
-    console.error("Error fetching Last.fm API:", err);
-    return NextResponse.json(null);
+    console.error("Last.fm fetch error:", err);
+
+    return NextResponse.json(
+      { error: "Failed to fetch page" },
+      { status: 500 },
+    );
   }
 };
 

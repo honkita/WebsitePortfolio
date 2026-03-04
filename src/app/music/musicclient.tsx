@@ -11,6 +11,10 @@ import divstyling from "@/styles/divstyling.module.css";
 import styles from "@/app/ui/home.module.css";
 import utilStyles from "@/app/ui/theme.util.module.css";
 
+// Utils
+import { getUserInfo } from "@/utils/userData";
+
+
 // Types
 import {
     artistAlbumTopAlbum,
@@ -26,53 +30,54 @@ const MusicClient = () => {
     const [artists, setArtists] = useState<Record<string, artistAlbumTopAlbum>>(
         {}
     );
-
-    const [artistAlbums, setArtistAlbums] = useState<
-        Record<string, artistAlbumContainerMapType>
-    >({});
-
     const [scrobbles, setScrobbles] = useState<number | null>(null);
 
-    const [artistCount, setArtistCount] = useState(0);
-    const [scrobbleCount, setScrobbleCount] = useState(0);
-
-    const [errorArtists, setErrorArtists] = useState<string | null>(null);
-    const [errorScrobbles, setErrorScrobbles] = useState<string | null>(null);
+    const [artistAlbums, setArtistAlbums] =
+        useState<artistAlbumContainerMapType>({});
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    const [progress, setProgress] = useState(0);
+    const [totalPagesLoading, setTotalPagesLoading] = useState(0);
+
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const [errorArtists, setErrorArtists] = useState<string | null>(null);
+    const [errorScrobbles, setErrorScrobbles] = useState<string | null>(null);
+
+    const [scrobbleCount, setScrobbleCount] = useState(0);
+    const PAGE_SIZE = 64;
+
     useEffect(() => {
-        // Fetch artists
-        const fetchArtists = async () => {
+        const fetchArtists = async (user: string) => {
             try {
                 setLoading(true);
                 setError(null);
 
-                const res = await fetch(
-                    `/api/artists?user=${encodeURIComponent("honkita")}`
-                );
-                if (!res.ok) throw new Error("Failed to fetch artists");
+                const res = await getUserInfo(user, (current, total) => {
+                    setProgress(current);
+                    setTotalPagesLoading(total);
+                });
 
-                const call = await res.json();
-                const artistAlbums = call["All Data"] as Record<
-                    string,
-                    artistAlbumContainerMapType
-                >;
-                setArtistAlbums(artistAlbums);
-                const data = call["Best Albums"] as Record<
-                    string,
-                    artistAlbumTopAlbum
-                >;
-                setArtists(data);
+                const allData: artistAlbumContainerMapType =
+                    res?.["All Data"] ?? {};
+                const bestAlbums =
+                    res?.["Best Albums"] ?? {};
+
+                setArtistAlbums(allData);
+                setArtists(bestAlbums);
+
+                setCurrentPage(1); // reset pagination on new fetch
             } catch (err: unknown) {
                 if (err instanceof Error) setError(err.message);
                 else setError("An unknown error occurred");
+            } finally {
+                setLoading(false);
             }
         };
-
-        fetchArtists();
-    }, [artistCount]);
+        fetchArtists("honkita");
+    }, []);
 
     useEffect(() => {
         // Fetch scrobbles
@@ -120,14 +125,40 @@ const MusicClient = () => {
         (a, b) => b.playcount - a.playcount
     );
 
+    const totalPages = Math.ceil(sortedArtists.length / PAGE_SIZE);
+
+    const paginatedArtists = sortedArtists.slice(
+        (currentPage - 1) * PAGE_SIZE,
+        currentPage * PAGE_SIZE
+    );
+
     return (
         <div className={styles.pageContainer}>
             {title(sortedArtists.length, scrobbles ?? 0)}
             <div className={divstyling.hr} style={{ marginTop: "3rem" }} />
+            {loading && totalPagesLoading > 0 && (
+                <div className={styles.loadingWidth}>
+                    <div
+                        className={styles.loadingContainer}
+                    >
+                        <div
+                            style={{
+                                width: `${(progress / totalPagesLoading) * 100
+                                    }%`,
+                            }}
+                            className={styles.loadingBarAccent}
+                        />
+                    </div>
+                    <div style={{ marginTop: "0.5rem", fontSize: "0.9rem" }}>
+                        Loading data {(progress / totalPagesLoading * 100).toFixed(2)}%
+                    </div>
+                </div>
+            )}
+
             <div className={styles.contentWrapper}>
                 <div className={styles.container}>
                     <div className={styles.artistGrid}>
-                        {sortedArtists.map(
+                        {paginatedArtists.map(
                             ({ name, playcount, topAlbumImage }, index) => (
                                 <MusicArtist
                                     key={name}
@@ -142,6 +173,26 @@ const MusicClient = () => {
                     </div>
                 </div>
             </div>
+            {progress / totalPagesLoading === 1 && (
+                <div style={{ marginTop: "2rem", textAlign: "center" }}>
+                    <button
+                        disabled={currentPage === 1}
+                        onClick={() => setCurrentPage((p) => p - 1)}
+                    >
+                        Previous
+                    </button>
+
+                    <span style={{ margin: "0 1rem" }}>
+                        Page {currentPage} / {totalPages || 1}
+                    </span>
+
+                    <button
+                        disabled={currentPage === totalPages}
+                        onClick={() => setCurrentPage((p) => p + 1)}
+                    >
+                        Next
+                    </button>
+                </div>)}
         </div>
     );
 };
