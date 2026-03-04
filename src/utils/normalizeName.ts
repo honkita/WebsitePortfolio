@@ -38,6 +38,23 @@ export const normalizeCommas = (str: string): string => {
 };
 
 /**
+ * Normalizes brackets and commas in a string, with special handling for CJK text.
+ */
+export const normalizeBrackets = (str: string): string => {
+  if (!str) return str;
+
+  const leftBracket = "(";
+  const rightBracket = ")";
+
+  // Normalize all comma variants but *preserve chosen comma style*
+  return str
+    .replace(/([【\(])/g, leftBracket)
+    .replace(/([】\)])/g, rightBracket)
+    .replace(/\(\s+/g, "(")
+    .trim();
+};
+
+/**
  * Full artist name normalization
  * @param name
  * @param skipChinese
@@ -47,17 +64,54 @@ export const normalizeArtistFull = async (
   name: string,
   skipChinese: boolean,
 ): Promise<string> => {
-  const pre = normalizeSpaces(normalizeCommas(normalizeCV(name)));
+  const pre = normalizeBrackets(
+    normalizeSpaces(normalizeCommas(normalizeCV(name))),
+  );
   return canonicalizeName(pre, { skipChineseConversion: skipChinese });
 };
 
 /**
+ * Convert ASCII digits (0-9) to full-width digits (０-９)
+ */
+// export const toFullWidthNumbers = (input: string): string => {
+//    return input.replace(/[0-9]/g, (digit) =>
+//       String.fromCharCode(digit.charCodeAt(0) + 0xfee0),
+//    );
+// };
+
+/**
+ * Convert full-width digits (０-９) to ASCII digits (0-9)
+ */
+export const toHalfWidthNumbers = (input: string): string => {
+  return input.replace(/[０-９]/g, (digit) =>
+    String.fromCharCode(digit.charCodeAt(0) - 0xfee0),
+  );
+};
+
+/**
+ * Canonical album key (FOR MATCHING ONLY)
+ */
+export const canonicalAlbumKey = (name: string): string => {
+  return normalizeAlbumFull(normalizeBrackets(toHalfWidthNumbers(name)))
+    .replace(/\(\s+/g, "(")
+    .replace(/\s+\)/g, ")")
+    .toLowerCase();
+};
+
+/**
  * Full album name normalization
- * @param name
- * @returns
  */
 export const normalizeAlbumFull = (name: string): string => {
-  return name.replace(/\s*-\s*(Single|EP)$/i, "").trim();
+  const normalized = normalizeBrackets(
+    name
+      .replace(/\s-\s*?(?:EP|Single|\(Deluxe(?: Edition|Version)?\))$/i, "")
+      .replace(/\s+?(?:EP|Single|\(Deluxe(?: Edition|Version)?\))$/i, "")
+      .replace(" - EP", "")
+      .replace(/\s*\((The Extended Mixes|Unmixed Extended Versions)\)/i, "")
+      .trim(),
+  ).replace(/Version\s*\)$/i, "Ver.)");
+
+  return toHalfWidthNumbers(normalized);
 };
 
 /**
@@ -109,7 +163,7 @@ export const normalizeCV = (str: string): string => {
     const match = inner.match(/^CV[\s.:：．]*(.*)$/i);
     if (!match) return full;
 
-    let name = match[1].trim();
+    const name = match[1].trim();
 
     // (CV) if empty name
     if (!name) return `(CV)`;

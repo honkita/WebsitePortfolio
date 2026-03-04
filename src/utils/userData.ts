@@ -1,5 +1,9 @@
 // Utils
-import { normalizeArtistFull } from "@/utils/normalizeName";
+import {
+  normalizeArtistFull,
+  normalizeAlbumFull,
+  canonicalAlbumKey,
+} from "@/utils/normalizeName";
 import { fetchAllPages } from "@/utils/userTracks";
 
 // Types
@@ -205,12 +209,12 @@ const albumNormalization = async (
     for (const albumName of Object.keys(albums)) {
       const aliasNorms = albums[albumName];
       aliasNorms.forEach((a) => {
-        aliasMap[a.toLowerCase()] = albumName;
+        aliasMap[canonicalAlbumKey(a)] = normalizeAlbumFull(albumName);
       });
 
       // Add album name itself to the alias map
       if (albumName.toLowerCase() != albumName) {
-        aliasMap[albumName.toLowerCase()] = albumName;
+        aliasMap[canonicalAlbumKey(albumName)] = normalizeAlbumFull(albumName);
       }
     }
 
@@ -398,12 +402,7 @@ const buildFromTracks = (
 
   for (const track of tracks) {
     const rawArtist = track.artist["#text"];
-    const albumRaw = track.album["#text"]
-      ?.replace(/\s-\s*?(?:EP|Single|\(Deluxe(?: Edition)?\))$/i, "")
-      .replace(/\s+?(?:EP|Single|\(Deluxe(?: Edition)?\))$/i, "")
-      .replace(" - EP", "")
-      .replace(/\s*\((The Extended Mixes|Unmixed Extended Versions)\)/i, "")
-      .trim();
+    const albumRaw = normalizeAlbumFull(track.album["#text"] || "");
 
     if (!albumRaw) continue;
 
@@ -418,13 +417,7 @@ const buildFromTracks = (
 
     result[artistName].playcount += 1;
 
-    const cleanedAlbum = albumRaw
-      .replace(/\s-\s*?(?:EP|Single|\(Deluxe(?: Edition)?\))$/i, "")
-      .replace(/\s+?(?:EP|Single|\(Deluxe(?: Edition)?\))$/i, "")
-      .replace(" - EP", "")
-      .replace(/\s*\((The Extended Mixes|Unmixed Extended Versions)\)/i, "")
-      .trim()
-      .toLowerCase();
+    const cleanedAlbum = canonicalAlbumKey(track.album["#text"] || "");
 
     result[artistName].albums[cleanedAlbum] ??= {
       playcount: 0,
