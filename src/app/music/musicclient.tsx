@@ -14,7 +14,6 @@ import utilStyles from "@/app/ui/theme.util.module.css";
 // Utils
 import { getUserInfo } from "@/utils/userData";
 
-
 // Types
 import {
     artistAlbumTopAlbum,
@@ -62,8 +61,7 @@ const MusicClient = () => {
 
                 const allData: artistAlbumContainerMapType =
                     res?.["All Data"] ?? {};
-                const bestAlbums =
-                    res?.["Best Albums"] ?? {};
+                const bestAlbums = res?.["Best Albums"] ?? {};
 
                 setArtistAlbums(allData);
                 setArtists(bestAlbums);
@@ -83,7 +81,7 @@ const MusicClient = () => {
         // Fetch scrobbles
         const fetchScrobbles = async () => {
             try {
-                const res = await fetch("/api/scrobbles");
+                const res = await fetch("/api/Scrobbles");
                 if (!res.ok) throw new Error("Failed to fetch scrobbles");
                 const data = await res.json();
                 setScrobbles(data.totalScrobbles);
@@ -138,19 +136,19 @@ const MusicClient = () => {
             <div className={divstyling.hr} style={{ marginTop: "3rem" }} />
             {loading && totalPagesLoading > 0 && (
                 <div className={styles.loadingWidth}>
-                    <div
-                        className={styles.loadingContainer}
-                    >
+                    <div className={styles.loadingContainer}>
                         <div
                             style={{
-                                width: `${(progress / totalPagesLoading) * 100
-                                    }%`,
+                                width: `${
+                                    (progress / totalPagesLoading) * 100
+                                }%`
                             }}
                             className={styles.loadingBarAccent}
                         />
                     </div>
                     <div>
-                        Loading data {(progress / totalPagesLoading * 100).toFixed(2)}%
+                        Loading data{" "}
+                        {((progress / totalPagesLoading) * 100).toFixed(2)}%
                     </div>
                 </div>
             )}
@@ -192,7 +190,8 @@ const MusicClient = () => {
                     >
                         Next
                     </button>
-                </div>)}
+                </div>
+            )}
         </div>
     );
 };
