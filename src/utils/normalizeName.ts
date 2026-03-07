@@ -104,8 +104,14 @@ export const canonicalAlbumKey = (name: string): string => {
 export const normalizeAlbumFull = (name: string): string => {
   const normalized = normalizeBrackets(
     name
-      .replace(/\s-\s*?(?:EP|Single|\(Deluxe(?: Edition|Version)?\))$/i, "")
-      .replace(/\s+?(?:EP|Single|\(Deluxe(?: Edition|Version)?\))$/i, "")
+      .replace(
+        /\s-\s*?(?:EP|Single|\((Deluxe|Expanded)(?: Edition|Version)?\))$/i,
+        "",
+      )
+      .replace(
+        /\s+?(?:EP|Single|\((Deluxe|Expanded)(?: Edition|Version)?\))$/i,
+        "",
+      )
       .replace(" - EP", "")
       .replace(/\s*\((The Extended Mixes|Unmixed Extended Versions)\)/i, "")
       .trim(),
