@@ -88,14 +88,47 @@ export const toHalfWidthNumbers = (input: string): string => {
   );
 };
 
+const normalizeUnicode = (str: string): string => str.normalize("NFKC");
+
 /**
  * Canonical album key (FOR MATCHING ONLY)
  */
 export const canonicalAlbumKey = (name: string): string => {
-  return normalizeAlbumFull(normalizeBrackets(toHalfWidthNumbers(name)))
+  return normalizeAlbumFull(
+    normalizeSymbols(
+      normalizeBrackets(toHalfWidthNumbers(normalizeUnicode(name))),
+    ),
+  )
     .replace(/\(\s+/g, "(")
     .replace(/\s+\)/g, ")")
     .toLowerCase();
+};
+
+export const normalizeSymbols = (str: string): string => {
+  if (!str) return str;
+
+  return (
+    str
+      // Normalize question marks
+      .replace(/[？]/g, "?")
+
+      // Normalize tildes
+      .replace(/[〜～]/g, "~")
+
+      // Normalize spacing around tildes
+      .replace(/\s*~\s*/g, "~")
+
+      // Normalize Japanese quotes to parentheses
+      .replace(/[「『【]/g, "(")
+      .replace(/[」』】]/g, ")")
+
+      // Normalize full-width spaces
+      .replace(/　/g, " ")
+
+      // Collapse whitespace
+      .replace(/\s+/g, " ")
+      .trim()
+  );
 };
 
 /**
@@ -104,11 +137,10 @@ export const canonicalAlbumKey = (name: string): string => {
 export const normalizeAlbumFull = (name: string): string => {
   const normalized = normalizeBrackets(
     name
-      .replace(/\s*\(Standard(?:\s*(?:Edition|Version|Ver\.?))?\)$/i, "")
-      .replace(/\s*\(Video(?:\s*(?:Edition|Version|Ver\.?))?\)$/i, "")
-      .replace(/\s*\(Deluxe(?:\s*(?:Edition|Version|Ver\.?))?\)$/i, "")
-      .replace(/\s*\(Expanded(?:\s*(?:Edition|Version|Ver\.?))?\)$/i, "")
-      .replace(/\s*\(Special(?:\s*(?:Edition|Version|Ver\.?))?\)$/i, "")
+      .replace(
+        /\s*\((Standard|Video|Deluxe|Expanded|Special)(\s*(Edition|Version|Ver\.?))?\)/gi,
+        "",
+      )
       .replace(/\s*-\s*(?:EP|Single)$/i, "")
       .replace(/\s+(?:EP)$/i, "")
       .trim(),
