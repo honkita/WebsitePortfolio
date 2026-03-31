@@ -61,10 +61,20 @@ const MusicClient = () => {
 
                 const allData: artistAlbumContainerMapType =
                     res?.["All Data"] ?? {};
-                const bestAlbums = res?.["Best Albums"] ?? {};
+                const bestAlbums = res?.["Best Albums"] ?? [];
 
                 setArtistAlbums(allData);
-                setArtists(bestAlbums);
+                setArtists(
+                    Array.isArray(bestAlbums)
+                        ? bestAlbums.reduce(
+                              (acc, artist) => ({
+                                  ...acc,
+                                  [artist.name]: artist
+                              }),
+                              {} as Record<string, artistAlbumTopAlbum>
+                          )
+                        : bestAlbums
+                );
 
                 setCurrentPage(1); // reset pagination on new fetch
             } catch (err: unknown) {
