@@ -76,7 +76,7 @@ const mergeArtists = async (
       }
 
       // Handles cases where the artist name itself contains an alias in parentheses
-      const parenthesisMatch = artist.name.match(/^(.+?)\s*\((.+?)\)\s*$/);
+      const parenthesisMatch = artist.name.match(/^(.*)\s*\(([^()]*)\)\s*$/);
       const isComposition = /[&,，,、＋+×]/.test(artist.name);
       if (parenthesisMatch && !isComposition) {
         const mainName = parenthesisMatch[1].trim();
@@ -372,6 +372,56 @@ const splitArtists = async (
   return mergedNormalized;
 };
 
+const applyArtistAlbumRedirects = async (
+  data: artistAlbumContainerMapType,
+  redirectMap: Record<string, Record<string, string>>,
+  dbArtistMap: dbArtistMapType,
+): Promise<artistAlbumContainerMapType> => {
+  for (const [fromArtist, albumMap] of Object.entries(redirectMap)) {
+    const source = data[fromArtist];
+    if (!source) continue;
+
+    for (const [albumName, toArtist] of Object.entries(albumMap)) {
+      const albumData = source.albums[albumName];
+      if (!albumData) continue;
+
+      // Ensure target exists
+      if (!data[toArtist]) {
+        data[toArtist] = {
+          id: dbArtistMap[toArtist]?.id ?? -1,
+          playcount: 0,
+          ignoreChinese: false,
+          albums: {},
+        };
+      }
+
+      const target = data[toArtist];
+
+      // Adds playcount to target album (creating if doesn't exist) and updates artist-level playcount
+      target.albums[albumName] ??= {
+        playcount: 0,
+        image: albumData.image,
+      };
+
+      target.albums[albumName].playcount += albumData.playcount;
+
+      // Update artist-level playcount
+      target.playcount += albumData.playcount;
+
+      // Remove from source
+      source.playcount -= albumData.playcount;
+      delete source.albums[albumName];
+    }
+
+    // Optional cleanup: remove empty artist
+    if (Object.keys(source.albums).length === 0 && source.playcount <= 0) {
+      delete data[fromArtist];
+    }
+  }
+
+  return data;
+};
+
 /**
  * Gets the best album for each split artist
  * @param merged
@@ -524,11 +574,23 @@ export const getUserInfo = async (
 
     const built = buildFromTracks(userData);
 
+    const redirectFetch = await fetch("/api/ArtistAlbumRedirect");
+    if (!redirectFetch.ok) throw new Error("Failed to fetch redirects");
+
+    const redirectMap: Record<
+      string,
+      Record<string, string>
+    > = await redirectFetch.json();
+
     // Split artists based on default and same name mappings
     const splitArtistList = await splitArtists(
-      await albumNormalization(
-        await mergeArtists(built, dbArtistMap),
-        dbAlbumsMap,
+      await applyArtistAlbumRedirects(
+        await albumNormalization(
+          await mergeArtists(built, dbArtistMap),
+          dbAlbumsMap,
+        ),
+        redirectMap,
+        dbArtistMap,
       ),
       defaultArtist,
       sameNameMap,
