@@ -8,23 +8,25 @@ datasource db {
 }
 
 model Artist {
-  id                                                           Int                   @id @default(autoincrement())
-  name                                                         String                @unique(map: "Artist_name_key1")
-  aliases                                                      Json?
-  ignoreChineseCanonization                                    Boolean               @default(false)
-  ArtistAlbums                                                 ArtistAlbum[]
-  ArtistAlbumRedirect_ArtistAlbumRedirect_fromArtistIdToArtist ArtistAlbumRedirect[] @relation("ArtistAlbumRedirect_fromArtistIdToArtist")
-  ArtistAlbumRedirect_ArtistAlbumRedirect_toArtistIdToArtist   ArtistAlbumRedirect[] @relation("ArtistAlbumRedirect_toArtistIdToArtist")
-  ArtistTag                                                    ArtistTag[]
-  SameNames                                                    SameNames[]
+  id                        Int     @id @default(autoincrement())
+  name                      String  @unique(map: "Artist_name_key1")
+  aliases                   Json?
+  ignoreChineseCanonization Boolean @default(false)
+
+  ArtistAlbums      ArtistAlbum[]
+  SameNames         SameNames[]
+  ArtistTags        ArtistTag[]
+  outgoingRedirects ArtistAlbumRedirect[] @relation("FromArtistRedirects")
+  incomingRedirects ArtistAlbumRedirect[] @relation("ToArtistRedirects")
 }
 
 model Album {
-  id                  Int                   @id @default(autoincrement())
-  name                String                @unique
-  aliases             Json?
-  AlbumsArtists       ArtistAlbum[]
-  ArtistAlbumRedirect ArtistAlbumRedirect[]
+  id      Int    @id @default(autoincrement())
+  name    String @unique
+  aliases Json?
+
+  AlbumsArtists        ArtistAlbum[]
+  artistAlbumRedirects ArtistAlbumRedirect[]
 }
 
 model ArtistAlbum {
@@ -37,67 +39,73 @@ model ArtistAlbum {
   @@id([artistId, albumId])
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model SameNames {
-  id        Int         @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   groupID   Int
   name      String
-  albumIDs  Json        @default("[]") @db.Json
-  isDefault Boolean     @default(false)
-  ArtistTag ArtistTag[]
-  Artist    Artist      @relation(fields: [groupID], references: [id], onDelete: Cascade)
+  albumIDs  Json    @default("[]") @db.Json
+  isDefault Boolean @default(false)
 
-  @@unique([groupID, name])
+  Artist Artist @relation(fields: [groupID], references: [id], onDelete: Cascade)
+
+  ArtistTags ArtistTag[]
+
+  @@unique([groupID, name]) // ensures identity per artist
   @@index([groupID])
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model Tag {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  ArtistTags      ArtistTag[]
+  parentRelations TagHierarchy[] @relation("ChildTag")
+  childRelations  TagHierarchy[] @relation("ParentTag")
+}
+
 model ArtistTag {
+  id Int @id @default(autoincrement())
+
   artistId    Int
   tagId       Int
-  id          Int        @id @default(autoincrement())
   sameNamesId Int?
-  Artist      Artist     @relation(fields: [artistId], references: [id], onDelete: Cascade)
-  SameNames   SameNames? @relation(fields: [sameNamesId], references: [id], onDelete: Cascade)
-  Tag         Tag        @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
-  @@unique([artistId, tagId])
+  Artist    Artist     @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  Tag       Tag        @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  SameNames SameNames? @relation(fields: [sameNamesId], references: [id], onDelete: Cascade)
+
+  // Prevent duplicate split-specific tags
   @@unique([artistId, tagId, sameNamesId])
+  // Prevent duplicate global tags
+  @@unique([artistId, tagId])
   @@index([artistId])
   @@index([sameNamesId])
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-model Tag {
-  id                                         Int            @id @default(autoincrement())
-  name                                       String         @unique
-  ArtistTag                                  ArtistTag[]
-  TagHierarchy_TagHierarchy_childTagIdToTag  TagHierarchy[] @relation("TagHierarchy_childTagIdToTag")
-  TagHierarchy_TagHierarchy_parentTagIdToTag TagHierarchy[] @relation("TagHierarchy_parentTagIdToTag")
-}
-
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-model ArtistAlbumRedirect {
-  id                                              Int    @id @default(autoincrement())
-  albumId                                         Int
-  fromArtistId                                    Int
-  toArtistId                                      Int
-  Album                                           Album  @relation(fields: [albumId], references: [id], onDelete: Cascade)
-  Artist_ArtistAlbumRedirect_fromArtistIdToArtist Artist @relation("ArtistAlbumRedirect_fromArtistIdToArtist", fields: [fromArtistId], references: [id], onDelete: Cascade)
-  Artist_ArtistAlbumRedirect_toArtistIdToArtist   Artist @relation("ArtistAlbumRedirect_toArtistIdToArtist", fields: [toArtistId], references: [id], onDelete: Cascade)
-
-  @@unique([albumId, fromArtistId, toArtistId])
-}
-
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model TagHierarchy {
-  id                                Int @id @default(autoincrement())
-  parentTagId                       Int
-  childTagId                        Int
-  Tag_TagHierarchy_childTagIdToTag  Tag @relation("TagHierarchy_childTagIdToTag", fields: [childTagId], references: [id], onDelete: Cascade)
-  Tag_TagHierarchy_parentTagIdToTag Tag @relation("TagHierarchy_parentTagIdToTag", fields: [parentTagId], references: [id], onDelete: Cascade)
+  id Int @id @default(autoincrement())
+
+  parentTagId Int
+  childTagId  Int
+
+  parentTag Tag @relation("ParentTag", fields: [parentTagId], references: [id], onDelete: Cascade)
+  childTag  Tag @relation("ChildTag", fields: [childTagId], references: [id], onDelete: Cascade)
 
   @@unique([parentTagId, childTagId])
-  @@index([childTagId])
   @@index([parentTagId])
+  @@index([childTagId])
+}
+
+model ArtistAlbumRedirect {
+  id Int @id @default(autoincrement())
+
+  albumId      Int
+  fromArtistId Int
+  toArtistId   Int
+
+  Album      Album  @relation(fields: [albumId], references: [id], onDelete: Cascade)
+  FromArtist Artist @relation("FromArtistRedirects", fields: [fromArtistId], references: [id], onDelete: Cascade)
+  ToArtist   Artist @relation("ToArtistRedirects", fields: [toArtistId], references: [id], onDelete: Cascade)
+
+  @@unique([albumId, fromArtistId, toArtistId])
 }
