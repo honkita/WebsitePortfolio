@@ -187,18 +187,19 @@ const MusicClient = () => {
                         disabled={currentPage === 1}
                         onClick={() => setCurrentPage((p) => p - 1)}
                     >
-                        Previous
+                        ⬅
                     </button>
 
                     <span style={{ margin: "0 1rem" }}>
-                        Page {currentPage} / {totalPages || 1}
+                        {String(currentPage).padStart(2, "0")} /{" "}
+                        {totalPages || 1}
                     </span>
 
                     <button
                         disabled={currentPage === totalPages}
                         onClick={() => setCurrentPage((p) => p + 1)}
                     >
-                        Next
+                        ➡
                     </button>
                 </div>
             )}
