@@ -142,7 +142,7 @@ const MusicArtist = ({
                 <div className={MusicArtistCSS.name}>{name}</div>
                 <section className={MusicArtistCSS.stats}>
                     <div className={MusicArtistCSS.scrobbles}>
-                        🎧 {scrobbles.toString().padStart(4, "0")}
+                        🎧 {scrobbles.toString()}
                     </div>
                     |
                     <div className={MusicArtistCSS.scrobbles}>

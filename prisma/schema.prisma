@@ -8,23 +8,21 @@ datasource db {
 }
 
 model Artist {
-  id                        Int     @id @default(autoincrement())
-  name                      String  @unique(map: "Artist_name_key1")
+  id                        Int                   @id @default(autoincrement())
+  name                      String                @unique(map: "Artist_name_key1")
   aliases                   Json?
-  ignoreChineseCanonization Boolean @default(false)
-
-  ArtistAlbums      ArtistAlbum[]
-  SameNames         SameNames[]
-  ArtistTags        ArtistTag[]
-  outgoingRedirects ArtistAlbumRedirect[] @relation("FromArtistRedirects")
-  incomingRedirects ArtistAlbumRedirect[] @relation("ToArtistRedirects")
+  ignoreChineseCanonization Boolean               @default(false)
+  ArtistAlbums              ArtistAlbum[]
+  outgoingRedirects         ArtistAlbumRedirect[] @relation("FromArtistRedirects")
+  incomingRedirects         ArtistAlbumRedirect[] @relation("ToArtistRedirects")
+  ArtistTags                ArtistTag[]
+  SameNames                 SameNames[]
 }
 
 model Album {
-  id      Int    @id @default(autoincrement())
-  name    String @unique
-  aliases Json?
-
+  id                   Int                   @id @default(autoincrement())
+  name                 String                @unique
+  aliases              Json?
   AlbumsArtists        ArtistAlbum[]
   artistAlbumRedirects ArtistAlbumRedirect[]
 }
@@ -40,56 +38,47 @@ model ArtistAlbum {
 }
 
 model SameNames {
-  id        Int     @id @default(autoincrement())
-  groupID   Int
-  name      String
-  albumIDs  Json    @default("[]") @db.Json
-  isDefault Boolean @default(false)
-
-  Artist Artist @relation(fields: [groupID], references: [id], onDelete: Cascade)
-
+  id         Int         @id @default(autoincrement())
+  groupID    Int
+  name       String
+  albumIDs   Json        @default("[]") @db.Json
+  isDefault  Boolean     @default(false)
   ArtistTags ArtistTag[]
+  Artist     Artist      @relation(fields: [groupID], references: [id], onDelete: Cascade)
 
-  @@unique([groupID, name]) // ensures identity per artist
+  @@unique([groupID, name])
   @@index([groupID])
 }
 
 model Tag {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-
+  id              Int            @id @default(autoincrement())
+  name            String         @unique
   ArtistTags      ArtistTag[]
   parentRelations TagHierarchy[] @relation("ChildTag")
   childRelations  TagHierarchy[] @relation("ParentTag")
 }
 
 model ArtistTag {
-  id Int @id @default(autoincrement())
-
   artistId    Int
   tagId       Int
+  id          Int        @id @default(autoincrement())
   sameNamesId Int?
+  Artist      Artist     @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  SameNames   SameNames? @relation(fields: [sameNamesId], references: [id], onDelete: Cascade)
+  Tag         Tag        @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
-  Artist    Artist     @relation(fields: [artistId], references: [id], onDelete: Cascade)
-  Tag       Tag        @relation(fields: [tagId], references: [id], onDelete: Cascade)
-  SameNames SameNames? @relation(fields: [sameNamesId], references: [id], onDelete: Cascade)
-
-  // Prevent duplicate split-specific tags
   @@unique([artistId, tagId, sameNamesId])
-  // Prevent duplicate global tags
   @@unique([artistId, tagId])
   @@index([artistId])
   @@index([sameNamesId])
 }
 
 model TagHierarchy {
-  id Int @id @default(autoincrement())
-
+  id          Int @id @default(autoincrement())
   parentTagId Int
   childTagId  Int
-
-  parentTag Tag @relation("ParentTag", fields: [parentTagId], references: [id], onDelete: Cascade)
-  childTag  Tag @relation("ChildTag", fields: [childTagId], references: [id], onDelete: Cascade)
+  childTag    Tag @relation("ChildTag", fields: [childTagId], references: [id], onDelete: Cascade)
+  parentTag   Tag @relation("ParentTag", fields: [parentTagId], references: [id], onDelete: Cascade)
 
   @@unique([parentTagId, childTagId])
   @@index([parentTagId])
@@ -97,15 +86,13 @@ model TagHierarchy {
 }
 
 model ArtistAlbumRedirect {
-  id Int @id @default(autoincrement())
-
+  id           Int    @id @default(autoincrement())
   albumId      Int
   fromArtistId Int
   toArtistId   Int
-
-  Album      Album  @relation(fields: [albumId], references: [id], onDelete: Cascade)
-  FromArtist Artist @relation("FromArtistRedirects", fields: [fromArtistId], references: [id], onDelete: Cascade)
-  ToArtist   Artist @relation("ToArtistRedirects", fields: [toArtistId], references: [id], onDelete: Cascade)
+  Album        Album  @relation(fields: [albumId], references: [id], onDelete: Cascade)
+  FromArtist   Artist @relation("FromArtistRedirects", fields: [fromArtistId], references: [id], onDelete: Cascade)
+  ToArtist     Artist @relation("ToArtistRedirects", fields: [toArtistId], references: [id], onDelete: Cascade)
 
   @@unique([albumId, fromArtistId, toArtistId])
 }
