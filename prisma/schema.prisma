@@ -28,23 +28,30 @@ model Album {
 }
 
 model ArtistAlbum {
-  artistId Int
-  albumId  Int
-  role     Int    @default(0)
-  Albums   Album  @relation(fields: [albumId], references: [id], onDelete: Cascade)
-  Artist   Artist @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  artistId    Int
+  albumId     Int
+  role        Int        @default(0)
+  id          Int        @id @default(autoincrement())
+  sameNamesId Int?
+  Albums      Album      @relation(fields: [albumId], references: [id], onDelete: Cascade)
+  Artist      Artist     @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  SameNames   SameNames? @relation(fields: [sameNamesId], references: [id], onDelete: Cascade)
 
-  @@id([artistId, albumId])
+  @@unique([artistId, albumId, sameNamesId])
+  @@unique([artistId, albumId])
+  @@index([artistId])
+  @@index([sameNamesId])
 }
 
 model SameNames {
-  id         Int         @id @default(autoincrement())
-  groupID    Int
-  name       String
-  albumIDs   Json        @default("[]") @db.Json
-  isDefault  Boolean     @default(false)
-  ArtistTags ArtistTag[]
-  Artist     Artist      @relation(fields: [groupID], references: [id], onDelete: Cascade)
+  id           Int           @id @default(autoincrement())
+  groupID      Int
+  name         String
+  albumIDs     Json          @default("[]") @db.Json
+  isDefault    Boolean       @default(false)
+  artistAlbums ArtistAlbum[]
+  ArtistTags   ArtistTag[]
+  Artist       Artist        @relation(fields: [groupID], references: [id], onDelete: Cascade)
 
   @@unique([groupID, name])
   @@index([groupID])
