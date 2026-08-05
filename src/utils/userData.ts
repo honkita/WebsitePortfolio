@@ -7,8 +7,17 @@ import {
 } from "@/utils/normalizeName";
 import { fetchAllPages } from "@/utils/userTracks";
 
+// API
+import {
+  getAlbums,
+  getArtist,
+  getArtistAlbum,
+  getArtistAlbumRedirect,
+  getSameNames,
+} from "@/lib/api";
+
 // Types
-import type { Artist as DBArtist } from "@prisma/client";
+
 import type {
   dbArtistMapType,
   artistAlbumContainerMapType,
@@ -16,13 +25,6 @@ import type {
   artistAlbumTopAlbum,
 } from "@/types/Music";
 import type { lfmArtistAlbumMapType } from "@/types/LastFM";
-
-type SameNames = {
-  name: string;
-  Artist: { name: string };
-  albumIDs: number[] | string;
-  isDefault: boolean;
-};
 
 // Non normalized names
 
@@ -502,38 +504,19 @@ export const getUserInfo = async (
   onProgress?: (current: number, total: number) => void,
 ) => {
   try {
-    // Fetch DB Artists
-
-    const dbAlbums = await fetch("/api/ArtistAlbum");
-    if (!dbAlbums.ok) throw new Error("Failed to fetch artist albums");
-    const dbAlbumsMap: Record<
-      string,
-      Record<string, string[]>
-    > = await dbAlbums.json();
-
-    const dbSameNamesFetch = await fetch("/api/SameName");
-    if (!dbSameNamesFetch.ok)
-      throw new Error("Failed to fetch same name mappings");
-    const dbSameNames: SameNames[] = await dbSameNamesFetch.json();
-
     // Hash map for default artist names
     const defaultArtist: Record<string, string> = {};
 
     // Hash map for same artist names (Lisa, Bibi, etc.)
     const sameNameMap: Record<string, Record<string, string[]>> = {};
 
-    // Hash map for quick artist lookup
-    const dbArtistsResponse = await fetch("/api/Artist");
-    if (!dbArtistsResponse.ok) throw new Error("Failed to fetch artists");
-    const dbArtistMap: Record<string, DBArtist> =
-      await dbArtistsResponse.json();
+    // Fetch database items from database
 
-    // Hash map for album names
-    const albumFetch = await fetch("/api/Albums");
-    if (!albumFetch.ok) throw new Error("Failed to fetch albums");
-    const albumMap: Record<number, string> = await albumFetch.json();
+    const dbArtistMap = await getArtist();
 
-    dbSameNames.forEach((dbSameName) => {
+    const albumMap = await getAlbums();
+
+    (await getSameNames()).forEach((dbSameName) => {
       const displayName = dbSameName.name;
       const originalName = dbSameName.Artist.name;
       const isDefault = dbSameName.isDefault;
@@ -574,22 +557,14 @@ export const getUserInfo = async (
 
     const built = buildFromTracks(userData);
 
-    const redirectFetch = await fetch("/api/ArtistAlbumRedirect");
-    if (!redirectFetch.ok) throw new Error("Failed to fetch redirects");
-
-    const redirectMap: Record<
-      string,
-      Record<string, string>
-    > = await redirectFetch.json();
-
     // Split artists based on default and same name mappings
     const splitArtistList = await splitArtists(
       await applyArtistAlbumRedirects(
         await albumNormalization(
           await mergeArtists(built, dbArtistMap),
-          dbAlbumsMap,
+          await getArtistAlbum(),
         ),
-        redirectMap,
+        await getArtistAlbumRedirect(),
         dbArtistMap,
       ),
       defaultArtist,
