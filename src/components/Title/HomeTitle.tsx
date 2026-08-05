@@ -178,10 +178,10 @@ const HomeTitle = ({ colour, name }: TitleProps) => {
                     <div className={TitleCSS.infoBox}>
                         <div className={TitleCSS.infoText}>
                             <p>
-                                Elite is a software developer from McMaster
-                                University. He is currently in his fourth year
-                                studying computer science with a minor in
-                                mathematics.
+                                Elite is a Network Design Specialist at Hitachi
+                                Rail. He graduated from McMaster University with
+                                a degree in Computer Science and a minor in
+                                Mathematics.
                             </p>
                             <p>
                                 Beyond this, Elite can be seen either drawing
