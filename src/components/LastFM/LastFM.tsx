@@ -7,6 +7,9 @@ import Link from "next/link";
 // CSS
 import LastFMCSS from "./LastFMCSS.module.css";
 
+// Utils
+import { getArtistName } from "@/utils/getSongDetails";
+
 // Interface for a Last.fm track
 interface LastFmTrack {
     artist: { "#text": string };
@@ -43,6 +46,7 @@ const LastFM = () => {
     const { resolvedTheme } = useTheme();
     const [track, setTrack] = useState<LastFmTrack | null>(null);
     const lastTrackId = useRef<string | null>(null);
+    const [artistName, setArtistName] = useState("");
 
     const titleRef = useRef<HTMLDivElement | null>(null);
     const artistRef = useRef<HTMLDivElement | null>(null);
@@ -95,12 +99,18 @@ const LastFM = () => {
     };
 
     // Setup scrolling animation
-    const setupScroll = () => {
+    const setupScroll = async () => {
         if (!styleRef.current || !track) return;
+
+        setArtistName(await getArtistName(track.artist["#text"]));
+        console.log(artistName);
 
         const lines: AnimatedLine[] = [
             { text: track.name, ref: titleRef },
-            { text: track.artist["#text"], ref: artistRef },
+            {
+                text: artistName,
+                ref: artistRef
+            },
             { text: track.album["#text"], ref: albumRef }
         ];
 
@@ -153,8 +163,9 @@ const LastFM = () => {
         }
       `;
 
-            line.ref.current.style.animation = `${keyframeName} ${(totalDuration * 1000) / 200
-                }s ease-in-out infinite`;
+            line.ref.current.style.animation = `${keyframeName} ${
+                (totalDuration * 1000) / 200
+            }s ease-in-out infinite`;
         });
 
         styleRef.current.innerHTML = css;
@@ -171,7 +182,9 @@ const LastFM = () => {
     useEffect(() => {
         if (!track) return;
         resetAnimation();
-        const timer = setTimeout(() => setupScroll(), 50);
+        const timer = setTimeout(() => {
+            void setupScroll();
+        }, 50);
         return () => clearTimeout(timer);
     }, [track]);
 
@@ -180,7 +193,7 @@ const LastFM = () => {
         if (!track) return;
         const handleResize = debounce(() => {
             resetAnimation();
-            setupScroll();
+            void setupScroll();
         }, 200);
 
         window.addEventListener("resize", handleResize);
@@ -245,7 +258,7 @@ const LastFM = () => {
 
             <div className={LastFMCSS.details}>
                 {renderText(track.name, titleRef, LastFMCSS.title)}
-                {renderText(track.artist["#text"], artistRef, LastFMCSS.artist)}
+                {renderText(artistName, artistRef, LastFMCSS.artist)}
                 {renderText(track.album["#text"], albumRef, LastFMCSS.album)}
             </div>
         </div>

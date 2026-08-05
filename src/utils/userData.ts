@@ -1,13 +1,4 @@
-// Utils
-import { levenshtein, similarityScore } from "@/utils/levenshtein";
-import {
-  normalizeArtistFull,
-  normalizeAlbumFull,
-  canonicalAlbumKey,
-} from "@/utils/normalizeName";
-import { fetchAllPages } from "@/utils/userTracks";
-
-// API
+// Lib
 import {
   getAlbums,
   getArtist,
@@ -24,6 +15,15 @@ import type {
 } from "@/types/Music";
 import type { lfmArtistAlbumMapType } from "@/types/LastFM";
 import type { DBArtist } from "@/types/DBMusic";
+
+// Utils
+import { levenshtein, similarityScore } from "@/utils/levenshtein";
+import {
+  normalizeArtistFull,
+  normalizeAlbumFull,
+  canonicalAlbumKey,
+} from "@/utils/normalizeName";
+import { fetchAllPages } from "@/utils/userTracks";
 
 // Non normalized names
 
@@ -510,9 +510,7 @@ export const getUserInfo = async (
     const sameNameMap: Record<string, Record<string, string[]>> = {};
 
     // Fetch database items from database
-
     const dbArtistMap = await getArtist();
-
     const albumMap = await getAlbums();
 
     (await getSameNames()).forEach((dbSameName) => {
