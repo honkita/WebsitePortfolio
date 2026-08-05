@@ -8,32 +8,31 @@ export interface DBAlbums {
 }
 
 /**
- * Database Artist Interface
+ * Database Artist Type
  */
-export interface DBArtist {
-  [key: string]: Artist;
-}
+export type DBArtist = Record<string, Artist>;
 
 /**
- * Database Artist Albums Interface
+ * Database Artist Albums Type
  */
-export interface DBArtistAlbum {
-  [key: string]: Record<string, string[]>;
-}
+export type DBArtistAlbum = Record<string, Record<string, string[]>>;
 
 /**
- * Database Artist Album Redirect Interface
+ * Database Artist Album Redirect Type
  */
-export interface DBArtistAlbumRedirect {
-  [key: string]: Record<string, string>;
-}
+export type DBArtistAlbumRedirect = Record<string, Record<string, string>>;
 
 /**
  * Database SameNames Interface
  */
-export interface DBSameName {
+interface DBSameName {
   name: string;
   Artist: { name: string };
   albumIDs: number[] | string;
   isDefault: boolean;
 }
+
+/**
+ * Database SameNames Type
+ */
+export type DBSameNameList = DBSameName[];

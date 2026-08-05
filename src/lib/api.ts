@@ -2,12 +2,12 @@
 import { getCached } from "@/lib/apiCache";
 
 // Types
-import {
+import type {
   DBAlbums,
   DBArtist,
   DBArtistAlbum,
   DBArtistAlbumRedirect,
-  DBSameName,
+  DBSameNameList,
 } from "@/types/DBMusic";
 
 export const getAlbums = () => getCached<DBAlbums>("/api/Albums");
@@ -20,4 +20,4 @@ export const getArtistAlbum = () =>
 export const getArtistAlbumRedirect = () =>
   getCached<DBArtistAlbumRedirect>("/api/ArtistAlbumRedirect");
 
-export const getSameNames = () => getCached<DBSameName[]>("/api/SameName");
+export const getSameNames = () => getCached<DBSameNameList>("/api/SameName");

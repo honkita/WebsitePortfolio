@@ -50,13 +50,6 @@ export interface sameArtistValues {
 }
 
 /**
- * Database Artist Map Type
- * @key string - Artist name
- * @value DBArtist - Artist object from the database
- */
-export type dbArtistMapType = Record<string, DBArtist>;
-
-/**
  * Artist Clean Albums Map Type
  * @key string - Artist name
  * @value cleanedAlbums - Cleaned albums object

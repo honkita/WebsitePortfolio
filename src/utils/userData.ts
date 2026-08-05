@@ -17,14 +17,13 @@ import {
 } from "@/lib/api";
 
 // Types
-
 import type {
-  dbArtistMapType,
   artistAlbumContainerMapType,
   artistCleanAlbumsMapType,
   artistAlbumTopAlbum,
 } from "@/types/Music";
 import type { lfmArtistAlbumMapType } from "@/types/LastFM";
+import type { DBArtist } from "@/types/DBMusic";
 
 // Non normalized names
 
@@ -48,7 +47,7 @@ interface lfmRecentTrack {
  */
 const mergeArtists = async (
   lfmArtistAlbumMap: lfmArtistAlbumMapType,
-  dbArtistMap: dbArtistMapType,
+  dbArtistMap: DBArtist,
 ): Promise<artistAlbumContainerMapType> => {
   // Maps ALL the aliases
   const aliasMap: Record<string, string> = {};
@@ -377,7 +376,7 @@ const splitArtists = async (
 const applyArtistAlbumRedirects = async (
   data: artistAlbumContainerMapType,
   redirectMap: Record<string, Record<string, string>>,
-  dbArtistMap: dbArtistMapType,
+  dbArtistMap: DBArtist,
 ): Promise<artistAlbumContainerMapType> => {
   for (const [fromArtist, albumMap] of Object.entries(redirectMap)) {
     const source = data[fromArtist];
