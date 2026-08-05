@@ -1,8 +1,13 @@
 // Lib
-import { getArtist } from "@/lib/api";
+import { getArtist, getArtistAlbum } from "@/lib/api";
 
 // Utils
-import { normalizeArtistFull } from "@/utils/normalizeName";
+import {
+  canonicalAlbumKey,
+  normalizeAlbumFull,
+  normalizeArtistFull,
+} from "@/utils/normalizeName";
+import { levenshtein, similarityScore } from "@/utils/levenshtein";
 
 /**
  * Gets the canonical database artist name from a Last.fm artist name
@@ -85,4 +90,70 @@ export const getArtistName = async (artistName: string): Promise<string> => {
 
   // No match
   return artistName;
+};
+
+/**
+ * Gets the canonical database album name from a Last.fm album name
+ * @param artistName Artist name
+ * @param albumName Last.fm album name
+ * @returns Canonical album name or original name if no match found
+ */
+export const getAlbumName = async (
+  artistName: string,
+  albumName: string,
+): Promise<string> => {
+  const dbAlbums = (await getArtistAlbum())[artistName] || {};
+
+  const aliasMap: Record<string, string> = {};
+
+  // Build album alias lookup
+  for (const [dbAlbumName, aliases] of Object.entries(dbAlbums)) {
+    const normalized = normalizeAlbumFull(dbAlbumName);
+
+    aliasMap[canonicalAlbumKey(dbAlbumName)] = normalized;
+
+    aliases.forEach((alias) => {
+      aliasMap[canonicalAlbumKey(alias)] = normalized;
+    });
+  }
+
+  const albumKey = canonicalAlbumKey(albumName);
+
+  // 1. Exact alias match
+  if (aliasMap[albumKey]) {
+    return aliasMap[albumKey];
+  }
+
+  // 2. Similarity fallback
+  const DISTANCE_THRESHOLD = 3;
+  const SIMILARITY_THRESHOLD = 0.82;
+
+  let bestMatch: string | null = null;
+  let bestDistance = Infinity;
+  let bestSimilarity = 0;
+
+  for (const aliasKey of Object.keys(aliasMap)) {
+    const dist = levenshtein(albumKey, aliasKey);
+    const sim = similarityScore(albumKey, aliasKey);
+
+    if (
+      sim > bestSimilarity ||
+      (sim === bestSimilarity && dist < bestDistance)
+    ) {
+      bestSimilarity = sim;
+      bestDistance = dist;
+      bestMatch = aliasKey;
+    }
+  }
+
+  if (
+    bestMatch &&
+    bestDistance <= DISTANCE_THRESHOLD &&
+    bestSimilarity >= SIMILARITY_THRESHOLD
+  ) {
+    return aliasMap[bestMatch];
+  }
+
+  // No match
+  return albumName;
 };

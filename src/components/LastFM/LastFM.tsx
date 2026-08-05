@@ -8,7 +8,7 @@ import Link from "next/link";
 import LastFMCSS from "./LastFMCSS.module.css";
 
 // Utils
-import { getArtistName } from "@/utils/getSongDetails";
+import { getAlbumName, getArtistName } from "@/utils/getSongDetails";
 
 // Interface for a Last.fm track
 interface LastFmTrack {
@@ -47,6 +47,7 @@ const LastFM = () => {
     const [track, setTrack] = useState<LastFmTrack | null>(null);
     const lastTrackId = useRef<string | null>(null);
     const [artistName, setArtistName] = useState("");
+    const [albumName, setAlbumName] = useState("");
 
     const titleRef = useRef<HTMLDivElement | null>(null);
     const artistRef = useRef<HTMLDivElement | null>(null);
@@ -102,8 +103,14 @@ const LastFM = () => {
     const setupScroll = async () => {
         if (!styleRef.current || !track) return;
 
-        setArtistName(await getArtistName(track.artist["#text"]));
-        console.log(artistName);
+        const resolvedArtistName = await getArtistName(track.artist["#text"]);
+        const resolvedAlbumName = await getAlbumName(
+            resolvedArtistName,
+            track.album["#text"]
+        );
+
+        setArtistName(resolvedArtistName);
+        setAlbumName(resolvedAlbumName);
 
         const lines: AnimatedLine[] = [
             { text: track.name, ref: titleRef },
@@ -111,7 +118,7 @@ const LastFM = () => {
                 text: artistName,
                 ref: artistRef
             },
-            { text: track.album["#text"], ref: albumRef }
+            { text: albumName, ref: albumRef }
         ];
 
         const longestLength = Math.max(...lines.map((l) => l.text.length));
@@ -178,14 +185,21 @@ const LastFM = () => {
         return () => clearInterval(interval);
     }, []);
 
-    // Reset animation on track change
     useEffect(() => {
         if (!track) return;
+
         resetAnimation();
-        const timer = setTimeout(() => {
-            void setupScroll();
-        }, 50);
-        return () => clearTimeout(timer);
+
+        const load = async () => {
+            await setupScroll();
+
+            // wait for React state updates + DOM render
+            requestAnimationFrame(() => {
+                void setupScroll();
+            });
+        };
+
+        void load();
     }, [track]);
 
     // Handle resize
@@ -259,7 +273,7 @@ const LastFM = () => {
             <div className={LastFMCSS.details}>
                 {renderText(track.name, titleRef, LastFMCSS.title)}
                 {renderText(artistName, artistRef, LastFMCSS.artist)}
-                {renderText(track.album["#text"], albumRef, LastFMCSS.album)}
+                {renderText(albumName, albumRef, LastFMCSS.album)}
             </div>
         </div>
     );

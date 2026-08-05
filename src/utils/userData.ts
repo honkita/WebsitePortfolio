@@ -14,7 +14,7 @@ import type {
   artistAlbumTopAlbum,
 } from "@/types/Music";
 import type { lfmArtistAlbumMapType } from "@/types/LastFM";
-import type { DBArtist } from "@/types/DBMusic";
+import type { DBArtist, DBAlbums, DBArtistAlbum } from "@/types/DBMusic";
 
 // Utils
 import { levenshtein, similarityScore } from "@/utils/levenshtein";
@@ -216,7 +216,7 @@ const mergeArtists = async (
  */
 const albumNormalization = async (
   mergedAlbumArtists: artistAlbumContainerMapType,
-  lfmAlbumMap: Record<string, Record<string, string[]>>,
+  lfmAlbumMap: DBArtistAlbum,
 ): Promise<artistAlbumContainerMapType> => {
   for (const [artistName, artistData] of Object.entries(mergedAlbumArtists)) {
     const albums = artistData.albums;
