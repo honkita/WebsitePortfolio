@@ -41,6 +41,8 @@
   align-items: center;
   gap: 1vw;
   margin-top: 1rem;
+  height: calc(2rem + 4vw);
+  max-height: 5rem;
 }
 
 .indicators {
@@ -50,6 +52,7 @@
   border: 2px solid var(--primary);
   background-color: var(--background);
   height: calc(1rem + 4vw);
+  max-height: 4rem;
 }
 
 .dot {
