@@ -26,6 +26,7 @@
   display: flex;
   position: absolute;
   font-size: calc(0.5rem + 2vw);
+  line-height: 1; /* fixes vertical alignment */
   top: 50%;
   cursor: pointer;
   background-color: var(--background-secondary);
@@ -36,8 +37,10 @@
   transform: translate(0, -50%);
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
+  padding: 0;
   border: 2px solid var(--primary);
+
+  appearance: none;
 }
 
 .indicators {

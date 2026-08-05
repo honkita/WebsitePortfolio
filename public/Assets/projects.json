@@ -1,5 +1,11 @@
 [
   {
+    "name": "Last.fm Stats Organizer",
+    "url": "https://github.com/honkita/Last.fm-Stats-Organizer",
+    "languages": ["TypeScript", "Next.js"],
+    "img": "LastFM.png"
+  },
+  {
     "name": "Pixel Buttons",
     "url": "https://github.com/honkita/PixelButtons",
     "languages": [],
