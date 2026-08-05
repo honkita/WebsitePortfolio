@@ -38,15 +38,14 @@ const PixelButton = ({ name, url, extra }: PixelButtonProps) => {
         return null;
     };
 
-    let src;
-
     return (
         <Link href={url} target={getValue().target}>
             <button
-                className={`${PixelButtonCSS.buttonRendering} ${extra != true
-                    ? PixelButtonCSS.button
-                    : PixelButtonCSS.titleButtons
-                    }`}
+                className={`${PixelButtonCSS.buttonRendering} ${
+                    extra != true
+                        ? PixelButtonCSS.button
+                        : PixelButtonCSS.titleButtons
+                }`}
                 title={name}
                 aria-label={"Go to " + name}
                 type="button"

@@ -19,7 +19,7 @@
 
 .cover {
   height: clamp(5rem, 6vw + 1rem, 8rem);
-  aspect-ratio: 1/1;
+  aspect-ratio: 1;
   border-radius: 0.75rem;
   object-fit: cover;
   flex-shrink: 0;

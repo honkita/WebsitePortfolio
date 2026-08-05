@@ -23,43 +23,38 @@
 }
 
 .sliderButtons {
+  position: relative;
   display: flex;
-  position: absolute;
-  font-size: calc(0.5rem + 2vw);
-  line-height: 1; /* fixes vertical alignment */
-  top: 50%;
-  cursor: pointer;
-  background-color: var(--background-secondary);
-  transition: 0.6s ease;
-  height: 2vw;
-  width: 2vw;
-  text-align: center;
-  transform: translate(0, -50%);
-  align-items: center;
-  justify-content: center;
+  width: calc(1rem + 4vw);
+  height: calc(1rem + 4vw);
+  max-width: 5rem;
+  max-height: 5rem;
+  aspect-ratio: 1;
   padding: 0;
-  border: 2px solid var(--primary);
+  border: none;
+  background: transparent;
+}
 
-  appearance: none;
+.accessibilityControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem; /* spacing between buttons and dots */
+  margin-top: 1rem;
 }
 
 .indicators {
-  position: relative;
-  margin: 1rem auto 1rem auto; /* centers horizontally */
-  width: fit-content;
-  align-self: center;
-  justify-content: center;
   display: flex;
   gap: 8px;
-  z-index: 10;
-  background-color: var(--background);
   padding: 0.5rem;
   border: 2px solid var(--primary);
+  background-color: var(--background);
+  height: calc(1rem + 4vw);
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
+  height: 100%;
+  aspect-ratio: 1;
   background-color: var(--foreground-transparent);
   cursor: pointer;
   transition: background-color 0.3s ease;

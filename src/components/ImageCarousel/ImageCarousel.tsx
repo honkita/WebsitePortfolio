@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { useTheme } from "next-themes";
 
 // CSS
 import ImageCarouselCSS from "./ImageCarousel.module.css";
@@ -8,12 +10,12 @@ import ImageCarouselCSS from "./ImageCarousel.module.css";
 // Interface for ImageCarousel Props
 interface ImageCarouselProps {
     images:
-    | {
-        name: string;
-        description: string;
-        image: string;
-    }[]
-    | string; // Can be passed as JSON string
+        | {
+              name: string;
+              description: string;
+              image: string;
+          }[]
+        | string; // Can be passed as JSON string
 }
 
 /**
@@ -22,6 +24,20 @@ interface ImageCarouselProps {
  * @returns
  */
 const ImageCarousel = ({ images }: ImageCarouselProps) => {
+    const { resolvedTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    const getButtonImage = (direction: "previous" | "next") => {
+        const theme = resolvedTheme === "light" ? "" : "Dark";
+        console.log(
+            `/images/Buttons/Pixel${direction === "previous" ? "Prev" : "Next"}${theme}.svg`
+        );
+        return `/images/Buttons/Pixel${direction === "previous" ? "Prev" : "Next"}${theme}.svg`;
+    };
     const rawImages = Array.isArray(images) ? images : JSON.parse(images);
 
     // Clone last and first images for seamless looping
@@ -63,8 +79,9 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
                 setIndex(imagesJSON.length - 2); // Jump to last real
                 if (trackRef.current) {
                     trackRef.current.style.transition = "none";
-                    trackRef.current.style.transform = `translateX(-${(imagesJSON.length - 2) * 100
-                        }%)`;
+                    trackRef.current.style.transform = `translateX(-${
+                        (imagesJSON.length - 2) * 100
+                    }%)`;
                 }
             } else if (index === imagesJSON.length - 1) {
                 setIndex(1); // Jump to first real
@@ -92,6 +109,10 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
         }
     }, [index, isTransitioning]);
 
+    if (!mounted) {
+        return null;
+    }
+
     return (
         <section>
             <div className={ImageCarouselCSS.carouselWrapper}>
@@ -106,34 +127,48 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
                         />
                     ))}
                 </div>
-
+            </div>
+            <section className={ImageCarouselCSS.accessibilityControls}>
                 <button
                     title="Prev"
                     className={ImageCarouselCSS.sliderButtons}
-                    style={{ left: "5%" }}
                     onClick={handlePrev}
                 >
-                    {"<"}
+                    <Image
+                        src={getButtonImage("previous")}
+                        alt="Previous"
+                        fill
+                        priority
+                        sizes="48px"
+                    />
                 </button>
+                <div className={ImageCarouselCSS.indicators}>
+                    {rawImages.map((_: any, i: number) => (
+                        <span
+                            key={i}
+                            className={`${ImageCarouselCSS.dot} ${
+                                index === i + 1
+                                    ? ImageCarouselCSS.activeDot
+                                    : ""
+                            }`}
+                            onClick={() => handleDotClick(i)}
+                        />
+                    ))}
+                </div>
                 <button
                     title="Next"
                     className={ImageCarouselCSS.sliderButtons}
-                    style={{ right: "5%" }}
                     onClick={handleNext}
                 >
-                    {">"}
-                </button>
-            </div>
-            <div className={ImageCarouselCSS.indicators}>
-                {rawImages.map((_: any, i: number) => (
-                    <span
-                        key={i}
-                        className={`${ImageCarouselCSS.dot} ${index === i + 1 ? ImageCarouselCSS.activeDot : ""
-                            }`}
-                        onClick={() => handleDotClick(i)}
+                    <Image
+                        src={getButtonImage("next")}
+                        alt="Next"
+                        fill
+                        priority
+                        sizes="48px"
                     />
-                ))}
-            </div>
+                </button>
+            </section>
         </section>
     );
 };
