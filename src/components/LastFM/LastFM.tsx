@@ -114,11 +114,8 @@ const LastFM = () => {
 
         const lines: AnimatedLine[] = [
             { text: track.name, ref: titleRef },
-            {
-                text: artistName,
-                ref: artistRef
-            },
-            { text: albumName, ref: albumRef }
+            { text: resolvedArtistName, ref: artistRef },
+            { text: resolvedAlbumName, ref: albumRef }
         ];
 
         const longestLength = Math.max(...lines.map((l) => l.text.length));
