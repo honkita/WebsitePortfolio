@@ -170,7 +170,7 @@ const HomeTitle = ({ colour, name }: TitleProps) => {
                                     )}
                                 </button>
                             </div>
-                            <h1 className={TitleCSS.levelText}>LV: {age}</h1>
+                            <h1 className={TitleCSS.levelText}>LV: {age} ♉</h1>
                         </div>
                     </div>
                 </div>

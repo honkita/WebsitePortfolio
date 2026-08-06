@@ -7,15 +7,16 @@ import { useTheme } from "next-themes";
 // CSS
 import ImageCarouselCSS from "./ImageCarousel.module.css";
 
+// JSON item interface
+interface CarouselItem {
+    name: string;
+    description: string;
+    image: string;
+}
+
 // Interface for ImageCarousel Props
 interface ImageCarouselProps {
-    images:
-        | {
-              name: string;
-              description: string;
-              image: string;
-          }[]
-        | string; // Can be passed as JSON string
+    images: CarouselItem[] | string; // Can be passed as JSON string
 }
 
 /**
@@ -26,8 +27,11 @@ interface ImageCarouselProps {
 const ImageCarousel = ({ images }: ImageCarouselProps) => {
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
+    const [index, setIndex] = useState(1); // Start at first real image
+    const [isTransitioning, setIsTransitioning] = useState(false);
 
     useEffect(() => {
+        console.log(index);
         setMounted(true);
     }, []);
 
@@ -47,8 +51,6 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
         rawImages[0]
     ];
 
-    const [index, setIndex] = useState(1); // Start at first real image
-    const [isTransitioning, setIsTransitioning] = useState(false);
     const trackRef = useRef<HTMLDivElement>(null);
 
     const handlePrev = () => {
@@ -70,44 +72,26 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
     };
 
     useEffect(() => {
-        if (!isTransitioning) return;
+        const track = trackRef.current;
+        if (!track || !isTransitioning) return;
 
-        const handleTransitionEnd = () => {
+        const handleTransitionEnd = (e: TransitionEvent) => {
+            if (e.propertyName !== "transform") return;
+
             setIsTransitioning(false);
 
             if (index === 0) {
-                setIndex(imagesJSON.length - 2); // Jump to last real
-                if (trackRef.current) {
-                    trackRef.current.style.transition = "none";
-                    trackRef.current.style.transform = `translateX(-${
-                        (imagesJSON.length - 2) * 100
-                    }%)`;
-                }
+                setIndex(imagesJSON.length - 2);
             } else if (index === imagesJSON.length - 1) {
-                setIndex(1); // Jump to first real
-                if (trackRef.current) {
-                    trackRef.current.style.transition = "none";
-                    trackRef.current.style.transform = `translateX(-100%)`;
-                }
+                setIndex(1);
             }
         };
 
-        const track = trackRef.current;
-        track?.addEventListener("transitionend", handleTransitionEnd);
+        track.addEventListener("transitionend", handleTransitionEnd);
 
-        return () => {
-            track?.removeEventListener("transitionend", handleTransitionEnd);
-        };
-    }, [index, imagesJSON.length, isTransitioning]);
-
-    useEffect(() => {
-        if (trackRef.current) {
-            trackRef.current.style.transition = isTransitioning
-                ? "transform 0.5s ease-in-out"
-                : "none";
-            trackRef.current.style.transform = `translateX(-${index * 100}%)`;
-        }
-    }, [index, isTransitioning]);
+        return () =>
+            track.removeEventListener("transitionend", handleTransitionEnd);
+    }, [index, isTransitioning, imagesJSON.length]);
 
     if (!mounted) {
         return null;
@@ -116,8 +100,17 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
     return (
         <section>
             <div className={ImageCarouselCSS.carouselWrapper}>
-                <div ref={trackRef} className={ImageCarouselCSS.carouselTrack}>
-                    {imagesJSON.map((item: any, i: number) => (
+                <div
+                    ref={trackRef}
+                    className={ImageCarouselCSS.carouselTrack}
+                    style={{
+                        transform: `translateX(-${index * 100}%)`,
+                        transition: isTransitioning
+                            ? "transform 0.5s ease-in-out"
+                            : "none"
+                    }}
+                >
+                    {imagesJSON.map((item: CarouselItem, i: number) => (
                         <img
                             key={i}
                             src={item.image}
@@ -143,7 +136,7 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
                     />
                 </button>
                 <div className={ImageCarouselCSS.indicators}>
-                    {rawImages.map((_: any, i: number) => (
+                    {rawImages.map((item: CarouselItem, i: number) => (
                         <span
                             key={i}
                             className={`${ImageCarouselCSS.dot} ${
