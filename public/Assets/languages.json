@@ -45,5 +45,10 @@
     "name": "Latex",
     "type": "Formatted Text",
     "url": "./images/Logos/Latex.svg"
+  },
+  {
+    "name": "VBA",
+    "type": "Object-Oriented",
+    "url": "./images/Logos/VBA.svg"
   }
 ]
