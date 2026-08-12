@@ -9,21 +9,18 @@ import {
 } from "@/utils/normalizeName";
 import { levenshtein, similarityScore } from "@/utils/levenshtein";
 
-/**
- * Gets the canonical database artist name from a Last.fm artist name
- * @param artistName Last.fm artist name
- * @param dbArtistMap Database artists
- * @returns Canonical artist name or original name if no match found
- */
 export const getArtistName = async (artistName: string): Promise<string> => {
+  const nameMap: Record<string, string> = {};
   const aliasMap: Record<string, string> = {};
 
   const asciiLower = (str: string) =>
     str.replace(/[A-Za-z]/g, (c) => c.toLowerCase());
 
-  // Build alias lookup
-  const normalizedDbPromises = Object.values(await getArtist()).map(
-    async (artist) => {
+  const artists = await getArtist();
+
+  // Build artist lookup
+  const normalizedDb = await Promise.all(
+    Object.values(artists).map(async (artist) => {
       const nameNorm = await normalizeArtistFull(
         artist.name,
         artist.ignoreChineseCanonization,
@@ -38,6 +35,7 @@ export const getArtistName = async (artistName: string): Promise<string> => {
       } else if (typeof artist.aliases === "string") {
         try {
           const parsed = JSON.parse(artist.aliases);
+
           if (Array.isArray(parsed)) {
             aliases = parsed.filter((a): a is string => typeof a === "string");
           }
@@ -48,43 +46,59 @@ export const getArtistName = async (artistName: string): Promise<string> => {
         name: artist.name,
         nameNorm,
         aliases: await Promise.all(
-          aliases.map((a) =>
-            normalizeArtistFull(a, artist.ignoreChineseCanonization),
+          aliases.map((alias) =>
+            normalizeArtistFull(alias, artist.ignoreChineseCanonization),
           ),
         ),
       };
-    },
+    }),
   );
 
-  const normalizedDb = await Promise.all(normalizedDbPromises);
+  // Canonical artist names get their own lookup
+  normalizedDb.forEach(({ name, nameNorm }) => {
+    nameMap[nameNorm] = name;
+  });
 
-  normalizedDb.forEach(({ name, nameNorm, aliases }) => {
-    aliasMap[nameNorm] = name;
-
+  // Aliases are kept separate so they never override a real artist name
+  normalizedDb.forEach(({ name, aliases }) => {
     aliases.forEach((alias) => {
-      aliasMap[alias] = name;
+      // Don't let an alias override an actual artist name
+      if (!nameMap[alias]) {
+        aliasMap[alias] = name;
+      }
     });
   });
 
-  // Normalize incoming artist
-  const dbRow = (await getArtist())[artistName];
+  const dbRow = artists[artistName];
 
   const canonName = await normalizeArtistFull(
     artistName,
     dbRow?.ignoreChineseCanonization ?? false,
   );
 
-  // Exact match
+  // 1. Exact canonical artist name
+  if (nameMap[canonName]) {
+    return nameMap[canonName];
+  }
+
+  // 2. Exact alias
   if (aliasMap[canonName]) {
     return aliasMap[canonName];
   }
 
-  // Fallback ASCII contains matching
+  // 3. ASCII contains matching against canonical names first
   const canonAscii = asciiLower(canonName);
 
-  for (const dbCanon of Object.keys(aliasMap)) {
+  for (const dbCanon of Object.keys(nameMap)) {
     if (asciiLower(dbCanon).includes(canonAscii)) {
-      return aliasMap[dbCanon];
+      return nameMap[dbCanon];
+    }
+  }
+
+  // 4. ASCII contains matching against aliases
+  for (const alias of Object.keys(aliasMap)) {
+    if (asciiLower(alias).includes(canonAscii)) {
+      return aliasMap[alias];
     }
   }
 
