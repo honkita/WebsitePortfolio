@@ -1,13 +1,21 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"],
-      "@/assets/*": ["./public/Assets/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@/assets/*": [
+        "./public/Assets/*"
+      ]
     },
     "jsx": "preserve",
     "incremental": true,
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,7 +28,8 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "moduleResolution": "node"
   },
   "include": [
     "**/*.ts",
@@ -29,5 +38,8 @@
     ".next/types/**/*.ts",
     "types/**/*.ts"
   ],
-  "exclude": ["node_modules", "*.module.css"]
+  "exclude": [
+    "node_modules",
+    "*.module.css"
+  ]
 }

@@ -20,10 +20,10 @@ export interface DBAlbumClean {
 /**
  * Cleaned Albums Interface
  */
-export type cleanedAlbums = {
+interface cleanedAlbums {
   playcount: number;
   image: string;
-};
+}
 
 /**
  * Artist Album Container Interface
@@ -48,6 +48,13 @@ export interface sameArtistValues {
   default: string;
   splits: Record<string, { albumNames: string[] }>;
 }
+
+/**
+ * Database Artist Map Type
+ * @key string - Artist name
+ * @value DBArtist - Artist object from the database
+ */
+export type dbArtistMapType = Record<string, DBArtist>;
 
 /**
  * Artist Clean Albums Map Type
