@@ -20,7 +20,7 @@ export interface DBAlbumClean {
 /**
  * Cleaned Albums Interface
  */
-interface cleanedAlbums {
+export interface cleanedAlbums {
   playcount: number;
   image: string;
 }
