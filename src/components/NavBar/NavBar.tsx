@@ -28,7 +28,7 @@ const NavBar = () => {
         setIsThemeMounted(true);
     }, []);
 
-    const path = "./images/NavBar/";
+    const path = "/images/NavBar/";
 
     const pages = [
         { name: "Home", link: "/", file: "Home" },
@@ -46,10 +46,11 @@ const NavBar = () => {
 
     return (
         <nav
-            className={`${NavBarCSS.navBar} ${isNavInitiallyMounted
-                ? NavBarCSS.navBarVisible
-                : NavBarCSS.navBarHidden
-                }`}
+            className={`${NavBarCSS.navBar} ${
+                isNavInitiallyMounted
+                    ? NavBarCSS.navBarVisible
+                    : NavBarCSS.navBarHidden
+            }`}
         >
             {pages.map((page, index) => (
                 <Link href={page.link} key={index}>
