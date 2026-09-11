@@ -11,7 +11,7 @@ import type {
   DBSameNameList,
 } from "@/types/DBMusic";
 
-export const getAlbums = () =>
+export const getAlbum = () =>
   getCached<DBAlbums>(`https://lastfm-api-eight.vercel.app/api/Album`);
 
 export const getArtist = () => getCached<DBArtist>(`${API_URL}/api/Artist`);

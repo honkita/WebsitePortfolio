@@ -11,7 +11,7 @@ const globalForAlbums = globalThis as unknown as {
  * Gets the albums from the database and stores them in a global variable for caching.
  * @returns
  */
-export const getAlbums = async (): Promise<Record<number, string>> => {
+export const getAlbum = async (): Promise<Record<number, string>> => {
   if (!globalForAlbums.albums) {
     const albums = await prisma.album.findMany({
       select: { id: true, name: true },

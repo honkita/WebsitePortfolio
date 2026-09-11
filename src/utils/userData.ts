@@ -1,6 +1,6 @@
 // Lib
 import {
-  getAlbums,
+  getAlbum,
   getArtist,
   getArtistAlbum,
   getArtistAlbumRedirect,
@@ -14,7 +14,7 @@ import type {
   artistAlbumTopAlbum,
 } from "@/types/Music";
 import type { lfmArtistAlbumMapType } from "@/types/LastFM";
-import type { DBArtist, DBAlbums, DBArtistAlbum } from "@/types/DBMusic";
+import type { DBArtist, DBArtistAlbum } from "@/types/DBMusic";
 
 // Utils
 import { levenshtein, similarityScore } from "@/utils/levenshtein";
@@ -511,7 +511,7 @@ export const getUserInfo = async (
 
     // Fetch database items from database
     const dbArtistMap = await getArtist();
-    const albumMap = await getAlbums();
+    const albumMap = await getAlbum();
 
     (await getSameNames()).forEach((dbSameName) => {
       const displayName = dbSameName.name;
