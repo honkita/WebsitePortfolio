@@ -1,5 +1,6 @@
 // Lib
 import { getCached } from "@/lib/apiCache";
+const API_URL = process.env.NEXT_PUBLIC_LASTFM_API_URL!;
 
 // Types
 import type {
@@ -10,14 +11,16 @@ import type {
   DBSameNameList,
 } from "@/types/DBMusic";
 
-export const getAlbums = () => getCached<DBAlbums>("/api/Albums");
+export const getAlbums = () =>
+  getCached<DBAlbums>(`https://lastfm-api-eight.vercel.app/api/Album`);
 
-export const getArtist = () => getCached<DBArtist>("/api/Artist");
+export const getArtist = () => getCached<DBArtist>(`${API_URL}/api/Artist`);
 
 export const getArtistAlbum = () =>
-  getCached<DBArtistAlbum>("/api/ArtistAlbum");
+  getCached<DBArtistAlbum>(`${API_URL}/api/ArtistAlbum`);
 
 export const getArtistAlbumRedirect = () =>
-  getCached<DBArtistAlbumRedirect>("/api/ArtistAlbumRedirect");
+  getCached<DBArtistAlbumRedirect>(`${API_URL}/api/ArtistAlbumRedirect`);
 
-export const getSameNames = () => getCached<DBSameNameList>("/api/SameName");
+export const getSameNames = () =>
+  getCached<DBSameNameList>(`${API_URL}/api/SameName`);
