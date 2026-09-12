@@ -70,8 +70,10 @@ async function getReleases(): Promise<CDRelease[]> {
     return releases;
 }
 
-export default async function CDsPage() {
+const CDsPage = async () => {
     const releases = await getReleases();
 
     return <CDClient releases={releases} />;
-}
+};
+
+export default CDsPage;

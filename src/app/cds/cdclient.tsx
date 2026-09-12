@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTheme } from "next-themes";
 
 import {
     Box,
@@ -12,9 +13,11 @@ import {
     VStack
 } from "@chakra-ui/react";
 
+import type { DialogOpenChangeDetails } from "@chakra-ui/react";
 import type { CDRelease } from "./page";
 
-export default function CDClient({ releases }: { releases: CDRelease[] }) {
+const CDClient = ({ releases }: { releases: CDRelease[] }) => {
+    const { resolvedTheme } = useTheme();
     const [selectedRelease, setSelectedRelease] = useState<CDRelease | null>(
         null
     );
@@ -24,7 +27,9 @@ export default function CDClient({ releases }: { releases: CDRelease[] }) {
             <Box maxW="1400px" mx="auto" px={{ base: 4, md: 8 }} py={8}>
                 <VStack align="stretch" gap={8}>
                     <Box>
-                        <Heading size="2xl">Physical CDs</Heading>
+                        <Heading size="2xl" color="foreground">
+                            Physical CDs
+                        </Heading>
 
                         <Text mt={2} color="fg.muted">
                             {releases.length} releases
@@ -33,11 +38,11 @@ export default function CDClient({ releases }: { releases: CDRelease[] }) {
 
                     <SimpleGrid
                         columns={{
-                            base: 2,
-                            sm: 3,
-                            md: 4,
-                            lg: 5,
-                            xl: 6
+                            base: 1,
+                            sm: 2,
+                            md: 3,
+                            lg: 4,
+                            xl: 5
                         }}
                         gap={{ base: 4, md: 6 }}
                     >
@@ -63,28 +68,6 @@ export default function CDClient({ releases }: { releases: CDRelease[] }) {
                                     aspectRatio="1"
                                     objectFit="cover"
                                 />
-
-                                <Box p={4}>
-                                    <Text
-                                        fontWeight="600"
-                                        overflow="hidden"
-                                        textOverflow="ellipsis"
-                                        whiteSpace="nowrap"
-                                    >
-                                        {release.title}
-                                    </Text>
-
-                                    <Text
-                                        mt={1}
-                                        fontSize="sm"
-                                        color="fg.muted"
-                                        overflow="hidden"
-                                        textOverflow="ellipsis"
-                                        whiteSpace="nowrap"
-                                    >
-                                        {release.artist}
-                                    </Text>
-                                </Box>
                             </Box>
                         ))}
                     </SimpleGrid>
@@ -93,7 +76,7 @@ export default function CDClient({ releases }: { releases: CDRelease[] }) {
 
             <Dialog.Root
                 open={selectedRelease !== null}
-                onOpenChange={(details) => {
+                onOpenChange={(details: DialogOpenChangeDetails) => {
                     if (!details.open) {
                         setSelectedRelease(null);
                     }
@@ -129,7 +112,11 @@ export default function CDClient({ releases }: { releases: CDRelease[] }) {
                                             Artist
                                         </Text>
 
-                                        <Text fontSize="lg" fontWeight="600">
+                                        <Text
+                                            fontSize="lg"
+                                            fontWeight="600"
+                                            color="fg"
+                                        >
                                             {selectedRelease.artist}
                                         </Text>
                                     </Box>
@@ -139,7 +126,11 @@ export default function CDClient({ releases }: { releases: CDRelease[] }) {
                                             Release
                                         </Text>
 
-                                        <Text fontSize="lg" fontWeight="600">
+                                        <Text
+                                            fontSize="lg"
+                                            fontWeight="600"
+                                            color="fg"
+                                        >
                                             {selectedRelease.title}
                                         </Text>
                                     </Box>
@@ -151,4 +142,6 @@ export default function CDClient({ releases }: { releases: CDRelease[] }) {
             </Dialog.Root>
         </>
     );
-}
+};
+
+export default CDClient;

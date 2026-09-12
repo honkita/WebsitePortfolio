@@ -51,7 +51,11 @@ const RootLayout = ({ children }: LayoutProps) => {
     return (
         <html lang="en" suppressHydrationWarning={true}>
             <body>
-                <ThemeProvider>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="light"
+                    enableSystem={false}
+                >
                     <Provider>
                         <Nav />
                         <div
