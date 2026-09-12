@@ -34,9 +34,6 @@ const MusicArtistPopup = ({
     const [isThemeMounted, setIsThemeMounted] = useState(false);
     const { resolvedTheme } = useTheme();
 
-    const speed = 3; // characters per second
-    const amplitude = 10; // max distance in characters (10ch each direction)
-
     useEffect(() => {
         Modal.setAppElement("body");
     }, []);
@@ -45,7 +42,7 @@ const MusicArtistPopup = ({
         setIsThemeMounted(true);
     }, []);
 
-    const path = "./images/Buttons/";
+    const path = "/images/Buttons/";
 
     const getButton = (light: boolean) => {
         return light ? path + "PixelX.svg" : path + "PixelXDark.svg";
@@ -66,7 +63,9 @@ const MusicArtistPopup = ({
     };
 
     const [topAlbum, setTopAlbum] = useState<string>("");
-    const [topAlbumInfo, setTopAlbumInfo] = useState<cleanedAlbums | undefined>();
+    const [topAlbumInfo, setTopAlbumInfo] = useState<
+        cleanedAlbums | undefined
+    >();
 
     useEffect(() => {
         let maxScrobbles = -1;
@@ -175,8 +174,9 @@ const MusicArtistPopup = ({
         }
       `;
 
-        nameRef.current.style.animation = `${keyframeName} ${(totalDuration * 1000) / 200
-            }s ease-in-out infinite`;
+        nameRef.current.style.animation = `${keyframeName} ${
+            (totalDuration * 1000) / 200
+        }s ease-in-out infinite`;
 
         styleRef.current.innerHTML = css;
     };
