@@ -1,0 +1,62 @@
+{
+  "artist": "μ's",
+  "title": "Snow Halation",
+  "versions": [
+    {
+      "release_id": 33234903,
+      "master_id": 3762141,
+      "artist": "μ's",
+      "title": "Snow Halation",
+      "year": 2024,
+      "country": "Japan",
+      "released": "2024-03-27",
+      "formats": [
+        "CD (Single, Limited Edition, Reissue)"
+      ],
+      "labels": [
+        "Lantis"
+      ],
+      "catalog_numbers": [
+        "LACM-34561"
+      ],
+      "barcodes": [
+        "4 540774 345618"
+      ],
+      "genres": [
+        "Pop",
+        "Stage & Screen"
+      ],
+      "styles": [
+        "J-pop",
+        "Anison"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Snow Halation",
+          "duration": "4:17",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Baby Maybe 恋のボタン",
+          "duration": "4:32",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Snow Halation (Off Vocal)",
+          "duration": "4:19",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Baby Maybe 恋のボタン (Off Vocal)",
+          "duration": "4:33",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/33234903"
+    }
+  ]
+}

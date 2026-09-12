@@ -1,0 +1,64 @@
+{
+  "artist": "MILGRAM カズイ (CV: 竹内良太)",
+  "title": "カモフラージュ",
+  "versions": [
+    {
+      "release_id": 38388327,
+      "master_id": null,
+      "artist": "MILGRAM カズイ (CV: 竹内良太)",
+      "title": "カモフラージュ",
+      "year": 2026,
+      "country": "Japan",
+      "released": "2026-03-18",
+      "formats": [
+        "CD (EP, Limited Edition)"
+      ],
+      "labels": [
+        "Arma Bianca Record"
+      ],
+      "catalog_numbers": [
+        "ARMA-0014"
+      ],
+      "barcodes": [],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "J-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "カモフラージュ",
+          "duration": "2:49",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "カモフラージュ (Instrumental)",
+          "duration": "2:49",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "毒林檎 -カズイ Cover-",
+          "duration": "2:26",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "毒林檎 -カズイ Cover- (Instrumental)",
+          "duration": "2:26",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "仮面の告白",
+          "duration": "19:05",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/38388327"
+    }
+  ]
+}

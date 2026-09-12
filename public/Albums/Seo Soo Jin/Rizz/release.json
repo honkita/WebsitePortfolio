@@ -1,0 +1,78 @@
+{
+  "artist": "Seo Soo Jin",
+  "title": "Rizz",
+  "versions": [
+    {
+      "release_id": 32390547,
+      "master_id": 3666633,
+      "artist": "Seo Soo Jin",
+      "title": "Rizz",
+      "year": 2024,
+      "country": "South Korea",
+      "released": "2024-05-24",
+      "formats": [
+        "CD (EP)"
+      ],
+      "labels": [
+        "BRD Communications"
+      ],
+      "catalog_numbers": [
+        "CMCC12028"
+      ],
+      "barcodes": [
+        "8809704428194"
+      ],
+      "genres": [
+        "Electronic",
+        "Hip Hop",
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "Karaoke",
+        "K-pop",
+        "RnB/Swing",
+        "K-Rock"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Rizz Me Up",
+          "duration": "2:16",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Mona Lisa",
+          "duration": "2:40",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Lime",
+          "duration": "2:47",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Tide (헤엄)",
+          "duration": "2:48",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Drop Top",
+          "duration": "2:36",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Summer Daze",
+          "duration": "3:08",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/32390547"
+    }
+  ]
+}

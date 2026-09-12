@@ -1,0 +1,75 @@
+{
+  "artist": "Dreamcatcher (13)",
+  "title": "Prequel",
+  "versions": [
+    {
+      "release_id": 10792227,
+      "master_id": 1234008,
+      "artist": "Dreamcatcher (13)",
+      "title": "Prequel",
+      "year": 2017,
+      "country": "South Korea",
+      "released": "2017-07-27",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Happyface Entertainment"
+      ],
+      "catalog_numbers": [
+        "INT0108"
+      ],
+      "barcodes": [
+        "8 809516 261248"
+      ],
+      "genres": [
+        "Electronic",
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "Drum n Bass"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Before & After (Intro)",
+          "duration": "1:10",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "날아올라 (Fly High)",
+          "duration": "3:32",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Wake Up",
+          "duration": "3:33",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Sleep-Walking",
+          "duration": "3:25",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "괜찮아!",
+          "duration": "3:25",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "날아올라 (Fly High) (Inst.)",
+          "duration": "3:32",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/10792227"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "artist": "(G)I-DLE",
+  "title": "I Trust",
+  "versions": [
+    {
+      "release_id": 15411946,
+      "master_id": 1775272,
+      "artist": "(G)I-DLE",
+      "title": "I Trust",
+      "year": 2020,
+      "country": "South Korea",
+      "released": "2020-04-07",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200001927"
+      ],
+      "barcodes": [
+        "8804775141232"
+      ],
+      "genres": [
+        "Electronic",
+        "Hip Hop",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Oh My God",
+          "duration": "3:16",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "사랑해 (Luv U)",
+          "duration": "3:34",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Maybe",
+          "duration": "3:01",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Lion",
+          "duration": "3:31",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Oh My God (English Ver.) ",
+          "duration": "3:16",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/15411946"
+    },
+    {
+      "release_id": 15626632,
+      "master_id": 1775272,
+      "artist": "(G)I-DLE",
+      "title": "I Trust",
+      "year": 2020,
+      "country": "South Korea",
+      "released": "2020-04-07",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200001926"
+      ],
+      "barcodes": [
+        "8804775141225"
+      ],
+      "genres": [
+        "Electronic",
+        "Hip Hop",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Oh My God",
+          "duration": "3:16",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "사랑해 (Luv U)",
+          "duration": "3:34",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Maybe",
+          "duration": "3:01",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Lion",
+          "duration": "3:31",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Oh My God (English Ver.) ",
+          "duration": "3:16",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/15626632"
+    }
+  ]
+}

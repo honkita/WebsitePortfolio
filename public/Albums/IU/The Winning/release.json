@@ -1,0 +1,68 @@
+{
+  "artist": "IU (3)",
+  "title": "The Winning",
+  "versions": [
+    {
+      "release_id": 29863816,
+      "master_id": 3401425,
+      "artist": "IU (3)",
+      "title": "The Winning",
+      "year": 2024,
+      "country": "South Korea",
+      "released": "2024-02-20",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "EDAM Entertainment",
+        "kakao Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200002886",
+        "L200002886"
+      ],
+      "barcodes": [
+        "8 804775 368752"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Shopper",
+          "duration": "3:36",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "홀씨",
+          "duration": "3:11",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Shh..",
+          "duration": "3:47",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Love Wins All",
+          "duration": "4:32",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "관객이 될게 (I Stan U)",
+          "duration": "3:13",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/29863816"
+    }
+  ]
+}

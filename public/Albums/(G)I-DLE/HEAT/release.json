@@ -1,0 +1,66 @@
+{
+  "artist": "(G)I-DLE",
+  "title": "HEAT",
+  "versions": [
+    {
+      "release_id": 38361054,
+      "master_id": 3361018,
+      "artist": "(G)I-DLE",
+      "title": "HEAT",
+      "year": 2023,
+      "country": "South Korea",
+      "released": "2023-10-06",
+      "formats": [
+        "CD (EP)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200002726"
+      ],
+      "barcodes": [
+        "8804775256639"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "I Do",
+          "duration": "3:10",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "I Want That",
+          "duration": "2:51",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Eyes Roll",
+          "duration": "3:17",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Flip It",
+          "duration": "2:56",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Tall Trees",
+          "duration": "2:45",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/38361054"
+    }
+  ]
+}

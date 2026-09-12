@@ -1,0 +1,66 @@
+{
+  "artist": "오마이걸 반하나",
+  "title": "Banana Allergy Monkey",
+  "versions": [
+    {
+      "release_id": 12362041,
+      "master_id": null,
+      "artist": "오마이걸 반하나",
+      "title": "Banana Allergy Monkey",
+      "year": 2018,
+      "country": "South Korea",
+      "released": "2018-04-02",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Loen Entertainment",
+        "WM Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200001549",
+        "L200001549"
+      ],
+      "barcodes": [],
+      "genres": [
+        "Electronic",
+        "Rock",
+        "Reggae",
+        "Pop",
+        "Children's",
+        "Folk, World, & Country"
+      ],
+      "styles": [
+        "Chiptune",
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Ukiuki Waikiki (Intro)",
+          "duration": "0:52",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Banana Allergy Monkey",
+          "duration": "3:43",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "하더라",
+          "duration": "3:32",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "반한 게 아냐",
+          "duration": "3:14",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/12362041"
+    }
+  ]
+}

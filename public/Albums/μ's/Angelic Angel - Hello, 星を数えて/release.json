@@ -1,0 +1,61 @@
+{
+  "artist": "μ's",
+  "title": "Angelic Angel / Hello, 星を数えて",
+  "versions": [
+    {
+      "release_id": 13394659,
+      "master_id": null,
+      "artist": "μ's",
+      "title": "Angelic Angel / Hello, 星を数えて",
+      "year": 2015,
+      "country": "Japan",
+      "released": "2015-06-01",
+      "formats": [
+        "CD (CD-ROM, Maxi-Single)"
+      ],
+      "labels": [
+        "Lantis"
+      ],
+      "catalog_numbers": [
+        "LACM-14361"
+      ],
+      "barcodes": [
+        "4540774143610"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "J-pop",
+        "Karaoke"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Angelic Angel",
+          "duration": "4:59",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Hello, 星を数えて",
+          "duration": "4:37",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Angelic Angel (Off Vocal)",
+          "duration": "4:58",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Hello, 星を数えて (Off Vocal)",
+          "duration": "4:35",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/13394659"
+    }
+  ]
+}

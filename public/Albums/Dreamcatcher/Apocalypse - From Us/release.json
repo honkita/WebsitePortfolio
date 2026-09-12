@@ -1,0 +1,254 @@
+{
+  "artist": "Dreamcatcher (13)",
+  "title": "Apocalypse : From Us",
+  "versions": [
+    {
+      "release_id": 27260481,
+      "master_id": 3119436,
+      "artist": "Dreamcatcher (13)",
+      "title": "Apocalypse : From Us",
+      "year": 2023,
+      "country": "South Korea",
+      "released": "2023-05-24",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Dreamcatcher Company"
+      ],
+      "catalog_numbers": [
+        "L200002672"
+      ],
+      "barcodes": [
+        "8804775 255779",
+        "8804775255779"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-Rock",
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro : From Us",
+          "duration": "1:10",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Bonvoyage",
+          "duration": "3:35",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Demian",
+          "duration": "3:02",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Propose",
+          "duration": "3:15",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "To. You",
+          "duration": "3:25",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/27260481"
+    },
+    {
+      "release_id": 27267837,
+      "master_id": 3119436,
+      "artist": "Dreamcatcher (13)",
+      "title": "Apocalypse : From Us",
+      "year": 2023,
+      "country": "South Korea",
+      "released": "2023-05-24",
+      "formats": [
+        "CD (Mini-Album, Limited Edition)"
+      ],
+      "labels": [
+        "Dreamcatcher Company"
+      ],
+      "catalog_numbers": [
+        "L200002673"
+      ],
+      "barcodes": [
+        "8804775255786"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "K-Rock"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro : From Us",
+          "duration": "1:10",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Bonvoyage",
+          "duration": "3:35",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Demian",
+          "duration": "3:02",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Propose",
+          "duration": "3:15",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "To. You",
+          "duration": "3:25",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/27267837"
+    },
+    {
+      "release_id": 27282249,
+      "master_id": 3119436,
+      "artist": "Dreamcatcher (13)",
+      "title": "Apocalypse : From Us",
+      "year": 2023,
+      "country": "South Korea",
+      "released": "2023-05-24",
+      "formats": [
+        "File (FLAC, WAV, Mini-Album)"
+      ],
+      "labels": [
+        "Dreamcatcher Company"
+      ],
+      "catalog_numbers": [
+        "none"
+      ],
+      "barcodes": [],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-Rock",
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro : From Us",
+          "duration": "1:10",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Bonvoyage",
+          "duration": "3:35",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Demian",
+          "duration": "3:02",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Propose",
+          "duration": "3:15",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "To. You",
+          "duration": "3:25",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/27282249"
+    },
+    {
+      "release_id": 28625431,
+      "master_id": 3119436,
+      "artist": "Dreamcatcher (13)",
+      "title": "Apocalypse : From Us",
+      "year": 2023,
+      "country": "South Korea",
+      "released": "2023-05-24",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Dreamcatcher Company"
+      ],
+      "catalog_numbers": [
+        "L200002672"
+      ],
+      "barcodes": [
+        "8804775 255779",
+        "8804775255779"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-Rock",
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro : From Us",
+          "duration": "1:10",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Bonvoyage",
+          "duration": "3:35",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Demian",
+          "duration": "3:02",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Propose",
+          "duration": "3:15",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "To. You",
+          "duration": "3:25",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/28625431"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "artist": "Oh My Girl",
+  "title": "Closer",
+  "versions": [
+    {
+      "release_id": 9160588,
+      "master_id": 2928208,
+      "artist": "Oh My Girl",
+      "title": "Closer",
+      "year": 2015,
+      "country": "South Korea",
+      "released": "2015-10-08",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "WM Entertainment",
+        "Loen Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200001169",
+        "L200001169"
+      ],
+      "barcodes": [
+        "8804775065934"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Closer",
+          "duration": "3:27",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Say No More",
+          "duration": "3:06",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Playground",
+          "duration": "3:56",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Sugar Baby",
+          "duration": "4:22",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Round About",
+          "duration": "3:40",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/9160588"
+    }
+  ]
+}

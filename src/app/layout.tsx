@@ -4,6 +4,9 @@ import React, { ReactNode, useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { ThemeProvider } from "next-themes";
 
+// Chakra UI
+import { Provider } from "@/components/ui/provider";
+
 // Child Components
 import Nav from "@/components/NavBar/NavBar";
 
@@ -49,21 +52,23 @@ const RootLayout = ({ children }: LayoutProps) => {
         <html lang="en" suppressHydrationWarning={true}>
             <body>
                 <ThemeProvider>
-                    <Nav />
-                    <div
-                        key={pathname}
-                        className={`${styles.containerColour} ${
-                            styles.initialHide
-                        } ${shouldAnimate ? styles.animateUp : ""}`}
-                    >
-                        {children}
-                        <section
-                            className={utilStyles.headingCopyright}
-                            role="contentinfo"
+                    <Provider>
+                        <Nav />
+                        <div
+                            key={pathname}
+                            className={`${styles.containerColour} ${
+                                styles.initialHide
+                            } ${shouldAnimate ? styles.animateUp : ""}`}
                         >
-                            © 2023 - {new Date().getFullYear()} Elite Lu
-                        </section>
-                    </div>
+                            {children}
+                            <section
+                                className={utilStyles.headingCopyright}
+                                role="contentinfo"
+                            >
+                                © 2023 - {new Date().getFullYear()} Elite Lu
+                            </section>
+                        </div>
+                    </Provider>
                 </ThemeProvider>
             </body>
         </html>

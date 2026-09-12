@@ -1,0 +1,67 @@
+{
+  "artist": "MILGRAM カズイ (CV: 竹内良太)",
+  "title": "Cat",
+  "versions": [
+    {
+      "release_id": 38388228,
+      "master_id": null,
+      "artist": "MILGRAM カズイ (CV: 竹内良太)",
+      "title": "Cat",
+      "year": 2023,
+      "country": "Japan",
+      "released": "2023-07-26",
+      "formats": [
+        "CD (EP, Limited Edition)"
+      ],
+      "labels": [
+        "Arma Bianca Record"
+      ],
+      "catalog_numbers": [
+        "ARMA-0007"
+      ],
+      "barcodes": [
+        "4570164831636"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "J-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Cat",
+          "duration": "2:52",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Cat (Instrumental)",
+          "duration": "2:52",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "ネオネオン -カズイ Cover-",
+          "duration": "3:11",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "ネオネオン -カズイ Cover- (Instrumental)",
+          "duration": "3:11",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "欺罔の轍",
+          "duration": "16:29",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/38388228"
+    }
+  ]
+}

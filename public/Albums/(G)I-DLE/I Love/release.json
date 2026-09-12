@@ -1,0 +1,143 @@
+{
+  "artist": "(G)I-DLE",
+  "title": "I Love",
+  "versions": [
+    {
+      "release_id": 24958648,
+      "master_id": 2840182,
+      "artist": "(G)I-DLE",
+      "title": "I Love",
+      "year": 2022,
+      "country": "South Korea",
+      "released": "2022-10-21",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200002461"
+      ],
+      "barcodes": [
+        "192641873195"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "Pop Rock",
+        "Pop Rap",
+        "Power Pop",
+        "Vocal"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Nxde",
+          "duration": "2:58",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Love",
+          "duration": "3:17",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Change",
+          "duration": "3:24",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Reset",
+          "duration": "3:02",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "조각품",
+          "duration": "3:06",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Dark (X-file)",
+          "duration": "2:45",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/24958648"
+    },
+    {
+      "release_id": 28367194,
+      "master_id": 2840182,
+      "artist": "(G)I-DLE",
+      "title": "I Love",
+      "year": 2022,
+      "country": "South Korea",
+      "released": "2022-10-18",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200002495"
+      ],
+      "barcodes": [
+        "8804775252808"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Nxde",
+          "duration": "2:58",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Love",
+          "duration": "3:17",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Change",
+          "duration": "3:24",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Reset",
+          "duration": "3:02",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "조각품",
+          "duration": "3:06",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Dark (X-file)",
+          "duration": "2:45",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/28367194"
+    }
+  ]
+}

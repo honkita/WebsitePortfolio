@@ -1,0 +1,72 @@
+{
+  "artist": "IU (3)",
+  "title": "Love Poem",
+  "versions": [
+    {
+      "release_id": 14446045,
+      "master_id": null,
+      "artist": "IU (3)",
+      "title": "Love Poem",
+      "year": 2019,
+      "country": "South Korea",
+      "released": "2019-11-18",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Kakao M"
+      ],
+      "catalog_numbers": [
+        "L100005637"
+      ],
+      "barcodes": [
+        "8804775136351"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Unlucky",
+          "duration": "3:51",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "그 사람",
+          "duration": "3:51",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Blueming",
+          "duration": "3:37",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "시간의 바깥",
+          "duration": "5:00",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "자장가",
+          "duration": "4:21",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Love poem",
+          "duration": "4:18",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/14446045"
+    }
+  ]
+}

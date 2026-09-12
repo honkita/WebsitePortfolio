@@ -1,0 +1,233 @@
+{
+  "artist": "Radwimps",
+  "title": "Your Name.",
+  "versions": [
+    {
+      "release_id": 15430873,
+      "master_id": 1136816,
+      "artist": "Radwimps",
+      "title": "Your Name.",
+      "year": 2017,
+      "country": "US",
+      "released": "2017-03-10",
+      "formats": [
+        "CD (Album, Limited Edition)",
+        "Box Set (Album, Deluxe Edition, Limited Edition)"
+      ],
+      "labels": [
+        "Funimation"
+      ],
+      "catalog_numbers": [
+        "none"
+      ],
+      "barcodes": [
+        "704400023903"
+      ],
+      "genres": [
+        "Rock",
+        "Pop",
+        "Stage & Screen"
+      ],
+      "styles": [
+        "Soundtrack",
+        "J-Rock",
+        "Anison"
+      ],
+      "tracklist": [
+        {
+          "position": "",
+          "title": "Disc 1",
+          "duration": "",
+          "type": "heading"
+        },
+        {
+          "position": "1-1",
+          "title": "Dream Lantern (English Version)",
+          "duration": "2:11",
+          "type": "track"
+        },
+        {
+          "position": "1-2",
+          "title": "School Road",
+          "duration": "1:08",
+          "type": "track"
+        },
+        {
+          "position": "1-3",
+          "title": "Itomori High School",
+          "duration": "1:51",
+          "type": "track"
+        },
+        {
+          "position": "1-4",
+          "title": "First View Of Tokyo",
+          "duration": "1:19",
+          "type": "track"
+        },
+        {
+          "position": "1-5",
+          "title": "Cafe At Last",
+          "duration": "1:32",
+          "type": "track"
+        },
+        {
+          "position": "1-6",
+          "title": "Theme Of Ms. Okudera",
+          "duration": "2:07",
+          "type": "track"
+        },
+        {
+          "position": "1-7",
+          "title": "Unusual Changes Of Two",
+          "duration": "2:36",
+          "type": "track"
+        },
+        {
+          "position": "1-8",
+          "title": "Zenzenzense (English Version)",
+          "duration": "4:45",
+          "type": "track"
+        },
+        {
+          "position": "1-9",
+          "title": "Goshintai",
+          "duration": "3:27",
+          "type": "track"
+        },
+        {
+          "position": "1-10",
+          "title": "Date",
+          "duration": "4:05",
+          "type": "track"
+        },
+        {
+          "position": "1-11",
+          "title": "Autumn Festival",
+          "duration": "1:07",
+          "type": "track"
+        },
+        {
+          "position": "1-12",
+          "title": "Evoking Memories",
+          "duration": "1:43",
+          "type": "track"
+        },
+        {
+          "position": "1-13",
+          "title": "Visit To Hida",
+          "duration": "1:32",
+          "type": "track"
+        },
+        {
+          "position": "1-14",
+          "title": "Disappeared Town",
+          "duration": "1:55",
+          "type": "track"
+        },
+        {
+          "position": "1-15",
+          "title": "Library",
+          "duration": "1:43",
+          "type": "track"
+        },
+        {
+          "position": "1-16",
+          "title": "The Night Inn",
+          "duration": "1:33",
+          "type": "track"
+        },
+        {
+          "position": "1-17",
+          "title": "Again To Goshintai",
+          "duration": "2:23",
+          "type": "track"
+        },
+        {
+          "position": "1-18",
+          "title": "Kuchikamizake Trip",
+          "duration": "2:55",
+          "type": "track"
+        },
+        {
+          "position": "1-19",
+          "title": "Council Of War",
+          "duration": "2:24",
+          "type": "track"
+        },
+        {
+          "position": "1-20",
+          "title": "Persuading Mayor",
+          "duration": "2:49",
+          "type": "track"
+        },
+        {
+          "position": "1-21",
+          "title": "Theme Of Mitsuha",
+          "duration": "4:06",
+          "type": "track"
+        },
+        {
+          "position": "1-22",
+          "title": "Unseen Two",
+          "duration": "0:53",
+          "type": "track"
+        },
+        {
+          "position": "1-23",
+          "title": "Katawaredoki",
+          "duration": "2:50",
+          "type": "track"
+        },
+        {
+          "position": "1-24",
+          "title": "Sparkle (English Version)",
+          "duration": "8:57",
+          "type": "track"
+        },
+        {
+          "position": "1-25",
+          "title": "Date 2",
+          "duration": "2:09",
+          "type": "track"
+        },
+        {
+          "position": "1-26",
+          "title": "Nandemonaiya (English Version)",
+          "duration": "3:16",
+          "type": "track"
+        },
+        {
+          "position": "",
+          "title": "Disc 2 - Bonus Disc",
+          "duration": "",
+          "type": "heading"
+        },
+        {
+          "position": "2-1",
+          "title": "Dream Lantern",
+          "duration": "2:10",
+          "type": "track"
+        },
+        {
+          "position": "2-2",
+          "title": "Zenzenzense (Movie Ver.)",
+          "duration": "4:45",
+          "type": "track"
+        },
+        {
+          "position": "2-3",
+          "title": "Sparkle (Movie Ver.)",
+          "duration": "8:55",
+          "type": "track"
+        },
+        {
+          "position": "2-4",
+          "title": "Nandemonaiya (Movie Ver.)",
+          "duration": "5:44",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/15430873"
+    }
+  ]
+}

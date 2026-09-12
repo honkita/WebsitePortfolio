@@ -1,0 +1,146 @@
+{
+  "artist": "Milet",
+  "title": "Eyes",
+  "versions": [
+    {
+      "release_id": 15828888,
+      "master_id": 2738150,
+      "artist": "Milet",
+      "title": "Eyes",
+      "year": 2020,
+      "country": "Japan",
+      "released": "2020-06-03",
+      "formats": [
+        "CD (Album)"
+      ],
+      "labels": [
+        "SME Records"
+      ],
+      "catalog_numbers": [
+        "SECL-2574"
+      ],
+      "barcodes": [
+        "4547366447934"
+      ],
+      "genres": [
+        "Electronic",
+        "Pop"
+      ],
+      "styles": [
+        "J-pop",
+        "Dance-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Again And Again (Eyes Mix)",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Parachute",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Koukai Zenya (航海前夜; Eve Of The Voyage)",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Somebody",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Inside You",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Drown",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "You & I",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "8",
+          "title": "Grab The Air",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "9",
+          "title": "Stay",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "10",
+          "title": "Dome",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "11",
+          "title": "Tell Me",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "12",
+          "title": "Wonderland",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "13",
+          "title": "Us",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "14",
+          "title": "Prover",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "15",
+          "title": "Until I Die",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "16",
+          "title": "Without Your Love",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "17",
+          "title": "Fire Arrow",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "18",
+          "title": "The Love We've Made",
+          "duration": "",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/15828888"
+    }
+  ]
+}

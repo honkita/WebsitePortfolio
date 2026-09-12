@@ -1,0 +1,142 @@
+{
+  "artist": "Dreamcatcher (13)",
+  "title": "Alone In The City",
+  "versions": [
+    {
+      "release_id": 12663834,
+      "master_id": 1453156,
+      "artist": "Dreamcatcher (13)",
+      "title": "Alone In The City",
+      "year": 2018,
+      "country": "South Korea",
+      "released": "2018-09-20",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Happyface Entertainment"
+      ],
+      "catalog_numbers": [
+        "KTMCD0950"
+      ],
+      "barcodes": [
+        "8 809269 509352"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "K-Rock"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro",
+          "duration": "1:08",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "What",
+          "duration": "3:27",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Wonderland",
+          "duration": "3:13",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Trap",
+          "duration": "3:12",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "약속해 우리 (July 7th)",
+          "duration": "3:16",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "What (Inst.)",
+          "duration": "3:25",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/12663834"
+    },
+    {
+      "release_id": 12794871,
+      "master_id": 1453156,
+      "artist": "Dreamcatcher (13)",
+      "title": "Alone In The City",
+      "year": 2018,
+      "country": "South Korea",
+      "released": "2018-09-20",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Happyface Entertainment"
+      ],
+      "catalog_numbers": [
+        "KTMCD0950"
+      ],
+      "barcodes": [
+        "8 809269 509352"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "K-Rock"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro",
+          "duration": "1:08",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "What",
+          "duration": "3:27",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Wonderland",
+          "duration": "3:13",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Trap",
+          "duration": "3:12",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "약속해 우리 (July 7th)",
+          "duration": "3:16",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "What (Inst.)",
+          "duration": "3:25",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/12794871"
+    }
+  ]
+}

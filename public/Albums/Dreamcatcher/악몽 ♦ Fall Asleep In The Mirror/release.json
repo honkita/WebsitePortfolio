@@ -1,0 +1,65 @@
+{
+  "artist": "Dreamcatcher (13)",
+  "title": "악몽 ♦ Fall Asleep In The Mirror",
+  "versions": [
+    {
+      "release_id": 32400636,
+      "master_id": 1175963,
+      "artist": "Dreamcatcher (13)",
+      "title": "악몽 ♦ Fall Asleep In The Mirror",
+      "year": 2024,
+      "country": "South Korea",
+      "released": "2024-10-01",
+      "formats": [
+        "Box Set (Repress)",
+        "CD (Single)"
+      ],
+      "labels": [
+        "Dreamcatcher Company",
+        "Genie Music Corporation"
+      ],
+      "catalog_numbers": [
+        "KTMCD1281",
+        "KTMCD1281"
+      ],
+      "barcodes": [
+        "8809314516182"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "K-Rock"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "My Toys (Intro)",
+          "duration": "1:08",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Good Night",
+          "duration": "2:56",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Lullaby",
+          "duration": "3:19",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Good Night (Inst.)",
+          "duration": "2:55",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/32400636"
+    }
+  ]
+}

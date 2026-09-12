@@ -1,0 +1,230 @@
+{
+  "artist": "Dreamcatcher (13)",
+  "title": "Apocalypse : Follow Us",
+  "versions": [
+    {
+      "release_id": 24771596,
+      "master_id": 2833106,
+      "artist": "Dreamcatcher (13)",
+      "title": "Apocalypse : Follow Us",
+      "year": 2022,
+      "country": "South Korea",
+      "released": "2022-10-11",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Dreamcatcher Company",
+        "Dreamcatcher Company",
+        "Sony Music",
+        "Sony Music"
+      ],
+      "catalog_numbers": [
+        "S91267C",
+        "19658772192",
+        "S91267C",
+        "19658772192"
+      ],
+      "barcodes": [
+        "8803581202670"
+      ],
+      "genres": [
+        "Electronic",
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "Dance-pop",
+        "Ballad",
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro : Chaotical X",
+          "duration": "1:12",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Vision",
+          "duration": "3:09",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Fairytale",
+          "duration": "3:51",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Some Love",
+          "duration": "2:52",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "이 비가 그칠 때면 (Rainy Day)",
+          "duration": "3:37",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Outro : Mother Nature",
+          "duration": "1:11",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/24771596"
+    },
+    {
+      "release_id": 24901898,
+      "master_id": 2833106,
+      "artist": "Dreamcatcher (13)",
+      "title": "Apocalypse : Follow Us",
+      "year": 2022,
+      "country": "South Korea",
+      "released": "2022-10-11",
+      "formats": [
+        "CD (Mini-Album, Limited Edition)"
+      ],
+      "labels": [
+        "Dreamcatcher Company",
+        "Dreamcatcher Company",
+        "Sony Music",
+        "Sony Music"
+      ],
+      "catalog_numbers": [
+        "S91268C",
+        "19658772202",
+        "S91268C",
+        "19658772202"
+      ],
+      "barcodes": [
+        "8803581202687"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-Rock",
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro : Chaotical X",
+          "duration": "1:12",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Vision",
+          "duration": "3:09",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Fairytale",
+          "duration": "3:51",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Some Love",
+          "duration": "2:52",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "이 비가 그칠 때면 (Rainy Day)",
+          "duration": "3:37",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Outro : Mother Nature",
+          "duration": "1:11",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/24901898"
+    },
+    {
+      "release_id": 25443460,
+      "master_id": 2833106,
+      "artist": "Dreamcatcher (13)",
+      "title": "Apocalypse : Follow Us",
+      "year": 2022,
+      "country": "South Korea",
+      "released": "2022-10-11",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Dreamcatcher Company",
+        "Dreamcatcher Company",
+        "Sony Music",
+        "Sony Music"
+      ],
+      "catalog_numbers": [
+        "S91267C",
+        "19658772192",
+        "S91267C",
+        "19658772192"
+      ],
+      "barcodes": [
+        "8803581202670"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-Rock",
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro : Chaotical X",
+          "duration": "1:12",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Vision",
+          "duration": "3:09",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Fairytale",
+          "duration": "3:51",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Some Love",
+          "duration": "2:52",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "이 비가 그칠 때면 (Rainy Day)",
+          "duration": "3:37",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Outro : Mother Nature",
+          "duration": "1:11",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/25443460"
+    }
+  ]
+}

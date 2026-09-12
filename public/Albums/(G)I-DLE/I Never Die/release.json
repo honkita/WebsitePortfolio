@@ -1,0 +1,184 @@
+{
+  "artist": "(G)I-DLE",
+  "title": "I Never Die",
+  "versions": [
+    {
+      "release_id": 22977395,
+      "master_id": 2599034,
+      "artist": "(G)I-DLE",
+      "title": "I Never Die",
+      "year": 2022,
+      "country": "South Korea",
+      "released": "2022-03-14",
+      "formats": [
+        "CD (Album)"
+      ],
+      "labels": [
+        "Cube Entertainment",
+        "kakao Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200002329",
+        "L200002329"
+      ],
+      "barcodes": [
+        "8804775250422"
+      ],
+      "genres": [
+        "Hip Hop",
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "Pop Rock"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Tomboy",
+          "duration": "2:55",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "말리지 마\t",
+          "duration": "2:25",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Villain Dies",
+          "duration": "3:05",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Already",
+          "duration": "3:25",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Polaroid",
+          "duration": "3:40",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Escape",
+          "duration": "3:29",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "Liar",
+          "duration": "2:52",
+          "type": "track"
+        },
+        {
+          "position": "8",
+          "title": "My Bag",
+          "duration": "2:41",
+          "type": "track"
+        },
+        {
+          "position": "9",
+          "title": "Tomboy (CD Only)",
+          "duration": "2:55",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/22977395"
+    },
+    {
+      "release_id": 24767405,
+      "master_id": 2599034,
+      "artist": "(G)I-DLE",
+      "title": "I Never Die",
+      "year": 2022,
+      "country": "South Korea",
+      "released": "2022-03-14",
+      "formats": [
+        "CD (Album)"
+      ],
+      "labels": [
+        "Cube Entertainment",
+        "kakao Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200002329",
+        "L200002329"
+      ],
+      "barcodes": [
+        "8804775250422"
+      ],
+      "genres": [
+        "Hip Hop",
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "Pop Rock"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Tomboy",
+          "duration": "2:55",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "말리지 마\t",
+          "duration": "2:25",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Villain Dies",
+          "duration": "3:05",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Already",
+          "duration": "3:25",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Polaroid",
+          "duration": "3:40",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Escape",
+          "duration": "3:29",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "Liar",
+          "duration": "2:52",
+          "type": "track"
+        },
+        {
+          "position": "8",
+          "title": "My Bag",
+          "duration": "2:41",
+          "type": "track"
+        },
+        {
+          "position": "9",
+          "title": "Tomboy (CD Only)",
+          "duration": "2:55",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/24767405"
+    }
+  ]
+}

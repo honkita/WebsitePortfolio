@@ -1,0 +1,72 @@
+{
+  "artist": "(G)I-DLE",
+  "title": "I feel",
+  "versions": [
+    {
+      "release_id": 31867331,
+      "master_id": 3120933,
+      "artist": "(G)I-DLE",
+      "title": "I feel",
+      "year": 2023,
+      "country": "South Korea",
+      "released": "2023-05-19",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "196922330315"
+      ],
+      "barcodes": [
+        "196922330315"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Queencard",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Allergy",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Lucid",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "All Night",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Paradise",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Peter Pan",
+          "duration": "",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/31867331"
+    }
+  ]
+}

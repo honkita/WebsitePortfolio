@@ -1,0 +1,65 @@
+{
+  "artist": "Dreamcatcher (13)",
+  "title": "악몽 ♦ 惡夢",
+  "versions": [
+    {
+      "release_id": 32400162,
+      "master_id": 1166231,
+      "artist": "Dreamcatcher (13)",
+      "title": "악몽 ♦ 惡夢",
+      "year": 2024,
+      "country": "South Korea",
+      "released": "2024-10-01",
+      "formats": [
+        "Box Set (Repress)",
+        "CD (Single)"
+      ],
+      "labels": [
+        "Dreamcatcher Company",
+        "Genie Music Corporation"
+      ],
+      "catalog_numbers": [
+        "KTMCD1280",
+        "KTMCD1280"
+      ],
+      "barcodes": [
+        "8809314516175"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "K-Rock"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Welcome To My Dream (Intro)",
+          "duration": "0:40",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Chase Me",
+          "duration": "3:09",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Emotion (소원 하나)",
+          "duration": "3:43",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Chase Me (Inst.)",
+          "duration": "3:09",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/32400162"
+    }
+  ]
+}

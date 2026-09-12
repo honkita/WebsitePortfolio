@@ -1,0 +1,495 @@
+{
+  "artist": "Dreamcatcher (13)",
+  "title": "Apocalypse : Save Us",
+  "versions": [
+    {
+      "release_id": 22999859,
+      "master_id": 2607905,
+      "artist": "Dreamcatcher (13)",
+      "title": "Apocalypse : Save Us",
+      "year": 2022,
+      "country": "South Korea",
+      "released": "2022-04-12",
+      "formats": [
+        "CD (Album, Limited Edition)"
+      ],
+      "labels": [
+        "Dreamcatcher Company",
+        "Sony Music",
+        "Dreamcatcher Company",
+        "Sony Music"
+      ],
+      "catalog_numbers": [
+        "S91243C",
+        "S91243C",
+        "19658710072",
+        "19658710072"
+      ],
+      "barcodes": [
+        "8 803581 20243 4",
+        "8803581202434"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "K-Rock"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro : Save Us",
+          "duration": "1:01",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Locked Inside A Door",
+          "duration": "3:07",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Maison",
+          "duration": "3:06",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Starlight",
+          "duration": "3:19",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Together",
+          "duration": "3:44",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "널 위해 (Always)",
+          "duration": "4:30",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "Skit : The Seven Doors",
+          "duration": "1:46",
+          "type": "track"
+        },
+        {
+          "position": "8",
+          "title": "Cherry (Real Miracle)",
+          "duration": "3:15",
+          "type": "track"
+        },
+        {
+          "position": "9",
+          "title": "No Dot",
+          "duration": "3:20",
+          "type": "track"
+        },
+        {
+          "position": "10",
+          "title": "황흘경 (极夜)",
+          "duration": "3:33",
+          "type": "track"
+        },
+        {
+          "position": "11",
+          "title": "한겨울 (寒冬)",
+          "duration": "3:52",
+          "type": "track"
+        },
+        {
+          "position": "12",
+          "title": "For",
+          "duration": "3:45",
+          "type": "track"
+        },
+        {
+          "position": "13",
+          "title": "Beauty Full",
+          "duration": "3:04",
+          "type": "track"
+        },
+        {
+          "position": "14",
+          "title": "Playground",
+          "duration": "3:01",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/22999859"
+    },
+    {
+      "release_id": 23001059,
+      "master_id": 2607905,
+      "artist": "Dreamcatcher (13)",
+      "title": "Apocalypse : Save Us",
+      "year": 2022,
+      "country": "South Korea",
+      "released": "2022-04-12",
+      "formats": [
+        "CD (Album, Stereo)"
+      ],
+      "labels": [
+        "Dreamcatcher Company",
+        "Sony Music",
+        "Dreamcatcher Company",
+        "Sony Music"
+      ],
+      "catalog_numbers": [
+        "S91242C",
+        "S91242C",
+        "19658710062",
+        "19658710062"
+      ],
+      "barcodes": [
+        "8803581202427"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "K-Rock"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro : Save Us",
+          "duration": "1:01",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Locked Inside A Door",
+          "duration": "3:07",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Maison",
+          "duration": "3:06",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Starlight",
+          "duration": "3:19",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Together",
+          "duration": "3:44",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "널 위해 (Always)",
+          "duration": "4:30",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "Skit : The Seven Doors",
+          "duration": "1:46",
+          "type": "track"
+        },
+        {
+          "position": "8",
+          "title": "Cherry (Real Miracle)",
+          "duration": "3:15",
+          "type": "track"
+        },
+        {
+          "position": "9",
+          "title": "No Dot",
+          "duration": "3:20",
+          "type": "track"
+        },
+        {
+          "position": "10",
+          "title": "황흘경 (极夜)",
+          "duration": "3:33",
+          "type": "track"
+        },
+        {
+          "position": "11",
+          "title": "한겨울 (寒冬)",
+          "duration": "3:52",
+          "type": "track"
+        },
+        {
+          "position": "12",
+          "title": "For",
+          "duration": "3:45",
+          "type": "track"
+        },
+        {
+          "position": "13",
+          "title": "Beauty Full",
+          "duration": "3:04",
+          "type": "track"
+        },
+        {
+          "position": "14",
+          "title": "Playground",
+          "duration": "3:01",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/23001059"
+    },
+    {
+      "release_id": 23001062,
+      "master_id": 2607905,
+      "artist": "Dreamcatcher (13)",
+      "title": "Apocalypse : Save Us",
+      "year": 2022,
+      "country": "South Korea",
+      "released": "2022-04-12",
+      "formats": [
+        "CD (Album)"
+      ],
+      "labels": [
+        "Dreamcatcher Company",
+        "Sony Music",
+        "Dreamcatcher Company",
+        "Sony Music"
+      ],
+      "catalog_numbers": [
+        "S91242C",
+        "S91242C",
+        "19658710062",
+        "19658710062"
+      ],
+      "barcodes": [
+        "8803581202427"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "K-Rock"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro : Save Us",
+          "duration": "1:01",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Locked Inside A Door",
+          "duration": "3:07",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Maison",
+          "duration": "3:06",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Starlight",
+          "duration": "3:19",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Together",
+          "duration": "3:44",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "널 위해 (Always)",
+          "duration": "4:30",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "Skit : The Seven Doors",
+          "duration": "1:46",
+          "type": "track"
+        },
+        {
+          "position": "8",
+          "title": "Cherry (Real Miracle)",
+          "duration": "3:15",
+          "type": "track"
+        },
+        {
+          "position": "9",
+          "title": "No Dot",
+          "duration": "3:20",
+          "type": "track"
+        },
+        {
+          "position": "10",
+          "title": "황흘경 (极夜)",
+          "duration": "3:33",
+          "type": "track"
+        },
+        {
+          "position": "11",
+          "title": "한겨울 (寒冬)",
+          "duration": "3:52",
+          "type": "track"
+        },
+        {
+          "position": "12",
+          "title": "For",
+          "duration": "3:45",
+          "type": "track"
+        },
+        {
+          "position": "13",
+          "title": "Beauty Full",
+          "duration": "3:04",
+          "type": "track"
+        },
+        {
+          "position": "14",
+          "title": "Playground",
+          "duration": "3:01",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/23001062"
+    },
+    {
+      "release_id": 23001065,
+      "master_id": 2607905,
+      "artist": "Dreamcatcher (13)",
+      "title": "Apocalypse : Save Us",
+      "year": 2022,
+      "country": "South Korea",
+      "released": "2022-04-12",
+      "formats": [
+        "CD (Album)"
+      ],
+      "labels": [
+        "Dreamcatcher Company",
+        "Sony Music",
+        "Dreamcatcher Company",
+        "Sony Music"
+      ],
+      "catalog_numbers": [
+        "S91242C",
+        "S91242C",
+        "19658710062",
+        "19658710062"
+      ],
+      "barcodes": [
+        "8803581202427"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "K-Rock"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro : Save Us",
+          "duration": "1:01",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Locked Inside A Door",
+          "duration": "3:07",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Maison",
+          "duration": "3:06",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Starlight",
+          "duration": "3:19",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Together",
+          "duration": "3:44",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "널 위해 (Always)",
+          "duration": "4:30",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "Skit : The Seven Doors",
+          "duration": "1:46",
+          "type": "track"
+        },
+        {
+          "position": "8",
+          "title": "Cherry (Real Miracle)",
+          "duration": "3:15",
+          "type": "track"
+        },
+        {
+          "position": "9",
+          "title": "No Dot",
+          "duration": "3:20",
+          "type": "track"
+        },
+        {
+          "position": "10",
+          "title": "황흘경 (极夜)",
+          "duration": "3:33",
+          "type": "track"
+        },
+        {
+          "position": "11",
+          "title": "한겨울 (寒冬)",
+          "duration": "3:52",
+          "type": "track"
+        },
+        {
+          "position": "12",
+          "title": "For",
+          "duration": "3:45",
+          "type": "track"
+        },
+        {
+          "position": "13",
+          "title": "Beauty Full",
+          "duration": "3:04",
+          "type": "track"
+        },
+        {
+          "position": "14",
+          "title": "Playground",
+          "duration": "3:01",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/23001065"
+    }
+  ]
+}

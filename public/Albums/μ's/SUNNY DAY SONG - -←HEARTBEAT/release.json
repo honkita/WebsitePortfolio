@@ -1,0 +1,61 @@
+{
+  "artist": "μ's",
+  "title": "SUNNY DAY SONG / ?←HEARTBEAT",
+  "versions": [
+    {
+      "release_id": 13394570,
+      "master_id": null,
+      "artist": "μ's",
+      "title": "SUNNY DAY SONG / ?←HEARTBEAT",
+      "year": 2015,
+      "country": "Japan",
+      "released": "2015-06-08",
+      "formats": [
+        "CD (CD-ROM, Maxi-Single)"
+      ],
+      "labels": [
+        "Lantis"
+      ],
+      "catalog_numbers": [
+        "LACM-14362"
+      ],
+      "barcodes": [
+        "4540774143627"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "J-pop",
+        "Karaoke"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "SUNNY DAY SONG",
+          "duration": "4:47",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "?←HEARTBEAT",
+          "duration": "3:33",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "SUNNY DAY SONG (Off Vocal)",
+          "duration": "4:46",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "?←HEARTBEAT (Off Vocal)",
+          "duration": "3:31",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/13394570"
+    }
+  ]
+}

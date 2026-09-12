@@ -1,0 +1,132 @@
+{
+  "artist": "優里",
+  "title": "壱",
+  "versions": [
+    {
+      "release_id": 22023010,
+      "master_id": 3400750,
+      "artist": "優里",
+      "title": "壱",
+      "year": 2022,
+      "country": "Japan",
+      "released": "2022-01-12",
+      "formats": [
+        "CD (Album)"
+      ],
+      "labels": [
+        "Ariola"
+      ],
+      "catalog_numbers": [
+        "BVCL 1207"
+      ],
+      "barcodes": [
+        "4547366536270"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "J-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "ベテルギウス",
+          "duration": "3:51",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "ドライフラワー",
+          "duration": "4:46",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "花鳥風月",
+          "duration": "3:26",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "ミズキリ",
+          "duration": "3:28",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "シャッター",
+          "duration": "4:09",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "ミザリー",
+          "duration": "4:02",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "レオ",
+          "duration": "3:59",
+          "type": "track"
+        },
+        {
+          "position": "8",
+          "title": "ピーターパン",
+          "duration": "3:34",
+          "type": "track"
+        },
+        {
+          "position": "9",
+          "title": "スマホウォーズ",
+          "duration": "3:49",
+          "type": "track"
+        },
+        {
+          "position": "10",
+          "title": "夏音",
+          "duration": "3:59",
+          "type": "track"
+        },
+        {
+          "position": "11",
+          "title": "背中",
+          "duration": "3:58",
+          "type": "track"
+        },
+        {
+          "position": "12",
+          "title": "かごめ",
+          "duration": "4:32",
+          "type": "track"
+        },
+        {
+          "position": "13",
+          "title": "桜晴",
+          "duration": "3:58",
+          "type": "track"
+        },
+        {
+          "position": "14",
+          "title": "インフィニティ",
+          "duration": "4:05",
+          "type": "track"
+        },
+        {
+          "position": "15",
+          "title": "飛行船",
+          "duration": "3:16",
+          "type": "track"
+        },
+        {
+          "position": "16",
+          "title": "かくれんぼ",
+          "duration": "4:31",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/22023010"
+    }
+  ]
+}

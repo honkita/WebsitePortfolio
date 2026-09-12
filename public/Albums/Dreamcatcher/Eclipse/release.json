@@ -1,0 +1,158 @@
+{
+  "artist": "Dreamcatcher (13)",
+  "title": "Eclipse",
+  "versions": [
+    {
+      "release_id": 18125371,
+      "master_id": 2057356,
+      "artist": "Dreamcatcher (13)",
+      "title": "Eclipse",
+      "year": 2021,
+      "country": "Japan",
+      "released": "2021-03-24",
+      "formats": [
+        "CD (Single)"
+      ],
+      "labels": [
+        "Pony Canyon"
+      ],
+      "catalog_numbers": [
+        "PCCA-06017"
+      ],
+      "barcodes": [
+        "4 988013 841871",
+        "4988013841871"
+      ],
+      "genres": [
+        "Rock",
+        "Pop",
+        "Stage & Screen"
+      ],
+      "styles": [
+        "Heavy Metal",
+        "Pop Rock",
+        "Anison",
+        "Theme"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Eclipse",
+          "duration": "3:24",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "No More",
+          "duration": "3:17",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Don't Light My Fire",
+          "duration": "3:29",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Eclipse (Instrumental)",
+          "duration": "3:23",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "No More (Instrumental)",
+          "duration": "3:17",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Don't Light My Fire (Instrumental)",
+          "duration": "3:29",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/18125371"
+    },
+    {
+      "release_id": 18126343,
+      "master_id": 2057356,
+      "artist": "Dreamcatcher (13)",
+      "title": "Eclipse",
+      "year": 2021,
+      "country": "Japan",
+      "released": "2021-03-24",
+      "formats": [
+        "CD (Single)",
+        "DVD (DVD-Video, NTSC)",
+        "All Media (Limited Edition)"
+      ],
+      "labels": [
+        "Pony Canyon"
+      ],
+      "catalog_numbers": [
+        "PCCA-06016"
+      ],
+      "barcodes": [
+        "4 988013 841772"
+      ],
+      "genres": [
+        "Rock",
+        "Pop",
+        "Stage & Screen"
+      ],
+      "styles": [
+        "Heavy Metal",
+        "Pop Rock",
+        "J-Rock",
+        "Anison",
+        "Theme"
+      ],
+      "tracklist": [
+        {
+          "position": "CD-1",
+          "title": "Eclipse",
+          "duration": "3:24",
+          "type": "track"
+        },
+        {
+          "position": "CD-2",
+          "title": "No More",
+          "duration": "3:17",
+          "type": "track"
+        },
+        {
+          "position": "CD-3",
+          "title": "Eclipse (Instrumental)",
+          "duration": "3:29",
+          "type": "track"
+        },
+        {
+          "position": "CD-4",
+          "title": "No More (Instrumental)",
+          "duration": "3:23",
+          "type": "track"
+        },
+        {
+          "position": "DVD-1",
+          "title": "No More Music Video",
+          "duration": "3:18",
+          "type": "track"
+        },
+        {
+          "position": "DVD-2",
+          "title": "Eclipse Recording Making",
+          "duration": "16:16",
+          "type": "track"
+        },
+        {
+          "position": "DVD-3",
+          "title": "Eclipse Jacket Making",
+          "duration": "3:34",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/18126343"
+    }
+  ]
+}

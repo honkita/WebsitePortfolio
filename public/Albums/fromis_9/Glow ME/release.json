@@ -1,0 +1,96 @@
+{
+  "artist": "fromis_9",
+  "title": "Glow ME",
+  "versions": [
+    {
+      "release_id": 38225175,
+      "master_id": null,
+      "artist": "fromis_9",
+      "title": "Glow ME",
+      "year": 2026,
+      "country": "South Korea",
+      "released": "2026-07-21",
+      "formats": [
+        "CD (Album)"
+      ],
+      "labels": [
+        "DREAMUS"
+      ],
+      "catalog_numbers": [
+        "DUK2317"
+      ],
+      "barcodes": [
+        "8800371190131"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "ENTERNAL",
+          "duration": "3:06",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Vitamin ME",
+          "duration": "3:10",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Pocket Treat",
+          "duration": "3:03",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Blue Heart",
+          "duration": "2:33",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Screen Time",
+          "duration": "2:29",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Teacher",
+          "duration": "3:20",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "Cold Blood",
+          "duration": "2:49",
+          "type": "track"
+        },
+        {
+          "position": "8",
+          "title": "Why do I cry?",
+          "duration": "2:30",
+          "type": "track"
+        },
+        {
+          "position": "9",
+          "title": "Day 1",
+          "duration": "3:14",
+          "type": "track"
+        },
+        {
+          "position": "10",
+          "title": "Wonderland",
+          "duration": "3:08",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/38225175"
+    }
+  ]
+}

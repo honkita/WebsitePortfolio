@@ -1,0 +1,101 @@
+{
+  "artist": "fromis_9",
+  "title": "Unlock My World",
+  "versions": [
+    {
+      "release_id": 27592368,
+      "master_id": 3140928,
+      "artist": "fromis_9",
+      "title": "Unlock My World",
+      "year": 2023,
+      "country": "South Korea",
+      "released": "2023-06-05",
+      "formats": [
+        "CD (Album)"
+      ],
+      "labels": [
+        "Pledis Entertainment"
+      ],
+      "catalog_numbers": [
+        "PLD0241"
+      ],
+      "barcodes": [
+        "8 809903 923810"
+      ],
+      "genres": [
+        "Electronic",
+        "Funk / Soul",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "Dance-pop",
+        "City Pop",
+        "Contemporary R&B"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Attitude",
+          "duration": "3:11",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "#menow",
+          "duration": "2:51",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Wishlist",
+          "duration": "2:57",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "In The Mirror",
+          "duration": "3:33",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Don't Care",
+          "duration": "3:24",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Prom Night",
+          "duration": "3:27",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "Bring It On",
+          "duration": "2:52",
+          "type": "track"
+        },
+        {
+          "position": "8",
+          "title": "What I Want",
+          "duration": "3:31",
+          "type": "track"
+        },
+        {
+          "position": "9",
+          "title": "My Night Routine",
+          "duration": "2:59",
+          "type": "track"
+        },
+        {
+          "position": "10",
+          "title": "눈맞춤",
+          "duration": "3:30",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/27592368"
+    }
+  ]
+}

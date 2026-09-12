@@ -1,0 +1,418 @@
+{
+  "artist": "i-dle",
+  "title": "We Are",
+  "versions": [
+    {
+      "release_id": 34070884,
+      "master_id": 3877882,
+      "artist": "i-dle",
+      "title": "We Are",
+      "year": 2025,
+      "country": "South Korea",
+      "released": "2025-05-00",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200003271"
+      ],
+      "barcodes": [
+        "8804775 455285"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Good Thing",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Girlfriend",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Love Tease",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Chain",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Unstoppable",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "그래도 돼요",
+          "duration": "",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/34070884"
+    },
+    {
+      "release_id": 34132492,
+      "master_id": 3877882,
+      "artist": "i-dle",
+      "title": "We Are",
+      "year": 2025,
+      "country": "US",
+      "released": "2025-05-19",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "964164632"
+      ],
+      "barcodes": [
+        "4099964164633"
+      ],
+      "genres": [
+        "Electronic",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "Dance-pop",
+        "Ballad"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Good Thing*",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Girlfriend ",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Love Tease",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Chain",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Unstoppable ",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "그래도 돼요 (If You Want)",
+          "duration": "",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/34132492"
+    },
+    {
+      "release_id": 34136827,
+      "master_id": 3877882,
+      "artist": "i-dle",
+      "title": "We Are",
+      "year": 2025,
+      "country": "South Korea",
+      "released": "2025-05-20",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200003270"
+      ],
+      "barcodes": [
+        "8804775 455278"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "Alt-Pop",
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Good Thing",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Girlfriend",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Love Tease",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Chain",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Unstoppable",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "그래도 돼요",
+          "duration": "",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/34136827"
+    },
+    {
+      "release_id": 34256935,
+      "master_id": 3877882,
+      "artist": "i-dle",
+      "title": "We Are",
+      "year": 2025,
+      "country": "South Korea",
+      "released": "2025-05-20",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200003270"
+      ],
+      "barcodes": [
+        "8804775 455278"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "Alt-Pop",
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Good Thing",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Girlfriend",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Love Tease",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Chain",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Unstoppable",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "그래도 돼요",
+          "duration": "",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/34256935"
+    },
+    {
+      "release_id": 34256986,
+      "master_id": 3877882,
+      "artist": "i-dle",
+      "title": "We Are",
+      "year": 2025,
+      "country": "South Korea",
+      "released": "2025-05-20",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200003270"
+      ],
+      "barcodes": [
+        "8804775 455278"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "Alt-Pop",
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Good Thing",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Girlfriend",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Love Tease",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Chain",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Unstoppable",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "그래도 돼요",
+          "duration": "",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/34256986"
+    },
+    {
+      "release_id": 35525620,
+      "master_id": 3877882,
+      "artist": "i-dle",
+      "title": "We Are",
+      "year": 2025,
+      "country": "South Korea",
+      "released": "2025-05-19",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment",
+        "Cube Entertainment",
+        "BMG",
+        "BMG"
+      ],
+      "catalog_numbers": [
+        "964164622",
+        "4099964164626",
+        "964164622",
+        "4099964164626"
+      ],
+      "barcodes": [
+        "4099964164626"
+      ],
+      "genres": [
+        "Electronic",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "Alt-Pop",
+        "Dance-pop",
+        "Ballad"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Good Thing",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Girlfriend",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Love Tease",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Chain",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Unstoppable",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "그래도 돼요 (If You Want)",
+          "duration": "",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/35525620"
+    }
+  ]
+}

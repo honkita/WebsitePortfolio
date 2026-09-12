@@ -1,0 +1,74 @@
+{
+  "artist": "(G)I-DLE",
+  "title": "I Am",
+  "versions": [
+    {
+      "release_id": 12297288,
+      "master_id": 3096000,
+      "artist": "(G)I-DLE",
+      "title": "I Am",
+      "year": 2018,
+      "country": "South Korea",
+      "released": "2018-05-03",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment",
+        "Loen Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200001572",
+        "L200001572"
+      ],
+      "barcodes": [
+        "8804775091964"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Latata",
+          "duration": "3:22",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "달라 ($$$)",
+          "duration": "3:31",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Maze",
+          "duration": "3:20",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Don't Text Me",
+          "duration": "3:36",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "알고 싶어",
+          "duration": "3:27",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "들어줘요",
+          "duration": "3:56",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/12297288"
+    }
+  ]
+}

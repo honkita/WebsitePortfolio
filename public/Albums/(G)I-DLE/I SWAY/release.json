@@ -1,0 +1,221 @@
+{
+  "artist": "(G)I-DLE",
+  "title": "I Sway",
+  "versions": [
+    {
+      "release_id": 31268891,
+      "master_id": 3549515,
+      "artist": "(G)I-DLE",
+      "title": "I Sway",
+      "year": 2024,
+      "country": "South Korea",
+      "released": "2024-07-08",
+      "formats": [
+        "CD (Mini-Album, Stereo)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200002993"
+      ],
+      "barcodes": [
+        "8804775450235"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "클락션 = Klaxon",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Last Forever",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Bloom",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Neverland",
+          "duration": "",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/31268891"
+    },
+    {
+      "release_id": 31288613,
+      "master_id": 3549515,
+      "artist": "(G)I-DLE",
+      "title": "I Sway",
+      "year": 2024,
+      "country": "South Korea",
+      "released": "2024-07-08",
+      "formats": [
+        "CD (Mini-Album, Stereo)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200002993"
+      ],
+      "barcodes": [
+        "8804775450235"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "클락션 = Klaxon",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Last Forever",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Bloom",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Neverland",
+          "duration": "",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/31288613"
+    },
+    {
+      "release_id": 32391063,
+      "master_id": 3549515,
+      "artist": "(G)I-DLE",
+      "title": "I Sway",
+      "year": 2024,
+      "country": "South Korea",
+      "released": "2024-07-08",
+      "formats": [
+        "CD (Mini-Album, Stereo)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200002993"
+      ],
+      "barcodes": [
+        "196922985591",
+        "196922985584"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "클락션 = Klaxon",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Last Forever",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Bloom",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Neverland",
+          "duration": "",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/32391063"
+    },
+    {
+      "release_id": 32470101,
+      "master_id": 3549515,
+      "artist": "(G)I-DLE",
+      "title": "I Sway",
+      "year": 2024,
+      "country": "Worldwide",
+      "released": "2024-07-08",
+      "formats": [
+        "File (AAC, Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "none"
+      ],
+      "barcodes": [],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Klaxon",
+          "duration": "2:55",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Last Forever",
+          "duration": "2:25",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Bloom",
+          "duration": "3:14",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Neverland",
+          "duration": "2:45",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/32470101"
+    }
+  ]
+}

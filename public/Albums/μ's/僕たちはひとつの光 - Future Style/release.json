@@ -1,0 +1,61 @@
+{
+  "artist": "μ's",
+  "title": "僕たちはひとつの光 / Future Style",
+  "versions": [
+    {
+      "release_id": 13394518,
+      "master_id": null,
+      "artist": "μ's",
+      "title": "僕たちはひとつの光 / Future Style",
+      "year": 2015,
+      "country": "Japan",
+      "released": "2015-06-15",
+      "formats": [
+        "CD (CD-ROM, Maxi-Single)"
+      ],
+      "labels": [
+        "Lantis"
+      ],
+      "catalog_numbers": [
+        "LACM-14363"
+      ],
+      "barcodes": [
+        "4540774143634"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "J-pop",
+        "Karaoke"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "僕たちはひとつの光",
+          "duration": "4:55",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Future Style",
+          "duration": "4:48",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "僕たちはひとつの光 (Off Vocal)",
+          "duration": "4:55",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Future Style (Off Vocal)",
+          "duration": "4:43",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/13394518"
+    }
+  ]
+}

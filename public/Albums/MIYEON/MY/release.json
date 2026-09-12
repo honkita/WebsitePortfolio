@@ -1,0 +1,72 @@
+{
+  "artist": "Jo Mi Yeon",
+  "title": "MY",
+  "versions": [
+    {
+      "release_id": 23380073,
+      "master_id": null,
+      "artist": "Jo Mi Yeon",
+      "title": "MY",
+      "year": 2022,
+      "country": "South Korea",
+      "released": "2022-04-27",
+      "formats": [
+        "CDr (Mini-Album, Stereo)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200002386"
+      ],
+      "barcodes": [
+        "8804775251290"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Rose",
+          "duration": "3:20",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Drive",
+          "duration": "3:21",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Softly",
+          "duration": "3:47",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "TE AMO",
+          "duration": "4:16",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Charging (Feat. JUNNY)",
+          "duration": "3:42",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "소나기 (Rain)",
+          "duration": "3:02",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/23380073"
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "artist": "Uru (4)",
+  "title": "コントラスト",
+  "versions": [
+    {
+      "release_id": 28908517,
+      "master_id": 3308536,
+      "artist": "Uru (4)",
+      "title": "コントラスト",
+      "year": 2023,
+      "country": "Japan",
+      "released": "2023-02-01",
+      "formats": [
+        "CD (Album)",
+        "CD (Album, Limited Edition)"
+      ],
+      "labels": [
+        "SAR (3)"
+      ],
+      "catalog_numbers": [
+        "AICL 4325~6"
+      ],
+      "barcodes": [
+        "4 547366 590647"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "J-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1-1",
+          "title": "それを愛と呼ぶなら",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "1-2",
+          "title": "そばにいるよ",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "1-3",
+          "title": "恋",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "1-4",
+          "title": "ランドマーク",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "1-5",
+          "title": "Love Song",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "1-6",
+          "title": "ポジティ部入部",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "1-7",
+          "title": "セレナーデ",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "1-8",
+          "title": "Break",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "1-9",
+          "title": "無機質",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "1-10",
+          "title": "脱・借りてきた猫症候群",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "1-11",
+          "title": "ハクセキレイ",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "1-12",
+          "title": "ファーストラヴ",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "1-13",
+          "title": "振り子",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "",
+          "title": "Cover Song",
+          "duration": "",
+          "type": "heading"
+        },
+        {
+          "position": "2-1",
+          "title": "再会 (Self-Cover Ver.)",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2-2",
+          "title": "なんでもないよ、",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2-3",
+          "title": "ドライフラワー",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2-4",
+          "title": "Missing",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2-5",
+          "title": "別の人の彼女になったよ",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2-6",
+          "title": "勿忘",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2-7",
+          "title": "白い恋人たち",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2-8",
+          "title": "奏(かなで)",
+          "duration": "",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/28908517"
+    }
+  ]
+}

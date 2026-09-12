@@ -1,0 +1,72 @@
+{
+  "artist": "(G)I-DLE",
+  "title": "I Burn",
+  "versions": [
+    {
+      "release_id": 17068833,
+      "master_id": 1938195,
+      "artist": "(G)I-DLE",
+      "title": "I Burn",
+      "year": 2021,
+      "country": "South Korea",
+      "released": "2021-01-11",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200002078"
+      ],
+      "barcodes": [
+        "8804775 154782"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "한 (寒) (Alone In Winter)",
+          "duration": "2:55",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "화(火花) (Hwaa)",
+          "duration": "3:17",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Moon",
+          "duration": "3:20",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Where Is Love",
+          "duration": "2:57",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Lost",
+          "duration": "3:01",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Dahlia",
+          "duration": "3:10",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/17068833"
+    }
+  ]
+}

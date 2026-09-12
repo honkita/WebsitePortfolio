@@ -1,0 +1,102 @@
+{
+  "artist": "fromis_9",
+  "title": "Supersonic",
+  "versions": [
+    {
+      "release_id": 32105637,
+      "master_id": 3666084,
+      "artist": "fromis_9",
+      "title": "Supersonic",
+      "year": 2024,
+      "country": "South Korea",
+      "released": "2024-08-12",
+      "formats": [
+        "CD (Single)"
+      ],
+      "labels": [
+        "Pledis Entertainment"
+      ],
+      "catalog_numbers": [
+        "PLD0436"
+      ],
+      "barcodes": [
+        "8 800261 890639"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Supersonic",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Beat The Heat",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Take A Chance",
+          "duration": "",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/32105637"
+    },
+    {
+      "release_id": 32105715,
+      "master_id": 3666084,
+      "artist": "fromis_9",
+      "title": "Supersonic",
+      "year": 2024,
+      "country": "South Korea",
+      "released": "2024-08-12",
+      "formats": [
+        "CD (Single)"
+      ],
+      "labels": [
+        "Pledis Entertainment"
+      ],
+      "catalog_numbers": [
+        "PLD0436"
+      ],
+      "barcodes": [
+        "8 800261 890639"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Supersonic",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Beat The Heat",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Take A Chance",
+          "duration": "",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/32105715"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "artist": "Oh My Girl",
+  "title": "Pink Ocean",
+  "versions": [
+    {
+      "release_id": 9160643,
+      "master_id": 1348421,
+      "artist": "Oh My Girl",
+      "title": "Pink Ocean",
+      "year": 2016,
+      "country": "South Korea",
+      "released": "2016-03-28",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "WM Entertainment",
+        "Loen Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200001212",
+        "L200001212"
+      ],
+      "barcodes": [
+        "8804775069475"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Liar Liar",
+          "duration": "3:14",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "B612",
+          "duration": "4:06",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "I Found Love",
+          "duration": "3:34",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Knock Knock",
+          "duration": "3:37",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "한 발짝 두 발짝",
+          "duration": "3:43",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/9160643"
+    }
+  ]
+}

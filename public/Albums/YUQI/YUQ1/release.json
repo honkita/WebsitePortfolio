@@ -1,0 +1,150 @@
+{
+  "artist": "Song Yu Qi",
+  "title": "YUQ1",
+  "versions": [
+    {
+      "release_id": 30598009,
+      "master_id": 3554326,
+      "artist": "Song Yu Qi",
+      "title": "YUQ1",
+      "year": 2024,
+      "country": "South Korea",
+      "released": "2024-04-24",
+      "formats": [
+        "CD (Mini-Album, Limited Edition, Special Edition)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200002931"
+      ],
+      "barcodes": [
+        "8804775369230"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Freak",
+          "duration": "2:51",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "My Way",
+          "duration": "2:48",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Drink It Up",
+          "duration": "3:16",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Red Rover",
+          "duration": "2:03",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "On Clap",
+          "duration": "1:58",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Everytime",
+          "duration": "3:11",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "Could It Be",
+          "duration": "3:09",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/30598009"
+    },
+    {
+      "release_id": 31152485,
+      "master_id": 3554326,
+      "artist": "Song Yu Qi",
+      "title": "YUQ1",
+      "year": 2024,
+      "country": "South Korea",
+      "released": "2024-04-24",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200002930"
+      ],
+      "barcodes": [
+        "8804775369223"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Freak",
+          "duration": "2:51",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "My Way",
+          "duration": "2:48",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Drink It Up",
+          "duration": "3:16",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Red Rover",
+          "duration": "2:03",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "On Clap",
+          "duration": "1:58",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Everytime",
+          "duration": "3:11",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "Could It Be",
+          "duration": "3:09",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/31152485"
+    }
+  ]
+}

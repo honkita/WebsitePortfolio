@@ -1,0 +1,68 @@
+{
+  "artist": "Oh My Girl",
+  "title": "비밀정원",
+  "versions": [
+    {
+      "release_id": 12128076,
+      "master_id": 2923576,
+      "artist": "Oh My Girl",
+      "title": "비밀정원",
+      "year": 2018,
+      "country": "South Korea",
+      "released": "2018-01-09",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "WM Entertainment",
+        "Loen Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200001514",
+        "L200001514"
+      ],
+      "barcodes": [
+        "8804775086922"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "비밀정원",
+          "duration": "4:06",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Love O'clock",
+          "duration": "3:58",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Butterfly",
+          "duration": "3:55",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Sixteen",
+          "duration": "3:24",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Magic",
+          "duration": "3:05",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/12128076"
+    }
+  ]
+}

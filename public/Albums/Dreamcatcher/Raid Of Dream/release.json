@@ -1,0 +1,138 @@
+{
+  "artist": "Dreamcatcher (13)",
+  "title": "Raid Of Dream",
+  "versions": [
+    {
+      "release_id": 14229789,
+      "master_id": 1617133,
+      "artist": "Dreamcatcher (13)",
+      "title": "Raid Of Dream",
+      "year": 2019,
+      "country": "South Korea",
+      "released": "2019-09-18",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Dreamcatcher Company",
+        "Genie Music (2)",
+        "Vespa (2)"
+      ],
+      "catalog_numbers": [
+        "KTMCD1020",
+        "KTMCD1020",
+        "KTMCD1020"
+      ],
+      "barcodes": [
+        "8809314513662"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "K-Rock"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro",
+          "duration": "1:31",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "데자부 (Deja Vu)",
+          "duration": "3:45",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "거미의 저주 (The Curse Of The Spider)",
+          "duration": "3:11",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Silent Night",
+          "duration": "3:18",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "북극성 (Polaris)",
+          "duration": "3:54",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/14229789"
+    },
+    {
+      "release_id": 14233417,
+      "master_id": 1617133,
+      "artist": "Dreamcatcher (13)",
+      "title": "Raid Of Dream",
+      "year": 2019,
+      "country": "South Korea",
+      "released": "2019-09-18",
+      "formats": [
+        "CD (Mini-Album, Limited Edition)"
+      ],
+      "labels": [
+        "Dreamcatcher Company",
+        "Genie Music (2)",
+        "Vespa (2)"
+      ],
+      "catalog_numbers": [
+        "KTMCD1019",
+        "KTMCD1019",
+        "KTMCD1019"
+      ],
+      "barcodes": [
+        "8809314513655"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "K-Rock"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro",
+          "duration": "1:31",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "데자부 (Deja Vu)",
+          "duration": "3:45",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "거미의 저주 (The Curse Of The Spider)",
+          "duration": "3:11",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Silent Night",
+          "duration": "3:18",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "북극성 (Polaris)",
+          "duration": "3:54",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/14233417"
+    }
+  ]
+}

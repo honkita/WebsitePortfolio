@@ -1,0 +1,146 @@
+{
+  "artist": "Dreamcatcher (13)",
+  "title": "The End Of Nightmare",
+  "versions": [
+    {
+      "release_id": 13263429,
+      "master_id": 1507179,
+      "artist": "Dreamcatcher (13)",
+      "title": "The End Of Nightmare",
+      "year": 2019,
+      "country": "South Korea",
+      "released": "2019-02-13",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Dreamcatcher Company",
+        "Genie Music (2)"
+      ],
+      "catalog_numbers": [
+        "KTMCD0990",
+        "KTMCD0990"
+      ],
+      "barcodes": [
+        "8 809269 509741"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-Rock",
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro",
+          "duration": "1:07",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Piri",
+          "duration": "3:27",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Diamond",
+          "duration": "3:22",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "그리고 아무도 없었다",
+          "duration": "2:53",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Daydream (백일몽)",
+          "duration": "3:32",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Piri (Inst.)",
+          "duration": "3:27",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/13263429"
+    },
+    {
+      "release_id": 13263981,
+      "master_id": 1507179,
+      "artist": "Dreamcatcher (13)",
+      "title": "The End Of Nightmare",
+      "year": 2019,
+      "country": "South Korea",
+      "released": "2019-02-13",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Dreamcatcher Company",
+        "Genie Music (2)"
+      ],
+      "catalog_numbers": [
+        "KTMCD0990",
+        "KTMCD0990"
+      ],
+      "barcodes": [
+        "8 809269 509741"
+      ],
+      "genres": [
+        "Rock",
+        "Pop"
+      ],
+      "styles": [
+        "K-Rock",
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Intro",
+          "duration": "1:07",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Piri",
+          "duration": "3:27",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Diamond",
+          "duration": "3:22",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "그리고 아무도 없었다",
+          "duration": "2:53",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Daydream (백일몽)",
+          "duration": "3:32",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Piri (Inst.)",
+          "duration": "3:27",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/13263981"
+    }
+  ]
+}

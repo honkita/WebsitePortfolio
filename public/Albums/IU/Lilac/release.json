@@ -1,0 +1,186 @@
+{
+  "artist": "IU (3)",
+  "title": "Lilac",
+  "versions": [
+    {
+      "release_id": 18048907,
+      "master_id": 2068564,
+      "artist": "IU (3)",
+      "title": "Lilac",
+      "year": 2021,
+      "country": "South Korea",
+      "released": "2021-03-25",
+      "formats": [
+        "CD (Album)"
+      ],
+      "labels": [
+        "EDAM Entertainment"
+      ],
+      "catalog_numbers": [
+        "L100005749"
+      ],
+      "barcodes": [
+        "8804775158773"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "라일락",
+          "duration": "3:34",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Flu",
+          "duration": "3:08",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Coin",
+          "duration": "3:13",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "봄 안녕 봄",
+          "duration": "5:24",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Celebrity",
+          "duration": "3:15",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "돌림노래",
+          "duration": "3:09",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "빈 컵 (Empty Cup)",
+          "duration": "2:19",
+          "type": "track"
+        },
+        {
+          "position": "8",
+          "title": "아이와 나의 바다",
+          "duration": "5:16",
+          "type": "track"
+        },
+        {
+          "position": "9",
+          "title": "어푸 (Ah Puh)",
+          "duration": "3:20",
+          "type": "track"
+        },
+        {
+          "position": "10",
+          "title": "에필로그",
+          "duration": "3:49",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/18048907"
+    },
+    {
+      "release_id": 18206452,
+      "master_id": 2068564,
+      "artist": "IU (3)",
+      "title": "Lilac",
+      "year": 2021,
+      "country": "South Korea",
+      "released": "2021-03-25",
+      "formats": [
+        "CD (Album)"
+      ],
+      "labels": [
+        "EDAM Entertainment"
+      ],
+      "catalog_numbers": [
+        "L100005749"
+      ],
+      "barcodes": [
+        "8804775158773"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "라일락",
+          "duration": "3:34",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Flu",
+          "duration": "3:08",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Coin",
+          "duration": "3:13",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "봄 안녕 봄",
+          "duration": "5:24",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Celebrity",
+          "duration": "3:15",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "돌림노래",
+          "duration": "3:09",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "빈 컵 (Empty Cup)",
+          "duration": "2:19",
+          "type": "track"
+        },
+        {
+          "position": "8",
+          "title": "아이와 나의 바다",
+          "duration": "5:15",
+          "type": "track"
+        },
+        {
+          "position": "9",
+          "title": "어푸 (Ah puh)",
+          "duration": "3:20",
+          "type": "track"
+        },
+        {
+          "position": "10",
+          "title": "에필로그",
+          "duration": "3:49",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/18206452"
+    }
+  ]
+}

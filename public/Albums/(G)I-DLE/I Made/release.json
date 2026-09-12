@@ -1,0 +1,68 @@
+{
+  "artist": "(G)I-DLE",
+  "title": "I Made",
+  "versions": [
+    {
+      "release_id": 13491305,
+      "master_id": 3096003,
+      "artist": "(G)I-DLE",
+      "title": "I Made",
+      "year": 2019,
+      "country": "South Korea",
+      "released": "2019-02-26",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Kakao M",
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200001723",
+        "L200001723"
+      ],
+      "barcodes": [
+        "8804775121609"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Senorita",
+          "duration": "3:17",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "What's Your Name",
+          "duration": "3:09",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "싫다고 말해",
+          "duration": "3:56",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "주세요",
+          "duration": "3:40",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Blow Your Mind",
+          "duration": "2:49",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/13491305"
+    }
+  ]
+}

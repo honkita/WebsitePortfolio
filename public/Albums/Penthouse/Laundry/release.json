@@ -1,0 +1,96 @@
+{
+  "artist": "Penthouse (21)",
+  "title": "Laundry",
+  "versions": [
+    {
+      "release_id": 35405371,
+      "master_id": null,
+      "artist": "Penthouse (21)",
+      "title": "Laundry",
+      "year": 2024,
+      "country": "Japan",
+      "released": "2024-11-06",
+      "formats": [
+        "CD (Album)"
+      ],
+      "labels": [
+        "JVC Kenwood Victor Entertainment Corp."
+      ],
+      "catalog_numbers": [
+        "VIZL-2371"
+      ],
+      "barcodes": [
+        "4988002942046"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "City Pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Taxi to the Moon",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "我愛你",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "夏に願いを",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Raise Your Hands Up",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "フライデーズハイ",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "花束のような人生を君に",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "一難",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "8",
+          "title": "Kitchen feat. 9m88",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "9",
+          "title": "アイデンティファイ",
+          "duration": "",
+          "type": "track"
+        },
+        {
+          "position": "10",
+          "title": "Whiskey And Coke",
+          "duration": "",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/35405371"
+    }
+  ]
+}

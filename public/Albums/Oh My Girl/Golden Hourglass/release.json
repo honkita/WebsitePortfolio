@@ -1,0 +1,162 @@
+{
+  "artist": "Oh My Girl",
+  "title": "Golden Hourglass",
+  "versions": [
+    {
+      "release_id": 28165165,
+      "master_id": 3227953,
+      "artist": "Oh My Girl",
+      "title": "Golden Hourglass",
+      "year": 2023,
+      "country": "South Korea",
+      "released": "2023-07-24",
+      "formats": [
+        "CD (Mini-Album, Stereo)"
+      ],
+      "labels": [
+        "WM Entertainment",
+        "RBW",
+        "Sony Music",
+        "WM Entertainment",
+        "RBW",
+        "Sony Music"
+      ],
+      "catalog_numbers": [
+        "S91300C",
+        "S91300C",
+        "S91300C",
+        "19658835742",
+        "19658835742",
+        "19658835742"
+      ],
+      "barcodes": [
+        "8803581203004"
+      ],
+      "genres": [
+        "Electronic",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "Dance-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Celebrate",
+          "duration": "2:48",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "여름이 들려 (Summer Comes)",
+          "duration": "3:22",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "내 Type",
+          "duration": "3:01",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Dirty Laundry",
+          "duration": "2:51",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Paradise",
+          "duration": "2:31",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "미라클 (Miracle)",
+          "duration": "3:20",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/28165165"
+    },
+    {
+      "release_id": 28165684,
+      "master_id": 3227953,
+      "artist": "Oh My Girl",
+      "title": "Golden Hourglass",
+      "year": 2023,
+      "country": "South Korea",
+      "released": "2023-07-24",
+      "formats": [
+        "CD (Mini-Album, Stereo)"
+      ],
+      "labels": [
+        "WM Entertainment",
+        "RBW",
+        "Sony Music",
+        "WM Entertainment",
+        "RBW",
+        "Sony Music"
+      ],
+      "catalog_numbers": [
+        "S91300C",
+        "S91300C",
+        "S91300C",
+        "19658835742",
+        "19658835742",
+        "19658835742"
+      ],
+      "barcodes": [
+        "8803581203004"
+      ],
+      "genres": [
+        "Electronic",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "Dance-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Celebrate",
+          "duration": "2:48",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "여름이 들려 (Summer Comes)",
+          "duration": "3:22",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "내 Type",
+          "duration": "3:01",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Dirty Laundry",
+          "duration": "2:51",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Paradise",
+          "duration": "2:31",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "미라클 (Miracle)",
+          "duration": "3:20",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/28165684"
+    }
+  ]
+}

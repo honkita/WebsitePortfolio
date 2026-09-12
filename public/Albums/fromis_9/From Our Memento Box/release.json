@@ -1,0 +1,68 @@
+{
+  "artist": "fromis_9",
+  "title": "From Our Memento Box",
+  "versions": [
+    {
+      "release_id": 29753617,
+      "master_id": 3391084,
+      "artist": "fromis_9",
+      "title": "From Our Memento Box",
+      "year": 2022,
+      "country": "South Korea",
+      "released": "2022-06-27",
+      "formats": [
+        "CD (Mini-Album)"
+      ],
+      "labels": [
+        "Pledis Entertainment"
+      ],
+      "catalog_numbers": [
+        "PLD0163"
+      ],
+      "barcodes": [
+        "8809848756665"
+      ],
+      "genres": [
+        "Electronic",
+        "Pop"
+      ],
+      "styles": [
+        "K-pop",
+        "Bubblegum"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Up And",
+          "duration": "3:12",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Stay This Way",
+          "duration": "3:15",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "Blind Letter",
+          "duration": "2:40",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Cheese",
+          "duration": "3:01",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "Rewind",
+          "duration": "3:33",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/29753617"
+    }
+  ]
+}

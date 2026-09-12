@@ -1,0 +1,78 @@
+{
+  "artist": "Jo Mi Yeon",
+  "title": "MY, Lover",
+  "versions": [
+    {
+      "release_id": 35934523,
+      "master_id": 4093009,
+      "artist": "Jo Mi Yeon",
+      "title": "MY, Lover",
+      "year": 2025,
+      "country": "South Korea",
+      "released": "2025-11-00",
+      "formats": [
+        "CDr (Mini-Album)"
+      ],
+      "labels": [
+        "Cube Entertainment"
+      ],
+      "catalog_numbers": [
+        "L200003442"
+      ],
+      "barcodes": [
+        "8804775458088"
+      ],
+      "genres": [
+        "Pop"
+      ],
+      "styles": [
+        "K-pop"
+      ],
+      "tracklist": [
+        {
+          "position": "1",
+          "title": "Reno (Feat. Colde)",
+          "duration": "3:08",
+          "type": "track"
+        },
+        {
+          "position": "2",
+          "title": "Say My Name",
+          "duration": "2:40",
+          "type": "track"
+        },
+        {
+          "position": "3",
+          "title": "F.F.L.Y",
+          "duration": "2:46",
+          "type": "track"
+        },
+        {
+          "position": "4",
+          "title": "Space Invader",
+          "duration": "2:21",
+          "type": "track"
+        },
+        {
+          "position": "5",
+          "title": "You And No One Else",
+          "duration": "2:58",
+          "type": "track"
+        },
+        {
+          "position": "6",
+          "title": "Petal Shower",
+          "duration": "3:10",
+          "type": "track"
+        },
+        {
+          "position": "7",
+          "title": "Show",
+          "duration": "3:01",
+          "type": "track"
+        }
+      ],
+      "discogs_url": "https://www.discogs.com/release/35934523"
+    }
+  ]
+}
