@@ -1,4 +1,4 @@
-import type { Artist as DBArtist } from "@prisma/client";
+import type { Artist as DBArtist } from "@/types/DBMusic";
 
 /**
  * Merged Artist Interface

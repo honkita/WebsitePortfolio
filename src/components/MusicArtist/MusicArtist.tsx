@@ -152,7 +152,6 @@ const MusicArtist = ({
                             .padStart(2, "0")}
                     </div>
                 </section>
-                {/* ADD THIS WHEN MODAL IS READY!!! <MusicArtistPopup name={name} /> */}
             </div>
         </div>
     );

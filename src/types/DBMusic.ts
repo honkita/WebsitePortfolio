@@ -1,4 +1,12 @@
-import type { Artist } from "@prisma/client";
+/**
+ * Artist
+ */
+export interface Artist {
+  id: number;
+  name: string;
+  aliases?: [string];
+  ignoreChineseCanonization: boolean;
+}
 
 /**
  * Database Albums Interface
