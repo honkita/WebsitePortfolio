@@ -1,0 +1,407 @@
+.page {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  color: var(--foreground, #ffffff);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.header p {
+  margin: 0;
+  opacity: 0.7;
+}
+
+.albumCount {
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+.searchContainer {
+  margin-bottom: 30px;
+}
+
+.search {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 16px;
+  border: 1px solid var(--border, #444);
+  border-radius: 8px;
+  outline: none;
+  background: var(--input-background, #1c1c1c);
+  color: inherit;
+  font: inherit;
+}
+
+.search:focus {
+  border-color: var(--accent, #888);
+}
+
+.albumGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 24px;
+}
+
+.albumCard {
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--border, #333);
+  border-radius: 10px;
+  background: var(--card-background, #1c1c1c);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.albumCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent, #888);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 20%);
+}
+
+.artworkContainer {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--placeholder-background, #292929);
+}
+
+.artwork {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.artworkPlaceholder {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background: var(--placeholder-background, #292929);
+  color: var(--muted-foreground, #999);
+  font-size: 0.9rem;
+}
+
+.albumInformation {
+  padding: 14px;
+}
+
+.albumInformation h2 {
+  margin: 0 0 6px;
+  overflow: hidden;
+  font-size: 1rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.artistName {
+  margin: 0;
+  overflow: hidden;
+  opacity: 0.7;
+  font-size: 0.85rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.versionCount {
+  margin: 12px 0 0;
+  opacity: 0.55;
+  font-size: 0.8rem;
+}
+
+.emptyState {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.emptyState h2 {
+  margin-bottom: 8px;
+}
+
+.emptyState p {
+  opacity: 0.65;
+}
+
+.modalOverlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow-y: auto;
+  background: rgb(0 0 0 / 75%);
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 850px;
+  max-height: 90vh;
+  padding: 30px;
+  overflow-y: auto;
+
+  border: 1px solid var(--version-colour, #444);
+  border-radius: 12px;
+
+  background: var(--modal-background, #181818);
+  color: inherit;
+
+  box-shadow:
+    0 0 8px color-mix(in srgb, var(--version-colour, #888888) 35%, transparent),
+    0 0 24px color-mix(in srgb, var(--version-colour, #888888) 15%, transparent);
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background: rgb(255 255 255 / 10%);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 30px;
+  padding-right: 30px;
+}
+
+.modalArtworkContainer {
+  flex: 0 0 170px;
+  width: 170px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--placeholder-background, #292929);
+}
+
+.modalArtwork {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modalAlbumInformation h2 {
+  margin: 0 0 10px;
+  font-size: 1.6rem;
+}
+
+.modalAlbumInformation p {
+  margin: 0 0 10px;
+  opacity: 0.75;
+}
+
+.modalAlbumInformation span {
+  opacity: 0.55;
+  font-size: 0.85rem;
+}
+
+.versionSection,
+.tracklistSection {
+  margin-top: 28px;
+}
+
+.versionSection h3,
+.tracklistSection h3 {
+  margin: 0 0 16px;
+  font-size: 1.15rem;
+}
+
+.versionSelector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.versionButton {
+  padding: 9px 15px;
+
+  border: 1px solid var(--version-colour, #888888);
+  border-radius: 6px;
+
+  background: transparent;
+  color: inherit;
+
+  cursor: pointer;
+
+  box-shadow: 0 0 5px
+    color-mix(in srgb, var(--version-colour, #888888) 35%, transparent);
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.versionButton:hover {
+  background: color-mix(
+    in srgb,
+    var(--version-colour, #888888) 12%,
+    transparent
+  );
+
+  box-shadow:
+    0 0 8px color-mix(in srgb, var(--version-colour, #888888) 60%, transparent),
+    0 0 16px color-mix(in srgb, var(--version-colour, #888888) 25%, transparent);
+
+  transform: translateY(-1px);
+}
+
+.activeVersion {
+  border-color: var(--version-colour, #888888);
+
+  background: color-mix(
+    in srgb,
+    var(--version-colour, #888888) 20%,
+    transparent
+  );
+
+  box-shadow:
+    0 0 8px color-mix(in srgb, var(--version-colour, #888888) 75%, transparent),
+    0 0 18px color-mix(in srgb, var(--version-colour, #888888) 40%, transparent);
+}
+
+.noVersions,
+.noTracks {
+  opacity: 0.6;
+}
+
+.tracklist {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.discHeading {
+  margin: 20px 0 8px;
+  opacity: 0.7;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--border, #333);
+}
+
+.trackNumber {
+  flex: 0 0 28px;
+  opacity: 0.55;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.trackInformation {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.trackName {
+  overflow: hidden;
+  font-size: 0.95rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trackArtist {
+  overflow: hidden;
+  opacity: 0.55;
+  font-size: 0.8rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trackDuration {
+  flex: 0 0 48px;
+  opacity: 0.6;
+  text-align: right;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 28px 16px;
+  }
+
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .albumGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .modalOverlay {
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .modal {
+    max-height: 95vh;
+    padding: 20px;
+  }
+
+  .modalHeader {
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .modalArtworkContainer {
+    flex-basis: 110px;
+    width: 110px;
+  }
+
+  .modalAlbumInformation h2 {
+    font-size: 1.2rem;
+  }
+}
