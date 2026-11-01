@@ -1,5 +1,6 @@
 "use client";
 
+// React
 import { useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 
@@ -7,10 +8,16 @@ type VersionColourStyle = CSSProperties & {
     "--version-colour": string;
 };
 
-import type { CDAlbum, CDVersion } from "@/types/physicalCDs";
+// Child Components
+import Title from "@/components/Title/Title";
 
+// CSS
 import styles from "./physicalCDs.module.css";
 
+// Types
+import type { CDAlbum, CDVersion } from "@/types/physicalCDs";
+
+// Props Interface
 interface PhysicalCDClientProps {
     albums: CDAlbum[];
 }
@@ -30,7 +37,7 @@ function getArtistNames(artists: CDAlbum["artists"]): string {
     return artists.map((artist) => artist.name).join(", ");
 }
 
-export default function PhysicalCDClient({ albums }: PhysicalCDClientProps) {
+const PhysicalCDClient = ({ albums }: PhysicalCDClientProps) => {
     const [search, setSearch] = useState("");
     const [selectedAlbum, setSelectedAlbum] = useState<CDAlbum | null>(null);
     const [selectedVersionId, setSelectedVersionId] = useState<string | null>(
@@ -86,17 +93,12 @@ export default function PhysicalCDClient({ albums }: PhysicalCDClientProps) {
     }
 
     return (
-        <main className={styles.page}>
-            <header className={styles.header}>
-                <div>
-                    <h1>Physical CD Collection</h1>
-                    <p>Browse my collection of physical album releases.</p>
-                </div>
-
-                <span className={styles.albumCount}>
-                    {albums.length} {albums.length === 1 ? "album" : "albums"}
-                </span>
-            </header>
+        <div>
+            <Title
+                name={"CDs"}
+                colour="blue"
+                buttons={["LinkedIn", "GitHub", "Email"]}
+            />
 
             <div className={styles.searchContainer}>
                 <input
@@ -378,6 +380,8 @@ export default function PhysicalCDClient({ albums }: PhysicalCDClientProps) {
                     </section>
                 </div>
             )}
-        </main>
+        </div>
     );
-}
+};
+
+export default PhysicalCDClient;
