@@ -108,11 +108,11 @@
 @media not (hover: none) {
   .button:hover {
     filter: brightness(75%);
-    cursor: url("../../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("/images/Cursor/Pointer.png"), pointer;
   }
 
   .infoButton:hover {
     filter: brightness(75%);
-    cursor: url("../../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("/images/Cursor/Pointer.png"), pointer;
   }
 }

@@ -1,9 +1,15 @@
 "use client";
 
+// React
 import React, { useState, useEffect, useRef } from "react";
 import Modal from "react-modal";
+
+// Next.js
 import Image from "next/image";
 import { useTheme } from "next-themes";
+
+// Child Components
+import CloseButton from "@/components/CloseButton/CloseButton";
 
 // CSS
 import MusicArtistCSS from "../MusicArtist.module.css";
@@ -13,7 +19,7 @@ import MusicArtistPopupCSS from "./MusicArtistPopup.module.css";
 import stringToColour from "@/lib/stringToColour";
 
 // Types
-import { artistAlbumContainer, cleanedAlbums } from "@/types/Music";
+import { cleanedAlbums } from "@/types/Music";
 
 let modalOpen = false;
 
@@ -100,16 +106,6 @@ const MusicArtistPopup = ({
     }
     const styleRef = useRef<HTMLStyleElement | null>(null);
     const nameRef = useRef<HTMLDivElement>(null);
-
-    const resetAnimation = () => {
-        if (!styleRef.current) return;
-        styleRef.current.innerHTML = "";
-
-        if (nameRef.current) {
-            nameRef.current.style.animation = "none";
-            nameRef.current.style.transform = "translateX(0)";
-        }
-    };
 
     useEffect(() => {
         if (!isOpen) return;
@@ -213,26 +209,10 @@ const MusicArtistPopup = ({
                         Artist Info
                     </div>
 
-                    <button
-                        onClick={closeModal}
-                        className={MusicArtistPopupCSS.button}
-                        tabIndex={-1}
-                    >
-                        <Image
-                            id="Icon"
-                            src={
-                                actualResolvedTheme === "light"
-                                    ? getButton(true)
-                                    : getButton(false)
-                            }
-                            alt="Close button"
-                            aria-hidden={true}
-                            tabIndex={-1}
-                            fill
-                            priority
-                            sizes="100vw"
-                        />
-                    </button>
+                    <CloseButton
+                        theme={actualResolvedTheme || ""}
+                        closeModal={closeModal}
+                    />
                 </div>
 
                 <hr />

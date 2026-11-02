@@ -10,6 +10,7 @@ type VersionColourStyle = CSSProperties & {
 
 // Child Components
 import CDButton from "@/components/CDs/CDButton";
+import VersionButton from "@/components/CDs/AlbumInfo/VersionButton";
 import Title from "@/components/Title/Title";
 
 // CSS
@@ -217,42 +218,21 @@ const PhysicalCDClient = ({ albums }: PhysicalCDClientProps) => {
                                             className={styles2.versionSelector}
                                         >
                                             {selectedAlbum.versions.map(
-                                                (version) => {
-                                                    const versionColour =
-                                                        version.colour?.trim() ||
-                                                        "#888888";
-
-                                                    const isActive =
-                                                        selectedVersion?.id ===
-                                                        version.id;
-
-                                                    const versionStyle: VersionColourStyle =
-                                                        {
-                                                            "--version-colour":
-                                                                versionColour
-                                                        };
-
-                                                    return (
-                                                        <button
-                                                            key={version.id}
-                                                            type="button"
-                                                            style={versionStyle}
-                                                            className={`${styles2.versionButton} ${
-                                                                isActive
-                                                                    ? styles2.activeVersion
-                                                                    : ""
-                                                            }`}
-                                                            onClick={() =>
-                                                                setSelectedVersionId(
-                                                                    version.id
-                                                                )
-                                                            }
-                                                        >
-                                                            {version.name?.trim() ||
-                                                                "Default"}
-                                                        </button>
-                                                    );
-                                                }
+                                                (version) => (
+                                                    <VersionButton
+                                                        key={version.id}
+                                                        versionID={version.id}
+                                                        name={version.name}
+                                                        colour={version.colour}
+                                                        selectedVersionID={
+                                                            selectedVersion?.id ||
+                                                            ""
+                                                        }
+                                                        buttonPress={
+                                                            setSelectedVersionId
+                                                        }
+                                                    />
+                                                )
                                             )}
                                         </div>
                                     </div>

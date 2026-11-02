@@ -228,55 +228,6 @@
   gap: 10px;
 }
 
-.versionButton {
-  padding: 9px 15px;
-
-  border: 1px solid var(--version-colour, #888888);
-  border-radius: 6px;
-
-  background: transparent;
-  color: inherit;
-
-  cursor: pointer;
-
-  box-shadow: 0 0 5px
-    color-mix(in srgb, var(--version-colour, #888888) 35%, transparent);
-
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
-}
-
-.versionButton:hover {
-  background: color-mix(
-    in srgb,
-    var(--version-colour, #888888) 12%,
-    transparent
-  );
-
-  box-shadow:
-    0 0 8px color-mix(in srgb, var(--version-colour, #888888) 60%, transparent),
-    0 0 16px color-mix(in srgb, var(--version-colour, #888888) 25%, transparent);
-
-  transform: translateY(-1px);
-}
-
-.activeVersion {
-  border-color: var(--version-colour, #888888);
-
-  background: color-mix(
-    in srgb,
-    var(--version-colour, #888888) 20%,
-    transparent
-  );
-
-  box-shadow:
-    0 0 8px color-mix(in srgb, var(--version-colour, #888888) 75%, transparent),
-    0 0 18px color-mix(in srgb, var(--version-colour, #888888) 40%, transparent);
-}
-
 .noVersions,
 .noTracks {
   opacity: 0.6;
