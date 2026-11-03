@@ -10,7 +10,7 @@ import Title from "@/components/Title/Title";
 
 // CSS
 import divstyling from "@/styles/divstyling.module.css";
-import styles2 from "./physicalCDs.module.css";
+import physicalCDsCSS from "./physicalCDs.module.css";
 import styles from "@/app/ui/home.module.css";
 
 // Types
@@ -91,19 +91,19 @@ const PhysicalCDClient = ({ albums }: PhysicalCDClientProps) => {
                     placeholder="Search albums, artists, or versions..."
                     value={search}
                     onChange={(event) => setSearch(event.target.value)}
-                    className={styles.search}
+                    className={physicalCDsCSS.search}
                     aria-label="Search albums"
                 />
                 <div className={styles.container}>
                     {filteredAlbums.length === 0 ? (
-                        <div className={styles2.emptyState}>
+                        <div className={physicalCDsCSS.emptyState}>
                             <h2>No albums found</h2>
                             <p>
                                 Try searching for a different album or artist.
                             </p>
                         </div>
                     ) : (
-                        <section className={styles2.albumGrid}>
+                        <section className={physicalCDsCSS.albumGrid}>
                             {filteredAlbums.map((album) => (
                                 <CDButton
                                     key={album.id}

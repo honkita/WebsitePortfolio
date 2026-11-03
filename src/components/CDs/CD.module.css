@@ -2,7 +2,8 @@
   width: 100%;
   aspect-ratio: 1;
   overflow: hidden;
-  background: var(--placeholder-background, #292929);
+  background: var(--background-secondary);
+  transition: transform 0.2s ease;
 }
 
 .artwork {
@@ -18,7 +19,16 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-  background: var(--placeholder-background, #292929);
-  color: var(--muted-foreground, #999);
+  background: var(--background-secondary);
+  color: var(--primary-tertiary);
   font-size: 0.9rem;
+}
+
+@media not (hover: none) {
+  .artworkContainer:hover {
+    transform: scale(1.1);
+    cursor: url("/images/Cursor/Pointer.png"), pointer;
+    filter: brightness(75%);
+    z-index: 100;
+  }
 }

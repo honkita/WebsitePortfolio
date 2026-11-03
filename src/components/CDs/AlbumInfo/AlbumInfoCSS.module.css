@@ -1,24 +1,17 @@
-.page {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 40px 24px;
-  color: var(--foreground);
-}
-
-.modalOverlay {
+.modalUI {
   position: fixed;
-  inset: 0;
-  z-index: 999;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 24px;
-  overflow-y: auto;
-
-  background: var(--background);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--background-tertiary);
+  border: 2px solid var(--version-colour, --border);
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 75vw;
+  height: 80vh;
+  max-width: 128rem;
+  z-index: 1000;
+  flex-direction: column;
 }
 
 .popupContent {
@@ -123,25 +116,6 @@
   opacity: 0.65;
 }
 
-.modal {
-  position: relative;
-  width: 100%;
-  max-width: 64rem;
-  max-height: 90vh;
-  padding: 30px;
-  overflow-y: auto;
-
-  border: 1px solid var(--version-colour, #444);
-  border-radius: 12px;
-
-  background: var(--background);
-  color: inherit;
-
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
 .closeButton {
   position: absolute;
   top: 12px;
@@ -164,8 +138,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 30px;
-  padding-right: 30px;
+  width: 100%;
 }
 
 .modalArtworkContainer {
@@ -204,10 +177,17 @@
   margin-top: 28px;
 }
 
-.versionSection h3,
+.tracklistSection {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  margin-top: 28px;
+}
+
+/* Tracklist heading */
 .tracklistSection h3 {
-  margin: 0 0 16px;
-  font-size: 1.15rem;
+  flex-shrink: 0;
 }
 
 .versionSelector {
@@ -223,8 +203,26 @@
 
 .tracklist {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 4px;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+}
+
+.tracklist::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tracklist::-webkit-scrollbar-thumb {
+  background: var(--border, #555);
+  border-radius: 10px;
+}
+
+.tracklist::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .discHeading {
@@ -295,7 +293,7 @@
     gap: 14px;
   }
 
-  .modalOverlay {
+  .modalUI {
     align-items: flex-start;
     padding: 12px;
   }

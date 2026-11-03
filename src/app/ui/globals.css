@@ -9,7 +9,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-right: calc (-1 * (100vw - 100%));
-  cursor: url("../../../public/images/Cursor/Cursor.png"), auto;
+  cursor: url("/images/Cursor/Cursor.png"), auto;
 }
 
 * {
@@ -75,7 +75,7 @@ circle:nth-child(1) {
   font-family: "UNIFONTEX";
   src:
     local("UNIFONTEX"),
-    url("../../../public/Unifontex/UnifontExMono.ttf") format("truetype");
+    url("/Unifontex/UnifontExMono.ttf") format("truetype");
 }
 
 nav {
@@ -156,10 +156,10 @@ button {
 
 @media not (hover: none) {
   a:hover {
-    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("/images/Cursor/Pointer.png"), pointer;
   }
 
   button:hover {
-    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("/images/Cursor/Pointer.png"), pointer;
   }
 }

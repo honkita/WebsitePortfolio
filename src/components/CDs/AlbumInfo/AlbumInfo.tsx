@@ -59,13 +59,13 @@ const AlbumInfo = ({
 
     return (
         <div
-            className={AlbumInfoCSS.modalOverlay}
+            className={AlbumInfoCSS.modalUI}
             onClick={closeAlbum}
+            style={modalStyle}
             role="presentation"
         >
             <section
                 className={AlbumInfoCSS.modal}
-                style={modalStyle}
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="album-modal-title"
@@ -194,18 +194,24 @@ const AlbumInfo = ({
                                                     </span>
 
                                                     {track.song.artists.length >
-                                                        0 && (
-                                                        <span
-                                                            className={
-                                                                AlbumInfoCSS.trackArtist
-                                                            }
-                                                        >
-                                                            {getArtistNames(
-                                                                track.song
-                                                                    .artists
-                                                            )}
-                                                        </span>
-                                                    )}
+                                                        0 &&
+                                                        getArtistNames(
+                                                            track.song.artists
+                                                        ) !=
+                                                            getArtistNames(
+                                                                selectedAlbum.artists
+                                                            ) && (
+                                                            <span
+                                                                className={
+                                                                    AlbumInfoCSS.trackArtist
+                                                                }
+                                                            >
+                                                                {getArtistNames(
+                                                                    track.song
+                                                                        .artists
+                                                                )}
+                                                            </span>
+                                                        )}
                                                 </div>
 
                                                 <span

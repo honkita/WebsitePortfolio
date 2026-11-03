@@ -39,9 +39,8 @@ const VersionButton = ({
         <button
             type="button"
             style={versionStyle}
-            className={`${VersionButtonCSS.versionButton} ${
-                isActive ? VersionButtonCSS.activeVersion : ""
-            }`}
+            disabled={versionID === selectedVersionID}
+            className={`${VersionButtonCSS.versionButton}`}
             onClick={() => buttonPress(versionID)}
         >
             {name || "Default"}

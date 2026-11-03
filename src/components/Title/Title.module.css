@@ -418,13 +418,13 @@
 
 @media not (hover: none) {
   .swapButton:hover {
-    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("/images/Cursor/Pointer.png"), pointer;
     filter: brightness(75%);
     z-index: 100;
   }
 
   .languageButton:hover {
-    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("/images/Cursor/Pointer.png"), pointer;
     filter: brightness(75%);
     z-index: 100;
   }
