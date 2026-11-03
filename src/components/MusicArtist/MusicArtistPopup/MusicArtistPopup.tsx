@@ -5,7 +5,6 @@ import React, { useState, useEffect, useRef } from "react";
 import Modal from "react-modal";
 
 // Next.js
-import Image from "next/image";
 import { useTheme } from "next-themes";
 
 // Child Components
@@ -47,12 +46,6 @@ const MusicArtistPopup = ({
     useEffect(() => {
         setIsThemeMounted(true);
     }, []);
-
-    const path = "/images/Buttons/";
-
-    const getButton = (light: boolean) => {
-        return light ? path + "PixelX.svg" : path + "PixelXDark.svg";
-    };
 
     const actualResolvedTheme = isThemeMounted ? resolvedTheme : "light";
 

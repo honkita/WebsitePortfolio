@@ -119,18 +119,6 @@
   opacity: 0.65;
 }
 
-.modalOverlay {
-  position: fixed;
-  z-index: 1000;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  overflow-y: auto;
-  background: rgb(0 0 0 / 75%);
-}
-
 .modal {
   position: relative;
   width: 100%;

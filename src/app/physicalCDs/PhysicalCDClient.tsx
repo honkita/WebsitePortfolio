@@ -2,15 +2,10 @@
 
 // React
 import { useMemo, useState } from "react";
-import type { CSSProperties } from "react";
-
-type VersionColourStyle = CSSProperties & {
-    "--version-colour": string;
-};
 
 // Child Components
+import AlbumInfo from "@/components/CDs/AlbumInfo/AlbumInfo";
 import CDButton from "@/components/CDs/CDButton";
-import VersionButton from "@/components/CDs/AlbumInfo/VersionButton";
 import Title from "@/components/Title/Title";
 
 // CSS
@@ -26,27 +21,15 @@ interface PhysicalCDClientProps {
     albums: CDAlbum[];
 }
 
-function formatDuration(seconds: number | null): string {
-    if (seconds === null || seconds < 0) {
-        return "--:--";
-    }
-
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-
-    return `${minutes}:${String(remainingSeconds).padStart(2, "0")}`;
-}
-
-function getArtistNames(artists: CDAlbum["artists"]): string {
-    return artists.map((artist) => artist.name).join(", ");
-}
-
 const PhysicalCDClient = ({ albums }: PhysicalCDClientProps) => {
     const [search, setSearch] = useState("");
     const [selectedAlbum, setSelectedAlbum] = useState<CDAlbum | null>(null);
     const [selectedVersionId, setSelectedVersionId] = useState<string | null>(
         null
     );
+    const getArtistNames = (artists: CDAlbum["artists"]) => {
+        return artists.map((artist) => artist.name).join(", ");
+    };
 
     const filteredAlbums = useMemo(() => {
         const query = search.trim().toLowerCase();
@@ -80,21 +63,15 @@ const PhysicalCDClient = ({ albums }: PhysicalCDClientProps) => {
           null)
         : null;
 
-    const selectedVersionColour = selectedVersion?.colour?.trim() || "#888888";
-
-    const modalStyle: VersionColourStyle = {
-        "--version-colour": selectedVersionColour
-    };
-
-    function openAlbum(album: CDAlbum) {
+    const openAlbum = (album: CDAlbum) => {
         setSelectedAlbum(album);
         setSelectedVersionId(album.versions[0]?.id ?? null);
-    }
+    };
 
-    function closeAlbum() {
+    const closeAlbum = () => {
         setSelectedAlbum(null);
         setSelectedVersionId(null);
-    }
+    };
 
     return (
         <div>
@@ -138,227 +115,13 @@ const PhysicalCDClient = ({ albums }: PhysicalCDClientProps) => {
                     )}
 
                     {selectedAlbum && (
-                        <div
-                            className={styles2.modalOverlay}
-                            onClick={closeAlbum}
-                            role="presentation"
-                        >
-                            <section
-                                className={styles2.modal}
-                                style={modalStyle}
-                                role="dialog"
-                                aria-modal="true"
-                                aria-labelledby="album-modal-title"
-                                onClick={(event) => event.stopPropagation()}
-                            >
-                                <button
-                                    type="button"
-                                    className={styles2.closeButton}
-                                    onClick={closeAlbum}
-                                    aria-label="Close album details"
-                                >
-                                    ×
-                                </button>
-
-                                <div className={styles2.modalHeader}>
-                                    <div
-                                        className={
-                                            styles2.modalArtworkContainer
-                                        }
-                                    >
-                                        {selectedAlbum.image_url ? (
-                                            <img
-                                                src={selectedAlbum.image_url}
-                                                alt={`${selectedAlbum.name} album artwork`}
-                                                className={styles2.modalArtwork}
-                                            />
-                                        ) : (
-                                            <div
-                                                className={
-                                                    styles2.artworkPlaceholder
-                                                }
-                                            >
-                                                <span>No artwork</span>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    <div
-                                        className={
-                                            styles2.modalAlbumInformation
-                                        }
-                                    >
-                                        <h2 id="album-modal-title">
-                                            {selectedAlbum.name}
-                                        </h2>
-
-                                        <p>
-                                            {getArtistNames(
-                                                selectedAlbum.artists
-                                            ) || "Unknown artist"}
-                                        </p>
-
-                                        <span>
-                                            {selectedAlbum.versions.length}{" "}
-                                            {selectedAlbum.versions.length === 1
-                                                ? "physical version"
-                                                : "physical versions"}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                {selectedAlbum.versions.length > 1 ||
-                                selectedAlbum.versions.some((version) =>
-                                    version.name?.trim()
-                                ) ? (
-                                    <div className={styles2.versionSection}>
-                                        <h3>Versions</h3>
-
-                                        <div
-                                            className={styles2.versionSelector}
-                                        >
-                                            {selectedAlbum.versions.map(
-                                                (version) => (
-                                                    <VersionButton
-                                                        key={version.id}
-                                                        versionID={version.id}
-                                                        name={version.name}
-                                                        colour={version.colour}
-                                                        selectedVersionID={
-                                                            selectedVersion?.id ||
-                                                            ""
-                                                        }
-                                                        buttonPress={
-                                                            setSelectedVersionId
-                                                        }
-                                                    />
-                                                )
-                                            )}
-                                        </div>
-                                    </div>
-                                ) : null}
-
-                                {selectedVersion && (
-                                    <div className={styles2.tracklistSection}>
-                                        <h3>Tracklist</h3>
-
-                                        {selectedVersion.tracks.length === 0 ? (
-                                            <p className={styles2.noTracks}>
-                                                No tracks have been added to
-                                                this version.
-                                            </p>
-                                        ) : (
-                                            <div className={styles2.tracklist}>
-                                                {selectedVersion.tracks.map(
-                                                    (track, index) => {
-                                                        const previousTrack =
-                                                            selectedVersion
-                                                                .tracks[
-                                                                index - 1
-                                                            ];
-
-                                                        const showDiscHeading =
-                                                            !previousTrack ||
-                                                            previousTrack.disc_number !==
-                                                                track.disc_number;
-
-                                                        return (
-                                                            <div key={track.id}>
-                                                                {showDiscHeading &&
-                                                                    (track.disc_number >
-                                                                        1 ||
-                                                                        selectedVersion.tracks.some(
-                                                                            (
-                                                                                item
-                                                                            ) =>
-                                                                                item.disc_number >
-                                                                                1
-                                                                        )) && (
-                                                                        <h4
-                                                                            className={
-                                                                                styles2.discHeading
-                                                                            }
-                                                                        >
-                                                                            Disc{" "}
-                                                                            {
-                                                                                track.disc_number
-                                                                            }
-                                                                        </h4>
-                                                                    )}
-
-                                                                <div
-                                                                    className={
-                                                                        styles2.track
-                                                                    }
-                                                                >
-                                                                    <span
-                                                                        className={
-                                                                            styles2.trackNumber
-                                                                        }
-                                                                    >
-                                                                        {
-                                                                            track.track_number
-                                                                        }
-                                                                    </span>
-
-                                                                    <div
-                                                                        className={
-                                                                            styles2.trackInformation
-                                                                        }
-                                                                    >
-                                                                        <span
-                                                                            className={
-                                                                                styles2.trackName
-                                                                            }
-                                                                        >
-                                                                            {
-                                                                                track
-                                                                                    .song
-                                                                                    .name
-                                                                            }
-                                                                        </span>
-
-                                                                        {track
-                                                                            .song
-                                                                            .artists
-                                                                            .length >
-                                                                            0 && (
-                                                                            <span
-                                                                                className={
-                                                                                    styles2.trackArtist
-                                                                                }
-                                                                            >
-                                                                                {getArtistNames(
-                                                                                    track
-                                                                                        .song
-                                                                                        .artists
-                                                                                )}
-                                                                            </span>
-                                                                        )}
-                                                                    </div>
-
-                                                                    <span
-                                                                        className={
-                                                                            styles2.trackDuration
-                                                                        }
-                                                                    >
-                                                                        {formatDuration(
-                                                                            track
-                                                                                .song
-                                                                                .duration_seconds
-                                                                        )}
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        );
-                                                    }
-                                                )}
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
-                            </section>
-                        </div>
+                        <AlbumInfo
+                            selectedAlbum={selectedAlbum}
+                            selectedVersion={selectedVersion}
+                            borderColour={selectedVersion?.colour || ""}
+                            closeAlbum={closeAlbum}
+                            setSelectedVersionId={setSelectedVersionId}
+                        />
                     )}
                 </div>
             </div>

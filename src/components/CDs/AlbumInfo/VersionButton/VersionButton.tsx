@@ -5,7 +5,7 @@ import React from "react";
 import type { CSSProperties } from "react";
 
 // CSS
-import AlbumInfoCSS from "./AlbumInfoCSS.module.css";
+import VersionButtonCSS from "./VersionButtonCSS.module.css";
 
 // Props Interface
 interface VersionButtonProps {
@@ -39,8 +39,8 @@ const VersionButton = ({
         <button
             type="button"
             style={versionStyle}
-            className={`${AlbumInfoCSS.versionButton} ${
-                isActive ? AlbumInfoCSS.activeVersion : ""
+            className={`${VersionButtonCSS.versionButton} ${
+                isActive ? VersionButtonCSS.activeVersion : ""
             }`}
             onClick={() => buttonPress(versionID)}
         >
