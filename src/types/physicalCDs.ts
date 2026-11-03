@@ -33,4 +33,5 @@ export interface CDAlbum {
   image_url: string | null;
   artists: CDArtist[];
   versions: CDVersion[];
+  release_date: Date;
 }

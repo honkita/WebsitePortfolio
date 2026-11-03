@@ -34,24 +34,44 @@ const PhysicalCDClient = ({ albums }: PhysicalCDClientProps) => {
     const filteredAlbums = useMemo(() => {
         const query = search.trim().toLowerCase();
 
-        if (!query) {
-            return albums;
-        }
+        const filtered = !query
+            ? [...albums]
+            : albums.filter((album) => {
+                  const albumName = album.name.toLowerCase();
+                  const artistNames = getArtistNames(
+                      album.artists
+                  ).toLowerCase();
 
-        return albums.filter((album) => {
-            const albumName = album.name.toLowerCase();
-            const artistNames = getArtistNames(album.artists).toLowerCase();
+                  const versionNames = album.versions
+                      .map((version) => version.name)
+                      .join(" ")
+                      .toLowerCase();
 
-            const versionNames = album.versions
-                .map((version) => version.name)
-                .join(" ")
-                .toLowerCase();
+                  return (
+                      albumName.includes(query) ||
+                      artistNames.includes(query) ||
+                      versionNames.includes(query)
+                  );
+              });
 
-            return (
-                albumName.includes(query) ||
-                artistNames.includes(query) ||
-                versionNames.includes(query)
+        return filtered.sort((a, b) => {
+            const artistComparison = getArtistNames(a.artists).localeCompare(
+                getArtistNames(b.artists)
             );
+
+            if (artistComparison !== 0) {
+                return artistComparison;
+            }
+
+            const dateA = a.release_date
+                ? new Date(a.release_date).getTime()
+                : Infinity;
+
+            const dateB = b.release_date
+                ? new Date(b.release_date).getTime()
+                : Infinity;
+
+            return dateA - dateB;
         });
     }, [albums, search]);
 

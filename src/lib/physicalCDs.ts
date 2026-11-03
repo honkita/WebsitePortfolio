@@ -17,6 +17,7 @@ interface AlbumRow {
   id: string;
   name: string;
   musicbrainz_release_id: string | null;
+  release_date: Date;
 }
 
 interface AlbumArtistRow {
@@ -42,6 +43,7 @@ interface VersionRow {
   name: string;
   bin_id: string;
   sort_order: number;
+  colour: string;
 }
 
 interface BinTrackRow {
@@ -72,7 +74,7 @@ export async function getPhysicalCDs(): Promise<CDAlbum[]> {
   ] = await Promise.all([
     supabase
       .from("albums")
-      .select("id, name, musicbrainz_release_id")
+      .select("id, name, musicbrainz_release_id, release_date")
       .order("name"),
 
     supabase.from("artists").select("id, name"),
@@ -240,6 +242,7 @@ export async function getPhysicalCDs(): Promise<CDAlbum[]> {
     name: album.name,
     musicbrainz_release_id: album.musicbrainz_release_id,
     image_url: getArtworkUrl(album.musicbrainz_release_id),
+    release_date: album.release_date,
     artists: albumArtistMap.get(album.id) ?? [],
     versions: versionsByAlbum.get(album.id) ?? [],
   }));

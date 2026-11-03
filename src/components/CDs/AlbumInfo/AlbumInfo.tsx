@@ -96,6 +96,7 @@ const AlbumInfo = ({
                                 {getArtistNames(selectedAlbum.artists) ||
                                     "Unknown artist"}
                             </p>
+                            <p>{selectedAlbum.release_date?.toString()}</p>
 
                             <span>
                                 {selectedAlbum.versions.length}{" "}
