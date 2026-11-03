@@ -72,46 +72,43 @@ const AlbumInfo = ({
                 onClick={(event) => event.stopPropagation()}
             >
                 <div className={AlbumInfoCSS.popupContent}>
-                    <div className={MusicArtistPopupCSS.artistInfo}>
-                        Artist Info
-                    </div>
+                    <div className={AlbumInfoCSS.modalHeader}>
+                        <div className={AlbumInfoCSS.modalArtworkContainer}>
+                            {selectedAlbum.image_url ? (
+                                <img
+                                    src={selectedAlbum.image_url}
+                                    alt={`${selectedAlbum.name} album artwork`}
+                                    className={AlbumInfoCSS.modalArtwork}
+                                />
+                            ) : (
+                                <div
+                                    className={AlbumInfoCSS.artworkPlaceholder}
+                                >
+                                    <span>No artwork</span>
+                                </div>
+                            )}
+                        </div>
 
+                        <div className={AlbumInfoCSS.modalAlbumInformation}>
+                            <h2 id="album-modal-title">{selectedAlbum.name}</h2>
+
+                            <p>
+                                {getArtistNames(selectedAlbum.artists) ||
+                                    "Unknown artist"}
+                            </p>
+
+                            <span>
+                                {selectedAlbum.versions.length}{" "}
+                                {selectedAlbum.versions.length === 1
+                                    ? "physical version"
+                                    : "physical versions"}
+                            </span>
+                        </div>
+                    </div>
                     <CloseButton
                         theme={actualResolvedTheme || ""}
                         closeModal={closeAlbum}
                     />
-                </div>
-
-                <div className={AlbumInfoCSS.modalHeader}>
-                    <div className={AlbumInfoCSS.modalArtworkContainer}>
-                        {selectedAlbum.image_url ? (
-                            <img
-                                src={selectedAlbum.image_url}
-                                alt={`${selectedAlbum.name} album artwork`}
-                                className={AlbumInfoCSS.modalArtwork}
-                            />
-                        ) : (
-                            <div className={AlbumInfoCSS.artworkPlaceholder}>
-                                <span>No artwork</span>
-                            </div>
-                        )}
-                    </div>
-
-                    <div className={AlbumInfoCSS.modalAlbumInformation}>
-                        <h2 id="album-modal-title">{selectedAlbum.name}</h2>
-
-                        <p>
-                            {getArtistNames(selectedAlbum.artists) ||
-                                "Unknown artist"}
-                        </p>
-
-                        <span>
-                            {selectedAlbum.versions.length}{" "}
-                            {selectedAlbum.versions.length === 1
-                                ? "physical version"
-                                : "physical versions"}
-                        </span>
-                    </div>
                 </div>
 
                 {selectedAlbum.versions.length > 1 ||
