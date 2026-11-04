@@ -1,8 +1,8 @@
+// Next
 import type { Metadata } from "next";
 
 // Client
 import MusicClient from "./musicclient";
-
 
 // Metadata
 export const metadata: Metadata = {
@@ -15,6 +15,6 @@ export const metadata: Metadata = {
  */
 const Music = () => {
     return <MusicClient />;
-}
+};
 
 export default Music;

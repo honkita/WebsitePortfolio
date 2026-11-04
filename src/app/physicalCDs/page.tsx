@@ -1,5 +1,11 @@
-import { getPhysicalCDs } from "@/lib/physicalCDs";
+// Client
 import PhysicalCDClient from "./PhysicalCDClient";
+
+// Lib
+import { getPhysicalCDs } from "@/lib/physicalCDs";
+
+// Foce Dynamic Rendering
+export const dynamic = "force-dynamic";
 
 export const metadata = {
     title: "Physical CD Collection",
