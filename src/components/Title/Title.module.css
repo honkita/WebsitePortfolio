@@ -87,6 +87,10 @@
   background-image: url("/images/NamePlate/Green/Normal.png");
 }
 
+.orangeName {
+  background-image: url("/images/NamePlate/Orange/Normal.png");
+}
+
 .nameBox {
   border: 2px solid var(--primary);
   border-radius: 0.25rem;
@@ -271,6 +275,10 @@
 
   .greenName {
     background-image: url("/images/NamePlate/Green/Small.png");
+  }
+
+  .orangeName {
+    background-image: url("/images/NamePlate/Orange/Small.png");
   }
 
   .namePlate {

@@ -15,7 +15,7 @@ import { returnURL } from "@/hooks/MainButtons";
 
 // Props Interface
 export interface TitleProps {
-    colour: "blue" | "red" | "yellow" | "green";
+    colour: "blue" | "red" | "yellow" | "green" | "orange";
     buttons: string[];
     name: string;
 }
@@ -31,6 +31,8 @@ const getBackgroundUrl = (colour: string): string => {
             return "/images/NamePlate/Yellow/Normal.png";
         case "green":
             return "/images/NamePlate/Green/Normal.png";
+        case "orange":
+            return "/images/NamePlate/Orange/Normal.png";
         default:
             return "";
     }
@@ -85,6 +87,8 @@ const Title = ({ colour, buttons, name }: TitleProps) => {
                 return TitleCSS.yellowName;
             case "green":
                 return TitleCSS.greenName;
+            case "orange":
+                return TitleCSS.orangeName;
             default:
                 break;
         }
@@ -98,9 +102,11 @@ const Title = ({ colour, buttons, name }: TitleProps) => {
 
     return (
         <section
-            className={`${TitleCSS.namePlate
-                } ${backgroundClass()} ${visibilityClass} ${divstyling.imageRendering
-                }`}
+            className={`${
+                TitleCSS.namePlate
+            } ${backgroundClass()} ${visibilityClass} ${
+                divstyling.imageRendering
+            }`}
         >
             <div className={TitleCSS.titleCenter}>
                 <h1 className={TitleCSS.title}>{name}</h1>

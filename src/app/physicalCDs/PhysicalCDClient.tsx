@@ -97,7 +97,7 @@ const PhysicalCDClient = ({ albums }: PhysicalCDClientProps) => {
         <div>
             <Title
                 name={"CDs"}
-                colour="blue"
+                colour="orange"
                 buttons={["LinkedIn", "GitHub", "Email"]}
             />
 
