@@ -304,19 +304,9 @@
     gap: 14px;
   }
 
-  .modalUI {
-    align-items: flex-start;
-    padding: 12px;
-  }
-
   .modal {
     max-height: 95vh;
     padding: 20px;
-  }
-
-  .modalHeader {
-    align-items: flex-start;
-    gap: 14px;
   }
 
   .modalArtworkContainer {
