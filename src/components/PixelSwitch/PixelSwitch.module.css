@@ -28,23 +28,23 @@
 }
 
 .toggledark {
-  background-image: url("../../../public/images/Switch/SwitchBackDark.png");
+  background-image: url("/images/Switch/SwitchBackDark.png");
   transition: all 0.2s;
 }
 
 .toggledark::after {
-  background-image: url("../../../public/images/Switch/SwitchDark.png");
+  background-image: url("/images/Switch/SwitchDark.png");
   transform: translateX(55%);
 }
 
 @media not (hover: none) {
   .toggle:hover {
     filter: brightness(75%);
-    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("/images/Cursor/Pointer.png"), pointer;
   }
 
   .toggledark:hover {
     filter: brightness(75%);
-    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("/images/Cursor/Pointer.png"), pointer;
   }
 }

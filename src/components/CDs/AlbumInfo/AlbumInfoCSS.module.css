@@ -1,0 +1,319 @@
+.modalUI {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--background-tertiary);
+  border: 2px solid var(--version-colour, --border);
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 75vw;
+  height: 80vh;
+  max-width: 128rem;
+  z-index: 1000;
+  flex-direction: column;
+}
+
+.popupContent {
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+  gap: 1rem;
+  width: 100%;
+  min-width: 100%;
+}
+
+.albumCount {
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+.searchContainer {
+  margin-bottom: 30px;
+}
+
+.search {
+  width: 75%;
+  padding: 12px 16px;
+  border: 1px solid var(--border, #444);
+  border-radius: 8px;
+  outline: none;
+  background-color: var(--background);
+  font: inherit;
+  align-self: center;
+}
+
+.search:focus {
+  border-color: var(--accent, #888);
+}
+
+.albumGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 24px;
+}
+
+.albumCard {
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--border, #333);
+  border-radius: 10px;
+  background: var(--card-background, #1c1c1c);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.albumCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent, #888);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 20%);
+}
+
+.albumInformation {
+  padding: 14px;
+}
+
+.albumInformation h2 {
+  margin: 0 0 6px;
+  overflow: hidden;
+  font-size: 1rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.artistName {
+  margin: 0;
+  overflow: hidden;
+  opacity: 0.7;
+  font-size: 0.85rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.versionCount {
+  margin: 12px 0 0;
+  opacity: 0.55;
+  font-size: 0.8rem;
+}
+
+.emptyState {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.emptyState h2 {
+  margin-bottom: 8px;
+}
+
+.emptyState p {
+  opacity: 0.65;
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background: rgb(255 255 255 / 10%);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.modalArtworkContainer {
+  flex: 0 0 170px;
+  width: 170px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--placeholder-background, #292929);
+}
+
+.modalArtwork {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modalAlbumInformation h2 {
+  margin: 0 0 10px;
+  font-size: 1.6rem;
+}
+
+.modalAlbumInformation p {
+  margin: 0 0 10px;
+  opacity: 0.75;
+}
+
+.modalAlbumInformation span {
+  opacity: 0.55;
+  font-size: 0.85rem;
+}
+
+.versionSection,
+.tracklistSection {
+  margin-top: 28px;
+}
+
+.tracklistSection {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  margin-top: 28px;
+}
+
+/* Tracklist heading */
+.tracklistSection h3 {
+  flex-shrink: 0;
+}
+
+.versionSelector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.noVersions,
+.noTracks {
+  opacity: 0.6;
+}
+
+.tracklist {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+}
+
+.tracklist::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tracklist::-webkit-scrollbar-thumb {
+  background: var(--border, #555);
+  border-radius: 10px;
+}
+
+.tracklist::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.discHeading {
+  margin: 20px 0 8px;
+  opacity: 0.7;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--border, #333);
+}
+
+.trackNumber {
+  flex: 0 0 28px;
+  opacity: 0.55;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.trackInformation {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.trackName {
+  overflow: hidden;
+  font-size: 0.95rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trackArtist {
+  overflow: hidden;
+  opacity: 0.55;
+  font-size: 0.8rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trackDuration {
+  flex: 0 0 48px;
+  opacity: 0.6;
+  text-align: right;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 64rem) {
+  .page {
+    padding: 28px 16px;
+  }
+
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .albumGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .modalUI {
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .modal {
+    max-height: 95vh;
+    padding: 20px;
+  }
+
+  .modalHeader {
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .modalArtworkContainer {
+    flex-basis: 110px;
+    width: 110px;
+  }
+
+  .modalAlbumInformation h2 {
+    font-size: 1.2rem;
+  }
+}

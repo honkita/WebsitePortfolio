@@ -87,6 +87,10 @@
   background-image: url("/images/NamePlate/Green/Normal.png");
 }
 
+.orangeName {
+  background-image: url("/images/NamePlate/Orange/Normal.png");
+}
+
 .nameBox {
   border: 2px solid var(--primary);
   border-radius: 0.25rem;
@@ -273,6 +277,10 @@
     background-image: url("/images/NamePlate/Green/Small.png");
   }
 
+  .orangeName {
+    background-image: url("/images/NamePlate/Orange/Small.png");
+  }
+
   .namePlate {
     height: 100vw;
   }
@@ -418,13 +426,13 @@
 
 @media not (hover: none) {
   .swapButton:hover {
-    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("/images/Cursor/Pointer.png"), pointer;
     filter: brightness(75%);
     z-index: 100;
   }
 
   .languageButton:hover {
-    cursor: url("../../../public/images/Cursor/Pointer.png"), pointer;
+    cursor: url("/images/Cursor/Pointer.png"), pointer;
     filter: brightness(75%);
     z-index: 100;
   }

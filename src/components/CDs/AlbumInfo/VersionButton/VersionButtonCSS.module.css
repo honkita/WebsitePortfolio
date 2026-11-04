@@ -1,0 +1,27 @@
+.versionButton {
+  padding: 9px 15px;
+
+  border: 1px solid var(--version-colour, #888888);
+  border-radius: 6px;
+
+  background: transparent;
+  color: inherit;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease;
+}
+
+.versionButton:disabled {
+  cursor: url("/images/Cursor/Cursor.png"), default;
+  opacity: 1;
+}
+
+@media not (hover: none) {
+  .versionButton:hover:enabled {
+    transform: scale(1.1);
+    cursor: url("/images/Cursor/Pointer.png"), pointer;
+    filter: brightness(75%);
+    z-index: 100;
+  }
+}
