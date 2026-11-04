@@ -168,7 +168,12 @@ const AlbumInfo = ({
                                                             AlbumInfoCSS.discHeading
                                                         }
                                                     >
-                                                        Disc {track.disc_number}
+                                                        {selectedVersion.name
+                                                            ?.trim()
+                                                            .toUpperCase() ===
+                                                        "LP"
+                                                            ? `Side ${String.fromCharCode(64 + track.disc_number)}`
+                                                            : `Disc ${track.disc_number}`}
                                                     </h4>
                                                 )}
 

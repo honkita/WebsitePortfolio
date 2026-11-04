@@ -4,14 +4,25 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: var(--background-tertiary);
-  border: 2px solid var(--version-colour, --border);
+  border: 2px solid var(--version-colour, var(--border));
   padding: 1.5rem;
   border-radius: 8px;
   width: 75vw;
   height: 80vh;
   max-width: 128rem;
   z-index: 1000;
+
+  display: flex;
   flex-direction: column;
+  min-height: 0;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .popupContent {
