@@ -31,7 +31,8 @@ export interface CDAlbum {
   name: string;
   musicbrainz_release_id: string | null;
   image_url: string | null;
+  release_date: Date;
   artists: CDArtist[];
   versions: CDVersion[];
-  release_date: Date;
+  search_artist_names: string[];
 }

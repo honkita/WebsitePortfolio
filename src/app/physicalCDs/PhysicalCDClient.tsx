@@ -27,6 +27,7 @@ const PhysicalCDClient = ({ albums }: PhysicalCDClientProps) => {
     const [selectedVersionId, setSelectedVersionId] = useState<string | null>(
         null
     );
+
     const getArtistNames = (artists: CDAlbum["artists"]) => {
         return artists.map((artist) => artist.name).join(", ");
     };
@@ -38,23 +39,33 @@ const PhysicalCDClient = ({ albums }: PhysicalCDClientProps) => {
             ? [...albums]
             : albums.filter((album) => {
                   const albumName = album.name.toLowerCase();
+
+                  // Actual album artist names.
                   const artistNames = getArtistNames(
                       album.artists
                   ).toLowerCase();
 
+                  // Parent and child artist names.
+                  const searchArtistNames = (album.search_artist_names ?? [])
+                      .join(" ")
+                      .toLowerCase();
+
+                  // Version names.
                   const versionNames = album.versions
-                      .map((version) => version.name)
+                      .map((version) => version.name ?? "")
                       .join(" ")
                       .toLowerCase();
 
                   return (
                       albumName.includes(query) ||
                       artistNames.includes(query) ||
+                      searchArtistNames.includes(query) ||
                       versionNames.includes(query)
                   );
               });
 
         return filtered.sort((a, b) => {
+            // Sort by original album artist name.
             const artistComparison = getArtistNames(a.artists).localeCompare(
                 getArtistNames(b.artists)
             );
@@ -63,6 +74,7 @@ const PhysicalCDClient = ({ albums }: PhysicalCDClientProps) => {
                 return artistComparison;
             }
 
+            // Then sort by release date.
             const dateA = a.release_date
                 ? new Date(a.release_date).getTime()
                 : Infinity;
@@ -106,6 +118,7 @@ const PhysicalCDClient = ({ albums }: PhysicalCDClientProps) => {
                     className={divstyling.hr}
                     style={{ marginTop: "3rem" }}
                 ></div>
+
                 <input
                     type="search"
                     placeholder="Search albums, artists, or versions..."
@@ -114,6 +127,7 @@ const PhysicalCDClient = ({ albums }: PhysicalCDClientProps) => {
                     className={physicalCDsCSS.search}
                     aria-label="Search albums"
                 />
+
                 <div className={styles.container}>
                     {filteredAlbums.length === 0 ? (
                         <div className={physicalCDsCSS.emptyState}>

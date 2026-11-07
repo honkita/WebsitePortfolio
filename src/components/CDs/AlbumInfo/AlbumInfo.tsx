@@ -72,6 +72,12 @@ const AlbumInfo = ({
                 onClick={(event) => event.stopPropagation()}
             >
                 <div className={AlbumInfoCSS.popupContent}>
+                    <div className={AlbumInfoCSS.close}>
+                        <CloseButton
+                            theme={actualResolvedTheme || ""}
+                            closeModal={closeAlbum}
+                        />
+                    </div>
                     <div className={AlbumInfoCSS.modalHeader}>
                         <div className={AlbumInfoCSS.modalArtworkContainer}>
                             {selectedAlbum.image_url ? (
@@ -96,20 +102,23 @@ const AlbumInfo = ({
                                 {getArtistNames(selectedAlbum.artists) ||
                                     "Unknown artist"}
                             </p>
-                            <p>{selectedAlbum.release_date?.toString()}</p>
+                            <p className={AlbumInfoCSS.releaseDate}>
+                                <span className={AlbumInfoCSS.fullReleaseDate}>
+                                    {selectedAlbum.release_date?.toString()} |🎵{" "}
+                                    {selectedVersion?.tracks.length}
+                                </span>
 
-                            <span>
-                                {selectedAlbum.versions.length}{" "}
-                                {selectedAlbum.versions.length === 1
-                                    ? "physical version"
-                                    : "physical versions"}
-                            </span>
+                                <span className={AlbumInfoCSS.shortReleaseDate}>
+                                    {selectedAlbum.release_date
+                                        ? new Date(
+                                              selectedAlbum.release_date
+                                          ).getUTCFullYear()
+                                        : ""}{" "}
+                                    |🎵 {selectedVersion?.tracks.length}
+                                </span>
+                            </p>
                         </div>
                     </div>
-                    <CloseButton
-                        theme={actualResolvedTheme || ""}
-                        closeModal={closeAlbum}
-                    />
                 </div>
 
                 {selectedAlbum.versions.length > 1 ||

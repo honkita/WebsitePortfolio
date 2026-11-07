@@ -8,6 +8,8 @@ import type {
   CDVersion,
 } from "@/types/physicalCDs";
 
+// Database row types
+
 interface ArtistRow {
   id: string;
   name: string;
@@ -54,6 +56,13 @@ interface BinTrackRow {
   disc_number: number;
 }
 
+interface ArtistRelationshipRow {
+  parent_artist_id: string;
+  child_artist_id: string;
+}
+
+// Artwork
+
 function getArtworkUrl(musicbrainzReleaseId: string | null): string | null {
   if (!musicbrainzReleaseId) {
     return null;
@@ -61,6 +70,101 @@ function getArtworkUrl(musicbrainzReleaseId: string | null): string | null {
 
   return `https://coverartarchive.org/release/${musicbrainzReleaseId}/front-500`;
 }
+
+// Artist hierarchy
+
+function buildArtistGroups(
+  relationships: ArtistRelationshipRow[],
+): Map<string, Set<string>> {
+  const adjacency = new Map<string, Set<string>>();
+
+  // Build an undirected relationship graph.
+  for (const relationship of relationships) {
+    const { parent_artist_id, child_artist_id } = relationship;
+
+    if (!adjacency.has(parent_artist_id)) {
+      adjacency.set(parent_artist_id, new Set());
+    }
+
+    if (!adjacency.has(child_artist_id)) {
+      adjacency.set(child_artist_id, new Set());
+    }
+
+    adjacency.get(parent_artist_id)!.add(child_artist_id);
+    adjacency.get(child_artist_id)!.add(parent_artist_id);
+  }
+
+  const groups = new Map<string, Set<string>>();
+  const visited = new Set<string>();
+
+  // Find all connected artists.
+  for (const artistId of adjacency.keys()) {
+    if (visited.has(artistId)) {
+      continue;
+    }
+
+    const group = new Set<string>();
+    const queue = [artistId];
+
+    while (queue.length > 0) {
+      const currentId = queue.shift()!;
+
+      if (visited.has(currentId)) {
+        continue;
+      }
+
+      visited.add(currentId);
+      group.add(currentId);
+
+      for (const relatedId of adjacency.get(currentId) ?? []) {
+        if (!visited.has(relatedId)) {
+          queue.push(relatedId);
+        }
+      }
+    }
+
+    // Every artist in this group points to the same set.
+    for (const id of group) {
+      groups.set(id, group);
+    }
+  }
+
+  return groups;
+}
+
+// Get all searchable artist names for an album.
+
+function getSearchArtistNames(
+  albumArtists: CDArtist[],
+  artistGroups: Map<string, Set<string>>,
+  artistMap: Map<string, CDArtist>,
+): string[] {
+  const names = new Set<string>();
+
+  for (const artist of albumArtists) {
+    // Always include the actual album artist.
+    names.add(artist.name);
+
+    // Include all related artists.
+    const group = artistGroups.get(artist.id);
+
+    if (!group) {
+      continue;
+    }
+
+    for (const relatedArtistId of group) {
+      const relatedArtist = artistMap.get(relatedArtistId);
+
+      if (relatedArtist) {
+        names.add(relatedArtist.name);
+      }
+    }
+  }
+
+  return [...names];
+}
+
+// Main catalogue retrieval
 
 export async function getPhysicalCDs(): Promise<CDAlbum[]> {
   const [
@@ -71,6 +175,7 @@ export async function getPhysicalCDs(): Promise<CDAlbum[]> {
     songArtistsResult,
     versionsResult,
     binTracksResult,
+    artistRelationshipsResult,
   ] = await Promise.all([
     supabase
       .from("albums")
@@ -95,7 +200,13 @@ export async function getPhysicalCDs(): Promise<CDAlbum[]> {
       .select("id, bin_id, song_id, track_number, disc_number")
       .order("disc_number")
       .order("track_number"),
+
+    supabase
+      .from("artist_relationships")
+      .select("parent_artist_id, child_artist_id"),
   ]);
+
+  // Error handling
 
   const results = [
     albumsResult,
@@ -105,6 +216,7 @@ export async function getPhysicalCDs(): Promise<CDAlbum[]> {
     songArtistsResult,
     versionsResult,
     binTracksResult,
+    artistRelationshipsResult,
   ];
 
   for (const result of results) {
@@ -114,6 +226,8 @@ export async function getPhysicalCDs(): Promise<CDAlbum[]> {
     }
   }
 
+  // Database data
+
   const albums = (albumsResult.data ?? []) as AlbumRow[];
   const artists = (artistsResult.data ?? []) as ArtistRow[];
   const albumArtists = (albumArtistsResult.data ?? []) as AlbumArtistRow[];
@@ -122,7 +236,11 @@ export async function getPhysicalCDs(): Promise<CDAlbum[]> {
   const versions = (versionsResult.data ?? []) as VersionRow[];
   const binTracks = (binTracksResult.data ?? []) as BinTrackRow[];
 
+  const artistRelationships = (artistRelationshipsResult.data ??
+    []) as ArtistRelationshipRow[];
+
   // Artist lookup
+
   const artistMap = new Map<string, CDArtist>(
     artists.map((artist) => [
       artist.id,
@@ -133,7 +251,12 @@ export async function getPhysicalCDs(): Promise<CDAlbum[]> {
     ]),
   );
 
+  // Build artist hierarchy
+
+  const artistGroups = buildArtistGroups(artistRelationships);
+
   // Album artist lookup
+
   const albumArtistMap = new Map<string, CDArtist[]>();
 
   for (const relation of albumArtists) {
@@ -150,6 +273,7 @@ export async function getPhysicalCDs(): Promise<CDAlbum[]> {
   }
 
   // Song artist lookup
+
   const songArtistMap = new Map<string, CDArtist[]>();
 
   for (const relation of songArtists) {
@@ -166,6 +290,7 @@ export async function getPhysicalCDs(): Promise<CDAlbum[]> {
   }
 
   // Song lookup
+
   const songMap = new Map<string, CDSong>(
     songs.map((song) => [
       song.id,
@@ -180,6 +305,7 @@ export async function getPhysicalCDs(): Promise<CDAlbum[]> {
   );
 
   // Tracklist lookup, keyed by bin ID
+
   const tracksByBin = new Map<string, CDTrack[]>();
 
   for (const track of binTracks) {
@@ -203,6 +329,7 @@ export async function getPhysicalCDs(): Promise<CDAlbum[]> {
   }
 
   // Sort tracks by disc and track number
+
   for (const tracks of tracksByBin.values()) {
     tracks.sort((a, b) => {
       if (a.disc_number !== b.disc_number) {
@@ -214,6 +341,7 @@ export async function getPhysicalCDs(): Promise<CDAlbum[]> {
   }
 
   // Version lookup, keyed by album ID
+
   const versionsByAlbum = new Map<string, CDVersion[]>();
 
   for (const version of versions) {
@@ -232,20 +360,36 @@ export async function getPhysicalCDs(): Promise<CDAlbum[]> {
   }
 
   // Sort versions by their configured order
+
   for (const albumVersions of versionsByAlbum.values()) {
     albumVersions.sort((a, b) => a.sort_order - b.sort_order);
   }
 
   // Assemble final catalogue
-  const result: CDAlbum[] = albums.map((album) => ({
-    id: album.id,
-    name: album.name,
-    musicbrainz_release_id: album.musicbrainz_release_id,
-    image_url: getArtworkUrl(album.musicbrainz_release_id),
-    release_date: album.release_date,
-    artists: albumArtistMap.get(album.id) ?? [],
-    versions: versionsByAlbum.get(album.id) ?? [],
-  }));
+
+  const result: CDAlbum[] = albums.map((album) => {
+    const actualArtists = albumArtistMap.get(album.id) ?? [];
+
+    return {
+      id: album.id,
+      name: album.name,
+      musicbrainz_release_id: album.musicbrainz_release_id,
+      image_url: getArtworkUrl(album.musicbrainz_release_id),
+      release_date: album.release_date,
+
+      // Original album artist credits.
+      artists: actualArtists,
+
+      // Parent and child artists used for searching.
+      search_artist_names: getSearchArtistNames(
+        actualArtists,
+        artistGroups,
+        artistMap,
+      ),
+
+      versions: versionsByAlbum.get(album.id) ?? [],
+    };
+  });
 
   return result;
 }

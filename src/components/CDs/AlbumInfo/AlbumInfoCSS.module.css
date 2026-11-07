@@ -11,7 +11,6 @@
   height: 80vh;
   max-width: 128rem;
   z-index: 1000;
-
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -22,13 +21,12 @@
   flex-direction: column;
   flex: 1;
   min-height: 0;
-  /* overflow: hidden; */
 }
 
 .popupContent {
   display: flex;
-  flex-direction: row;
-  align-items: right;
+  flex-direction: row-reverse;
+  /* justify-content: flex-end; */
   gap: 1rem;
   width: 100%;
   min-width: 100%;
@@ -153,10 +151,8 @@
 }
 
 .modalArtworkContainer {
-  flex: 0 0 170px;
   width: 170px;
   aspect-ratio: 1;
-  overflow: hidden;
   border-radius: 8px;
   background: var(--placeholder-background, #292929);
 }
@@ -183,7 +179,6 @@
   font-size: 0.85rem;
 }
 
-.versionSection,
 .tracklistSection {
   margin-top: 28px;
 }
@@ -289,32 +284,73 @@
   font-variant-numeric: tabular-nums;
 }
 
-@media (max-width: 64rem) {
-  .page {
-    padding: 28px 16px;
+.close {
+  width: auto;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: right;
+}
+
+.shortReleaseDate {
+  display: none;
+}
+
+@media (max-width: 32rem) {
+  .close {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: right;
   }
 
-  .header {
-    align-items: flex-start;
+  .modalUI {
+    padding: 1%;
+    border-radius: 8px;
+    width: 90vw;
+    height: 90vh;
+    max-width: 128rem;
+    z-index: 1000;
+    display: flex;
+  }
+
+  .popupContent {
+    display: flex;
     flex-direction: column;
+    align-items: right;
+    gap: 2%;
+    width: 100%;
+    min-width: 100%;
   }
 
-  .albumGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+  .modalHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2%;
+    width: 100%;
   }
 
   .modal {
-    max-height: 95vh;
-    padding: 20px;
+    max-height: 100vh;
+    padding: 1%;
   }
 
   .modalArtworkContainer {
-    flex-basis: 110px;
-    width: 110px;
+    width: 60%;
+    height: 100%;
+    aspect-ratio: 1;
   }
 
-  .modalAlbumInformation h2 {
+  .modalAlbumInformation {
     font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .fullReleaseDate {
+    display: none;
+  }
+
+  .shortReleaseDate {
+    display: inline;
   }
 }
