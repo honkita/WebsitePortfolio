@@ -29,8 +29,6 @@ const VersionButton = ({
 }: VersionButtonProps) => {
     const versionColour = colour?.trim() || "#888888";
 
-    const isActive = selectedVersionID === versionID;
-
     const versionStyle: VersionColourStyle = {
         "--version-colour": versionColour
     };

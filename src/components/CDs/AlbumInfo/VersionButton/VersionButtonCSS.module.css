@@ -1,20 +1,18 @@
 .versionButton {
   padding: 9px 15px;
-
   border: 1px solid var(--version-colour, #888888);
   border-radius: 6px;
-
   background: transparent;
   color: inherit;
-
   cursor: pointer;
   z-index: 10000;
-
   transition: transform 0.2s ease;
 }
 
 .versionButton:disabled {
   cursor: url("/images/Cursor/Cursor.png"), default;
+  border: 1px solid var(--version-colour, #888888);
+  background: var(--version-colour, #888888);
   opacity: 1;
 }
 
