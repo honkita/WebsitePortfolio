@@ -13,6 +13,7 @@
   cursor: url("/images/Cursor/Cursor.png"), default;
   border: 1px solid var(--version-colour, #888888);
   background: var(--version-colour, #888888);
+  color: var(--version-text-colour, #ffffff);
   opacity: 1;
 }
 
