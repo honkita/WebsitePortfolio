@@ -12,8 +12,10 @@ export const metadata = {
     description: "Browse my physical CD collection."
 };
 
-export default async function PhysicalCDPage() {
+const PhysicalCDPage = async () => {
     const albums = await getPhysicalCDs();
 
     return <PhysicalCDClient albums={albums} />;
-}
+};
+
+export default PhysicalCDPage;

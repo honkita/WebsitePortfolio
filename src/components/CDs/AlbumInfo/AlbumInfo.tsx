@@ -49,6 +49,7 @@ const AlbumInfo = ({
 
     const actualResolvedTheme = isThemeMounted ? resolvedTheme : "light";
     const selectedVersionColour = borderColour == "" ? "#888888" : borderColour;
+
     const modalStyle: VersionColourStyle = {
         "--version-colour": selectedVersionColour
     };
@@ -186,7 +187,10 @@ const AlbumInfo = ({
                                                     </h4>
                                                 )}
 
-                                            <div className={AlbumInfoCSS.track}>
+                                            <div
+                                                className={AlbumInfoCSS.track}
+                                                style={modalStyle}
+                                            >
                                                 <span
                                                     className={
                                                         AlbumInfoCSS.trackNumber

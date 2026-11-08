@@ -63,19 +63,19 @@ interface ArtistRelationshipRow {
 
 // Artwork
 
-function getArtworkUrl(musicbrainzReleaseId: string | null): string | null {
+const getArtworkUrl = (musicbrainzReleaseId: string | null): string | null => {
   if (!musicbrainzReleaseId) {
     return null;
   }
 
   return `https://coverartarchive.org/release/${musicbrainzReleaseId}/front-500`;
-}
+};
 
 // Artist hierarchy
 
-function buildArtistGroups(
+const buildArtistGroups = (
   relationships: ArtistRelationshipRow[],
-): Map<string, Set<string>> {
+): Map<string, Set<string>> => {
   const adjacency = new Map<string, Set<string>>();
 
   // Build an undirected relationship graph.
@@ -130,15 +130,15 @@ function buildArtistGroups(
   }
 
   return groups;
-}
+};
 
 // Get all searchable artist names for an album.
 
-function getSearchArtistNames(
+const getSearchArtistNames = (
   albumArtists: CDArtist[],
   artistGroups: Map<string, Set<string>>,
   artistMap: Map<string, CDArtist>,
-): string[] {
+) => {
   const names = new Set<string>();
 
   for (const artist of albumArtists) {
@@ -162,11 +162,11 @@ function getSearchArtistNames(
   }
 
   return [...names];
-}
+};
 
 // Main catalogue retrieval
 
-export async function getPhysicalCDs(): Promise<CDAlbum[]> {
+export const getPhysicalCDs = async () => {
   const [
     albumsResult,
     artistsResult,
@@ -392,4 +392,4 @@ export async function getPhysicalCDs(): Promise<CDAlbum[]> {
   });
 
   return result;
-}
+};
